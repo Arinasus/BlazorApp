@@ -1,0 +1,9 @@
+﻿@using System.Runtime.InteropServices
+<label>Render mode @renderMode</label>
+@code {
+    string renderMode = "";
+    protected override void OnInitialized()
+    {
+        renderMode = RuntimeInformation.ProcessArchitecture.ToString();
+    }
+}
