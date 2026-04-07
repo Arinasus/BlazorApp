@@ -19,3 +19,6 @@ wwwroot/node_modules/
 
 .DS_Store
 Thumbs.db
+
+secrets.json
+usersecrets.json
