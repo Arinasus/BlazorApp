@@ -1,0 +1,67 @@
+﻿@page "/become-therapist"
+@using BlazorApp.Shared.Interfaces
+@using Microsoft.AspNetCore.Authorization
+@using BlazorApp.Shared.DTOs
+@using BlazorApp.Shared.Models
+@using System.Security.Claims
+@attribute [Authorize]
+@inject ITherapistService TherapistService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager Navigation
+
+<h3>Подать заявку на роль логопеда</h3>
+
+<EditForm Model="@model" OnValidSubmit="HandleSubmit" FormName="BecomeTherapistForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Специализация:</label>
+        <InputText @bind-Value="model.Specialization" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Образование:</label>
+        <InputTextArea @bind-Value="model.Education" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Стаж (лет):</label>
+        <InputNumber @bind-Value="model.ExperienceYears" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Цена за час:</label>
+        <InputNumber @bind-Value="model.PricePerHour" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private RegisterTherapistDto model { get; set; } = new();
+    protected override void OnInitialized() => model ??= new();
+    private async Task HandleSubmit()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var userId = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId != null)
+        {
+            var profile = new TherapistProfile
+            {
+                UserId = userId,
+                Specialization = model.Specialization,
+                Education = model.Education,
+                ExperienceYears = model.ExperienceYears,
+                PricePerHour = model.PricePerHour,
+                IsApproved = false,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await TherapistService.CreateApplicationAsync(profile);
+            Navigation.NavigateTo("/profile"); // Перенаправляем пользователя
+        }
+    }
+}

@@ -12,7 +12,7 @@ namespace BlazorApp.Data
             foreach (var roleName in roleNames)
             {
                 var roleExist = await roleManager.RoleExistsAsync(roleName);
-                if (roleExist)
+                if (!roleExist)
                 {
                     await roleManager.CreateAsync(new IdentityRole(roleName));
                 }

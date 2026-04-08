@@ -697,6 +697,7 @@
       },
       "BlazorApp.Client/1.0.0": {
         "dependencies": {
+          "BlazorApp.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "8.0.25",
           "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "8.0.25"
         },

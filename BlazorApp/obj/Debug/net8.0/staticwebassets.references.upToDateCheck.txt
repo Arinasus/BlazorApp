@@ -2,3 +2,15 @@ D:\Колледж\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\stati
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json

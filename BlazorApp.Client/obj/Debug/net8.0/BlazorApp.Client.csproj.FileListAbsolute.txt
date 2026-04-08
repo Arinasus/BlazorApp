@@ -2077,9 +2077,6 @@ D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\vis6tje7t
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\tnt9r9yop9-{0}-tptq2av103-tptq2av103.gz
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\jm9nb49abk-{0}-lfu7j35m59-lfu7j35m59.gz
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\ao4c29vnn4-{0}-oyz0vx2fzb-oyz0vx2fzb.gz
-D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\p16r1lo9cc-{0}-rhtw2p7agh-rhtw2p7agh.gz
-D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\m9lwyok78y-{0}-0mxc1mycvq-0mxc1mycvq.gz
-D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\63dvynpkij-{0}-67hpdqy5qt-67hpdqy5qt.gz
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.development.json
@@ -2091,3 +2088,15 @@ D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\BlazorApp.Client.dll
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\refint\BlazorApp.Client.dll
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\BlazorApp.Client.pdb
 D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\ref\BlazorApp.Client.dll
+D:\Диплом\BlazorApp\BlazorApp.Client\bin\Debug\net8.0\wwwroot\_framework\BlazorApp.Shared.pdb
+D:\Диплом\BlazorApp\BlazorApp.Client\bin\Debug\net8.0\wwwroot\_framework\BlazorApp.Shared.wasm
+D:\Диплом\BlazorApp\BlazorApp.Client\bin\Debug\net8.0\wwwroot\_framework\BlazorApp.Shared.wasm.gz
+D:\Диплом\BlazorApp\BlazorApp.Client\bin\Debug\net8.0\wwwroot\_framework\BlazorApp.Shared.pdb.gz
+D:\Диплом\BlazorApp\BlazorApp.Client\bin\Debug\net8.0\BlazorApp.Shared.dll
+D:\Диплом\BlazorApp\BlazorApp.Client\bin\Debug\net8.0\BlazorApp.Shared.pdb
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\webcil\BlazorApp.Shared.wasm
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\4vunzfikvp-{0}-veiyfipf9u-veiyfipf9u.gz
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\5zvbazqpur-{0}-8eydw0dmxv-8eydw0dmxv.gz
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\p16r1lo9cc-{0}-552bt7ig8m-552bt7ig8m.gz
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\m9lwyok78y-{0}-ilu0zt8ag3-ilu0zt8ag3.gz
+D:\Диплом\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\63dvynpkij-{0}-rek82p4lyq-rek82p4lyq.gz

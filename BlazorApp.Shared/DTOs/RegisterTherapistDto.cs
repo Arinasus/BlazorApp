@@ -9,13 +9,16 @@ namespace BlazorApp.Shared.DTOs
 {
     public class RegisterTherapistDto
     {
-        [Required, EmailAddress]
-        public string Email { get; set; } = "";
-        [Required, MinLength(6)]
-        public string Password { get; set; } = "";
-        [Required]
-        public string Specialization { get; set; } = "";
-        [Range(0,50)]
-        public int ExperienceYears { get; set;  }
+        [Required(ErrorMessage = "Укажите специализацию")]
+        public string Specialization { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Опишите ваше образование")]
+        public string Education { get; set; } = string.Empty;
+
+        [Range(0, 50, ErrorMessage = "Стаж должен быть от 0 до 50 лет")]
+        public int ExperienceYears { get; set; }
+
+        [Range(1, 100000, ErrorMessage = "Укажите корректную цену")]
+        public decimal PricePerHour { get; set; }
     }
 }

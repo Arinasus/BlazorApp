@@ -1,0 +1,65 @@
+﻿@page "/admin/applications"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Authorization
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@attribute [Authorize(Roles = "Admin")]
+@inject ITherapistService TherapistService
+
+<h3>Заявки на модерацию</h3>
+
+@if (pendingProfiles == null)
+{
+    <p>Загрузка...</p>
+}
+else if (!pendingProfiles.Any())
+{
+    <p>Новых заявок нет.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Специализация</th>
+                <th>Стаж</th>
+                <th>Цена</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var profile in pendingProfiles)
+            {
+                <tr>
+                    <td>@profile.Specialization</td>
+                    <td>@profile.ExperienceYears</td>
+                    <td>@profile.PricePerHour</td>
+                    <td>
+                        <button class="btn btn-success" @onclick="() => Approve(profile.Id)">Одобрить</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<TherapistProfile>? pendingProfiles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        pendingProfiles = await TherapistService.GetPendingApplicationsAsync();
+    }
+
+    private async Task Approve(int id)
+    {
+        await TherapistService.ApproveTherapistAsync(id);
+        await LoadData(); 
+    }
+}

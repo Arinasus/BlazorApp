@@ -31,7 +31,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj": {
+                "projectPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

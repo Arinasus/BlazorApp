@@ -1,9 +1,11 @@
 ﻿using BlazorApp.Data;
 using Microsoft.AspNetCore.Identity;
 using BlazorApp.Shared.Models;
+using BlazorApp.Shared.Interfaces;
+using Microsoft.EntityFrameworkCore;
 namespace BlazorApp.Services
 {
-    public class TherapistService
+    public class TherapistService : ITherapistService
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -36,6 +38,12 @@ namespace BlazorApp.Services
                 }
                 await _context.SaveChangesAsync();
             }
+        }
+        public async Task<List<TherapistProfile>> GetPendingApplicationsAsync()
+        {
+            return await _context.TherapistProfiles
+                .Where(p => !p.IsApproved)
+                .ToListAsync();
         }
     }
 }
