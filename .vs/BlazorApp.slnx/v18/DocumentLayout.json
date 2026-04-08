@@ -3,6 +3,54 @@
   "WorkspaceRootPath": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D5962485-CCBD-44C6-BA9F-64B8305BAA3E}|BlazorApp.Shared\\BlazorApp.Shared.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp.shared\\models\\child.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5962485-CCBD-44C6-BA9F-64B8305BAA3E}|BlazorApp.Shared\\BlazorApp.Shared.csproj|solutionrelative:blazorapp.shared\\models\\child.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\services\\childrenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\services\\childrenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\pages\\manage\\therapistsettings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\pages\\manage\\therapistsettings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\pages\\manage\\children.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\pages\\manage\\children.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\shared\\managenavmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\shared\\managenavmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\shared\\managelayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\shared\\managelayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\shared\\accountlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\shared\\accountlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\pages\\manage\\email.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\pages\\manage\\email.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\pages\\manage\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\pages\\manage\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\components\\account\\pages\\manage\\personaldata.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\pages\\manage\\personaldata.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2FBFC5A7-316B-4353-430E-779EFFCC1F3E}|BlazorApp.Client\\BlazorApp.Client.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp.client\\pages\\admin\\applications.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2FBFC5A7-316B-4353-430E-779EFFCC1F3E}|BlazorApp.Client\\BlazorApp.Client.csproj|solutionrelative:blazorapp.client\\pages\\admin\\applications.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -55,10 +103,6 @@
       "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\migrations\\20260407182512_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2FBFC5A7-316B-4353-430E-779EFFCC1F3E}|BlazorApp.Client\\BlazorApp.Client.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2FBFC5A7-316B-4353-430E-779EFFCC1F3E}|BlazorApp.Client\\BlazorApp.Client.csproj|solutionrelative:blazorapp.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -80,10 +124,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\\u0434\u0438\u043F\u043B\u043E\u043C\\blazorapp\\blazorapp\\blazorapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -109,180 +149,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TherapistProfile.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Models\\TherapistProfile.cs",
-              "RelativeDocumentMoniker": "BlazorApp.Shared\\Models\\TherapistProfile.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Models\\TherapistProfile.cs",
-              "RelativeToolTip": "BlazorApp.Shared\\Models\\TherapistProfile.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAQwA8AAAAZAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Child.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Models\\Child.cs",
+              "RelativeDocumentMoniker": "BlazorApp.Shared\\Models\\Child.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Models\\Child.cs",
+              "RelativeToolTip": "BlazorApp.Shared\\Models\\Child.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:24:01.139Z",
+              "WhenOpened": "2026-04-08T21:39:24.857Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Applications.razor",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Admin\\Applications.razor",
-              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Admin\\Applications.razor",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Admin\\Applications.razor",
-              "RelativeToolTip": "BlazorApp.Client\\Pages\\Admin\\Applications.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T18:01:10.282Z",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "BlazorApp\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T17:53:34.429Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "20260408173913_AddTherapistProfile.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
-              "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
-              "RelativeToolTip": "BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBoAAAAJAAAAAAAAAA==",
+              "Title": "ChildrenService.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Services\\ChildrenService.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Services\\ChildrenService.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Services\\ChildrenService.cs",
+              "RelativeToolTip": "BlazorApp\\Services\\ChildrenService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T17:39:14.103Z",
+              "WhenOpened": "2026-04-08T21:36:14.418Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TherapistService.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Services\\TherapistService.cs",
-              "RelativeDocumentMoniker": "BlazorApp\\Services\\TherapistService.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Services\\TherapistService.cs",
-              "RelativeToolTip": "BlazorApp\\Services\\TherapistService.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAgwDEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T19:15:11.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RegisterTherapistDto.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
-              "RelativeDocumentMoniker": "BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
-              "RelativeToolTip": "BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T17:27:12.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ITherapistService.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
-              "RelativeDocumentMoniker": "BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
-              "RelativeToolTip": "BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T17:49:02.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RegisterUserDto.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
-              "RelativeDocumentMoniker": "BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
-              "RelativeToolTip": "BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:12:53.847Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RenderMode.razor",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\RenderMode.razor",
-              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\RenderMode.razor",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\RenderMode.razor",
-              "RelativeToolTip": "BlazorApp.Client\\Pages\\RenderMode.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T08:56:40.48Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BecomeTherapist.razor",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\BecomeTherapist.razor",
-              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\BecomeTherapist.razor",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\BecomeTherapist.razor",
-              "RelativeToolTip": "BlazorApp.Client\\Pages\\BecomeTherapist.razor",
-              "ViewState": "AgIAACAAAAAAAAAAAAAiwC0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T13:37:38.09Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Auth.razor",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Auth.razor",
-              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Auth.razor",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Auth.razor",
-              "RelativeToolTip": "BlazorApp.Client\\Pages\\Auth.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T17:52:54.143Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Program.cs",
-              "RelativeDocumentMoniker": "BlazorApp\\Program.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Program.cs",
-              "RelativeToolTip": "BlazorApp\\Program.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAgwCIAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:52:09.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor",
-              "RelativeDocumentMoniker": "BlazorApp\\Components\\Layout\\NavMenu.razor",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor",
-              "RelativeToolTip": "BlazorApp\\Components\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T17:42:42.094Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "20260407182512_InitialCreate.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
-              "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
-              "RelativeToolTip": "BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T18:25:13.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
               "Title": "AccountService.cs",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Services\\AccountService.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Services\\AccountService.cs",
@@ -295,7 +205,280 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TherapistSettings.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\TherapistSettings.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\TherapistSettings.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\TherapistSettings.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Manage\\TherapistSettings.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T21:34:58.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Children.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\Children.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\Children.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\Children.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Manage\\Children.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T21:34:33.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ManageNavMenu.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwCcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T18:34:26.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ManageLayout.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageLayout.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Shared\\ManageLayout.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageLayout.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Shared\\ManageLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T18:34:20.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AccountLayout.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\AccountLayout.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Shared\\AccountLayout.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\AccountLayout.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Shared\\AccountLayout.razor",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T18:34:13.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Email.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\Email.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\Email.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\Email.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Manage\\Email.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T18:33:29.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\_Imports.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\_Imports.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\_Imports.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Manage\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T18:33:22.596Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PersonalData.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\PersonalData.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\PersonalData.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\PersonalData.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Manage\\PersonalData.razor",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T18:32:10.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TherapistProfile.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Models\\TherapistProfile.cs",
+              "RelativeDocumentMoniker": "BlazorApp.Shared\\Models\\TherapistProfile.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Models\\TherapistProfile.cs",
+              "RelativeToolTip": "BlazorApp.Shared\\Models\\TherapistProfile.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAQwA8AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T17:24:01.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Applications.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Admin\\Applications.razor",
+              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Admin\\Applications.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Admin\\Applications.razor",
+              "RelativeToolTip": "BlazorApp.Client\\Pages\\Admin\\Applications.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T18:01:10.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 14,
+              "Title": "20260408173913_AddTherapistProfile.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
+              "RelativeToolTip": "BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T17:39:14.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TherapistService.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Services\\TherapistService.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Services\\TherapistService.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Services\\TherapistService.cs",
+              "RelativeToolTip": "BlazorApp\\Services\\TherapistService.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T19:15:11.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "RegisterTherapistDto.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
+              "RelativeDocumentMoniker": "BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
+              "RelativeToolTip": "BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T17:27:12.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ITherapistService.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
+              "RelativeDocumentMoniker": "BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
+              "RelativeToolTip": "BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T17:49:02.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "RegisterUserDto.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
+              "RelativeDocumentMoniker": "BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
+              "RelativeToolTip": "BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T17:12:53.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "RenderMode.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\RenderMode.razor",
+              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\RenderMode.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\RenderMode.razor",
+              "RelativeToolTip": "BlazorApp.Client\\Pages\\RenderMode.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T08:56:40.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "BecomeTherapist.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\BecomeTherapist.razor",
+              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\BecomeTherapist.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\BecomeTherapist.razor",
+              "RelativeToolTip": "BlazorApp.Client\\Pages\\BecomeTherapist.razor",
+              "ViewState": "AgIAACAAAAAAAAAAAAAiwC0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T13:37:38.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Auth.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Auth.razor",
+              "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Auth.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Auth.razor",
+              "RelativeToolTip": "BlazorApp.Client\\Pages\\Auth.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T17:52:54.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Program.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Program.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Program.cs",
+              "RelativeToolTip": "BlazorApp\\Program.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAgwCIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T17:52:09.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T17:42:42.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "20260407182512_InitialCreate.cs",
+              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
+              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
+              "RelativeToolTip": "BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T18:25:13.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Program.cs",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Program.cs",
@@ -308,7 +491,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 26,
               "Title": "BlazorApp.Shared.csproj",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\BlazorApp.Shared.csproj",
@@ -316,25 +499,23 @@
               "RelativeToolTip": "BlazorApp.Shared\\BlazorApp.Shared.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-07T17:23:14.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-07T17:23:14.813Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "BlazorApp.Client",
+              "DocumentIndex": 27,
+              "Title": "BlazorApp.Client.csproj",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj",
               "RelativeDocumentMoniker": "BlazorApp.Client\\BlazorApp.Client.csproj",
               "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj",
               "RelativeToolTip": "BlazorApp.Client\\BlazorApp.Client.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-08T17:20:56.102Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T17:20:56.102Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "DbInitializer.cs",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Data\\DbInitializer.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Data\\DbInitializer.cs",
@@ -347,7 +528,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 29,
               "Title": "secrets.json",
               "DocumentMoniker": "C:\\Users\\HP\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-BlazorApp-b4310905-a472-48ad-9325-ff85a88c28ba\\secrets.json",
               "ToolTip": "C:\\Users\\HP\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-BlazorApp-b4310905-a472-48ad-9325-ff85a88c28ba\\secrets.json",
@@ -358,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 30,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\appsettings.json",
               "RelativeDocumentMoniker": "BlazorApp\\appsettings.json",
@@ -366,23 +547,12 @@
               "RelativeToolTip": "BlazorApp\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-07T18:20:25.704Z"
+              "WhenOpened": "2026-04-07T18:20:25.704Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "BlazorApp\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "BlazorApp\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:53:34.429Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 31,
               "Title": "BlazorApp.csproj",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\BlazorApp.csproj",
               "RelativeDocumentMoniker": "BlazorApp\\BlazorApp.csproj",
@@ -390,12 +560,11 @@
               "RelativeToolTip": "BlazorApp\\BlazorApp.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-07T17:32:45.476Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-07T17:32:45.476Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 32,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Data\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Data\\ApplicationUser.cs",
@@ -403,11 +572,12 @@
               "RelativeToolTip": "BlazorApp\\Data\\ApplicationUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:15:14.314Z"
+              "WhenOpened": "2026-04-07T17:15:14.314Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 33,
               "Title": "Home.razor",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Pages\\Home.razor",
@@ -415,11 +585,12 @@
               "RelativeToolTip": "BlazorApp\\Components\\Pages\\Home.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T09:01:17.448Z"
+              "WhenOpened": "2026-04-06T09:01:17.448Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 34,
               "Title": "Counter.razor",
               "DocumentMoniker": "D:\\\u0414\u0438\u043F\u043B\u043E\u043C\\BlazorApp\\BlazorApp.Client\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Counter.razor",
@@ -427,7 +598,8 @@
               "RelativeToolTip": "BlazorApp.Client\\Pages\\Counter.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T08:59:07.302Z"
+              "WhenOpened": "2026-04-06T08:59:07.302Z",
+              "EditorCaption": ""
             }
           ]
         }

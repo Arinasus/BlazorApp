@@ -7,6 +7,7 @@ namespace BlazorApp.Data
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
         public DbSet<TherapistProfile> TherapistProfiles { get; set; }
+        public DbSet<Child> Children { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
