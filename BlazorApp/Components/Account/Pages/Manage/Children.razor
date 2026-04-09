@@ -1,5 +1,88 @@
-﻿<h3>Children</h3>
+﻿@page "/my-children"
+@using Microsoft.AspNetCore.Authorization
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@using System.Security.Claims
+@attribute [Authorize]
+@inject IChildService ChildService
+@inject AuthenticationStateProvider AuthStateProvider
+
+<h3>Мои дети</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <h5>Добавить ребенка</h5>
+        <EditForm Model="newChild" OnValidSubmit="HandleAddChild" FormName="AddChildForm">
+            <DataAnnotationsValidator />
+            <div class="mb-3">
+                <label>Имя:</label>
+                <InputText @bind-Value="newChild.Name" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label>Возраст:</label>
+                <InputNumber @bind-Value="newChild.Age" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label>Диагноз/Особенности:</label>
+                <InputTextArea @bind-Value="newChild.Diagnosis" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </EditForm>
+    </div>
+
+    <div class="col-md-8">
+        <h5>Список детей</h5>
+        @if (children == null)
+        {
+            <p>Загрузка...</p>
+        }
+        else if (!children.Any())
+        {
+            <p>Вы еще не добавили данные о детях.</p>
+        }
+        else
+        {
+            <div class="list-group">
+                @foreach (var child in children)
+                {
+                    <div class="list-group-item">
+                        <h6>@child.Name (@child.Age лет)</h6>
+                        <p class="small mb-1"><strong>Диагноз:</strong> @child.Diagnosis</p>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
 
 @code {
+    private List<Child>? children;
+    private Child newChild = new();
+    [SupplyParameterFromForm] public Child? FormModel { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        newChild = FormModel ?? new();
+        await LoadChildren();
+    }
+
+    private async Task LoadChildren()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var userId = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId != null)
+        {
+            children = await ChildService.GetChildrenByParentIdAsync(userId);
+        }
+    }
+
+    private async Task HandleAddChild()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        newChild.ParentId = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value!;
+        
+        await ChildService.AddChildAsync(newChild);
+        newChild = new(); 
+        await LoadChildren(); 
+    }
 }

@@ -21,6 +21,7 @@ builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
+builder.Services.AddScoped<IChildService, ChildrenService>();
 
 builder.Services.AddAuthentication(options =>
     {

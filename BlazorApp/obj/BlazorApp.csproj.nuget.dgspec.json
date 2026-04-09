@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Диплом\\BlazorApp\\BlazorApp\\BlazorApp.csproj": {}
+    "D:\\Diplom\\BlazorApp\\BlazorApp\\BlazorApp.csproj": {}
   },
   "projects": {
-    "D:\\Диплом\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj": {
+    "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Диплом\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj",
+        "projectUniqueName": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj",
         "projectName": "BlazorApp.Client",
-        "projectPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj",
+        "projectPath": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Client\\obj\\",
+        "outputPath": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj": {
-                "projectPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj"
+              "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj": {
+                "projectPath": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj"
               }
             }
           }
@@ -106,14 +106,14 @@
         }
       }
     },
-    "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj": {
+    "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj",
+        "projectUniqueName": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj",
         "projectName": "BlazorApp.Shared",
-        "projectPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj",
+        "projectPath": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\obj\\",
+        "outputPath": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -151,12 +151,6 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Fluent.Infrastructure": {
-              "target": "Package",
-              "version": "[2.0.0-beta-01, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -177,14 +171,14 @@
         }
       }
     },
-    "D:\\Диплом\\BlazorApp\\BlazorApp\\BlazorApp.csproj": {
+    "D:\\Diplom\\BlazorApp\\BlazorApp\\BlazorApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Диплом\\BlazorApp\\BlazorApp\\BlazorApp.csproj",
+        "projectUniqueName": "D:\\Diplom\\BlazorApp\\BlazorApp\\BlazorApp.csproj",
         "projectName": "BlazorApp",
-        "projectPath": "D:\\Диплом\\BlazorApp\\BlazorApp\\BlazorApp.csproj",
+        "projectPath": "D:\\Diplom\\BlazorApp\\BlazorApp\\BlazorApp.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\Диплом\\BlazorApp\\BlazorApp\\obj\\",
+        "outputPath": "D:\\Diplom\\BlazorApp\\BlazorApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -205,11 +199,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Диплом\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj": {
-                "projectPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj"
+              "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj": {
+                "projectPath": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj"
               },
-              "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj": {
-                "projectPath": "D:\\Диплом\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj"
+              "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj": {
+                "projectPath": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj"
               }
             }
           }
