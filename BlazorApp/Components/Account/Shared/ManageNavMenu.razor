@@ -34,9 +34,9 @@
         <li class="nav-item"><NavLink class="nav-link" href="Account/Manage/TherapistSettings">Моя анкета</NavLink></li>
     </AuthorizeView>
 
-    <AuthorizeView Roles="Client">
-        <li class="nav-item"><NavLink class="nav-link" href="Account/Manage/Children">Мои дети</NavLink></li>
-    </AuthorizeView>
+    <li class="nav-item">
+        <NavLink class="nav-link" href="Сhildren">Мои дети</NavLink>
+    </li>
 </ul>
 @code {
     private bool hasExternalLogins;
