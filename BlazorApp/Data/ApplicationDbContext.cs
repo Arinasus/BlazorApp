@@ -8,6 +8,7 @@ namespace BlazorApp.Data
     {
         public DbSet<TherapistProfile> TherapistProfiles { get; set; }
         public DbSet<Child> Children { get; set; }
+        public DbSet<Lecture> Lectures { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

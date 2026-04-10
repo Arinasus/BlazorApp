@@ -1,4 +1,4 @@
-﻿@page "/Сhildren"
+﻿@page "/children"
 @using Microsoft.AspNetCore.Components.Web
 @rendermode InteractiveServer
 @using Microsoft.AspNetCore.Authorization
@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-4">
         <h5>Добавить ребенка</h5>
-        <EditForm Model="newChild" OnValidSubmit="HandleAddChild" FormName="AddChildForm">
+        <EditForm Model="newChild" OnSubmit="HandleAddChild">
             <DataAnnotationsValidator />
             <div class="mb-3">
                 <label>Имя:</label>
@@ -60,21 +60,33 @@
 @code {
     private List<Child>? children;
     private Child newChild = new();
-    [SupplyParameterFromForm] public Child? FormModel { get; set; }
+    //[SupplyParameterFromForm] public Child? FormModel { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        newChild = FormModel ?? new();
+        //newChild = FormModel ?? new();
         await LoadChildren();
     }
 
     private async Task LoadChildren()
     {
-        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
-        var userId = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        if (userId != null)
+        try
         {
-            children = await ChildService.GetChildrenByParentIdAsync(userId);
+            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+
+            if (user.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    children = await ChildService.GetChildrenByParentIdAsync(userId);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка загрузки детей: {ex.Message}");
         }
     }
 

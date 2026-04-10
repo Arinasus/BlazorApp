@@ -3140,11 +3140,6 @@ D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\vis6tje7to-{0}-
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\tnt9r9yop9-{0}-tptq2av103-tptq2av103.gz
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\jm9nb49abk-{0}-lfu7j35m59-lfu7j35m59.gz
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\ao4c29vnn4-{0}-oyz0vx2fzb-oyz0vx2fzb.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\4vunzfikvp-{0}-585r9v9heo-585r9v9heo.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\5zvbazqpur-{0}-b8ufce24g3-b8ufce24g3.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\p16r1lo9cc-{0}-zjezcwfaa6-zjezcwfaa6.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\m9lwyok78y-{0}-hlvx7mj3s4-hlvx7mj3s4.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\63dvynpkij-{0}-zw1m0el4g7-zw1m0el4g7.gz
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.development.json
@@ -3156,3 +3151,8 @@ D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\BlazorApp.Client.dll
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\refint\BlazorApp.Client.dll
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\BlazorApp.Client.pdb
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\ref\BlazorApp.Client.dll
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\4vunzfikvp-{0}-j8utsno32h-j8utsno32h.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\5zvbazqpur-{0}-3ese4eprkf-3ese4eprkf.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\p16r1lo9cc-{0}-owih2ec200-owih2ec200.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\m9lwyok78y-{0}-ve97sgh2wl-ve97sgh2wl.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\63dvynpkij-{0}-896b4mmbv4-896b4mmbv4.gz
