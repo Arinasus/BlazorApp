@@ -11,5 +11,6 @@ namespace BlazorApp.Shared.Interfaces
     {
         Task<List<Lecture>> GetAllLecturesAsync();
         Task<List<Lecture>> GetLecturesByDiagnosisAsync(string diagnosis);
+        Task AddLectureAsync(Lecture lecture);
     }
 }

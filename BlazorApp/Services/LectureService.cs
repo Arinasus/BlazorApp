@@ -7,6 +7,7 @@ namespace BlazorApp.Services
     public class LectureService : ILectureService
     {
         private readonly ApplicationDbContext _context;
+        
         public LectureService(ApplicationDbContext context)
         {
             _context = context;
@@ -17,5 +18,11 @@ namespace BlazorApp.Services
             => await _context.Lectures
             .Where(l => l.TargetDiagnosis.Contains(diagnosis))
             .ToListAsync();
+
+        public async Task AddLectureAsync(Lecture lecture)
+        {
+            _context.Lectures.Add(lecture);
+            await _context.SaveChangesAsync();
+        }
     }
 }
