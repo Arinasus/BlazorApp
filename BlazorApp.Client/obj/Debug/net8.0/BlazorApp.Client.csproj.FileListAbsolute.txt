@@ -3151,8 +3151,8 @@ D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\BlazorApp.Client.dll
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\refint\BlazorApp.Client.dll
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\BlazorApp.Client.pdb
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\ref\BlazorApp.Client.dll
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\4vunzfikvp-{0}-j8utsno32h-j8utsno32h.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\5zvbazqpur-{0}-3ese4eprkf-3ese4eprkf.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\p16r1lo9cc-{0}-owih2ec200-owih2ec200.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\m9lwyok78y-{0}-ve97sgh2wl-ve97sgh2wl.gz
-D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\63dvynpkij-{0}-896b4mmbv4-896b4mmbv4.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\4vunzfikvp-{0}-p48nisf7p7-p48nisf7p7.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\5zvbazqpur-{0}-4mhnu0x8a9-4mhnu0x8a9.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\p16r1lo9cc-{0}-8lze1ybyye-8lze1ybyye.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\m9lwyok78y-{0}-q3hzm8g8b7-q3hzm8g8b7.gz
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\compressed\63dvynpkij-{0}-kqz8rlw28o-kqz8rlw28o.gz
