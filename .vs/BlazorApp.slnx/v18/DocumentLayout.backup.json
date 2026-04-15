@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Diplom\\BlazorApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Diplom\\BlazorApp\\BlazorApp\\Migrations\\20260415113340_AddLectureContent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BlazorApp\\Migrations\\20260415113340_AddLectureContent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5962485-CCBD-44C6-BA9F-64B8305BAA3E}|BlazorApp.Shared\\BlazorApp.Shared.csproj|d:\\diplom\\blazorapp\\blazorapp.shared\\models\\lecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5962485-CCBD-44C6-BA9F-64B8305BAA3E}|BlazorApp.Shared\\BlazorApp.Shared.csproj|solutionrelative:blazorapp.shared\\models\\lecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\components\\pages\\recommended.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\pages\\recommended.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -33,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5962485-CCBD-44C6-BA9F-64B8305BAA3E}|BlazorApp.Shared\\BlazorApp.Shared.csproj|d:\\diplom\\blazorapp\\blazorapp.shared\\models\\lecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5962485-CCBD-44C6-BA9F-64B8305BAA3E}|BlazorApp.Shared\\BlazorApp.Shared.csproj|solutionrelative:blazorapp.shared\\models\\lecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\components\\account\\pages\\manage\\children.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -189,50 +193,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ForgotPassword.razor",
-              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
-              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
-              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
-              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T15:55:08.56Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LectureService.cs",
-              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Services\\LectureService.cs",
-              "RelativeDocumentMoniker": "BlazorApp\\Services\\LectureService.cs",
-              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Services\\LectureService.cs",
-              "RelativeToolTip": "BlazorApp\\Services\\LectureService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "20260415113340_AddLectureContent.cs",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Migrations\\20260415113340_AddLectureContent.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260415113340_AddLectureContent.cs",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Migrations\\20260415113340_AddLectureContent.cs",
+              "RelativeToolTip": "BlazorApp\\Migrations\\20260415113340_AddLectureContent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T20:26:12.04Z",
+              "WhenOpened": "2026-04-15T11:33:41.53Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ManageNavMenu.razor",
-              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "RelativeToolTip": "BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACsAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-09T11:12:15.535Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ILectureService.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Interfaces\\ILectureService.cs",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\Interfaces\\ILectureService.cs",
@@ -244,7 +222,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Lecture.cs",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Models\\Lecture.cs",
+              "RelativeDocumentMoniker": "BlazorApp.Shared\\Models\\Lecture.cs",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Models\\Lecture.cs",
+              "RelativeToolTip": "BlazorApp.Shared\\Models\\Lecture.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T20:14:53.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ManageNavMenu.razor",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Shared\\ManageNavMenu.razor",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-09T11:12:15.535Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ManageLectures.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Admin\\ManageLectures.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Admin\\ManageLectures.razor",
@@ -252,12 +255,11 @@
               "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Admin\\ManageLectures.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-13T17:00:53.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-13T17:00:53.339Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Program.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Program.cs",
@@ -269,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Recommended.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Pages\\Recommended.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Pages\\Recommended.razor",
@@ -282,7 +284,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 6,
+              "Title": "ForgotPassword.razor",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\ForgotPassword.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T15:55:08.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LectureService.cs",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Services\\LectureService.cs",
+              "RelativeDocumentMoniker": "BlazorApp\\Services\\LectureService.cs",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Services\\LectureService.cs",
+              "RelativeToolTip": "BlazorApp\\Services\\LectureService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T20:26:12.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
               "Title": "20260410202221_AddLecturesTable.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Migrations\\20260410202221_AddLecturesTable.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260410202221_AddLecturesTable.cs",
@@ -294,19 +320,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Lecture.cs",
-              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Models\\Lecture.cs",
-              "RelativeDocumentMoniker": "BlazorApp.Shared\\Models\\Lecture.cs",
-              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Models\\Lecture.cs",
-              "RelativeToolTip": "BlazorApp.Shared\\Models\\Lecture.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T20:14:53.741Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Data\\ApplicationDbContext.cs",
@@ -318,7 +332,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Children.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\Children.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\Children.razor",
@@ -330,7 +344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\appsettings.Development.json",
               "RelativeDocumentMoniker": "BlazorApp\\appsettings.Development.json",
@@ -342,7 +356,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\appsettings.json",
               "RelativeDocumentMoniker": "BlazorApp\\appsettings.json",
@@ -354,7 +368,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "App.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\App.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\App.razor",
@@ -366,7 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Routes.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Routes.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Routes.razor",
@@ -378,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "BlazorApp.Shared.csproj",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\BlazorApp.Shared.csproj",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\BlazorApp.Shared.csproj",
@@ -390,7 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "BlazorApp.csproj",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\BlazorApp.csproj",
               "RelativeDocumentMoniker": "BlazorApp\\BlazorApp.csproj",
@@ -402,7 +416,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "20260409104931_AddChild.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Migrations\\20260409104931_AddChild.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260409104931_AddChild.cs",
@@ -414,7 +428,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "IChildService.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Interfaces\\IChildService.cs",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\Interfaces\\IChildService.cs",
@@ -426,7 +440,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ChildrenService.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Services\\ChildrenService.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Services\\ChildrenService.cs",
@@ -438,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "AccountService.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Services\\AccountService.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Services\\AccountService.cs",
@@ -450,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Child.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Models\\Child.cs",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\Models\\Child.cs",
@@ -462,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "ManageLayout.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\ManageLayout.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Shared\\ManageLayout.razor",
@@ -474,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "AccountLayout.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Shared\\AccountLayout.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Shared\\AccountLayout.razor",
@@ -486,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Email.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\Email.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\Email.razor",
@@ -498,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "_Imports.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\_Imports.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\_Imports.razor",
@@ -510,7 +524,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "PersonalData.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Manage\\PersonalData.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Manage\\PersonalData.razor",
@@ -522,7 +536,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "TherapistProfile.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Models\\TherapistProfile.cs",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\Models\\TherapistProfile.cs",
@@ -534,7 +548,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "Applications.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\Pages\\Admin\\Applications.razor",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Admin\\Applications.razor",
@@ -546,7 +560,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "20260408173913_AddTherapistProfile.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260408173913_AddTherapistProfile.cs",
@@ -558,7 +572,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "RegisterTherapistDto.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\DTOs\\RegisterTherapistDto.cs",
@@ -570,7 +584,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "ITherapistService.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\Interfaces\\ITherapistService.cs",
@@ -582,7 +596,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "RegisterUserDto.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
               "RelativeDocumentMoniker": "BlazorApp.Shared\\DTOs\\RegisterUserDto.cs",
@@ -594,7 +608,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "RenderMode.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\Pages\\RenderMode.razor",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\RenderMode.razor",
@@ -606,7 +620,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "BecomeTherapist.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\Pages\\BecomeTherapist.razor",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\BecomeTherapist.razor",
@@ -618,7 +632,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "Auth.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\Pages\\Auth.razor",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Auth.razor",
@@ -630,7 +644,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Layout\\NavMenu.razor",
@@ -642,7 +656,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "20260407182512_InitialCreate.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Migrations\\20260407182512_InitialCreate.cs",
@@ -654,7 +668,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\Program.cs",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Program.cs",
@@ -666,7 +680,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "BlazorApp.Client.csproj",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\BlazorApp.Client.csproj",
               "RelativeDocumentMoniker": "BlazorApp.Client\\BlazorApp.Client.csproj",
@@ -678,7 +692,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "DbInitializer.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Data\\DbInitializer.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Data\\DbInitializer.cs",
@@ -690,7 +704,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "secrets.json",
               "DocumentMoniker": "C:\\Users\\HP\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-BlazorApp-b4310905-a472-48ad-9325-ff85a88c28ba\\secrets.json",
               "ToolTip": "C:\\Users\\HP\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-BlazorApp-b4310905-a472-48ad-9325-ff85a88c28ba\\secrets.json",
@@ -700,7 +714,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Data\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "BlazorApp\\Data\\ApplicationUser.cs",
@@ -712,7 +726,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "Home.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Pages\\Home.razor",
@@ -724,7 +738,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "Counter.razor",
               "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp.Client\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "BlazorApp.Client\\Pages\\Counter.razor",

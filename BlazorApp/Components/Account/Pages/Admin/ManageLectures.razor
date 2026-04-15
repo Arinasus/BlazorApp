@@ -6,6 +6,8 @@
 @using BlazorApp.Shared.Interfaces
 @attribute [Authorize(Roles = "Admin, Specialist")]
 @inject ILectureService LectureService
+@using Microsoft.AspNetCore.Hosting
+@inject IWebHostEnvironment WebHostEnvironment
 
 <div class="container mt-4">
     <h3>Управление базой знаний</h3>
@@ -89,9 +91,20 @@
 
     private async Task HandleAddLecture()
     {
-       
+
         await LectureService.AddLectureAsync(newLecture);
         newLecture = new(); 
         await LoadLectures(); 
+    }
+    private async Task UploadFile(IBrowserFile file)
+    {
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
+        var folderPath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads");
+        if(Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+        var filePath = Path.Combine(folderPath, fileName);
+        using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 5);
+        using var fileStream = new FileStream(filePath, FileMode.Create);
+        await stream.CopyToAsync(fileStream);
+        newLecture.ImagePath = $"/uploads/{fileName}";
     }
 }
