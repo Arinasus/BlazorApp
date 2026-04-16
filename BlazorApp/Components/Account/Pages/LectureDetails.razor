@@ -1,0 +1,125 @@
+﻿@page "/lecture/{Id:int}"
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@inject ILectureService LectureService
+@inject NavigationManager NavManager
+
+<div class="container mt-4 mb-5">
+    @if (lecture == null)
+    {
+        <div class="text-center">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p>Загрузка содержания...</p>
+        </div>
+    }
+    else
+    {
+
+        <button class="btn btn-link text-decoration-none p-0 mb-3" @onclick="GoBack">
+            <span class="bi bi-arrow-left"></span> Вернуться к ленте
+        </button>
+
+        <div class="row g-5">
+
+            <div class="col-lg-8">
+                <h1 class="fw-bold mb-3">@lecture.Title</h1>
+
+                <div class="d-flex gap-2 mb-4">
+                    <span class="badge bg-primary">@lecture.TargetDiagnosis</span>
+                    <span class="text-muted small">Лекция №@lecture.Id</span>
+                </div>
+
+                @if (!string.IsNullOrEmpty(lecture.VideoUrl))
+                {
+                    <div class="video-container shadow-sm rounded-4 overflow-hidden mb-4">
+                        <iframe src="@GetEmbedUrl(lecture.VideoUrl)"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                }
+
+                <div class="lecture-content mt-4">
+                    @((MarkupString)lecture.Content)
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm sticky-top" style="top: 2rem;">
+                    @if (!string.IsNullOrEmpty(lecture.ImagePath))
+                    {
+                        <img src="@lecture.ImagePath" class="card-img-top rounded-top-4" alt="Обложка">
+                    }
+                    <div class="card-body">
+                        <h5 class="fw-bold">Об авторе</h5>
+                        <p class="text-muted small">Данный материал подготовлен профильными специалистами нашей платформы для поддержки родителей.</p>
+                        <hr />
+                        <button class="btn btn-outline-primary w-100 mb-2">
+                            <span class="bi bi-bookmark"></span> Сохранить в избранное
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; 
+        height: 0;
+    }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+    .lecture-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+    }
+
+        .lecture-content h1, .lecture-content h2 {
+            margin-top: 1.5rem;
+            font-weight: bold;
+        }
+
+        .lecture-content ul {
+            padding-left: 1.2rem;
+        }
+</style>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Lecture? lecture;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var all = await LectureService.GetAllLecturesAsync();
+        lecture = all.FirstOrDefault(l => l.Id == Id);
+    }
+
+    private void GoBack() => NavManager.NavigateTo("/lectures");
+
+    private string GetEmbedUrl(string url)
+    {
+        if (string.IsNullOrEmpty(url)) return "";
+
+        if (url.Contains("watch?v="))
+        {
+            return url.Replace("watch?v=", "embed/");
+        }
+        if (url.Contains("youtu.be/"))
+        {
+            return url.Replace("youtu.be/", "youtube.com/embed/");
+        }
+        return url;
+    }
+}

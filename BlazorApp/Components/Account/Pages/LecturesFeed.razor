@@ -1,0 +1,98 @@
+﻿@page "/lectures"
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@inject ILectureService LectureService
+@rendermode InteractiveServer
+
+<PageTitle>Лента лекций</PageTitle>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Библиотека знаний</h3>
+        <div class="search-box">
+            <input type="text" @bind-value="searchText" @bind-value:event="oninput"
+                   class="form-control" placeholder="Поиск по теме..." />
+        </div>
+    </div>
+
+    @if (filteredLectures == null)
+    {
+        <div class="text-center">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p>Загружаем полезные материалы...</p>
+        </div>
+    }
+    else if (!filteredLectures.Any())
+    {
+        <div class="alert alert-light text-center shadow-sm">
+            <p>По вашему запросу ничего не найдено.</p>
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var lecture in filteredLectures)
+            {
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm lecture-card">
+                        <div class="card-img-top-wrapper">
+                            <img src="@(string.IsNullOrEmpty(lecture.ImagePath) ? "/images/default-lecture.jpg" : lecture.ImagePath)"
+                                 class="card-img-top" alt="@lecture.Title">
+                        </div>
+
+                        <div class="card-body">
+                            <span class="badge rounded-pill bg-info text-dark mb-2">@lecture.TargetDiagnosis</span>
+                            <h5 class="card-title fw-bold">@lecture.Title</h5>
+                            <p class="card-text text-muted small">
+                                @(lecture.Description?.Length > 100 ? lecture.Description.Substring(0, 100) + "..." : lecture.Description)
+                            </p>
+                        </div>
+
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="/lecture/@lecture.Id" class="btn btn-primary w-100 rounded-pill">Читать далее</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .lecture-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
+    }
+
+        .lecture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+    .card-img-top-wrapper {
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+@code {
+    private List<Lecture>? allLectures;
+    private string searchText = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        allLectures = await LectureService.GetAllLecturesAsync();
+    }
+
+    private IEnumerable<Lecture>? filteredLectures =>
+        string.IsNullOrWhiteSpace(searchText)
+        ? allLectures
+        : allLectures?.Where(x => x.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase)
+                               || x.TargetDiagnosis.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+}

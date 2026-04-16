@@ -32,7 +32,6 @@
                     </div>
                 </div>
 
-                @* Загрузка обложки *@
                 <div class="mb-3">
                     <label>Обложка лекции (картинка):</label>
                     <InputFile OnChange="HandleFileSelected" class="form-control" accept=".jpg,.png" />
@@ -50,10 +49,8 @@
                 <div class="mb-3">
                     <label>Полный текст лекции:</label>
                     <div style="background-color: white; color: black;">
-                        @* Имя компонента должно быть HtmlTextEditor *@
                         <HtmlTextEditor @ref="@QuillHtml" Placeholder="Напишите здесь подробности...">
                             <ToolbarContent>
-                                @* Твой тулбар (кнопки) остается таким же *@
                                 <select class="ql-header">
                                     <option selected=""></option>
                                     <option value="1"></option>
@@ -129,7 +126,7 @@
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
             var folderPath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads");
 
-            if (!Directory.Exists(folderPath)) // Исправлено: если НЕ существует
+            if (!Directory.Exists(folderPath)) 
                 Directory.CreateDirectory(folderPath);
 
             var filePath = Path.Combine(folderPath, fileName);
