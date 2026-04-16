@@ -10,6 +10,7 @@
         "dependencies": {
           "BlazorApp.Client": "1.0.0",
           "BlazorApp.Shared": "1.0.0",
+          "Blazorized.HtmlTextEditor": "2.1.0",
           "Microsoft.AspNetCore.Components.WebAssembly.Server": "8.0.25",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.25",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.25",
@@ -18,6 +19,17 @@
         },
         "runtime": {
           "BlazorApp.dll": {}
+        }
+      },
+      "Blazorized.HtmlTextEditor/2.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "8.0.25"
+        },
+        "runtime": {
+          "lib/net7.0/Blazorized.HtmlTextEditor.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
         }
       },
       "Humanizer.Core/2.14.1": {
@@ -723,6 +735,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Blazorized.HtmlTextEditor/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NUtRB9VKyVWQtKg8yd5//od35H8eiBWdgLEgof5COf9vKC1u7p4/pzz2SPpIyx0kjGmDdw6VkvxK1OSxj4jknA==",
+      "path": "blazorized.htmltexteditor/2.1.0",
+      "hashPath": "blazorized.htmltexteditor.2.1.0.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",

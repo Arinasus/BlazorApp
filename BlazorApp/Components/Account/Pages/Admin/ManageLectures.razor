@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Authorization
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
+@using Blazorized.HtmlTextEditor
 @attribute [Authorize(Roles = "Admin, Specialist")]
 @inject ILectureService LectureService
 @using Microsoft.AspNetCore.Hosting
@@ -23,25 +24,56 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Название лекции:</label>
-                        <InputText @bind-Value="newLecture.Title" class="form-control" placeholder="Напр: Развитие речи у детей" />
+                        <InputText @bind-Value="newLecture.Title" class="form-control" />
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Целевой диагноз (тег для рекомендаций):</label>
-                        <InputText @bind-Value="newLecture.TargetDiagnosis" class="form-control" placeholder="Напр: Дислексия" />
+                        <label>Целевой диагноз:</label>
+                        <InputText @bind-Value="newLecture.TargetDiagnosis" class="form-control" />
+                    </div>
+                </div>
+
+                @* Загрузка обложки *@
+                <div class="mb-3">
+                    <label>Обложка лекции (картинка):</label>
+                    <InputFile OnChange="HandleFileSelected" class="form-control" accept=".jpg,.png" />
+                    @if (!string.IsNullOrEmpty(newLecture.ImagePath))
+                    {
+                        <img src="@newLecture.ImagePath" class="mt-2" style="height:80px; border-radius:5px;" />
+                    }
+                </div>
+
+                <div class="mb-3">
+                    <label>Краткое описание (для ленты):</label>
+                    <InputTextArea @bind-Value="newLecture.Description" class="form-control" rows="2" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Полный текст лекции:</label>
+                    <div style="background-color: white; color: black;">
+                        @* Имя компонента должно быть HtmlTextEditor *@
+                        <HtmlTextEditor @ref="@QuillHtml" Placeholder="Напишите здесь подробности...">
+                            <ToolbarContent>
+                                @* Твой тулбар (кнопки) остается таким же *@
+                                <select class="ql-header">
+                                    <option selected=""></option>
+                                    <option value="1"></option>
+                                    <option value="2"></option>
+                                </select>
+                                <span class="ql-formats">
+                                    <button class="ql-bold"></button>
+                                    <button class="ql-italic"></button>
+                                </span>
+                            </ToolbarContent>
+                        </HtmlTextEditor>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label>Описание:</label>
-                    <InputTextArea @bind-Value="newLecture.Description" class="form-control" rows="3" />
-                </div>
-
-                <div class="mb-3">
-                    <label>Ссылка на видео (YouTube/URL):</label>
+                    <label>Ссылка на видео:</label>
                     <InputText @bind-Value="newLecture.VideoUrl" class="form-control" />
                 </div>
 
-                <button type="submit" class="btn btn-success">Добавить в базу</button>
+                <button type="submit" class="btn btn-success">Опубликовать лекцию</button>
             </EditForm>
         </div>
     </div>
@@ -78,6 +110,7 @@
 @code {
     private Lecture newLecture = new();
     private List<Lecture>? allLectures;
+    private HtmlTextEditor QuillHtml = default!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -88,13 +121,34 @@
     {
         allLectures = await LectureService.GetAllLecturesAsync();
     }
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
+            var folderPath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads");
 
+            if (!Directory.Exists(folderPath)) // Исправлено: если НЕ существует
+                Directory.CreateDirectory(folderPath);
+
+            var filePath = Path.Combine(folderPath, fileName);
+            using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 5);
+            using var fileStream = new FileStream(filePath, FileMode.Create);
+            await stream.CopyToAsync(fileStream);
+
+            newLecture.ImagePath = $"/uploads/{fileName}";
+        }
+    }
     private async Task HandleAddLecture()
     {
+        newLecture.Content = await QuillHtml.GetHtml();
 
         await LectureService.AddLectureAsync(newLecture);
-        newLecture = new(); 
-        await LoadLectures(); 
+        newLecture = new();
+        await QuillHtml.LoadHtmlContent("");
+
+        await LoadLectures();
     }
     private async Task UploadFile(IBrowserFile file)
     {

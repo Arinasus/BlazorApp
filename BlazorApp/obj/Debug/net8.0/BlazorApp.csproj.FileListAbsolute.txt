@@ -481,3 +481,4 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\refint\BlazorApp.dll
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.pdb
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.genruntimeconfig.cache
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\ref\BlazorApp.dll
+D:\Diplom\BlazorApp\BlazorApp\bin\Debug\net8.0\Blazorized.HtmlTextEditor.dll
