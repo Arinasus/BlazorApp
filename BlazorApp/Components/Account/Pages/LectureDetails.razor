@@ -4,59 +4,60 @@
 @inject ILectureService LectureService
 @inject NavigationManager NavManager
 
-<div class="container mt-4 mb-5">
+<div class="container mt-4 mb-5 animate-fade">
     @if (lecture == null)
     {
-        <div class="text-center">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p>Загрузка содержания...</p>
+        <div class="text-center py-5">
+            <div class="spinner-border" style="color: var(--primary)" role="status"></div>
+            <p class="mt-2 text-muted">Ищем лекцию...</p>
         </div>
     }
     else
     {
-
-        <button class="btn btn-link text-decoration-none p-0 mb-3" @onclick="GoBack">
-            <span class="bi bi-arrow-left"></span> Вернуться к ленте
+        <button class="btn btn-link text-decoration-none p-0 mb-4 back-link" @onclick="GoBack">
+            <i class="bi bi-arrow-left-circle-fill"></i> Вернуться к списку
         </button>
 
         <div class="row g-5">
-
             <div class="col-lg-8">
-                <h1 class="fw-bold mb-3">@lecture.Title</h1>
+                <h1 class="display-5 fw-bold mb-3" style="color: var(--text-dark)">@lecture.Title</h1>
 
                 <div class="d-flex gap-2 mb-4">
-                    <span class="badge bg-primary">@lecture.TargetDiagnosis</span>
-                    <span class="text-muted small">Лекция №@lecture.Id</span>
+                    <span class="badge rounded-pill px-3 py-2" style="background-color: var(--secondary); color: white;">
+                        @lecture.TargetDiagnosis
+                    </span>
+                    <span class="text-muted small align-self-center">Материал №@lecture.Id</span>
                 </div>
 
                 @if (!string.IsNullOrEmpty(lecture.VideoUrl))
                 {
-                    <div class="video-container shadow-sm rounded-4 overflow-hidden mb-4">
-                        <iframe src="@GetEmbedUrl(lecture.VideoUrl)"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                        </iframe>
+                    <div class="video-card shadow-md rounded-4 overflow-hidden mb-5">
+                        <div class="video-container">
+                            <iframe src="@GetEmbedUrl(lecture.VideoUrl)"
+                                    frameborder="0"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
                 }
 
-                <div class="lecture-content mt-4">
+                <div class="lecture-content bg-white p-4 p-md-5 rounded-4 shadow-sm">
                     @((MarkupString)lecture.Content)
                 </div>
             </div>
 
             <div class="col-lg-4">
-                <div class="card border-0 shadow-sm sticky-top" style="top: 2rem;">
+                <div class="card sticky-top border-0 shadow-md p-2" style="top: 100px;">
                     @if (!string.IsNullOrEmpty(lecture.ImagePath))
                     {
-                        <img src="@lecture.ImagePath" class="card-img-top rounded-top-4" alt="Обложка">
+                        <img src="@lecture.ImagePath" class="card-img-top rounded-4 mb-3" alt="Обложка">
                     }
                     <div class="card-body">
-                        <h5 class="fw-bold">Об авторе</h5>
-                        <p class="text-muted small">Данный материал подготовлен профильными специалистами нашей платформы для поддержки родителей.</p>
-                        <hr />
-                        <button class="btn btn-outline-primary w-100 mb-2">
-                            <span class="bi bi-bookmark"></span> Сохранить в избранное
+                        <h5 class="fw-bold" style="color: var(--primary)">Об авторе</h5>
+                        <p class="text-muted small">Материал проверен ведущими логопедами-практиками нашего портала.</p>
+                        <hr class="opacity-10" />
+                        <button class="btn btn-register w-100 mb-2">
+                            <i class="bi bi-bookmark-star me-2"></i> В избранное
                         </button>
                     </div>
                 </div>
@@ -64,11 +65,19 @@
         </div>
     }
 </div>
-
 <style>
+    .back-link {
+        color: var(--secondary) !important;
+        font-weight: 600;
+    }
+
+        .back-link:hover {
+            color: var(--primary) !important;
+        }
+
     .video-container {
         position: relative;
-        padding-bottom: 56.25%; 
+        padding-bottom: 56.25%;
         height: 0;
     }
 
@@ -81,18 +90,17 @@
         }
 
     .lecture-content {
-        font-size: 1.1rem;
         line-height: 1.8;
-        color: #333;
+        font-size: 1.15rem;
     }
-
-        .lecture-content h1, .lecture-content h2 {
-            margin-top: 1.5rem;
-            font-weight: bold;
+        .lecture-content h2 {
+            color: var(--primary);
+            margin-top: 2rem;
+            font-weight: 700;
         }
 
-        .lecture-content ul {
-            padding-left: 1.2rem;
+        .lecture-content ul li {
+            margin-bottom: 10px;
         }
 </style>
 

@@ -53,3 +53,17 @@ D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
 D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
+D:\Diplom\BlazorApp\BlazorApp.Client\obj\Debug\net8.0\staticwebassets.build.json
