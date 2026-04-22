@@ -42,8 +42,29 @@ html, body {
     margin: 0;
     padding: 0;
 }
-
+.auth-header {
+    color: var(--primary);
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
 /* НАВИГАЦИЯ*/
+a {
+    color: var(--secondary);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+    a:hover {
+        color: var(--primary);
+    }
+
+/* Поля ввода */
+.form-floating > .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.1);
+}
 .navbar {
     height: var(--nav-height);
     background: white !important;
@@ -70,7 +91,8 @@ html, body {
     display: flex;
     align-items: center;
     height: 40px;
-    transition: all 0.2s ease-in-out !important;
+    transition: background-color 0.2s ease, color 0.2s ease !important; 
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -78,11 +100,30 @@ html, body {
     color: var(--primary) !important;
 }
 
-.nav-link.active {
-    background-color: var(--primary);
-    color: white !important;
+    .nav-link.active {
+        background-color: rgba(255, 107, 107, 0.15) !important; 
+        color: var(--primary) !important;
+        box-shadow: inset 0 -2px 0 var(--primary);
+    }
+    .nav-link.text-manage:not(.active) {
+        color: #9b59b6 !important;
+    }
+
+    .nav-link.text-manage.active {
+        background-color: #9b59b6 !important; 
+        color: white !important;
+    }
+    .profile-btn {
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    color: var(--text-dark) !important;
 }
 
+.profile-btn:hover {
+    background-color: var(--bg-main) !important;
+}
 
 .dropdown-menu {
     border: none !important;
@@ -107,6 +148,13 @@ html, body {
 .card:hover {
     border-color: var(--accent) !important;
     transform: scale(1.03);
+}
+.auth-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem;
+    border: none;
 }
 /*Кнопки*/
 
@@ -139,7 +187,9 @@ html, body {
     }
 .btn-primary {
     background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
     border: none !important;
+    color: white !important;
     box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 

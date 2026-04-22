@@ -4,8 +4,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top px-4">
     <div class="container-fluid">
 
-        <a class="navbar-brand fw-bold" href="">
-            <i class="bi bi-rocket-takeoff-fill me-2"></i>Речевик
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="">
+            <img src="/images/logo.png" alt="Лого" class="nav-logo-img me-2" />
+            <span>Речевик</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar">
@@ -64,7 +65,78 @@
         </div>
     </div>
 </nav>
+<style>
 
+    :root {
+        --primary: #FF6B6B;
+        --text-dark: #2D3436;
+        --nav-height: 70px;
+    }
+
+
+    .navbar {
+        min-height: var(--nav-height);
+        background: white !important;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem !important;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+    }
+
+    .nav-logo-img {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        display: block;
+    }
+
+    .nav-link {
+        font-weight: 600;
+        color: var(--text-dark) !important;
+        padding: 8px 16px !important;
+        border-radius: 12px;
+        height: 40px; 
+        display: flex;
+        align-items: center; 
+        transition: background-color 0.2s ease, color 0.2s ease !important;
+        white-space: nowrap;
+    }
+
+        .nav-link:hover {
+            background-color: rgba(255, 107, 107, 0.1) !important;
+            color: var(--primary) !important;
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 107, 107, 0.1) !important;
+            color: var(--primary) !important;
+        }
+
+    .nav-item.dropdown .nav-link.dropdown-toggle {
+        margin-top: 12px !important; 
+        display: flex !important;
+        align-items: center !important;
+        height: 40px !important;
+    }
+
+    .dropdown-toggle::after {
+        display: inline-block !important;
+        vertical-align: middle !important;
+        margin-left: 0.5rem !important;
+    }
+
+    .navbar-nav {
+        align-items: flex-start !important; 
+    }
+
+    .btn-login, .btn-register {
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px !important;
+    }
+</style>
 @code {
     private string? currentUrl;
 

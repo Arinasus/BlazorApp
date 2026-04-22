@@ -2,5 +2,9 @@ wwwroot\app.css
 wwwroot\bootstrap\bootstrap.min.css
 wwwroot\bootstrap\bootstrap.min.css.map
 wwwroot\favicon.png
-wwwroot\images\default-lecture.jpg
+wwwroot\images\default-lecture.png
+wwwroot\images\logo.png
+wwwroot\images\logo2.png
+wwwroot\images\therapist_kids.png
 wwwroot\uploads\c7336fb5-411b-44f6-b7a2-1c53d5128ea1.png
+wwwroot\uploads\default-lecture.png
