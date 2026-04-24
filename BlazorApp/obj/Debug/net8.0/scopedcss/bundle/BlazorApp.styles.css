@@ -1,3 +1,71 @@
+/* /Components/Account/Pages/Register.razor.rz.scp.css */
+/* Убираем все внешние влияния */
+:host[b-qg2tpul8m2] {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Это заставит статью внутри MainLayout обнулить отступы только для этой страницы */
+[b-qg2tpul8m2] article.content-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: none !important; /* Убираем ограничение в 1300px, если оно мешает фону */
+}
+/* Фон, который ВСЕГДА на весь экран и никуда не двигается */
+.auth-background-system[b-qg2tpul8m2] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Слой под всем */
+    overflow: hidden;
+    background-color: #FFF9F4;
+}
+
+.auth-bg-image[b-qg2tpul8m2] {
+    position: absolute;
+    inset: 0;
+    background: url('/images/register-bg.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.3; /* Регулируй прозрачность здесь */
+}
+
+/* Контейнер для формы */
+.auth-main-content[b-qg2tpul8m2] {
+    /* Чтобы форма не залетала ПОД шапку, если шапка прозрачная */
+    padding-top: 20px;
+    width: 100%;
+    /* Используем flex для идеального центрирования без лишних vh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px); /* Вычитаем примерную высоту шапки */
+}
+
+/* Компактная карточка */
+.auth-card[b-qg2tpul8m2] {
+    background: white;
+    border-radius: 28px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px; /* Ограничиваем ширину */
+}
+
+/* Уплотняем форму, чтобы она влезла в экран без скролла */
+.form-floating[b-qg2tpul8m2] {
+    margin-bottom: 0.5rem !important;
+}
+
+.auth-header[b-qg2tpul8m2] {
+    font-size: 1.5rem;
+    color: #FF6B6B;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
 /* /Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-qgsvw684bo] {
     position: relative;
@@ -221,3 +289,63 @@ main[b-qgsvw684bo] {
         overflow-y: auto;
     }
 }
+/* /Components/Pages/Home.razor.rz.scp.css */
+.home-hero[b-7gt2111kuu] {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F4 100%);
+    padding: 60px 0;
+}
+
+.min-vh-75[b-7gt2111kuu] {
+    min-height: 75vh;
+}
+
+.text-primary[b-7gt2111kuu] {
+    color: #FF6B6B !important;
+}
+
+.btn-outline-secondary[b-7gt2111kuu] {
+    border: 2px solid #6ECEDA !important;
+    color: #6ECEDA !important;
+    background: transparent;
+}
+
+    .btn-outline-secondary:hover[b-7gt2111kuu] {
+        background: #6ECEDA !important;
+        color: white !important;
+    }
+
+.floating-anim[b-7gt2111kuu] {
+    animation: floating-b-7gt2111kuu 3s ease-in-out infinite;
+}
+
+@keyframes floating-b-7gt2111kuu {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, -15px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+
+.hero-img-wrapper[b-7gt2111kuu] {
+    position: relative;
+}
+
+    .hero-img-wrapper[b-7gt2111kuu]::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(110, 206, 218, 0.1);
+        border-radius: 50%;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+

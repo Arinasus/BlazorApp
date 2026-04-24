@@ -5,6 +5,9 @@ wwwroot\favicon.png
 wwwroot\images\default-lecture.png
 wwwroot\images\logo.png
 wwwroot\images\logo2.png
+wwwroot\images\register-bg.png
+wwwroot\images\register-bg1.png
 wwwroot\images\therapist_kids.png
 wwwroot\uploads\c7336fb5-411b-44f6-b7a2-1c53d5128ea1.png
 wwwroot\uploads\default-lecture.png
+wwwroot\uploads\eab5e4c5-f4a6-4c61-9394-96989d109ee7.png

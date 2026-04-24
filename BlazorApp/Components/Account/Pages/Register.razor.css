@@ -1,0 +1,67 @@
+﻿/* Убираем все внешние влияния */
+:host {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Это заставит статью внутри MainLayout обнулить отступы только для этой страницы */
+::deep article.content-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: none !important; /* Убираем ограничение в 1300px, если оно мешает фону */
+}
+/* Фон, который ВСЕГДА на весь экран и никуда не двигается */
+.auth-background-system {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Слой под всем */
+    overflow: hidden;
+    background-color: #FFF9F4;
+}
+
+.auth-bg-image {
+    position: absolute;
+    inset: 0;
+    background: url('/images/register-bg.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.3; /* Регулируй прозрачность здесь */
+}
+
+/* Контейнер для формы */
+.auth-main-content {
+    /* Чтобы форма не залетала ПОД шапку, если шапка прозрачная */
+    padding-top: 20px;
+    width: 100%;
+    /* Используем flex для идеального центрирования без лишних vh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px); /* Вычитаем примерную высоту шапки */
+}
+
+/* Компактная карточка */
+.auth-card {
+    background: white;
+    border-radius: 28px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px; /* Ограничиваем ширину */
+}
+
+/* Уплотняем форму, чтобы она влезла в экран без скролла */
+.form-floating {
+    margin-bottom: 0.5rem !important;
+}
+
+.auth-header {
+    font-size: 1.5rem;
+    color: #FF6B6B;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}

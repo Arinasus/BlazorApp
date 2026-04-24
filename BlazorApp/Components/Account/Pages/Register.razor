@@ -16,55 +16,43 @@
 @inject IdentityRedirectManager RedirectManager
 
 <PageTitle>Register</PageTitle>
+<div class="auth-background-system">
+    <div class="auth-bg-image"></div>
+</div>
 
-<h1>Register</h1>
+<div class="auth-main-content">
+    <div class="auth-card animate-fade">
+        <h2 class="auth-header">Создать аккаунт</h2>
+        <p class="text-center text-muted mb-4 small">Добро пожаловать в наше сообщество!</p>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="auth-card animate-fade">
-                <h1 class="auth-header">Создать аккаунт</h1>
+        <EditForm Model="Input" OnValidSubmit="RegisterUser" FormName="register">
+            <DataAnnotationsValidator />
 
-                <StatusMessage Message="@Message" />
-
-                <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
-                    <DataAnnotationsValidator />
-
-                    <p class="text-center text-muted mb-4">Добро пожаловать в наше сообщество!</p>
-
-                    <ValidationSummary class="text-danger small" role="alert" />
-
-                    <div class="form-floating mb-3">
-                        <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" placeholder="name@example.com" />
-                        <label>Email</label>
-                        <ValidationMessage For="() => Input.Email" class="text-danger" />
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" placeholder="пароль" />
-                        <label>Пароль</label>
-                        <ValidationMessage For="() => Input.Password" class="text-danger" />
-                    </div>
-
-                    <div class="form-floating mb-4">
-                        <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="подтверждение" />
-                        <label>Повторите пароль</label>
-                        <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
-                    </div>
-
-                    <button type="submit" class="w-100 btn btn-lg btn-primary rounded-pill py-3">
-                        Зарегистрироваться
-                    </button>
-                </EditForm>
-
-                <div class="text-center mt-4">
-                    <p class="small text-muted">Уже есть аккаунт? <a href="Account/Login">Войти</a></p>
-                </div>
+            <div class="form-floating mb-2">
+                <InputText @bind-Value="Input.Email" class="form-control" placeholder="Email" />
+                <label>Email</label>
             </div>
+
+            <div class="form-floating mb-2">
+                <InputText type="password" @bind-Value="Input.Password" class="form-control" placeholder="Пароль" />
+                <label>Пароль</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" placeholder="Повторите" />
+                <label>Повторите пароль</label>
+            </div>
+
+            <button type="submit" class="w-100 btn btn-lg btn-primary rounded-pill py-2 fw-bold shadow-sm">
+                ЗАРЕГИСТРИРОВАТЬСЯ
+            </button>
+        </EditForm>
+
+        <div class="text-center mt-3">
+            <p class="small text-muted">Уже есть аккаунт? <a href="Account/Login" class="text-primary fw-bold text-decoration-none">Войти</a></p>
         </div>
     </div>
 </div>
-
 @code {
     private IEnumerable<IdentityError>? identityErrors;
 
