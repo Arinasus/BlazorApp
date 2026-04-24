@@ -1,236 +1,43 @@
-/* --- 1. ШРИФТЫ И ПАЛИТРА --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Comfortaa:wght@700&display=swap');
-.page {
-    display: block !important;
-}
 
-.main-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.content-container {
-    padding: 2rem;
-    max-width: 1300px;
-    margin: 0 auto; 
-    width: 100%;
-}
-
-.btn-primary, .btn-outline-primary {
-
-}
-
-.navbar-brand i {
-    color: var(--primary) !important;
-}
 :root {
-    --primary: #FF6B6B; /* коралловый */
-    --secondary: #4ECDC4; /* Бирюзовый */
-    --accent: #FFD93D; /* желтый */
-    --bg-main: #FFF9F4; /*кремовый фон */
-    --text-dark: #2D3436;
-    --nav-height: 70px;
-    --radius: 16px;
-    --shadow-md: 0 10px 20px rgba(255, 107, 107, 0.1);
+    --brand-coral: #FF8A5B;
+    --brand-light-bg: #F9FBFF;
+    --brand-radius: 14px;
 }
 
-html, body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-dark);
-    margin: 0;
-    padding: 0;
-}
-.auth-header {
-    color: var(--primary);
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-/* НАВИГАЦИЯ*/
-a {
-    color: var(--secondary);
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-    a:hover {
-        color: var(--primary);
-    }
-
-/* Поля ввода */
-.form-floating > .form-control:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.1);
-}
-.navbar {
-    height: var(--nav-height);
-    background: white !important;
-    padding: 0 1.5rem !important;
-    display: flex;
-    align-items: center; 
-    box-shadow: 0 2px 15px rgba(0,0,0,0.04);
-}
-
-.navbar-brand {
-    font-family: 'Comfortaa', cursive; 
-    font-size: 1.5rem;
-    color: var(--primary) !important;
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
-}
-
-.nav-link {
-    font-weight: 600;
-    color: var(--text-dark) !important;
-    padding: 8px 16px !important;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    height: 40px;
-    transition: background-color 0.2s ease, color 0.2s ease !important; 
-    white-space: nowrap;
-}
-
-.nav-link:hover {
-    background-color: rgba(255, 107, 107, 0.1) !important;
-    color: var(--primary) !important;
-}
-
-    .nav-link.active {
-        background-color: rgba(255, 107, 107, 0.15) !important; 
-        color: var(--primary) !important;
-        box-shadow: inset 0 -2px 0 var(--primary);
-    }
-    .nav-link.text-manage:not(.active) {
-        color: #9b59b6 !important;
-    }
-
-    .nav-link.text-manage.active {
-        background-color: #9b59b6 !important; 
-        color: white !important;
-    }
-    .profile-btn {
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    height: 40px;
-    color: var(--text-dark) !important;
-}
-
-.profile-btn:hover {
-    background-color: var(--bg-main) !important;
-}
-
-.dropdown-menu {
-    border: none !important;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
-    border-radius: var(--radius) !important;
-    padding: 10px !important;
-    overflow: hidden;
-}
-
-.dropdown-item:hover {
-    background-color: #F7F7F7;
-    color: var(--secondary) !important;
-}
-
-.card {
-    border: 2px solid transparent !important;
-    border-radius: var(--radius) !important;
-    background: white;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.card:hover {
-    border-color: var(--accent) !important;
-    transform: scale(1.03);
-}
-.auth-card {
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
-    padding: 2.5rem;
-    border: none;
-}
-/*Кнопки*/
-
-.btn {
-    border-radius: 50px !important; 
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
-}
-.btn-login {
-    border: 2px solid var(--primary) !important;
-    color: var(--primary) !important;
-    background: transparent !important;
-}
-    .btn-login:hover {
-        background: var(--primary) !important;
-        color: white !important;
-    }
-
-.btn-register {
-    background-color: var(--primary) !important;
-    color: white !important;
-    border: none !important;
-}
-
-    .btn-register:hover {
-        background-color: #ff5252 !important;
-        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4) !important;
-    }
 .btn-primary {
-    background-color: var(--primary) !important;
-    border-color: var(--primary) !important;
-    border: none !important;
+    background-color: var(--brand-coral) !important;
+    border-color: var(--brand-coral) !important;
     color: white !important;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease !important;
 }
 
-.btn-primary:hover {
-    background-color: #ff5252 !important;
-    transform: translateY(-2px);
-}
-.text-manage {
-    color: #9b59b6 !important; 
-}
-
-.text-manage:hover {
-    background-color: rgba(155, 89, 182, 0.1) !important;
-}
-
-.dropdown-item {
-    color: var(--text-dark) !important;
-    font-weight: 500;
-}
-
-    .dropdown-item:hover {
-        background-color: var(--bg-main) !important;
-        color: var(--primary) !important;
-    }
-/*КОНТЕНТ И АНИМАЦИЯ */
-.content {
-    padding-top: 2rem;
-}
-
-.animate-fade {
-    animation: fadeIn 0.6s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+    .btn-primary:hover {
+        background-color: #ff7a45 !important;
+        border-color: #ff7a45 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+.form-control {
+    background-color: var(--brand-light-bg) !important;
+    border: 2px solid transparent !important;
+    border-radius: var(--brand-radius) !important;
+    padding: 0.8rem 1rem !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+    .form-control:focus {
+        border-color: var(--brand-coral) !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.15) !important;
+        outline: none !important;
     }
+
+.form-floating > label {
+    color: #888;
+}
+
+.form-floating > .form-control:focus ~ label {
+    color: var(--brand-coral) !important;
 }

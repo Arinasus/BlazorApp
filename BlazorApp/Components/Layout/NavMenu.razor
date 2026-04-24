@@ -23,7 +23,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="contentDropdown" role="button" data-bs-toggle="dropdown">
                         Обучение
                     </a>
-                    <ul class=" border-0 shadow-sm animate__animated animate__fadeIn">
+                    <ul class="dropdown-menu border-0 shadow-sm animate__animated animate__fadeIn">
                         <li><NavLink class="dropdown-item" href="lectures">Все лекции</NavLink></li>
                         <li><NavLink class="dropdown-item" href="recommended">Рекомендовано вам</NavLink></li>
                     </ul>
@@ -65,78 +65,7 @@
         </div>
     </div>
 </nav>
-<style>
 
-    :root {
-        --primary: #FF6B6B;
-        --text-dark: #2D3436;
-        --nav-height: 70px;
-    }
-
-
-    .navbar {
-        min-height: var(--nav-height);
-        background: white !important;
-        display: flex;
-        align-items: center;
-        padding: 0 1.5rem !important;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.04);
-    }
-
-    .nav-logo-img {
-        height: 40px;
-        width: auto;
-        object-fit: contain;
-        display: block;
-    }
-
-    .nav-link {
-        font-weight: 600;
-        color: var(--text-dark) !important;
-        padding: 8px 16px !important;
-        border-radius: 12px;
-        height: 40px; 
-        display: flex;
-        align-items: center; 
-        transition: background-color 0.2s ease, color 0.2s ease !important;
-        white-space: nowrap;
-    }
-
-        .nav-link:hover {
-            background-color: rgba(255, 107, 107, 0.1) !important;
-            color: var(--primary) !important;
-        }
-
-        .nav-link.active {
-            background-color: rgba(255, 107, 107, 0.1) !important;
-            color: var(--primary) !important;
-        }
-
-    .nav-item.dropdown .nav-link.dropdown-toggle {
-        margin-top: 12px !important; 
-        display: flex !important;
-        align-items: center !important;
-        height: 40px !important;
-    }
-
-    .dropdown-toggle::after {
-        display: inline-block !important;
-        vertical-align: middle !important;
-        margin-left: 0.5rem !important;
-    }
-
-    .navbar-nav {
-        align-items: flex-start !important; 
-    }
-
-    .btn-login, .btn-register {
-        height: 40px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 20px !important;
-    }
-</style>
 @code {
     private string? currentUrl;
 
