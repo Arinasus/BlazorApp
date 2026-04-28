@@ -1,0 +1,26 @@
+﻿
+.bg-coral-light {
+    background-color: rgba(255, 138, 91, 0.1);
+}
+
+.text-coral {
+    color: #FF8A5B;
+}
+
+.nav-pills .nav-link {
+    color: #636e72;
+    font-weight: 600;
+    padding: 10px 25px;
+    transition: 0.3s;
+}
+
+    .nav-pills .nav-link.active {
+        background-color: #FF8A5B !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
+    }
+
+.form-select:focus {
+    border-color: #FF8A5B;
+    box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.1);
+}

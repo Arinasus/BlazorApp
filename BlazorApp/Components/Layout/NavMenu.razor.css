@@ -1,18 +1,16 @@
-/* 1. БАЗОВЫЕ ПЕРЕМЕННЫЕ */
 :root {
     --primary-coral: #FF8A5B;
     --text-dark: #2D3436;
     --bg-hover: rgba(255, 138, 91, 0.1);
 }
-/* Фиксируем размер логотипа */
+
 .nav-logo-img {
-    height: 40px !important; /* Строго 40 пикселей в высоту */
-    width: auto !important; /* Ширина подстроится пропорционально */
+    height: 40px !important; 
+    width: auto !important; 
     object-fit: contain;
     display: block;
 }
 
-/* Ограничиваем область бренда */
 .navbar-brand {
     display: flex;
     align-items: center;
@@ -23,13 +21,12 @@
     color: var(--text-dark) !important;
 }
 
-    /* Чтобы текст рядом с логотипом не уползал */
-    .navbar-brand span {
-        font-weight: 800;
-        font-size: 1.2rem;
-        line-height: 1;
-    }
-/* 2. ШАПКА */
+.navbar-brand span {
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 .navbar {
     min-height: 70px;
     background: white !important;
@@ -39,51 +36,45 @@
     box-shadow: 0 2px 15px rgba(0,0,0,0.04);
 }
 
-/* 3. ГЛАВНЫЙ КОНТЕЙНЕР МЕНЮ */
 .navbar-nav {
     display: flex !important;
-    flex-direction: row !important; /* Строго в ряд */
-    align-items: center !important; /* Все пункты по центру вертикали */
+    flex-direction: row !important; 
+    align-items: center !important; 
     gap: 8px;
     margin: 0 !important;
 }
 
-/* 4. ПУНКТЫ МЕНЮ И ССЫЛКИ */
 .nav-item {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 !important; /* Убираем старые отступы сверху/снизу */
+    padding: 0 !important; 
 }
 
-/* Ссылка (Главная, Обучение и т.д.) */
 .nav-link {
     font-weight: 600;
-    color: var(--text-dark) !important; /* Всегда темный текст */
+    color: var(--text-dark) !important; 
     padding: 8px 16px !important;
     border-radius: 12px;
     display: flex;
     align-items: center;
-    height: 40px; /* Фиксированная высота для всех кнопок */
+    height: 40px;
     transition: all 0.2s ease !important;
     text-decoration: none !important;
     background: transparent !important;
 }
 
-    /* При наведении — коралловый */
-    .nav-link:hover {
-        background-color: var(--bg-hover) !important;
-        color: var(--primary-coral) !important;
-        opacity: 1 !important;
-    }
+.nav-link:hover {
+    background-color: var(--bg-hover) !important;
+    color: var(--primary-coral) !important;
+    opacity: 1 !important;
+}
 
-    /* Активное состояние */
-    .nav-link.active {
-        background-color: var(--bg-hover) !important;
-        color: var(--primary-coral) !important;
-    }
+.nav-link.active {
+    background-color: var(--bg-hover) !important;
+    color: var(--primary-coral) !important;
+}
 
-/* 5. ВЫПАДАЮЩЕЕ МЕНЮ */
 .dropdown-menu {
     border: 0 !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
@@ -98,12 +89,11 @@
     font-weight: 500;
 }
 
-    ::deep .dropdown-item:hover {
-        background-color: #FFF9F4 !important;
-        color: var(--primary-coral) !important;
-    }
+::deep .dropdown-item:hover {
+    background-color: #FFF9F4 !important;
+    color: var(--primary-coral) !important;
+}
 
-/* 6. КНОПКИ ВХОДА/РЕГИСТРАЦИИ */
 .btn-login, .btn-register {
     height: 40px;
     border-radius: 50px !important;
@@ -114,7 +104,6 @@
     font-size: 0.9rem;
 }
 
-/* 7. УДАЛЯЕМ МУСОР ОТ СТАРОГО ТОГГЛЕРА */
 .navbar-toggler {
     border: none !important;
 }

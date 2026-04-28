@@ -1,0 +1,236 @@
+﻿@page "/admin/dashboard"
+@using Microsoft.AspNetCore.Authorization
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.DTOs
+@using BlazorApp.Shared.Interfaces
+@using Blazorized.HtmlTextEditor
+@using Microsoft.AspNetCore.Hosting
+
+@attribute [Authorize(Roles = "Admin")]
+
+@inject ILectureService LectureService
+@inject IUserService UserService
+@inject IWebHostEnvironment WebHostEnvironment
+@inject IJSRuntime JS
+
+<div class="container mt-4 pb-5">
+    <div class="d-flex align-items-center mb-4">
+        <h2 class="fw-bold me-auto">Панель управления</h2>
+        <span class="badge bg-coral-light text-coral px-3 py-2 rounded-pill">Режим Администратора</span>
+    </div>
+
+    <ul class="nav nav-pills mb-4" id="adminTabs" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active rounded-pill me-2" data-bs-toggle="pill" data-bs-target="#content">
+                <i class="bi bi-file-earmark-text me-2"></i>Контент
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#users">
+                <i class="bi bi-people me-2"></i>Пользователи
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="content">
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">Добавить новую лекцию</h5>
+                    <EditForm Model="newLecture" OnValidSubmit="HandleAddLecture">
+                        <DataAnnotationsValidator />
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Название лекции</label>
+                                <InputText @bind-Value="newLecture.Title" class="form-control rounded-3" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Целевой диагноз</label>
+                                <InputText @bind-Value="newLecture.TargetDiagnosis" class="form-control rounded-3" />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Обложка лекции</label>
+                            <InputFile OnChange="HandleFileSelected" class="form-control rounded-3" accept=".jpg,.png" />
+                            @if (!string.IsNullOrEmpty(newLecture.ImagePath))
+                            {
+                                <div class="mt-2 position-relative d-inline-block">
+                                    <img src="@newLecture.ImagePath" class="rounded-3 shadow-sm" style="height:100px; object-fit: cover;" />
+                                </div>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Краткое описание</label>
+                            <InputTextArea @bind-Value="newLecture.Description" class="form-control rounded-3" rows="2" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Полный текст лекции</label>
+                            <div class="editor-container rounded-3 border">
+                                <HtmlTextEditor @ref="@QuillHtml" Placeholder="Напишите подробности...">
+                                    <ToolbarContent>
+                                        <select class="ql-header">
+                                            <option selected=""></option>
+                                            <option value="1"></option>
+                                            <option value="2"></option>
+                                        </select>
+                                        <span class="ql-formats">
+                                            <button class="ql-bold"></button>
+                                            <button class="ql-italic"></button>
+                                        </span>
+                                    </ToolbarContent>
+                                </HtmlTextEditor>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Ссылка на видео</label>
+                            <InputText @bind-Value="newLecture.VideoUrl" class="form-control rounded-3" placeholder="https://youtube.com/..." />
+                        </div>
+
+                        <button type="submit" class="btn btn-coral px-4 rounded-pill">Опубликовать лекцию</button>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="users">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Пользователь</th>
+                                    <th>Роль</th>
+                                    <th>Статус</th>
+                                    <th class="text-end">Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (allUsers != null)
+                                {
+                                    @foreach (var user in allUsers)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="fw-bold">@user.Email</div>
+                                                <small class="text-muted">ID: @user.Id.Substring(0, 8)...</small>
+                                            </td>
+                                            <td>
+                                                <select class="form-select form-select-sm rounded-3"
+                                                        @onchange="(e) => ChangeRole(user, e.Value?.ToString() ?? user.Role)">
+                                                    <option value="User" selected="@(user.Role == "User")">Пользователь</option>
+                                                    <option value="Specialist" selected="@(user.Role == "Specialist")">Специалист</option>
+                                                    <option value="Admin" selected="@(user.Role == "Admin")">Админ</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                @if (user.IsBlocked)
+                                                {
+                                                    <span class="badge bg-danger-subtle text-danger rounded-pill">Заблокирован</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-success-subtle text-success rounded-pill">Активен</span>
+                                                }
+                                            </td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm @(user.IsBlocked ? "btn-outline-success" : "btn-outline-warning") border-0 me-2"
+                                                        @onclick="() => ToggleBlock(user)">
+                                                    <i class="bi @(user.IsBlocked ? "bi-unlock" : "bi-lock")"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger border-0" @onclick="() => DeleteUser(user)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Lecture newLecture = new();
+    private List<Lecture>? allLectures;
+    private List<UserDto>? allUsers;
+    private HtmlTextEditor QuillHtml = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLectures();
+        await LoadUsers();
+    }
+
+    private async Task LoadLectures()
+    {
+        allLectures = await LectureService.GetAllLecturesAsync();
+    }
+
+    private async Task LoadUsers()
+    {
+        allUsers = await UserService.GetAllUsersAsync();
+    }
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
+            var folderPath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads");
+
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            var filePath = Path.Combine(folderPath, fileName);
+
+            using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 5);
+            using var fileStream = new FileStream(filePath, FileMode.Create);
+            await stream.CopyToAsync(fileStream);
+
+            newLecture.ImagePath = $"/uploads/{fileName}";
+        }
+    }
+
+    private async Task HandleAddLecture()
+    {
+        newLecture.Content = await QuillHtml.GetHtml();
+        await LectureService.AddLectureAsync(newLecture);
+
+        newLecture = new();
+        await QuillHtml.LoadHtmlContent("");
+        await LoadLectures();
+    }
+
+    private async Task ChangeRole(UserDto user, string newRole)
+    {
+        await UserService.UpdateRoleAsync(user.Id, newRole);
+        user.Role = newRole;
+    }
+
+    private async Task ToggleBlock(UserDto user)
+    {
+        user.IsBlocked = !user.IsBlocked;
+        await UserService.UpdateBlockStatusAsync(user.Id, user.IsBlocked);
+    }
+
+    private async Task DeleteUser(UserDto user)
+    {
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Удалить пользователя {user.Email}?");
+        if (confirmed)
+        {
+            await UserService.DeleteUserAsync(user.Id);
+            await LoadUsers();
+        }
+    }
+}

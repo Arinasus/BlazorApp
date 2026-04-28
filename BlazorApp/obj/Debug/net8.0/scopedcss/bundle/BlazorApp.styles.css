@@ -1,3 +1,30 @@
+/* /Components/Account/Pages/Admin/AdminDashboard.razor.rz.scp.css */
+
+.bg-coral-light[b-r2v16sirkw] {
+    background-color: rgba(255, 138, 91, 0.1);
+}
+
+.text-coral[b-r2v16sirkw] {
+    color: #FF8A5B;
+}
+
+.nav-pills .nav-link[b-r2v16sirkw] {
+    color: #636e72;
+    font-weight: 600;
+    padding: 10px 25px;
+    transition: 0.3s;
+}
+
+    .nav-pills .nav-link.active[b-r2v16sirkw] {
+        background-color: #FF8A5B !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
+    }
+
+.form-select:focus[b-r2v16sirkw] {
+    border-color: #FF8A5B;
+    box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.1);
+}
 /* /Components/Account/Pages/Login.razor.rz.scp.css */
 .auth-page-wrapper[b-4h90kzw2gq] {
     min-height: 100vh;
@@ -263,28 +290,26 @@ main[b-qgsvw684bo] {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss[b-qgsvw684bo] {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss[b-qgsvw684bo] {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 /* /Components/Layout/NavMenu.razor.rz.scp.css */
-/* 1. БАЗОВЫЕ ПЕРЕМЕННЫЕ */
 :root[b-g8o6n169oq] {
     --primary-coral: #FF8A5B;
     --text-dark: #2D3436;
     --bg-hover: rgba(255, 138, 91, 0.1);
 }
-/* Фиксируем размер логотипа */
+
 .nav-logo-img[b-g8o6n169oq] {
-    height: 40px !important; /* Строго 40 пикселей в высоту */
-    width: auto !important; /* Ширина подстроится пропорционально */
+    height: 40px !important; 
+    width: auto !important; 
     object-fit: contain;
     display: block;
 }
 
-/* Ограничиваем область бренда */
 .navbar-brand[b-g8o6n169oq] {
     display: flex;
     align-items: center;
@@ -295,13 +320,12 @@ main[b-qgsvw684bo] {
     color: var(--text-dark) !important;
 }
 
-    /* Чтобы текст рядом с логотипом не уползал */
-    .navbar-brand span[b-g8o6n169oq] {
-        font-weight: 800;
-        font-size: 1.2rem;
-        line-height: 1;
-    }
-/* 2. ШАПКА */
+.navbar-brand span[b-g8o6n169oq] {
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 .navbar[b-g8o6n169oq] {
     min-height: 70px;
     background: white !important;
@@ -311,51 +335,45 @@ main[b-qgsvw684bo] {
     box-shadow: 0 2px 15px rgba(0,0,0,0.04);
 }
 
-/* 3. ГЛАВНЫЙ КОНТЕЙНЕР МЕНЮ */
 .navbar-nav[b-g8o6n169oq] {
     display: flex !important;
-    flex-direction: row !important; /* Строго в ряд */
-    align-items: center !important; /* Все пункты по центру вертикали */
+    flex-direction: row !important; 
+    align-items: center !important; 
     gap: 8px;
     margin: 0 !important;
 }
 
-/* 4. ПУНКТЫ МЕНЮ И ССЫЛКИ */
 .nav-item[b-g8o6n169oq] {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 !important; /* Убираем старые отступы сверху/снизу */
+    padding: 0 !important; 
 }
 
-/* Ссылка (Главная, Обучение и т.д.) */
 .nav-link[b-g8o6n169oq] {
     font-weight: 600;
-    color: var(--text-dark) !important; /* Всегда темный текст */
+    color: var(--text-dark) !important; 
     padding: 8px 16px !important;
     border-radius: 12px;
     display: flex;
     align-items: center;
-    height: 40px; /* Фиксированная высота для всех кнопок */
+    height: 40px;
     transition: all 0.2s ease !important;
     text-decoration: none !important;
     background: transparent !important;
 }
 
-    /* При наведении — коралловый */
-    .nav-link:hover[b-g8o6n169oq] {
-        background-color: var(--bg-hover) !important;
-        color: var(--primary-coral) !important;
-        opacity: 1 !important;
-    }
+.nav-link:hover[b-g8o6n169oq] {
+    background-color: var(--bg-hover) !important;
+    color: var(--primary-coral) !important;
+    opacity: 1 !important;
+}
 
-    /* Активное состояние */
-    .nav-link.active[b-g8o6n169oq] {
-        background-color: var(--bg-hover) !important;
-        color: var(--primary-coral) !important;
-    }
+.nav-link.active[b-g8o6n169oq] {
+    background-color: var(--bg-hover) !important;
+    color: var(--primary-coral) !important;
+}
 
-/* 5. ВЫПАДАЮЩЕЕ МЕНЮ */
 .dropdown-menu[b-g8o6n169oq] {
     border: 0 !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
@@ -370,12 +388,11 @@ main[b-qgsvw684bo] {
     font-weight: 500;
 }
 
-    [b-g8o6n169oq] .dropdown-item:hover {
-        background-color: #FFF9F4 !important;
-        color: var(--primary-coral) !important;
-    }
+[b-g8o6n169oq] .dropdown-item:hover {
+    background-color: #FFF9F4 !important;
+    color: var(--primary-coral) !important;
+}
 
-/* 6. КНОПКИ ВХОДА/РЕГИСТРАЦИИ */
 .btn-login[b-g8o6n169oq], .btn-register[b-g8o6n169oq] {
     height: 40px;
     border-radius: 50px !important;
@@ -386,7 +403,6 @@ main[b-qgsvw684bo] {
     font-size: 0.9rem;
 }
 
-/* 7. УДАЛЯЕМ МУСОР ОТ СТАРОГО ТОГГЛЕРА */
 .navbar-toggler[b-g8o6n169oq] {
     border: none !important;
 }

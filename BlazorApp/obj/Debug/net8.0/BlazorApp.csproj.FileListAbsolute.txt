@@ -485,3 +485,4 @@ D:\Diplom\BlazorApp\BlazorApp\bin\Debug\net8.0\Blazorized.HtmlTextEditor.dll
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Register.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Login.razor.rz.scp.css
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Admin\AdminDashboard.razor.rz.scp.css
