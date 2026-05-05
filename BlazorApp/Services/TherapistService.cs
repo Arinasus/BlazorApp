@@ -45,5 +45,27 @@ namespace BlazorApp.Services
                 .Where(p => !p.IsApproved)
                 .ToListAsync();
         }
+        public async Task<TherapistProfile?> GetProfileByUserId(string userId)
+        {
+            return await _context.TherapistProfiles
+                .FirstOrDefaultAsync(p => p.UserId == userId);
+        }
+
+        public async Task UpdateProfile(TherapistProfile profile)
+        {
+            var existing = await _context.TherapistProfiles
+                .FirstOrDefaultAsync(p => p.UserId == profile.UserId);
+
+            if (existing != null)
+            {
+                _context.Entry(existing).CurrentValues.SetValues(profile);
+            }
+            else
+            {
+                _context.TherapistProfiles.Add(profile);
+            }
+            var affectedRows = await _context.SaveChangesAsync();
+            Console.WriteLine($"DB UPDATE: Изменено строк: {affectedRows}");
+        }
     }
 }

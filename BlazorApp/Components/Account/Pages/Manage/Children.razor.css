@@ -1,0 +1,88 @@
+﻿/* Кастомная кнопка на базе твоего коралла */
+.btn-brand {
+    background-color: var(--brand-coral) !important;
+    border-color: var(--brand-coral) !important;
+    color: white !important;
+    border-radius: var(--brand-radius);
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+}
+
+    .btn-brand:hover {
+        filter: brightness(95%);
+        box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
+    }
+
+/* Стили для иконок редактирования (Бирюзовый как в админке) */
+.btn-edit {
+    color: #20B2AA;
+    border: 1px solid #20B2AA;
+    background: transparent;
+    border-radius: 8px;
+    padding: 4px 8px;
+    transition: 0.2s;
+}
+
+    .btn-edit:hover {
+        background-color: #20B2AA;
+        color: white;
+    }
+
+/* Стили для удаления */
+.btn-delete {
+    color: #ff7675;
+    border: 1px solid #ff7675;
+    background: transparent;
+    border-radius: 8px;
+    padding: 4px 8px;
+    transition: 0.2s;
+}
+
+    .btn-delete:hover {
+        background-color: #ff7675;
+        color: white;
+    }
+
+/* Карточка ребенка */
+.child-card {
+    border: 1px solid #edf2f7;
+    border-radius: var(--brand-radius);
+    background: white;
+    transition: transform 0.2s;
+}
+
+    .child-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+.btn-icon-edit {
+    background: transparent;
+    border: none;
+    color: #20B2AA; /* Бирюзовый */
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+    .btn-icon-edit:hover {
+        color: #1a8f88;
+        transform: scale(1.15);
+    }
+
+.btn-icon-delete {
+    background: transparent;
+    border: none;
+    color: var(--brand-coral); /* Твой коралл */
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+    .btn-icon-delete:hover {
+        color: #e67a4d;
+        transform: scale(1.15);
+    }
+
+/* Скругляем саму форму добавления */
+.card {
+    border: none !important;
+    border-radius: var(--brand-radius) !important;
+}

@@ -1,0 +1,31 @@
+﻿/* Базовое состояние ссылки (неактивной) */
+::deep .nav-link {
+    color: #555 !important; /* Тёмно-серый для читаемости */
+    border-radius: var(--brand-radius, 10px) !important;
+    padding: 12px 16px !important;
+    margin-bottom: 4px !important;
+    transition: all 0.25s ease !important;
+    border: 1px solid transparent !important;
+}
+
+    /* Иконки внутри ссылок всегда наследуют цвет текста */
+    ::deep .nav-link i {
+        color: inherit !important;
+        margin-right: 8px;
+    }
+
+/* АКТИВНОЕ СОСТОЯНИЕ (Твой коралл) */
+::deep .nav-pills .nav-link.active,
+::deep .nav-pills .show > .nav-link {
+    background-color: #FF8A5B !important; /* Хардкодим цвет, если переменная не подтянулась */
+    background-color: var(--brand-coral) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3) !important;
+}
+
+/* СОСТОЯНИЕ ПРИ НАВЕДЕНИИ (Hover) */
+::deep .nav-link:hover:not(.active) {
+    color: var(--brand-coral) !important;
+    background-color: rgba(255, 138, 91, 0.08) !important;
+    transform: translateX(4px); /* Тот самый приятный сдвиг */
+}

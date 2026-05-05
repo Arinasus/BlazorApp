@@ -8,95 +8,147 @@
 @attribute [Authorize]
 @inject IChildService ChildService
 @inject AuthenticationStateProvider AuthStateProvider
+@inject IJSRuntime JS
 
-<h3>Мои дети</h3>
+<div class="container mt-4">
+    <h3 class="fw-bold mb-4">Мои дети</h3>
 
-<div class="row">
-    <div class="col-md-4">
-        <h5>Добавить ребенка</h5>
-        <EditForm Model="newChild" OnSubmit="HandleAddChild">
-            <DataAnnotationsValidator />
-            <div class="mb-3">
-                <label>Имя:</label>
-                <InputText @bind-Value="newChild.Name" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label>Возраст:</label>
-                <InputNumber @bind-Value="newChild.Age" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label>Диагноз/Особенности:</label>
-                <InputTextArea @bind-Value="newChild.Diagnosis" class="form-control" />
-            </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-        </EditForm>
-    </div>
-
-    <div class="col-md-8">
-        <h5>Список детей</h5>
-        @if (children == null)
-        {
-            <p>Загрузка...</p>
-        }
-        else if (!children.Any())
-        {
-            <p>Вы еще не добавили данные о детях.</p>
-        }
-        else
-        {
-            <div class="list-group">
-                @foreach (var child in children)
-                {
-                    <div class="list-group-item">
-                        <h6>@child.Name (@child.Age лет)</h6>
-                        <p class="small mb-1"><strong>Диагноз:</strong> @child.Diagnosis</p>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3">
+                <h5 class="fw-bold mb-3">@(isEditMode ? "Редактировать данные" : "Добавить ребенка")</h5>
+                <EditForm Model="activeChild" OnValidSubmit="HandleSubmit">
+                    <DataAnnotationsValidator />
+                    <div class="mb-3">
+                        <label class="form-label">Имя:</label>
+                        <InputText @bind-Value="activeChild.Name" class="form-control rounded-3" />
                     </div>
-                }
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label">Возраст:</label>
+                            <InputNumber @bind-Value="activeChild.Age" class="form-control rounded-3" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Диагноз/Особенности:</label>
+                        <InputTextArea @bind-Value="activeChild.Diagnosis" class="form-control rounded-3" rows="3" />
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-brand">
+                            @(isEditMode ? "Сохранить изменения" : "Добавить ребенка")
+                        </button>
+                        @if (isEditMode)
+                        {
+                            <button type="button" class="btn btn-light px-4 rounded-pill" @onclick="CancelEdit">Отмена</button>
+                        }
+                    </div>
+                </EditForm>
             </div>
-        }
+        </div>
+
+        <div class="col-md-8">
+            <h5 class="fw-bold mb-3">Список детей</h5>
+            @if (children == null)
+            {
+                <div class="text-center p-5"><div class="spinner-border text-coral" role="status"></div></div>
+            }
+            else if (!children.Any())
+            {
+                <div class="alert alert-light rounded-4 border-0 shadow-sm">Вы еще не добавили данные о детях.</div>
+            }
+            else
+            {
+                <div class="list-group">
+                    @foreach (var child in children)
+                    {
+                        <div class="list-group-item d-flex justify-content-between align-items-center border-0 mb-3 shadow-sm rounded-4 p-3 bg-white">
+                            <div>
+                                <h6 class="fw-bold mb-1 text-dark">@child.Name</h6>
+                                <span class="badge bg-light text-muted border rounded-pill">@child.Age лет</span>
+                                <p class="small text-muted mb-0 mt-2">
+                                    <i class="bi bi-info-circle me-1"></i> @child.Diagnosis
+                                </p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                @* Карандаш теперь бирюзовый *@
+                                <button class="btn btn-icon-edit" @onclick="() => EditChild(child)">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                @* Мусорка теперь коралловая *@
+                                <button class="btn btn-icon-delete" @onclick="() => DeleteChild(child)">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
     </div>
 </div>
 
 @code {
     private List<Child>? children;
-    private Child newChild = new();
-    //[SupplyParameterFromForm] public Child? FormModel { get; set; }
+    private Child activeChild = new();
+    private bool isEditMode = false;
 
-    protected override async Task OnInitializedAsync()
-    {
-        //newChild = FormModel ?? new();
-        await LoadChildren();
-    }
+    protected override async Task OnInitializedAsync() => await LoadChildren();
 
     private async Task LoadChildren()
     {
-        try
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var userId = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (!string.IsNullOrEmpty(userId))
         {
-            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
-            var user = authState.User;
-
-            if (user.Identity is not null && user.Identity.IsAuthenticated)
-            {
-                var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (!string.IsNullOrEmpty(userId))
-                {
-                    children = await ChildService.GetChildrenByParentIdAsync(userId);
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Ошибка загрузки детей: {ex.Message}");
+            children = await ChildService.GetChildrenByParentIdAsync(userId);
         }
     }
 
-    private async Task HandleAddChild()
+    private void EditChild(Child child)
     {
-        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
-        newChild.ParentId = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value!;
-        
-        await ChildService.AddChildAsync(newChild);
-        newChild = new(); 
-        await LoadChildren(); 
+
+        activeChild = new Child
+        {
+            Id = child.Id,
+            Name = child.Name,
+            Age = child.Age,
+            Diagnosis = child.Diagnosis,
+            ParentId = child.ParentId
+        };
+        isEditMode = true;
+    }
+
+    private void CancelEdit()
+    {
+        activeChild = new();
+        isEditMode = false;
+    }
+
+    private async Task HandleSubmit()
+    {
+        if (isEditMode)
+        {
+            await ChildService.UpdateChildAsync(activeChild);
+        }
+        else
+        {
+            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+            activeChild.ParentId = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value!;
+            await ChildService.AddChildAsync(activeChild);
+        }
+
+        activeChild = new();
+        isEditMode = false;
+        await LoadChildren();
+    }
+
+    private async Task DeleteChild(Child child)
+    {
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Удалить данные о ребенке {child.Name}?");
+        if (confirmed)
+        {
+            await ChildService.DeleteChildAsync(child.Id);
+            await LoadChildren();
+        }
     }
 }

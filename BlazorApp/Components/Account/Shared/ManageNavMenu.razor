@@ -3,53 +3,75 @@
 @using Microsoft.AspNetCore.Authorization
 @inject AuthenticationStateProvider AuthStateProvider
 @inject SignInManager<ApplicationUser> SignInManager
-
-<ul class="nav nav-pills flex-column">
-    <li class="nav-item">
-        <NavLink class="nav-link" href="Account/Manage" Match="NavLinkMatch.All">Profile</NavLink>
-    </li>
-    <li class="nav-item">
-        <NavLink class="nav-link" href="Account/Manage/Email">Email</NavLink>
-    </li>
-    <li class="nav-item">
-        <NavLink class="nav-link" href="Account/Manage/ChangePassword">Password</NavLink>
-    </li>
-    @if (hasExternalLogins)
-    {
-        <li class="nav-item">
-            <NavLink class="nav-link" href="Account/Manage/ExternalLogins">External logins</NavLink>
-        </li>
+<style>
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        background-color: #FF8A5B !important; 
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3) !important;
     }
+
+    .nav-link {
+        color: #555 !important;
+    }
+
+        .nav-link:hover:not(.active) {
+            color: #FF8A5B !important;
+            background-color: rgba(255, 138, 91, 0.1) !important;
+        }
+</style>
+<ul class="nav nav-pills flex-column gap-1">
     <li class="nav-item">
-        <NavLink class="nav-link" href="Account/Manage/TwoFactorAuthentication">Two-factor authentication</NavLink>
+        <NavLink class="nav-link rounded-3" href="Account/Manage" Match="NavLinkMatch.All">
+            <i class="bi bi-person me-2"></i>Профиль
+        </NavLink>
     </li>
     <li class="nav-item">
-        <NavLink class="nav-link" href="Account/Manage/PersonalData">Personal data</NavLink>
+        <NavLink class="nav-link rounded-3" href="children">
+            <i class="bi bi-heart me-2"></i>Мои дети
+        </NavLink>
     </li>
-</ul>
-<ul class="nav nav-pills flex-column">
-    <li class="nav-item"><NavLink class="nav-link" href="Account/Manage">Основные данные</NavLink></li>
 
     <AuthorizeView Roles="Therapist">
-        <li class="nav-item"><NavLink class="nav-link" href="Account/Manage/TherapistSettings">Моя анкета</NavLink></li>
+        <li class="nav-item">
+            <NavLink class="nav-link rounded-3" href="Account/Manage/TherapistSettings">
+                <i class="bi bi-journal-check me-2"></i>Моя анкета
+            </NavLink>
+        </li>
     </AuthorizeView>
 
     <li class="nav-item">
-        <NavLink class="nav-link" href="children">Мои дети</NavLink>
+        <NavLink class="nav-link rounded-3" href="Account/Manage/Email">
+            <i class="bi bi-envelope me-2"></i>Email
+        </NavLink>
+    </li>
+    <li class="nav-item">
+        <NavLink class="nav-link rounded-3" href="Account/Manage/ChangePassword">
+            <i class="bi bi-key me-2"></i>Пароль
+        </NavLink>
+    </li>
+
+    @if (hasExternalLogins)
+    {
+        <li class="nav-item">
+            <NavLink class="nav-link rounded-3" href="Account/Manage/ExternalLogins">
+                <i class="bi bi-shield-lock me-2"></i>Внешний вход
+            </NavLink>
+        </li>
+    }
+
+    <li class="nav-item">
+        <NavLink class="nav-link rounded-3" href="Account/Manage/TwoFactorAuthentication">
+            <i class="bi bi-patch-check me-2"></i>2FA
+        </NavLink>
+    </li>
+    <li class="nav-item">
+        <NavLink class="nav-link rounded-3" href="Account/Manage/PersonalData">
+            <i class="bi bi-database-exclamation me-2"></i>Личные данные
+        </NavLink>
     </li>
 </ul>
-<div class="nav-item px-3">
-    <NavLink class="nav-link" href="recommended">
-        <span class="bi bi-star-fill" aria-hidden="true"></span> Рекомендации
-    </NavLink>
-</div>
-<AuthorizeView Roles="Admin, Specialist">
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="admin/lectures">
-            <span class="bi bi-plus-square-fill" aria-hidden="true"></span> База лекций
-        </NavLink>
-    </div>
-</AuthorizeView>
+
 @code {
     private bool hasExternalLogins;
 

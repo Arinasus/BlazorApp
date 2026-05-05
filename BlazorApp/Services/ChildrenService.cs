@@ -24,5 +24,19 @@ namespace BlazorApp.Services
             _context.Children.Add(child);
             return await _context.SaveChangesAsync() > 0;
         }
+        public async Task<bool> UpdateChildAsync(Child child)
+        {
+            _context.Children.Update(child);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> DeleteChildAsync(int id)
+        {
+            var child = await _context.Children.FindAsync(id);
+            if (child == null) return false;
+
+            _context.Children.Remove(child);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

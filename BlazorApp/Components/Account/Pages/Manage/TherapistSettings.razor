@@ -1,5 +1,157 @@
-﻿<h3>TherapistSettings</h3>
+﻿@rendermode InteractiveServer
+
+@page "/Account/Manage/TherapistSettings"
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@using Microsoft.AspNetCore.Identity
+@using BlazorApp.Data
+@using Microsoft.AspNetCore.Authorization
+
+@attribute [Authorize(Roles = "Therapist")]
+
+@inject ITherapistService TherapistService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject UserManager<ApplicationUser> UserManager
+@inject IWebHostEnvironment Environment
+
+<h3 class="text-coral fw-bold mb-4">Настройки профиля специалиста</h3>
+
+<EditForm Model="profile" OnValidSubmit="HandleValidSubmit" class="row g-3" FormName="TherapistProfileForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger small" />
+    <InputNumber @bind-Value="profile.Id" hidden />
+    <InputText @bind-Value="profile.UserId" hidden />
+    <InputText @bind-Value="profile.ImageUrl" hidden />
+
+    <div class="col-md-12 d-flex align-items-center gap-4 mb-3">
+        <div class="position-relative">
+            <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
+                 class="rounded-circle border shadow-sm"
+                 style="width: 120px; height: 120px; object-fit: cover;" />
+        </div>
+        <div class="flex-grow-1" style="max-width: 300px;">
+            <label class="form-label fw-bold">Фото профиля</label>
+            <InputFile OnChange="LoadFiles" class="form-control form-control-sm" accept=".jpg,.jpeg,.png" />
+            <div class="form-text">Рекомендуется квадратное фото.</div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label fw-bold">Специализация</label>
+        <InputText @bind-Value="profile.Specialization" class="form-control" placeholder="Например: Логопед-дефектолог" />
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label fw-bold">Стаж (лет)</label>
+        <InputNumber @bind-Value="profile.ExperienceYears" class="form-control" />
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label fw-bold">Стоимость часа (₽)</label>
+        <InputNumber @bind-Value="profile.PricePerHour" class="form-control" />
+    </div>
+
+    <div class="col-md-12">
+        <label class="form-label fw-bold">Образование</label>
+        <InputTextArea @bind-Value="profile.Education" class="form-control" rows="2" placeholder="ВУЗ, курсы, сертификаты..." />
+    </div>
+
+    <div class="col-md-12">
+        <label class="form-label fw-bold">О себе</label>
+        <InputTextArea @bind-Value="profile.FullBio" class="form-control" rows="5" placeholder="Расскажите о своих методах работы..." />
+    </div>
+    <div class="col-md-12">
+        <label class="form-label fw-bold">Краткое превью (для карточки)</label>
+        <InputText @bind-Value="profile.ShortDescription" class="form-control" placeholder="Краткая фраза, которую увидят родители..." />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label fw-bold">Формат работы</label>
+        <InputText @bind-Value="profile.WorkFormat" class="form-control" placeholder="Например: Онлайн, Очно или Гибрид" />
+    </div>
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary rounded-pill px-5 shadow-sm">Сохранить изменения</button>
+        @if (showSuccessMessage)
+        {
+            <span class="text-success ms-3 animate__animated animate__fadeIn">
+                <i class="bi bi-check-circle-fill"></i> Сохранено!
+            </span>
+        }
+    </div>
+</EditForm>
 
 @code {
+    [SupplyParameterFromForm]
+    private TherapistProfile profile { get; set; } = new();
 
+    private bool showSuccessMessage = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = await UserManager.GetUserAsync(authState.User);
+
+        if (user != null)
+        {
+            if (profile.Id == 0)
+            {
+                var existingProfile = await TherapistService.GetProfileByUserId(user.Id);
+                if (existingProfile != null)
+                {
+                    profile = existingProfile;
+                }
+                else
+                {
+                    profile.UserId = user.Id;
+                }
+            }
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        profile.ShortDescription ??= string.Empty;
+        profile.FullBio ??= string.Empty;
+        profile.Education ??= string.Empty;
+        profile.WorkFormat ??= "Online";
+        profile.Specialization ??= "Логопед";
+
+        await TherapistService.UpdateProfile(profile);
+
+        showSuccessMessage = true;
+        StateHasChanged();
+
+        await Task.Delay(3000);
+        showSuccessMessage = false;
+        StateHasChanged();
+    }
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            try
+            {
+                var fileName = $"{Guid.NewGuid()}_{file.Name}";
+                var uploadsPath = Path.Combine(Environment.WebRootPath, "uploads", "avatars");
+
+                if (!Directory.Exists(uploadsPath))
+                    Directory.CreateDirectory(uploadsPath);
+
+                var fullPath = Path.Combine(uploadsPath, fileName);
+
+                using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 2);
+                using var fileStream = new FileStream(fullPath, FileMode.Create);
+                await stream.CopyToAsync(fileStream);
+
+                profile.ImageUrl = $"/uploads/avatars/{fileName}";
+
+                Console.WriteLine($"Файл сохранен: {profile.ImageUrl}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при загрузке: {ex.Message}");
+            }
+        }
+    }
 }

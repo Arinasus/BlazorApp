@@ -3,6 +3,15 @@
     --brand-coral: #FF8A5B;
     --brand-light-bg: #F9FBFF;
     --brand-radius: 14px;
+
+    --bs-primary: var(--brand-coral);
+    --bs-primary-rgb: 255, 138, 91; /* Тот же цвет в формате RGB */
+    /* Точечно для навигации, которую ты видишь на скриншоте */
+    --bs-nav-pills-link-active-bg: var(--brand-coral);
+    --bs-nav-pills-link-active-color: #fff;
+    /* Для ссылок */
+    --bs-link-color: var(--brand-coral);
+    --bs-link-hover-color: #e67a4d;
 }
 
 .btn-primary {
