@@ -4,13 +4,11 @@
     --bg-hover: rgba(255, 138, 91, 0.1);
 }
 
-/* 1. Сбрасываем постоянный фон у ссылок, даже если Blazor считает их Active */
 .nav-link.active:not(.manage-pill)[b-g8o6n169oq] {
     background-color: transparent !important;
     color: var(--text-dark) !important;
 }
 
-/* 2. Фон появляется ТОЛЬКО при наведении или когда меню открыто */
 .nav-link:hover[b-g8o6n169oq],
 .nav-link:focus[b-g8o6n169oq],
 .show > .nav-link[b-g8o6n169oq] {
@@ -19,13 +17,11 @@
     outline: none !important;
 }
 
-/* 3. Убираем синеву Bootstrap в выпадающих списках */
 .dropdown-item[b-g8o6n169oq] {
     transition: all 0.2s;
     color: var(--text-dark) !important;
 }
 
-    /* При наведении на пункт списка и когда пункт "активен" */
     .dropdown-item:hover[b-g8o6n169oq],
     .dropdown-item:focus[b-g8o6n169oq],
     .dropdown-item.active[b-g8o6n169oq],
@@ -35,20 +31,18 @@
         outline: none !important;
     }
 
-/* 4. Специальная кнопка Админ-центра (Пилюля) */
 .admin-pill[b-g8o6n169oq] {
-    background-color: transparent !important; /* Убираем перманентный рыжий */
+    background-color: transparent !important; 
     color: var(--text-dark) !important;
     border: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
     .admin-pill:hover[b-g8o6n169oq], .show > .admin-pill[b-g8o6n169oq] {
-        background-color: #FFF3E0 !important; /* Рыжеватый только при наведении */
+        background-color: #FFF3E0 !important; 
         color: #E65100 !important;
     }
 
-    /* Иконка внутри админки */
     .admin-pill i[b-g8o6n169oq] {
         color: var(--text-dark);
     }
@@ -57,14 +51,12 @@
         color: #E65100;
     }
 
-/* 5. Исправление профиля (чтобы не синел) */
 .profile-btn:focus[b-g8o6n169oq], .profile-btn:active[b-g8o6n169oq], .show > .profile-btn[b-g8o6n169oq] {
     background-color: var(--bg-hover) !important;
     color: var(--primary-coral) !important;
     box-shadow: none !important;
 }
 
-/* Логотип и общие правки */
 .nav-logo-img[b-g8o6n169oq] {
     height: 40px !important;
 }

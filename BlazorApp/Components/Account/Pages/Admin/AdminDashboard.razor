@@ -1,4 +1,5 @@
 ﻿@page "/admin/dashboard"
+@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Authorization
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.DTOs
@@ -124,7 +125,7 @@
                                                 <select class="form-select form-select-sm rounded-3"
                                                         @onchange="(e) => ChangeRole(user, e.Value?.ToString() ?? user.Role)">
                                                     <option value="User" selected="@(user.Role == "User")">Пользователь</option>
-                                                    <option value="Specialist" selected="@(user.Role == "Specialist")">Специалист</option>
+                                                    <option value="Therapist" selected="@(user.Role == "Therapist")">Специалист</option>
                                                     <option value="Admin" selected="@(user.Role == "Admin")">Админ</option>
                                                 </select>
                                             </td>

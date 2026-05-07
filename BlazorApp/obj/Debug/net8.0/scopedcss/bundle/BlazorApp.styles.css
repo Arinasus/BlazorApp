@@ -25,6 +25,31 @@
     border-color: #FF8A5B;
     box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.1);
 }
+
+
+.ql-toolbar .ql-stroke[b-r2v16sirkw] {
+    fill: none;
+    stroke: #444 !important;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.ql-toolbar .ql-fill[b-r2v16sirkw] {
+    fill: #444 !important;
+    stroke: none;
+}
+
+.ql-toolbar button svg[b-r2v16sirkw] {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.editor-container .ql-container[b-r2v16sirkw] {
+    min-height: 200px;
+    font-family: inherit;
+    font-size: 1rem;
+}
 /* /Components/Account/Pages/Login.razor.rz.scp.css */
 .auth-page-wrapper[b-4h90kzw2gq] {
     min-height: 100vh;
@@ -588,13 +613,11 @@ main[b-qgsvw684bo] {
     --bg-hover: rgba(255, 138, 91, 0.1);
 }
 
-/* 1. Сбрасываем постоянный фон у ссылок, даже если Blazor считает их Active */
 .nav-link.active:not(.manage-pill)[b-g8o6n169oq] {
     background-color: transparent !important;
     color: var(--text-dark) !important;
 }
 
-/* 2. Фон появляется ТОЛЬКО при наведении или когда меню открыто */
 .nav-link:hover[b-g8o6n169oq],
 .nav-link:focus[b-g8o6n169oq],
 .show > .nav-link[b-g8o6n169oq] {
@@ -603,13 +626,11 @@ main[b-qgsvw684bo] {
     outline: none !important;
 }
 
-/* 3. Убираем синеву Bootstrap в выпадающих списках */
 .dropdown-item[b-g8o6n169oq] {
     transition: all 0.2s;
     color: var(--text-dark) !important;
 }
 
-    /* При наведении на пункт списка и когда пункт "активен" */
     .dropdown-item:hover[b-g8o6n169oq],
     .dropdown-item:focus[b-g8o6n169oq],
     .dropdown-item.active[b-g8o6n169oq],
@@ -619,20 +640,18 @@ main[b-qgsvw684bo] {
         outline: none !important;
     }
 
-/* 4. Специальная кнопка Админ-центра (Пилюля) */
 .admin-pill[b-g8o6n169oq] {
-    background-color: transparent !important; /* Убираем перманентный рыжий */
+    background-color: transparent !important; 
     color: var(--text-dark) !important;
     border: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
     .admin-pill:hover[b-g8o6n169oq], .show > .admin-pill[b-g8o6n169oq] {
-        background-color: #FFF3E0 !important; /* Рыжеватый только при наведении */
+        background-color: #FFF3E0 !important; 
         color: #E65100 !important;
     }
 
-    /* Иконка внутри админки */
     .admin-pill i[b-g8o6n169oq] {
         color: var(--text-dark);
     }
@@ -641,14 +660,12 @@ main[b-qgsvw684bo] {
         color: #E65100;
     }
 
-/* 5. Исправление профиля (чтобы не синел) */
 .profile-btn:focus[b-g8o6n169oq], .profile-btn:active[b-g8o6n169oq], .show > .profile-btn[b-g8o6n169oq] {
     background-color: var(--bg-hover) !important;
     color: var(--primary-coral) !important;
     box-shadow: none !important;
 }
 
-/* Логотип и общие правки */
 .nav-logo-img[b-g8o6n169oq] {
     height: 40px !important;
 }
