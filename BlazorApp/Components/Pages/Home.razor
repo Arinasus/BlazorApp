@@ -32,3 +32,35 @@
     </div>
 </div>
 
+<section class="become-therapist-promo py-5">
+    <div class="container text-center py-5">
+
+        <AuthorizeView Roles="Therapist" Context="therapistContext">
+            <Authorized>
+
+            </Authorized>
+            <NotAuthorized>
+                <div class="promo-card p-5 rounded-5 shadow-sm">
+                    <h2 class="fw-bold mb-3">Вы профессиональный <span class="text-secondary-custom">логопед</span>?</h2>
+                    <p class="lead text-muted mb-4 mx-auto" style="max-width: 700px;">
+                        Присоединяйтесь к сообществу «Речевик». Публикуйте свои лекции,
+                        помогайте родителям и находите новых учеников.
+                    </p>
+
+                    <AuthorizeView Context="authContext">
+                        <Authorized>
+                            <a href="become-therapist" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm">
+                                Стать специалистом
+                            </a>
+                        </Authorized>
+                        <NotAuthorized>
+                            <a href="Account/Login" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm">
+                                Подать заявку
+                            </a>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</section>

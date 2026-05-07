@@ -67,5 +67,12 @@ namespace BlazorApp.Services
             var affectedRows = await _context.SaveChangesAsync();
             Console.WriteLine($"DB UPDATE: Изменено строк: {affectedRows}");
         }
+        public async Task<List<TherapistProfile>> GetApprovedProfilesAsync()
+        {
+            return await _context.TherapistProfiles
+                .Where(p => p.IsApproved)
+                .OrderByDescending(p => p.Rating)
+                .ToListAsync();
+        }
     }
 }

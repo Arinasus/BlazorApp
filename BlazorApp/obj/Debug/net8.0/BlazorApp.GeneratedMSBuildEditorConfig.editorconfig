@@ -214,6 +214,10 @@ build_metadata.AdditionalFiles.CssScope = b-kpwqtgel6l
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlZ2lzdGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-qg2tpul8m2
 
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/TherapistsCatalog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFRoZXJhcGlzdHNDYXRhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-owlbqyiwpr
+
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Shared/ManageNavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxNYW5hZ2VOYXZNZW51LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-ftykj0mk5j

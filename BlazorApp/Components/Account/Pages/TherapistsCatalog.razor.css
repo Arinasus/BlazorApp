@@ -1,0 +1,163 @@
+﻿.catalog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.catalog-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.catalog-title {
+    color: #2D3436;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.catalog-subtitle {
+    color: #636E72;
+    font-size: 1.1rem;
+}
+
+/* Фильтры */
+.filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    background: #F9FAFB;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.search-wrapper, .select-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+.filter-input, .filter-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+    .filter-input:focus, .filter-select:focus {
+        border-color: #FF7F50;
+    }
+
+/* Сетка */
+.therapist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Карточка */
+.therapist-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+    .therapist-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    }
+
+.image-container {
+    position: relative;
+    height: 220px;
+}
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.rating-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #FFD700;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.therapist-spec {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2D3436;
+    margin-bottom: 10px;
+}
+
+.therapist-desc {
+    font-size: 0.9rem;
+    color: #636E72;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #F1F1F1;
+    margin-bottom: 15px;
+}
+
+.price {
+    color: #FF7F50;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.format {
+    font-size: 0.85rem;
+    color: #B2BEC3;
+}
+
+.btn-details {
+    display: block;
+    text-align: center;
+    background: #FF7F50;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+    .btn-details:hover {
+        background: #E67245;
+        color: white;
+    }
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: #B2BEC3;
+}

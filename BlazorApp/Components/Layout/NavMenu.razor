@@ -1,11 +1,10 @@
 ﻿@implements IDisposable
 @inject NavigationManager NavigationManager
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top px-4">
-    <div class="container-fluid">
-
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container-fluid px-4">
         <a class="navbar-brand d-flex align-items-center fw-bold" href="">
-            <img src="/images/logo.png" alt="Лого" class="nav-logo-img me-2" />
+            <img src="/images/logo.png" alt="Лого" class="nav-logo-img me-2" style="height: 40px; width: auto;" />
             <span>Речевик</span>
         </a>
 
@@ -14,34 +13,50 @@
         </button>
 
         <div class="collapse navbar-collapse" id="topNavbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                 <li class="nav-item">
                     <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Главная</NavLink>
                 </li>
-
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="therapists">Специалисты</NavLink>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="contentDropdown" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="contentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Обучение
                     </a>
-                    <ul class="dropdown-menu border-0 shadow-sm animate__animated animate__fadeIn">
+                    <ul class="dropdown-menu border-0 shadow-sm">
                         <li><NavLink class="dropdown-item" href="lectures">Все лекции</NavLink></li>
                         <li><NavLink class="dropdown-item" href="recommended">Рекомендовано вам</NavLink></li>
                     </ul>
                 </li>
 
-                <AuthorizeView Roles="Admin, Specialist">
+                <AuthorizeView Roles="Admin">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle manage-pill admin-pill d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-shield-lock me-2"></i> <span>Админ-центр</span>
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><NavLink class="dropdown-item" href="admin/dashboard">Панель управления</NavLink></li>
+                            <li><NavLink class="dropdown-item" href="admin/applications">Заявки</NavLink></li>
+                        </ul>
+                    </li>
+                </AuthorizeView>
+
+                <AuthorizeView Roles="Therapist">
                     <li class="nav-item">
-                        <NavLink class="nav-link text-manage" href="admin/lectures">Управление</NavLink>
+                        <NavLink class="nav-link manage-pill therapist-pill d-inline-flex align-items-center" href="admin/lectures">
+                            <i class="bi bi-journal-plus me-2"></i> <span>Добавить лекцию</span>
+                        </NavLink>
                     </li>
                 </AuthorizeView>
             </ul>
 
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center gap-3">
                 <AuthorizeView>
                     <Authorized>
                         <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle profile-btn rounded-pill px-3" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle me-1"></i> @context.User.Identity?.Name
+                            <a class="nav-link dropdown-toggle profile-btn rounded-pill px-3 shadow-sm d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle me-2"></i> <span>@context.User.Identity?.Name</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
                                 <li><NavLink class="dropdown-item" href="Account/Manage">Профиль</NavLink></li>
@@ -57,8 +72,8 @@
                         </div>
                     </Authorized>
                     <NotAuthorized>
-                        <NavLink class="btn btn-login rounded-pill me-2" href="Account/Login">Вход</NavLink>
-                        <NavLink class="btn btn-register rounded-pill" href="Account/Register">Регистрация</NavLink>
+                        <NavLink class="btn btn-login" href="Account/Login">Вход</NavLink>
+                        <NavLink class="btn btn-register ms-2" href="Account/Register">Регистрация</NavLink>
                     </NotAuthorized>
                 </AuthorizeView>
             </div>
@@ -68,18 +83,15 @@
 
 @code {
     private string? currentUrl;
-
     protected override void OnInitialized()
     {
         currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
         NavigationManager.LocationChanged += OnLocationChanged;
     }
-
     private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
     {
         currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
         StateHasChanged();
     }
-
     public void Dispose() => NavigationManager.LocationChanged -= OnLocationChanged;
 }

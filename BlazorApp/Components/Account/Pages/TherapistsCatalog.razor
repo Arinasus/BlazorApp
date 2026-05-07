@@ -1,0 +1,85 @@
+﻿@page "/therapists"
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@inject ITherapistService TherapistService
+@rendermode InteractiveServer
+
+<div class="catalog-container">
+    <div class="catalog-header">
+        <h1 class="catalog-title">Наши специалисты</h1>
+        <p class="catalog-subtitle">Найдите идеального логопеда для вашего ребенка</p>
+    </div>
+
+    <!-- Панель фильтров -->
+    <div class="filter-section">
+        <div class="search-wrapper">
+            <i class="bi bi-search"></i>
+            <input type="text" class="filter-input" placeholder="Поиск по специализации..."
+                   @bind="searchQuery" @bind:event="oninput" />
+        </div>
+
+        <div class="select-wrapper">
+            <select class="filter-select" @bind="selectedFormat">
+                <option value="">Любой формат</option>
+                <option value="Онлайн">Онлайн</option>
+                <option value="Очно">Очно</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Сетка карточек -->
+    <div class="therapist-grid">
+        @if (FilteredTherapists.Any())
+        {
+            @foreach (var therapist in FilteredTherapists)
+            {
+                <div class="therapist-card">
+                    <div class="image-container">
+                        <img src="@(string.IsNullOrEmpty(therapist.ImageUrl) ? "/img/default-avatar.png" : therapist.ImageUrl)"
+                             alt="Photo" />
+                        <div class="rating-badge">
+                            <i class="bi bi-star-fill"></i> @therapist.Rating
+                        </div>
+                    </div>
+
+                    <div class="card-content">
+                        <h3 class="therapist-spec">@therapist.Specialization</h3>
+                        <p class="therapist-desc">@therapist.ShortDescription</p>
+
+                        <div class="details-row">
+                            <span class="price">@therapist.PricePerHour ₽ <small>/ час</small></span>
+                            <span class="format">
+                                <i class="bi bi-geo-alt"></i> @therapist.WorkFormat
+                            </span>
+                        </div>
+
+                        <a href="/therapist/@therapist.UserId" class="btn-details">
+                            Посмотреть профиль
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="empty-state">
+                <p>Специалисты по вашему запросу не найдены.</p>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<TherapistProfile> allTherapists = new();
+    private string searchQuery = "";
+    private string selectedFormat = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        allTherapists = await TherapistService.GetApprovedProfilesAsync();
+    }
+
+    private IEnumerable<TherapistProfile> FilteredTherapists => allTherapists
+        .Where(t => (string.IsNullOrEmpty(searchQuery) || t.Specialization.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) &&
+                    (string.IsNullOrEmpty(selectedFormat) || t.WorkFormat == selectedFormat));
+}

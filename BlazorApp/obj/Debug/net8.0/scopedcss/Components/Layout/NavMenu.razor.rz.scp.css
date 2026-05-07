@@ -4,106 +4,84 @@
     --bg-hover: rgba(255, 138, 91, 0.1);
 }
 
-.nav-logo-img[b-g8o6n169oq] {
-    height: 40px !important; 
-    width: auto !important; 
-    object-fit: contain;
-    display: block;
+/* 1. Сбрасываем постоянный фон у ссылок, даже если Blazor считает их Active */
+.nav-link.active:not(.manage-pill)[b-g8o6n169oq] {
+    background-color: transparent !important;
+    color: var(--text-dark) !important;
 }
 
-.navbar-brand[b-g8o6n169oq] {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0;
-    margin-right: 2rem;
-    text-decoration: none !important;
+/* 2. Фон появляется ТОЛЬКО при наведении или когда меню открыто */
+.nav-link:hover[b-g8o6n169oq],
+.nav-link:focus[b-g8o6n169oq],
+.show > .nav-link[b-g8o6n169oq] {
+    background-color: var(--bg-hover) !important;
+    color: var(--primary-coral) !important;
+    outline: none !important;
+}
+
+/* 3. Убираем синеву Bootstrap в выпадающих списках */
+.dropdown-item[b-g8o6n169oq] {
+    transition: all 0.2s;
     color: var(--text-dark) !important;
+}
+
+    /* При наведении на пункт списка и когда пункт "активен" */
+    .dropdown-item:hover[b-g8o6n169oq],
+    .dropdown-item:focus[b-g8o6n169oq],
+    .dropdown-item.active[b-g8o6n169oq],
+    .dropdown-item:active[b-g8o6n169oq] {
+        background-color: var(--bg-hover) !important;
+        color: var(--primary-coral) !important;
+        outline: none !important;
+    }
+
+/* 4. Специальная кнопка Админ-центра (Пилюля) */
+.admin-pill[b-g8o6n169oq] {
+    background-color: transparent !important; /* Убираем перманентный рыжий */
+    color: var(--text-dark) !important;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+    .admin-pill:hover[b-g8o6n169oq], .show > .admin-pill[b-g8o6n169oq] {
+        background-color: #FFF3E0 !important; /* Рыжеватый только при наведении */
+        color: #E65100 !important;
+    }
+
+    /* Иконка внутри админки */
+    .admin-pill i[b-g8o6n169oq] {
+        color: var(--text-dark);
+    }
+
+    .admin-pill:hover i[b-g8o6n169oq], .show > .admin-pill i[b-g8o6n169oq] {
+        color: #E65100;
+    }
+
+/* 5. Исправление профиля (чтобы не синел) */
+.profile-btn:focus[b-g8o6n169oq], .profile-btn:active[b-g8o6n169oq], .show > .profile-btn[b-g8o6n169oq] {
+    background-color: var(--bg-hover) !important;
+    color: var(--primary-coral) !important;
+    box-shadow: none !important;
+}
+
+/* Логотип и общие правки */
+.nav-logo-img[b-g8o6n169oq] {
+    height: 40px !important;
 }
 
 .navbar-brand span[b-g8o6n169oq] {
     font-weight: 800;
-    font-size: 1.2rem;
-    line-height: 1;
+    color: var(--text-dark);
 }
 
-.navbar[b-g8o6n169oq] {
-    min-height: 70px;
-    background: white !important;
-    display: flex;
-    align-items: center;
-    padding: 0 1.5rem !important;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.04);
-}
-
-.navbar-nav[b-g8o6n169oq] {
-    display: flex !important;
-    flex-direction: row !important; 
-    align-items: center !important; 
-    gap: 8px;
-    margin: 0 !important;
-}
-
-.nav-item[b-g8o6n169oq] {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 !important; 
-}
-
-.nav-link[b-g8o6n169oq] {
-    font-weight: 600;
-    color: var(--text-dark) !important; 
-    padding: 8px 16px !important;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    height: 40px;
-    transition: all 0.2s ease !important;
-    text-decoration: none !important;
-    background: transparent !important;
-}
-
-.nav-link:hover[b-g8o6n169oq] {
-    background-color: var(--bg-hover) !important;
+.btn-login[b-g8o6n169oq] {
     color: var(--primary-coral) !important;
-    opacity: 1 !important;
+    border: 2px solid var(--primary-coral) !important;
+    border-radius: 50px;
 }
 
-.nav-link.active[b-g8o6n169oq] {
-    background-color: var(--bg-hover) !important;
-    color: var(--primary-coral) !important;
-}
-
-.dropdown-menu[b-g8o6n169oq] {
-    border: 0 !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
-    border-radius: 12px !important;
-    padding: 8px !important;
-}
-
-[b-g8o6n169oq] .dropdown-item {
-    color: var(--text-dark) !important;
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-weight: 500;
-}
-
-[b-g8o6n169oq] .dropdown-item:hover {
-    background-color: #FFF9F4 !important;
-    color: var(--primary-coral) !important;
-}
-
-.btn-login[b-g8o6n169oq], .btn-register[b-g8o6n169oq] {
-    height: 40px;
-    border-radius: 50px !important;
-    display: inline-flex;
-    align-items: center;
-    padding: 0 22px !important;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-.navbar-toggler[b-g8o6n169oq] {
-    border: none !important;
+.btn-register[b-g8o6n169oq] {
+    background-color: var(--primary-coral) !important;
+    color: white !important;
+    border-radius: 50px;
 }

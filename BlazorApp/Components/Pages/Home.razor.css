@@ -1,4 +1,5 @@
-﻿.home-hero {
+﻿/* Твои существующие стили остаются без изменений */
+.home-hero {
     background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F4 100%);
     padding: 60px 0;
 }
@@ -22,38 +23,42 @@
         color: white !important;
     }
 
-.floating-anim {
-    animation: floating 3s ease-in-out infinite;
+/* НОВЫЕ СТИЛИ ДЛЯ БЛОКА СПЕЦИАЛИСТОВ */
+
+/* Коралловая кнопка (основная) */
+.btn-primary {
+    background-color: #FF6B6B !important;
+    border: none !important;
+    color: white !important;
+    transition: transform 0.2s;
 }
 
-@keyframes floating {
-    0% {
-        transform: translate(0, 0px);
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
     }
 
-    50% {
-        transform: translate(0, -15px);
-    }
-
-    100% {
-        transform: translate(0, 0px);
-    }
+/* Бирюзовый текст для акцента в блоке */
+.text-secondary-custom {
+    color: #6ECEDA;
 }
 
-.hero-img-wrapper {
+/* Карточка призыва */
+.promo-card {
+    background: white;
+    border: 2px solid #FFF9F4; /* Легкий бежевый как в твоем градиенте */
     position: relative;
+    overflow: hidden;
 }
 
-    .hero-img-wrapper::after {
+    /* Декоративный элемент (бирюзовый круг) в углу карточки */
+    .promo-card::before {
         content: '';
         position: absolute;
-        width: 300px;
-        height: 300px;
-        background: rgba(110, 206, 218, 0.1);
+        width: 200px;
+        height: 200px;
+        background: rgba(110, 206, 218, 0.05);
         border-radius: 50%;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        bottom: -100px;
+        right: -100px;
     }
-
