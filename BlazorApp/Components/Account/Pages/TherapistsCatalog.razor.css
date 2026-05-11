@@ -22,7 +22,6 @@
     font-size: 1.1rem;
 }
 
-/* Фильтры */
 .filter-section {
     display: flex;
     gap: 15px;
@@ -50,14 +49,12 @@
         border-color: #FF7F50;
     }
 
-/* Сетка */
 .therapist-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
 }
 
-/* Карточка */
 .therapist-card {
     background: white;
     border-radius: 20px;

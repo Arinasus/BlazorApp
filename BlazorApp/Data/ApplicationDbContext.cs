@@ -9,6 +9,7 @@ namespace BlazorApp.Data
         public DbSet<TherapistProfile> TherapistProfiles { get; set; }
         public DbSet<Child> Children { get; set; }
         public DbSet<Lecture> Lectures { get; set; }
+        public DbSet<TherapistReview> TherapistReviews { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -17,6 +18,7 @@ namespace BlazorApp.Data
                 .HasOne<ApplicationUser>()
                 .WithOne()
                 .HasForeignKey<TherapistProfile>(p => p.UserId);
+
         }
     }
 }

@@ -70,9 +70,30 @@ namespace BlazorApp.Services
         public async Task<List<TherapistProfile>> GetApprovedProfilesAsync()
         {
             return await _context.TherapistProfiles
+                .Include(p => p.Reviews) 
                 .Where(p => p.IsApproved)
-                .OrderByDescending(p => p.Rating)
                 .ToListAsync();
+        }
+        public async Task<List<TherapistReview>> GetReviewsByTherapistIdAsync(int therapistProfileId)
+        {
+            return await _context.TherapistReviews
+                .Where(r => r.TherapistProfileId == therapistProfileId)
+                .OrderByDescending(r => r.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<bool> AddReviewAsync(TherapistReview review)
+        {
+            try
+            {
+                _context.TherapistReviews.Add(review);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -202,6 +202,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEFkbWluXEFkbWluRGFzaGJvYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-r2v16sirkw
 
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/BecomeTherapist.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEJlY29tZVRoZXJhcGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-uiyxwkjfie
+
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-4h90kzw2gq
@@ -213,6 +217,10 @@ build_metadata.AdditionalFiles.CssScope = b-kpwqtgel6l
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlZ2lzdGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-qg2tpul8m2
+
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/TherapistDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFRoZXJhcGlzdERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-qcjrf1vaxe
 
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/TherapistsCatalog.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFRoZXJhcGlzdHNDYXRhbG9nLnJhem9y

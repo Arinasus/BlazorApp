@@ -50,6 +50,55 @@
     font-family: inherit;
     font-size: 1rem;
 }
+/* /Components/Account/Pages/BecomeTherapist.razor.rz.scp.css */
+/* Улучшенный контраст для полей ввода */
+.form-control[b-uiyxwkjfie], .form-select[b-uiyxwkjfie] {
+    border: 1px solid #66666636 !important;
+    border-radius: 12px !important;
+    padding: 14px 16px !important;
+    background-color: #FFFFFF !important;
+    color: #2D3436 !important;
+    transition: all 0.3s ease !important;
+    /* Теневой эффект для объема */
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+    /* Акцент при наведении */
+    .form-control:hover[b-uiyxwkjfie] {
+        border-color: #CBD5E0 !important;
+        background-color: #F8FAFC !important;
+    }
+
+    /* Яркий акцент при фокусе (нажатии) */
+    .form-control:focus[b-uiyxwkjfie] {
+        border-color: #FF8A5B !important;
+        background-color: #FFFFFF !important;
+        /* Усиливаем свечение вокруг поля */
+        box-shadow: 0 0 0 4px rgba(255, 138, 91, 0.15), inset 0 2px 4px 0 rgba(0, 0, 0, 0.02) !important;
+        outline: none !important;
+        /* Сдвигаем текст чуть вправо для динамики (опционально) */
+        padding-left: 20px !important;
+    }
+
+    /* Стилизация плейсхолдера (текста-подсказки) */
+    .form-control[b-uiyxwkjfie]::placeholder {
+        color: #A0AEC0 !important;
+        font-weight: 400;
+        opacity: 0.8;
+    }
+
+/* Оформление карточки-контейнера для еще большего контраста */
+.card[b-uiyxwkjfie] {
+    background: #FFFFFF;
+    border: 1px solid #EDF2F7 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Если хочешь еще больше "дизайнерского" акцента, 
+   можно добавить полоску слева при фокусе */
+.form-control:focus[b-uiyxwkjfie] {
+    border-left: 5px solid #FF8A5B !important;
+}
 /* /Components/Account/Pages/Login.razor.rz.scp.css */
 .auth-page-wrapper[b-4h90kzw2gq] {
     min-height: 100vh;
@@ -313,6 +362,65 @@
     text-align: center;
     margin-bottom: 0.5rem;
 }
+/* /Components/Account/Pages/TherapistDetails.razor.rz.scp.css */
+.certificate-link[b-qcjrf1vaxe] {
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out;
+    display: block;
+}
+
+    .certificate-link:hover[b-qcjrf1vaxe] {
+        transform: scale(1.05);
+    }
+
+.certificate-card[b-qcjrf1vaxe] {
+    background: #fdfdfd;
+    cursor: pointer;
+}
+
+.pdf-placeholder[b-qcjrf1vaxe] {
+    background: #fff5f5;
+    min-height: 150px;
+}
+
+.bi-patch-check[b-qcjrf1vaxe] {
+    font-size: 1.2rem;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.star-icon[b-qcjrf1vaxe] {
+    font-size: 1.5rem;
+    color: #FFB800; /* Золотой цвет */
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    margin-right: 5px;
+}
+
+    .star-icon:hover[b-qcjrf1vaxe] {
+        transform: scale(1.2);
+    }
+/* Специальный стиль для белорусского рубля */
+.byn-text[b-qcjrf1vaxe] {
+    font-family: "Georgia", serif; /* Похоже на начертание Нацбанка */
+    font-weight: bold;
+    font-style: italic;
+    color: #2D3436;
+    margin-left: 2px;
+}
+
+/* Усиленный акцент на поля ввода, чтобы их было видно */
+.form-control[b-qcjrf1vaxe] {
+    border: 2px solid #E2E8F0 !important; /* Четкая серая граница */
+    background-color: #fdfdfd !important;
+    transition: all 0.3s ease !important;
+}
+
+    .form-control:focus[b-qcjrf1vaxe] {
+        border-color: #FF8A5B !important; /* Твой оранжевый при нажатии */
+        box-shadow: 0 0 0 4px rgba(255, 138, 91, 0.1) !important;
+        background-color: #fff !important;
+        border-left: 5px solid #FF8A5B !important; /* Жирный акцент слева */
+    }
 /* /Components/Account/Pages/TherapistsCatalog.razor.rz.scp.css */
 .catalog-container[b-owlbqyiwpr] {
     max-width: 1200px;

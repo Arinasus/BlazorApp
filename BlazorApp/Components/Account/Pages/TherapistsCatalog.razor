@@ -10,7 +10,6 @@
         <p class="catalog-subtitle">Найдите идеального логопеда для вашего ребенка</p>
     </div>
 
-    <!-- Панель фильтров -->
     <div class="filter-section">
         <div class="search-wrapper">
             <i class="bi bi-search"></i>
@@ -27,7 +26,6 @@
         </div>
     </div>
 
-    <!-- Сетка карточек -->
     <div class="therapist-grid">
         @if (FilteredTherapists.Any())
         {
@@ -38,7 +36,7 @@
                         <img src="@(string.IsNullOrEmpty(therapist.ImageUrl) ? "/img/default-avatar.png" : therapist.ImageUrl)"
                              alt="Photo" />
                         <div class="rating-badge">
-                            <i class="bi bi-star-fill"></i> @therapist.Rating
+                            <i class="bi bi-star-fill"></i> @therapist.AverageRating.ToString("F1")
                         </div>
                     </div>
 
