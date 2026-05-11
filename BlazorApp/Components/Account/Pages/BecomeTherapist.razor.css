@@ -1,4 +1,4 @@
-﻿/* Улучшенный контраст для полей ввода */
+﻿
 .form-control, .form-select {
     border: 1px solid #66666636 !important;
     border-radius: 12px !important;
@@ -6,43 +6,35 @@
     background-color: #FFFFFF !important;
     color: #2D3436 !important;
     transition: all 0.3s ease !important;
-    /* Теневой эффект для объема */
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03) !important;
 }
 
-    /* Акцент при наведении */
     .form-control:hover {
         border-color: #CBD5E0 !important;
         background-color: #F8FAFC !important;
     }
 
-    /* Яркий акцент при фокусе (нажатии) */
     .form-control:focus {
         border-color: #FF8A5B !important;
         background-color: #FFFFFF !important;
-        /* Усиливаем свечение вокруг поля */
+
         box-shadow: 0 0 0 4px rgba(255, 138, 91, 0.15), inset 0 2px 4px 0 rgba(0, 0, 0, 0.02) !important;
         outline: none !important;
-        /* Сдвигаем текст чуть вправо для динамики (опционально) */
         padding-left: 20px !important;
     }
 
-    /* Стилизация плейсхолдера (текста-подсказки) */
     .form-control::placeholder {
         color: #A0AEC0 !important;
         font-weight: 400;
         opacity: 0.8;
     }
 
-/* Оформление карточки-контейнера для еще большего контраста */
 .card {
     background: #FFFFFF;
     border: 1px solid #EDF2F7 !important;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Если хочешь еще больше "дизайнерского" акцента, 
-   можно добавить полоску слева при фокусе */
 .form-control:focus {
     border-left: 5px solid #FF8A5B !important;
 }

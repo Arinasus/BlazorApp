@@ -5,15 +5,34 @@
     --brand-radius: 14px;
 
     --bs-primary: var(--brand-coral);
-    --bs-primary-rgb: 255, 138, 91; /* Тот же цвет в формате RGB */
-    /* Точечно для навигации, которую ты видишь на скриншоте */
+    --bs-primary-rgb: 255, 138, 91;
     --bs-nav-pills-link-active-bg: var(--brand-coral);
     --bs-nav-pills-link-active-color: #fff;
-    /* Для ссылок */
     --bs-link-color: var(--brand-coral);
     --bs-link-hover-color: #e67a4d;
 }
+@font-face {
+    font-family: "nbrb";
+    src: url("../fonts/nbrb.woff2") format("woff2"), url("../fonts/nbrb.ttf") format("truetype"), url("../fonts/nbrb.woff") format("woff");
+    unicode-range: U+E901, U+42, U+59, U+4E;
+}
 
+.nbrb-icon {
+    font-family: "nbrb" !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "liga"; 
+    font-variant-ligatures: discretionary-ligatures;
+}
+
+.br-symbol {
+    font-family: 'NBRB-BYN', sans-serif;
+    font-weight: bold;
+    color: inherit;
+}
 .btn-primary {
     background-color: var(--brand-coral) !important;
     border-color: var(--brand-coral) !important;

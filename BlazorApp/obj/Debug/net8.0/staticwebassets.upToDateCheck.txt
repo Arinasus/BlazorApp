@@ -1,7 +1,9 @@
-wwwroot\app.css
 wwwroot\bootstrap\bootstrap.min.css
 wwwroot\bootstrap\bootstrap.min.css.map
 wwwroot\favicon.png
+wwwroot\fonts\nbrb.ttf
+wwwroot\fonts\nbrb.woff
+wwwroot\fonts\nbrb.woff2
 wwwroot\images\default-lecture.png
 wwwroot\images\logo.png
 wwwroot\images\logo2.png
@@ -13,3 +15,4 @@ wwwroot\uploads\avatars\d62751ea-6fd9-4479-b978-ebc724adfb3c_Specialist.png
 wwwroot\uploads\c7336fb5-411b-44f6-b7a2-1c53d5128ea1.png
 wwwroot\uploads\default-lecture.png
 wwwroot\uploads\eab5e4c5-f4a6-4c61-9394-96989d109ee7.png
+wwwroot\app.css
