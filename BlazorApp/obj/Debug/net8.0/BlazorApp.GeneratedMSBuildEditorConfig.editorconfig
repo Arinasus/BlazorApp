@@ -58,10 +58,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEludmFsaWRVc2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/LectureDetails.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExlY3R1cmVEZXRhaWxzLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/LecturesFeed.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExlY3R1cmVzRmVlZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -206,6 +202,10 @@ build_metadata.AdditionalFiles.CssScope = b-r2v16sirkw
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEJlY29tZVRoZXJhcGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-uiyxwkjfie
 
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/LectureDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExlY3R1cmVEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-7segiuw1hd
+
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-4h90kzw2gq
@@ -213,6 +213,10 @@ build_metadata.AdditionalFiles.CssScope = b-4h90kzw2gq
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Manage/Children.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxDaGlsZHJlbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-kpwqtgel6l
+
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Manage/FavoritesList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxGYXZvcml0ZXNMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-0girsplmpw
 
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlZ2lzdGVyLnJhem9y

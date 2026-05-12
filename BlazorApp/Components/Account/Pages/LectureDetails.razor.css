@@ -1,0 +1,90 @@
+﻿.back-link {
+    color: var(--secondary) !important;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+h1 {
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+    .back-link:hover {
+        color: var(--primary) !important;
+    }
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+.lecture-content {
+    line-height: 1.8;
+    font-size: 1.15rem;
+}
+.lecture-number {
+    color: #636E72;
+    background-color: var(--brand-light-bg);
+    padding: 6px 14px;
+    border-radius: var(--brand-radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 138, 91, 0.1);
+}
+    .lecture-content ::deep h2 {
+        color: var(--primary);
+        margin-top: 2rem;
+        font-weight: 700;
+    }
+
+.btn-favorite {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: var(--brand-radius); 
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 2px solid var(--brand-coral); 
+    background-color: transparent;
+    color: var(--brand-coral);
+    cursor: pointer;
+    width: 100%;
+    text-decoration: none;
+}
+
+    .btn-favorite:hover {
+        background-color: var(--brand-light-bg); 
+        color: #e67a4d;
+        border-color: #e67a4d;
+        transform: translateY(-1px);
+    }
+
+    .btn-favorite.is-active {
+        background-color: var(--brand-coral) !important; 
+        color: white !important;
+        border-color: var(--brand-coral) !important;
+    }
+
+        .btn-favorite.is-active:hover {
+            background-color: #ff7a45 !important;
+            box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
+        }
+.diagnosis-badge {
+    background-color: var(--brand-coral);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px; 
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(255, 138, 91, 0.25);
+    display: inline-flex;
+    align-items: center;
+}

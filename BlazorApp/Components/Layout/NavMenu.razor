@@ -15,9 +15,6 @@
         <div class="collapse navbar-collapse" id="topNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                 <li class="nav-item">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Главная</NavLink>
-                </li>
-                <li class="nav-item">
                     <NavLink class="nav-link" href="therapists">Специалисты</NavLink>
                 </li>
                 <li class="nav-item dropdown">
@@ -54,21 +51,32 @@
             <div class="d-flex align-items-center gap-3">
                 <AuthorizeView>
                     <Authorized>
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle profile-btn rounded-pill px-3 shadow-sm d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle me-2"></i> <span>@context.User.Identity?.Name</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
-                                <li><NavLink class="dropdown-item" href="Account/Manage">Профиль</NavLink></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <form action="Account/Logout" method="post">
-                                        <AntiforgeryToken />
-                                        <input type="hidden" name="ReturnUrl" value="@currentUrl" />
-                                        <button type="submit" class="dropdown-item text-danger">Выйти</button>
-                                    </form>
-                                </li>
-                            </ul>
+                        <div class="d-flex align-items-center gap-3">
+                            <!-- Кнопка Избранное с иконкой сердечка -->
+                            <NavLink class="nav-link favorite-link d-flex align-items-center justify-content-center"
+                                     href="Account/Manage/Favorites"
+                                     title="Избранное">
+                                <i class="bi bi-heart-fill"></i>
+                            </NavLink>
+
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle profile-btn rounded-pill px-3 shadow-sm d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle me-2"></i> <span>@context.User.Identity?.Name</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                                    <li><NavLink class="dropdown-item" href="Account/Manage">Профиль</NavLink></li>
+                                    <!-- Можно также продублировать ссылку здесь для удобства -->
+                                    <li><NavLink class="dropdown-item" href="Account/Manage/Favorites">Избранное</NavLink></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form action="Account/Logout" method="post">
+                                            <AntiforgeryToken />
+                                            <input type="hidden" name="ReturnUrl" value="@currentUrl" />
+                                            <button type="submit" class="dropdown-item text-danger">Выйти</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </Authorized>
                     <NotAuthorized>

@@ -3,6 +3,7 @@ using System;
 using BlazorApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlazorApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260512131239_AddFavorites")]
+    partial class AddFavorites
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,33 +121,6 @@ namespace BlazorApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Children");
-                });
-
-            modelBuilder.Entity("BlazorApp.Shared.Models.Favorite", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("LectureId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("TherapistProfileId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LectureId");
-
-                    b.HasIndex("TherapistProfileId");
-
-                    b.ToTable("Favorites");
                 });
 
             modelBuilder.Entity("BlazorApp.Shared.Models.Lecture", b =>
@@ -414,23 +390,6 @@ namespace BlazorApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BlazorApp.Shared.Models.Favorite", b =>
-                {
-                    b.HasOne("BlazorApp.Shared.Models.Lecture", "Lecture")
-                        .WithMany()
-                        .HasForeignKey("LectureId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BlazorApp.Shared.Models.TherapistProfile", "TherapistProfile")
-                        .WithMany()
-                        .HasForeignKey("TherapistProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Lecture");
-
-                    b.Navigation("TherapistProfile");
-                });
-
             modelBuilder.Entity("BlazorApp.Shared.Models.TherapistProfile", b =>
                 {
                     b.HasOne("BlazorApp.Data.ApplicationUser", null)
@@ -442,13 +401,11 @@ namespace BlazorApp.Migrations
 
             modelBuilder.Entity("BlazorApp.Shared.Models.TherapistReview", b =>
                 {
-                    b.HasOne("BlazorApp.Shared.Models.TherapistProfile", "TherapistProfile")
+                    b.HasOne("BlazorApp.Shared.Models.TherapistProfile", null)
                         .WithMany("Reviews")
                         .HasForeignKey("TherapistProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("TherapistProfile");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

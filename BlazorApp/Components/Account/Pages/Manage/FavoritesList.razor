@@ -1,0 +1,105 @@
+﻿@page "/Account/Manage/Favorites"
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@inject IFavoriteService FavoriteService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavManager
+
+<div class="container py-4">
+    <h3 class="fw-bold mb-4" style="color: var(--text-dark)">Мои закладки</h3>
+
+    @if (favorites == null)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+        </div>
+    }
+    else if (!favorites.Any())
+    {
+        <div class="text-center py-5 bg-light rounded-4">
+            <i class="bi bi-heartbreak display-1 text-muted"></i>
+            <p class="mt-3 text-muted">У вас пока нет избранных материалов.</p>
+            <a href="/lectures" class="btn btn-primary mt-2">Перейти к лекциям</a>
+        </div>
+    }
+    else
+    {
+        <!-- Секция Лекций -->
+        @if (favorites.Any(f => f.LectureId.HasValue))
+        {
+            <h5 class="mb-3 text-muted">Лекции</h5>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                @foreach (var fav in favorites.Where(f => f.LectureId.HasValue))
+                {
+                    <div class="col">
+                        <a href="lecture/@fav.LectureId" class="text-decoration-none color-inherit">
+                            <div class="card h-100 border-0 shadow-sm rounded-4 favorite-card">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="fw-bold mb-1 text-dark">@fav.Lecture?.Title</h6>
+                                        <span class="badge bg-light text-primary">@fav.Lecture?.TargetDiagnosis</span>
+                                    </div>
+                                    <button class="btn btn-outline-danger border-0" @onclick:stopPropagation="true" @onclick="() => Remove(fav)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+
+        <!-- Секция Специалистов -->
+        @if (favorites.Any(f => f.TherapistProfileId.HasValue))
+        {
+            <h5 class="mb-3 text-muted">Специалисты</h5>
+            <div class="row row-cols-1 g-3">
+                @foreach (var fav in favorites.Where(f => f.TherapistProfileId.HasValue))
+                {
+                    <div class="col">
+                        <a href="therapist/@fav.TherapistProfileId" class="text-decoration-none">
+                            <div class="card border-0 shadow-sm rounded-4 p-3 favorite-card">
+                                <div class="d-flex align-items-center">
+                                    <img src="@(string.IsNullOrEmpty(fav.TherapistProfile?.ImageUrl) ? "/images/default-avatar.png" : fav.TherapistProfile.ImageUrl)"
+                                         class="rounded-circle me-3" style="width: 50px; height: 50px; object-fit: cover;" />
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-0 text-dark">Специалист #@fav.TherapistProfileId</h6>
+                                        <small class="text-muted">@fav.TherapistProfile?.Specialization</small>
+                                    </div>
+                                    <button class="btn btn-link text-danger" @onclick:stopPropagation="true" @onclick="() => Remove(fav)">
+                                        <i class="bi bi-x-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private List<Favorite>? favorites;
+    private string? userId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        userId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
+
+        if (!string.IsNullOrEmpty(userId))
+        {
+            favorites = await FavoriteService.GetUserFavoritesAsync(userId);
+        }
+    }
+
+    private async Task Remove(Favorite fav)
+    {
+        if (userId == null) return;
+        await FavoriteService.ToggleFavoriteAsync(userId, fav.LectureId, fav.TherapistProfileId);
+        favorites = await FavoriteService.GetUserFavoritesAsync(userId); // Обновляем список
+    }
+}

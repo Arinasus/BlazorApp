@@ -491,3 +491,5 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Shar
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\TherapistsCatalog.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\TherapistDetails.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\BecomeTherapist.razor.rz.scp.css
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\LectureDetails.razor.rz.scp.css
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\FavoritesList.razor.rz.scp.css

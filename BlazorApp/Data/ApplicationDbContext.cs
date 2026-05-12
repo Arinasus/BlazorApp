@@ -10,9 +10,27 @@ namespace BlazorApp.Data
         public DbSet<Child> Children { get; set; }
         public DbSet<Lecture> Lectures { get; set; }
         public DbSet<TherapistReview> TherapistReviews { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Favorite>()
+                .HasOne(f => f.TherapistProfile)
+                .WithMany()
+                .HasForeignKey(f => f.TherapistProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Favorite>()
+                .HasOne(f => f.Lecture)
+                .WithMany()
+                .HasForeignKey(f => f.LectureId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<TherapistReview>()
+                .HasOne(r => r.TherapistProfile)
+                .WithMany(p => p.Reviews)
+                .HasForeignKey(r => r.TherapistProfileId);
 
             builder.Entity<TherapistProfile>()
                 .HasOne<ApplicationUser>()

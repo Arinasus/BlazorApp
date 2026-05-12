@@ -61,11 +61,21 @@
     height: 40px !important;
 }
 
-.navbar-brand span {
-    font-weight: 800;
-    color: var(--text-dark);
+/* Делаем логотип визуально интерактивным */
+.navbar-brand {
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+    .navbar-brand:hover {
+        opacity: 0.85;
+        transform: translateY(-1px); /* Легкий подъем при наведении */
+    }
+
+    /* Убираем синее выделение текста "Речевик" при нажатии, если оно есть */
+    .navbar-brand span {
+        color: #2D3436; /* Цвет вашего бренда для текста */
+        text-decoration: none;
+    }
 .btn-login {
     color: var(--primary-coral) !important;
     border: 2px solid var(--primary-coral) !important;
@@ -77,3 +87,22 @@
     color: white !important;
     border-radius: 50px;
 }
+/* Стиль для кнопки избранного в Navbar */
+.favorite-link {
+    color: var(--brand-coral) !important; /* Твой коралловый цвет */
+    font-size: 1.25rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    background-color: transparent;
+}
+
+    .favorite-link:hover {
+        background-color: var(--brand-light-bg); /* Твой светлый фон */
+        transform: scale(1.1);
+    }
+
+    /* Эффект для активной вкладки избранного */
+    .favorite-link.active {
+        background-color: rgba(255, 138, 91, 0.1);
+    }

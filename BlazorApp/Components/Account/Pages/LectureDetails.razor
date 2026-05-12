@@ -2,15 +2,18 @@
 @rendermode InteractiveServer
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
+@using Microsoft.AspNetCore.Components.Authorization
 @inject ILectureService LectureService
+@inject IFavoriteService FavoriteService
 @inject NavigationManager NavManager
+@inject AuthenticationStateProvider AuthStateProvider
 
 <div class="container mt-4 mb-5 animate-fade">
     @if (lecture == null)
     {
         <div class="text-center py-5">
             <div class="spinner-border" style="color: var(--primary)" role="status"></div>
-            <p class="mt-2 text-muted">Ищем лекцию...</p>
+            <p class="mt-2 text-muted">Загрузка материалов...</p>
         </div>
     }
     else
@@ -21,13 +24,16 @@
 
         <div class="row g-5">
             <div class="col-lg-8">
-                <h1 class="display-5 fw-bold mb-3" style="color: var(--text-dark)">@lecture.Title</h1>
+                <h1 class="display-5 fw-bold mb-3" style="color: #2D3436;">@lecture.Title</h1>
 
-                <div class="d-flex gap-2 mb-4">
-                    <span class="badge rounded-pill px-3 py-2" style="background-color: var(--secondary); color: white;">
-                        @lecture.TargetDiagnosis
+                <div class="d-flex flex-wrap gap-3 mb-4 align-items-center">
+                    <span class="diagnosis-badge">
+                        <i class="bi bi-patch-check-fill me-1"></i> @lecture.TargetDiagnosis
                     </span>
-                    <span class="text-muted small align-self-center">Материал №@lecture.Id</span>
+
+                    <span class="lecture-number">
+                        Лекция №@lecture.Id
+                    </span>
                 </div>
 
                 @if (!string.IsNullOrEmpty(lecture.VideoUrl))
@@ -42,77 +48,82 @@
                     </div>
                 }
 
-                <div class="lecture-content bg-white p-4 p-md-5 rounded-4 shadow-sm">
+                <div class="lecture-content bg-white p-4 p-md-5 rounded-4 shadow-sm border">
                     @((MarkupString)lecture.Content)
                 </div>
             </div>
 
+            <!-- Боковая панель -->
             <div class="col-lg-4">
-                <div class="card sticky-top border-0 shadow-md p-2" style="top: 100px;">
+                <div class="card sticky-top border-0 shadow-md p-2" style="top: 100px; border-radius: 20px;">
                     @if (!string.IsNullOrEmpty(lecture.ImagePath))
                     {
                         <img src="@lecture.ImagePath" class="card-img-top rounded-4 mb-3" alt="Обложка">
                     }
                     <div class="card-body">
-                        <h5 class="fw-bold" style="color: var(--primary)">Об авторе</h5>
-                        <p class="text-muted small">Материал проверен ведущими логопедами-практиками нашего портала.</p>
+                        <h5 class="fw-bold" style="color: var(--primary)">Материал портала</h5>
+                        <p class="text-muted small">Этот контент доступен для сохранения в ваш личный кабинет.</p>
                         <hr class="opacity-10" />
-                        <button class="btn btn-register w-100 mb-2">
-                            <i class="bi bi-bookmark-star me-2"></i> В избранное
-                        </button>
+
+                        <AuthorizeView>
+                            <Authorized>
+                                <button class="btn btn-favorite w-100 mb-2 @(isFavorite ? "is-active" : "")"
+                                        @onclick="ToggleFavorite">
+                                    <i class="bi @(isFavorite ? "bi-bookmark-star-fill" : "bi-bookmark-star") me-2"></i>
+                                    @(isFavorite ? "В избранном" : "В избранное")
+                                </button>
+                            </Authorized>
+                            <NotAuthorized>
+                                <a href="Account/Login" class="btn btn-favorite w-100 mb-2 text-center d-block text-decoration-none">
+                                    <i class="bi bi-bookmark-star me-2"></i> В избранное
+                                </a>
+                            </NotAuthorized>
+                        </AuthorizeView>
                     </div>
                 </div>
             </div>
         </div>
     }
 </div>
-<style>
-    .back-link {
-        color: var(--secondary) !important;
-        font-weight: 600;
-    }
-
-        .back-link:hover {
-            color: var(--primary) !important;
-        }
-
-    .video-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-    }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-    .lecture-content {
-        line-height: 1.8;
-        font-size: 1.15rem;
-    }
-        .lecture-content h2 {
-            color: var(--primary);
-            margin-top: 2rem;
-            font-weight: 700;
-        }
-
-        .lecture-content ul li {
-            margin-bottom: 10px;
-        }
-</style>
 
 @code {
     [Parameter] public int Id { get; set; }
     private Lecture? lecture;
+    private bool isFavorite;
+    private string? userId;
 
     protected override async Task OnInitializedAsync()
     {
         var all = await LectureService.GetAllLecturesAsync();
         lecture = all.FirstOrDefault(l => l.Id == Id);
+
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            userId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
+
+            if (!string.IsNullOrEmpty(userId) && lecture != null)
+            {
+                isFavorite = await FavoriteService.IsFavoriteAsync(userId, lectureId: Id);
+            }
+        }
+    }
+
+    private async Task ToggleFavorite()
+    {
+        if (string.IsNullOrEmpty(userId)) return;
+
+        try
+        {
+            await FavoriteService.ToggleFavoriteAsync(userId, lectureId: Id);
+            isFavorite = !isFavorite; 
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при обновлении избранного: {ex.Message}");
+        }
     }
 
     private void GoBack() => NavManager.NavigateTo("/lectures");
@@ -120,15 +131,8 @@
     private string GetEmbedUrl(string url)
     {
         if (string.IsNullOrEmpty(url)) return "";
-
-        if (url.Contains("watch?v="))
-        {
-            return url.Replace("watch?v=", "embed/");
-        }
-        if (url.Contains("youtu.be/"))
-        {
-            return url.Replace("youtu.be/", "youtube.com/embed/");
-        }
+        if (url.Contains("watch?v=")) return url.Replace("watch?v=", "embed/");
+        if (url.Contains("youtu.be/")) return url.Replace("youtu.be/", "youtube.com/embed/");
         return url;
     }
 }

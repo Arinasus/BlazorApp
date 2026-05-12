@@ -1,0 +1,22 @@
+﻿.favorite-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent !important;
+}
+
+    .favorite-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
+        border-color: var(--brand-coral) !important;
+    }
+
+/* Цвет текста по умолчанию для ссылок-карточек */
+.color-inherit {
+    color: inherit;
+}
+
+/* Чтобы кнопка удаления не срабатывала вместе с переходом по ссылке */
+.btn-outline-danger, .btn-link {
+    position: relative;
+    z-index: 2;
+}

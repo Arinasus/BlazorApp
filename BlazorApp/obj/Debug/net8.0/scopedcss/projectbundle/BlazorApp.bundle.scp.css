@@ -91,6 +91,97 @@
 .form-control:focus[b-uiyxwkjfie] {
     border-left: 5px solid #FF8A5B !important;
 }
+/* /Components/Account/Pages/LectureDetails.razor.rz.scp.css */
+.back-link[b-7segiuw1hd] {
+    color: var(--secondary) !important;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+h1[b-7segiuw1hd] {
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+    .back-link:hover[b-7segiuw1hd] {
+        color: var(--primary) !important;
+    }
+
+.video-container[b-7segiuw1hd] {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+    .video-container iframe[b-7segiuw1hd] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+.lecture-content[b-7segiuw1hd] {
+    line-height: 1.8;
+    font-size: 1.15rem;
+}
+.lecture-number[b-7segiuw1hd] {
+    color: #636E72;
+    background-color: var(--brand-light-bg);
+    padding: 6px 14px;
+    border-radius: var(--brand-radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 138, 91, 0.1);
+}
+    .lecture-content[b-7segiuw1hd]  h2 {
+        color: var(--primary);
+        margin-top: 2rem;
+        font-weight: 700;
+    }
+
+.btn-favorite[b-7segiuw1hd] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: var(--brand-radius); 
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 2px solid var(--brand-coral); 
+    background-color: transparent;
+    color: var(--brand-coral);
+    cursor: pointer;
+    width: 100%;
+    text-decoration: none;
+}
+
+    .btn-favorite:hover[b-7segiuw1hd] {
+        background-color: var(--brand-light-bg); 
+        color: #e67a4d;
+        border-color: #e67a4d;
+        transform: translateY(-1px);
+    }
+
+    .btn-favorite.is-active[b-7segiuw1hd] {
+        background-color: var(--brand-coral) !important; 
+        color: white !important;
+        border-color: var(--brand-coral) !important;
+    }
+
+        .btn-favorite.is-active:hover[b-7segiuw1hd] {
+            background-color: #ff7a45 !important;
+            box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
+        }
+.diagnosis-badge[b-7segiuw1hd] {
+    background-color: var(--brand-coral);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px; 
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(255, 138, 91, 0.25);
+    display: inline-flex;
+    align-items: center;
+}
 /* /Components/Account/Pages/Login.razor.rz.scp.css */
 .auth-page-wrapper[b-4h90kzw2gq] {
     min-height: 100vh;
@@ -290,6 +381,29 @@
 .card[b-kpwqtgel6l] {
     border: none !important;
     border-radius: var(--brand-radius) !important;
+}
+/* /Components/Account/Pages/Manage/FavoritesList.razor.rz.scp.css */
+.favorite-card[b-0girsplmpw] {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent !important;
+}
+
+    .favorite-card:hover[b-0girsplmpw] {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
+        border-color: var(--brand-coral) !important;
+    }
+
+/* Цвет текста по умолчанию для ссылок-карточек */
+.color-inherit[b-0girsplmpw] {
+    color: inherit;
+}
+
+/* Чтобы кнопка удаления не срабатывала вместе с переходом по ссылке */
+.btn-outline-danger[b-0girsplmpw], .btn-link[b-0girsplmpw] {
+    position: relative;
+    z-index: 2;
 }
 /* /Components/Account/Pages/Register.razor.rz.scp.css */
 
@@ -766,11 +880,21 @@ main[b-qgsvw684bo] {
     height: 40px !important;
 }
 
-.navbar-brand span[b-g8o6n169oq] {
-    font-weight: 800;
-    color: var(--text-dark);
+/* Делаем логотип визуально интерактивным */
+.navbar-brand[b-g8o6n169oq] {
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+    .navbar-brand:hover[b-g8o6n169oq] {
+        opacity: 0.85;
+        transform: translateY(-1px); /* Легкий подъем при наведении */
+    }
+
+    /* Убираем синее выделение текста "Речевик" при нажатии, если оно есть */
+    .navbar-brand span[b-g8o6n169oq] {
+        color: #2D3436; /* Цвет вашего бренда для текста */
+        text-decoration: none;
+    }
 .btn-login[b-g8o6n169oq] {
     color: var(--primary-coral) !important;
     border: 2px solid var(--primary-coral) !important;
@@ -782,6 +906,25 @@ main[b-qgsvw684bo] {
     color: white !important;
     border-radius: 50px;
 }
+/* Стиль для кнопки избранного в Navbar */
+.favorite-link[b-g8o6n169oq] {
+    color: var(--brand-coral) !important; /* Твой коралловый цвет */
+    font-size: 1.25rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    background-color: transparent;
+}
+
+    .favorite-link:hover[b-g8o6n169oq] {
+        background-color: var(--brand-light-bg); /* Твой светлый фон */
+        transform: scale(1.1);
+    }
+
+    /* Эффект для активной вкладки избранного */
+    .favorite-link.active[b-g8o6n169oq] {
+        background-color: rgba(255, 138, 91, 0.1);
+    }
 /* /Components/Pages/Home.razor.rz.scp.css */
 /* Твои существующие стили остаются без изменений */
 .home-hero[b-7gt2111kuu] {

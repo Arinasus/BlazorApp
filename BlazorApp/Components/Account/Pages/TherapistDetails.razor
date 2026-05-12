@@ -2,6 +2,8 @@
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
 @inject ITherapistService TherapistService
+@inject IFavoriteService FavoriteService
+@inject AuthenticationStateProvider AuthStateProvider
 @rendermode InteractiveServer
 
 <div class="profile-page">
@@ -15,11 +17,20 @@
     {
         <div class="container py-5">
             <div class="row g-4">
+                @* Левая колонка *@
                 <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
-                        <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
-                             class="rounded-circle mb-3 mx-auto shadow-sm"
-                             style="width: 200px; height: 200px; object-fit: cover;" />
+                    <div class="card border-0 shadow-sm rounded-4 p-4 text-center sticky-lg-top" style="top: 100px;">
+                        <div class="position-relative d-inline-block mx-auto mb-3">
+                            <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
+                                 class="rounded-circle shadow-sm"
+                                 style="width: 200px; height: 200px; object-fit: cover;" />
+
+                            <button class="btn btn-light shadow-sm rounded-circle position-absolute bottom-0 end-0 p-2"
+                                    @onclick="ToggleFavorite"
+                                    style="width: 45px; height: 45px; border: 1px solid #eee;">
+                                <i class="bi @(isFavorite ? "bi-heart-fill text-danger" : "bi-heart") fs-5"></i>
+                            </button>
+                        </div>
 
                         <h2 class="fw-bold">@profile.Specialization</h2>
                         <div class="rating-stars mb-3">
@@ -27,13 +38,19 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary rounded-pill py-3 fw-bold shadow-sm">
+                            <button class="btn btn-primary rounded-pill py-3 fw-bold shadow-sm mb-2">
                                 Записаться на прием
+                            </button>
+
+                            <button class="btn @(isFavorite ? "btn-outline-danger" : "btn-outline-secondary") rounded-pill py-2 border-dashed" @onclick="ToggleFavorite">
+                                <i class="bi @(isFavorite ? "bi-heart-fill" : "bi-heart") me-2"></i>
+                                @(isFavorite ? "В избранном" : "В избранное")
                             </button>
                         </div>
                     </div>
                 </div>
 
+                @* Правая колонка *@
                 <div class="col-lg-8">
                     <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
                         <h4 class="fw-bold mb-3 text-coral">О специалисте</h4>
@@ -53,6 +70,7 @@
                         </div>
                     </div>
 
+                    @* Сертификаты *@
                     @if (!string.IsNullOrEmpty(profile.CertificateUrls))
                     {
                         <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
@@ -82,24 +100,12 @@
                         </div>
                     }
 
-                    @if (profile.WorkFormat.Contains("Очно") || profile.WorkFormat.Contains("Гибрид"))
-                    {
-                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
-                            <h4 class="fw-bold mb-3 text-coral"><i class="bi bi-geo-alt"></i> Место работы</h4>
-                            <p class="mb-3">г. Минск, пр-т Победителей, 103 (пример)</p>
-                            <div class="map-container rounded-4 overflow-hidden" style="height: 300px;">
-                                <iframe src="https://yandex.ru/map-widget/v1/?ll=27.5615,53.9045&z=12"
-                                        width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
-                            </div>
-                        </div>
-                    }
-
+                    @* Отзывы *@
                     <div class="card border-0 shadow-sm rounded-4 p-4">
                         <h4 class="fw-bold mb-4 text-coral">Отзывы родителей</h4>
 
                         <div class="add-review mb-5 p-4 rounded-4 shadow-sm bg-white border">
                             <h6 class="fw-bold mb-3">Оставить отзыв</h6>
-
                             <div class="rating-picker mb-3">
                                 <label class="d-block small text-muted mb-2">Ваша оценка:</label>
                                 <div class="stars-row">
@@ -186,6 +192,10 @@
             transform: scale(1.2);
         }
 
+    .border-dashed {
+        border-style: dashed !important;
+    }
+
     .certificate-link:hover .certificate-card {
         transform: translateY(-5px);
         transition: 0.3s;
@@ -202,31 +212,76 @@
     private TherapistProfile? profile;
     private List<TherapistReview> reviews = new();
 
+    // Состояние отзыва
     private string newReviewName = "";
     private string newReviewText = "";
     private int newReviewRating = 5;
     private int currentHover = 0;
 
+    // Состояние избранного
+    private bool isFavorite;
+    private string? currentUserId;
+
     protected override async Task OnInitializedAsync()
     {
+        // 1. Загружаем профиль
         profile = await TherapistService.GetProfileByUserId(UserId);
+
+        // 2. Получаем текущего пользователя
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        currentUserId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
+
         if (profile != null)
         {
+            // 3. Загружаем отзывы
             reviews = await TherapistService.GetReviewsByTherapistIdAsync(profile.Id);
+
+            // 4. Проверяем избранное
+            if (!string.IsNullOrEmpty(currentUserId))
+            {
+                var favorites = await FavoriteService.GetUserFavoritesAsync(currentUserId);
+                isFavorite = favorites.Any(f => f.TherapistProfileId == profile.Id);
+            }
         }
     }
 
     private void SetRating(int rating) => newReviewRating = rating;
     private void HoverRating(int rating) => currentHover = rating;
 
+    private async Task ToggleFavorite()
+    {
+        // 1. Проверяем, авторизован ли пользователь и загружен ли профиль
+        if (string.IsNullOrEmpty(currentUserId) || profile == null) return;
+
+        try
+        {
+            // 2. Просто вызываем метод.
+            // Мы не пишем "var result =", так как метод возвращает Task (void).
+            await FavoriteService.ToggleFavoriteAsync(currentUserId, null, profile.Id);
+
+            // 3. Если выполнение дошло до этой строки (не вылетело Exception),
+            // значит в БД изменения сохранились. Обновляем UI.
+            isFavorite = !isFavorite;
+
+            // В Blazor Server иногда стоит вызвать это явно после асинхронных операций
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            // Если, например, пропал интернет или упала БД
+            Console.WriteLine($"Ошибка при обновлении избранного: {ex.Message}");
+        }
+    }
+
     private async Task SubmitReview()
     {
-        if (string.IsNullOrWhiteSpace(newReviewText) || string.IsNullOrWhiteSpace(newReviewName))
+        if (string.IsNullOrWhiteSpace(newReviewText) || string.IsNullOrWhiteSpace(newReviewName) || profile == null)
             return;
 
         var review = new TherapistReview
         {
-            TherapistProfileId = profile.Id, 
+            TherapistProfileId = profile.Id,
             AuthorName = newReviewName,
             Content = newReviewText,
             Rating = newReviewRating,
@@ -234,15 +289,13 @@
         };
 
         var result = await TherapistService.AddReviewAsync(review);
-
         if (result)
         {
             reviews.Insert(0, review);
-
             newReviewName = "";
             newReviewText = "";
             newReviewRating = 5;
-            StateHasChanged(); 
+            StateHasChanged();
         }
     }
 }
