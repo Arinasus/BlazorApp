@@ -26,7 +26,8 @@
                     <div class="row">
                         <div class="col-6 mb-3">
                             <label class="form-label">Возраст:</label>
-                            <InputNumber @bind-Value="activeChild.Age" class="form-control rounded-3" />
+                            <InputNumber @bind-Value="activeChild.Age" class="form-control rounded-3" min="0" max="18" />
+                            <ValidationMessage For="() => activeChild.Age" class="text-danger" />
                         </div>
                     </div>
                     <div class="mb-3">

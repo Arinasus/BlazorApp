@@ -11,13 +11,10 @@
     </div>
 
     <div class="filter-section">
-        <div class="search-wrapper">
-            <i class="bi bi-search"></i>
-            <input type="text" class="filter-input" placeholder="Поиск по специализации..."
+        <div class="search-group">
+            <input type="text" class="filter-input" placeholder="Поиск по специализации или имени..."
                    @bind="searchQuery" @bind:event="oninput" />
-        </div>
 
-        <div class="select-wrapper">
             <select class="filter-select" @bind="selectedFormat">
                 <option value="">Любой формат</option>
                 <option value="Онлайн">Онлайн</option>
@@ -34,14 +31,17 @@
                 <div class="therapist-card">
                     <div class="image-container">
                         <img src="@(string.IsNullOrEmpty(therapist.ImageUrl) ? "/img/default-avatar.png" : therapist.ImageUrl)"
-                             alt="Photo" />
+                             alt="@therapist.FirstName" />
                         <div class="rating-badge">
                             <i class="bi bi-star-fill"></i> @therapist.AverageRating.ToString("F1")
                         </div>
                     </div>
 
                     <div class="card-content">
+                        @* Добавим имя специалиста *@
+                        <h2 class="therapist-name">@therapist.LastName @therapist.FirstName</h2>
                         <h3 class="therapist-spec">@therapist.Specialization</h3>
+
                         <p class="therapist-desc">@therapist.ShortDescription</p>
 
                         <div class="details-row">
@@ -49,7 +49,7 @@
                                 @therapist.PricePerHour <i class="nbrb-icon">BYN</i> <small>/ час</small>
                             </span>
                             <span class="format">
-                                <i class="bi bi-geo-alt"></i> @therapist.WorkFormat
+                                <i class="bi bi-geo-alt"></i> @(therapist.WorkFormat ?? "Онлайн")
                             </span>
                         </div>
 
@@ -80,6 +80,10 @@
     }
 
     private IEnumerable<TherapistProfile> FilteredTherapists => allTherapists
-        .Where(t => (string.IsNullOrEmpty(searchQuery) || t.Specialization.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) &&
-                    (string.IsNullOrEmpty(selectedFormat) || t.WorkFormat == selectedFormat));
+    .Where(t =>
+        (string.IsNullOrEmpty(searchQuery) ||
+         t.Specialization.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+         t.LastName.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+         t.FirstName.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) &&
+        (string.IsNullOrEmpty(selectedFormat) || t.WorkFormat == selectedFormat));
 }
