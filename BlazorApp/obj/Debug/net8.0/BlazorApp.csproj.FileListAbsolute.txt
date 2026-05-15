@@ -509,3 +509,13 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Ac
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.BecomeTherapist.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.Index.en.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.Index.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ForgotPassword.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ForgotPassword.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ForgotPasswordConfirmation.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ForgotPasswordConfirmation.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ResetPassword.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ResetPassword.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ResetPasswordConfirmation.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ResetPasswordConfirmation.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Support.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Support.ru.resources

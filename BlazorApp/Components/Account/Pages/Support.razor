@@ -1,0 +1,109 @@
+﻿@page "/support"
+@using BlazorApp.Shared.DTOs
+@using Microsoft.AspNetCore.Identity
+@using BlazorApp.Data
+@inject IEmailSender<ApplicationUser> EmailSender
+@inject UserManager<ApplicationUser> UserManager
+@inject NavigationManager Navigation
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Support> L
+
+<PageTitle>@L["PageTitle"]</PageTitle>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-4 p-4 animate-fade">
+                <h3 class="text-coral fw-bold mb-3 text-center">@L["Header"]</h3>
+                <p class="text-muted text-center mb-4">@L["Subtitle"]</p>
+
+                @if (isSent)
+                {
+                    <div class="alert alert-success text-center animate__animated animate__fadeIn">
+                        <i class="bi bi-check-circle-fill me-2"></i> @L["SuccessMessage"]
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-outline-primary rounded-pill" @onclick='() => Navigation.NavigateTo("/")'>
+                            @L["BackHome"]
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <EditForm Model="model" OnValidSubmit="HandleSubmit" FormName="SupportForm">
+                        <DataAnnotationsValidator />
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">@L["NameLabel"]</label>
+                            <InputText @bind-Value="model.Name" class="form-control" placeholder="@L["NamePlaceholder"]" />
+                            <ValidationMessage For="() => model.Name" class="text-danger small" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">@L["EmailLabel"]</label>
+                            <InputText @bind-Value="model.Email" class="form-control" placeholder="example@mail.com" />
+                            <ValidationMessage For="() => model.Email" class="text-danger small" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">@L["SubjectLabel"]</label>
+                            <InputSelect @bind-Value="model.Subject" class="form-select">
+                                <option value="Technical">@L["SubjTech"]</option>
+                                <option value="Payment">@L["SubjPay"]</option>
+                                <option value="Suggestion">@L["SubjSuggest"]</option>
+                                <option value="Other">@L["SubjOther"]</option>
+                            </InputSelect>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">@L["MessageLabel"]</label>
+                            <InputTextArea @bind-Value="model.Message" class="form-control" rows="5" placeholder="@L["MessagePlaceholder"]" />
+                            <ValidationMessage For="() => model.Message" class="text-danger small" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm" disabled="@isProcessing">
+                            @if (isProcessing)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            @L["SendButton"]
+                        </button>
+                    </EditForm>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private SupportRequestDto model = new();
+    private bool isSent = false;
+    private bool isProcessing = false;
+
+    private async Task HandleSubmit()
+    {
+        isProcessing = true;
+        var adminEmail = "allyut12zk@gmail.com"; 
+
+        string emailBody = $@"
+            <h3>Новое обращение в поддержку</h3>
+            <p><b>От:</b> {model.Name} ({model.Email})</p>
+            <p><b>Тема:</b> {model.Subject}</p>
+            <p><b>Сообщение:</b></p>
+            <p>{model.Message}</p>
+        ";
+        var dummyUser = new ApplicationUser { Email = adminEmail };
+
+        try
+        {
+            await EmailSender.SendPasswordResetLinkAsync(dummyUser, adminEmail, emailBody); 
+            isSent = true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка отправки: {ex.Message}");
+        }
+
+        isProcessing = false;
+    }
+}
