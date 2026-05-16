@@ -1,0 +1,224 @@
+﻿@page "/admin/applications"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Authorization
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@using Microsoft.Extensions.Localization
+
+@attribute [Authorize(Roles = "Admin")]
+@inject ITherapistService TherapistService
+@inject IStringLocalizer<Applications> L
+
+<PageTitle>@L["PageTitle"]</PageTitle>
+
+<div class="container py-4 animate-fade">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-dark m-0">@L["Header"]</h3>
+        <span class="badge bg-primary rounded-pill px-3 py-2">
+            @L["TotalPending"]: @(pendingProfiles?.Count ?? 0)
+        </span>
+    </div>
+
+    @if (pendingProfiles == null)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="text-muted mt-2">@L["Loading"]</p>
+        </div>
+    }
+    else if (!pendingProfiles.Any())
+    {
+        <div class="card border-0 shadow-sm rounded-4 p-5 text-center">
+            <i class="bi bi-check2-all text-success display-4 mb-3"></i>
+            <h5 class="text-muted">@L["NoApplications"]</h5>
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">@L["ColSpecialization"]</th>
+                            <th>@L["ColExperience"]</th>
+                            <th>@L["ColPrice"]</th>
+                            <th class="text-end pe-4">@L["ColActions"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var profile in pendingProfiles)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
+                                             class="rounded-circle border"
+                                             style="width: 40px; height: 40px; object-fit: cover;" alt="Avatar" />
+                                        <div>
+                                            <div class="fw-bold text-dark">@profile.LastName @profile.FirstName @profile.MiddleName</div>
+                                            <div class="text-muted small">@profile.Specialization @(string.IsNullOrEmpty(profile.City) ? "" : $"({profile.City})")</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-dark border px-2 py-1">
+                                        @profile.ExperienceYears @L["Years"]
+                                    </span>
+                                </td>
+                                <td class="fw-bold text-coral">@profile.PricePerHour BYN/@L["Hour"]</td>
+                                <td class="text-end pe-4">
+                                    <div class="d-inline-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3"
+                                                @onclick="() => ShowDetails(profile)">
+                                            <i class="bi bi-eye me-1"></i> @L["BtnDetails"]
+                                        </button>
+                                        <button class="btn btn-sm btn-success rounded-pill px-3 shadow-sm"
+                                                @onclick="() => Approve(profile.Id)">
+                                            <i class="bi bi-check-lg me-1"></i> @L["BtnApprove"]
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+@if (selectedProfile != null)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5); overflow-y: auto;" role="dialog">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable mt-5 pt-3">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header bg-light border-0 py-3">
+                    <h5 class="modal-title fw-bold">@L["DetailsTitle"]</h5>
+                    <button type="button" class="btn-close" @onclick="CloseDetails" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted small text-uppercase fw-bold mb-3">@L["SecMainInfo"]</h6>
+                            <p class="mb-2"><strong>@L["FullName"]:</strong> @selectedProfile.LastName @selectedProfile.FirstName @selectedProfile.MiddleName</p>
+                            <p class="mb-2"><strong>@L["ColSpecialization"]:</strong> @selectedProfile.Specialization</p>
+                            <p class="mb-2"><strong>@L["FormatLabel"]:</strong> @selectedProfile.WorkFormat</p>
+                            <p class="mb-2"><strong>@L["City"]:</strong> @(selectedProfile.City ?? "-")</p>
+                            <p class="mb-2"><strong>@L["Address"]:</strong> @(selectedProfile.Address ?? "-")</p>
+                            <p class="mb-2"><strong>@L["Phone"]:</strong> @(selectedProfile.Phone ?? "-")</p>
+                            <p class="mb-2"><strong>@L["ColExperience"]:</strong> @selectedProfile.ExperienceYears @L["Years"]</p>
+                            <p class="mb-2"><strong>@L["ColPrice"]:</strong> @selectedProfile.PricePerHour BYN</p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="text-muted small text-uppercase fw-bold mb-3">@L["Education"]</h6>
+                            <p class="text-dark bg-light p-3 rounded border small mb-3" style="white-space: pre-line;">@selectedProfile.Education</p>
+
+                            <h6 class="text-muted small text-uppercase fw-bold mb-2">@L["ShortDescription"]</h6>
+                            <p class="text-dark bg-light p-2 rounded border small italic mb-0">«@selectedProfile.ShortDescription»</p>
+                        </div>
+
+                        <div class="col-12 border-top pt-3">
+                            <h6 class="text-muted small text-uppercase fw-bold mb-2">@L["SecBio"]</h6>
+                            <div class="p-3 bg-light rounded-3 small border" style="white-space: pre-line; max-height: 250px; overflow-y: auto;">
+                                @(string.IsNullOrEmpty(selectedProfile.FullBio) ? L["NoBioProvided"] : selectedProfile.FullBio)
+                            </div>
+                        </div>
+
+                        <div class="col-12 border-top pt-3">
+                            <h6 class="text-muted small text-uppercase fw-bold mb-3">@L["SecDocuments"]</h6>
+                            <div class="row g-3">
+                                @if (!string.IsNullOrWhiteSpace(selectedProfile.CertificateUrls))
+                                {
+                                    var certList = selectedProfile.CertificateUrls.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                                    int counter = 1;
+
+                                    @foreach (var certUrl in certList)
+                                    {
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="card h-100 border rounded-3 overflow-hidden shadow-sm">
+                                                <div class="text-center bg-light p-2 small border-bottom fw-bold text-muted">
+                                                    @L["Document"] #@counter
+                                                </div>
+
+                                                @if (certUrl.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                                                {
+                                                    <div class="d-flex flex-column align-items-center justify-content-center p-4 bg-light" style="height: 160px;">
+                                                        <i class="bi bi-file-earmark-pdf text-danger display-4 mb-2"></i>
+                                                        <a href="@certUrl" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                                                            @L["OpenPDF"]
+                                                        </a>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@certUrl" target="_blank" class="d-block text-center bg-light img-container">
+                                                        <img src="@certUrl" class="img-fluid" alt="Certificate" style="height: 160px; width: 100%; object-fit: contain; background: #f8f9fa;" />
+                                                    </a>
+                                                }
+                                            </div>
+                                        </div>
+                                        counter++;
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-12">
+                                        <div class="alert alert-warning py-2 mb-0 small">
+                                            <i class="bi bi-exclamation-triangle me-2"></i>@L["NoFilesUploaded"]
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-light py-3">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" @onclick="CloseDetails">@L["BtnClose"]</button>
+                    <button type="button" class="btn btn-success rounded-pill px-4 shadow-sm" @onclick="() => ApproveFromDetails(selectedProfile.Id)">
+                        <i class="bi bi-check-lg me-1"></i> @L["BtnApprove"]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<TherapistProfile>? pendingProfiles;
+    private TherapistProfile? selectedProfile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        pendingProfiles = await TherapistService.GetPendingApplicationsAsync();
+    }
+
+    private async Task Approve(int id)
+    {
+        await TherapistService.ApproveTherapistAsync(id);
+        await LoadData();
+    }
+
+    private void ShowDetails(TherapistProfile profile)
+    {
+        selectedProfile = profile;
+    }
+
+    private void CloseDetails()
+    {
+        selectedProfile = null;
+    }
+
+    private async Task ApproveFromDetails(int id)
+    {
+        CloseDetails();
+        await Approve(id);
+    }
+}

@@ -174,4 +174,13 @@
   <data name="SubmitButton" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="FormatOnline" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="FormatOffline" xml:space="preserve">
+    <value>In-person (Offline)</value>
+  </data>
+  <data name="FormatHybrid" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
 </root>

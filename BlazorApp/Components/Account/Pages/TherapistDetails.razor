@@ -5,6 +5,8 @@
 @inject IFavoriteService FavoriteService
 @inject AuthenticationStateProvider AuthStateProvider
 @rendermode InteractiveServer
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<TherapistProfile> L
 
 <div class="profile-page">
     @if (profile == null)
@@ -23,7 +25,7 @@
                         <div class="position-relative d-inline-block mx-auto mb-3">
                             <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
                                  class="rounded-circle shadow-sm"
-                                 style="width: 200px; height: 200px; object-fit: cover;" />
+                                 style="width: 200px; height: 200px; object-fit: cover;" alt="Avatar" />
 
                             <button class="btn btn-light shadow-sm rounded-circle position-absolute bottom-0 end-0 p-2"
                                     @onclick="ToggleFavorite"
@@ -32,7 +34,10 @@
                             </button>
                         </div>
 
-                        <h2 class="fw-bold">@profile.Specialization</h2>
+                        @* Выводим Имя специалиста, а ниже его специализацию *@
+                        <h3 class="fw-bold text-dark mb-1">@profile.FirstName</h3>
+                        <h5 class="text-muted mb-2">@profile.Specialization</h5>
+
                         <div class="rating-stars mb-3">
                             <span class="text-warning">★ @profile.AverageRating.ToString("F1")</span>
                         </div>
@@ -52,9 +57,10 @@
 
                 @* Правая колонка *@
                 <div class="col-lg-8">
+                    @* Блок "О специалисте" *@
                     <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
                         <h4 class="fw-bold mb-3 text-coral">О специалисте</h4>
-                        <p class="fs-5">@profile.FullBio</p>
+                        <p class="fs-5 text-secondary">@profile.FullBio</p>
                         <hr class="my-4 opacity-10">
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -69,6 +75,30 @@
                             </div>
                         </div>
                     </div>
+
+                    @* НОВЫЙ БЛОК: Местоположение и карта *@
+                    @if (!string.IsNullOrEmpty(profile.Address))
+                    {
+                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                            <h4 class="fw-bold mb-3 text-coral">
+                                <i class="bi bi-geo-alt-fill me-2"></i>Место проведения занятий
+                            </h4>
+                            <p class="fw-semibold text-dark mb-3">
+                                <span class="text-muted fw-normal">Адрес кабинета:</span> @profile.Address
+                            </p>
+
+                            @* Интерактивная карта Яндекс *@
+                            <div class="map-container border rounded-4 overflow-hidden shadow-sm" style="height: 300px; width: 100%;">
+                                <iframe src="https://maps.google.com/maps?q=@(Uri.EscapeDataString(profile.Address))&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                        width="100%"
+                                        height="100%"
+                                        style="border:0;"
+                                        allowfullscreen=""
+                                        loading="lazy">
+                                </iframe>
+                            </div>
+                        </div>
+                    }
 
                     @* Сертификаты *@
                     @if (!string.IsNullOrEmpty(profile.CertificateUrls))
@@ -212,32 +242,26 @@
     private TherapistProfile? profile;
     private List<TherapistReview> reviews = new();
 
-    // Состояние отзыва
     private string newReviewName = "";
     private string newReviewText = "";
     private int newReviewRating = 5;
     private int currentHover = 0;
 
-    // Состояние избранного
     private bool isFavorite;
     private string? currentUserId;
 
     protected override async Task OnInitializedAsync()
     {
-        // 1. Загружаем профиль
         profile = await TherapistService.GetProfileByUserId(UserId);
 
-        // 2. Получаем текущего пользователя
         var authState = await AuthStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
         currentUserId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
 
         if (profile != null)
         {
-            // 3. Загружаем отзывы
             reviews = await TherapistService.GetReviewsByTherapistIdAsync(profile.Id);
 
-            // 4. Проверяем избранное
             if (!string.IsNullOrEmpty(currentUserId))
             {
                 var favorites = await FavoriteService.GetUserFavoritesAsync(currentUserId);
@@ -251,25 +275,16 @@
 
     private async Task ToggleFavorite()
     {
-        // 1. Проверяем, авторизован ли пользователь и загружен ли профиль
         if (string.IsNullOrEmpty(currentUserId) || profile == null) return;
 
         try
         {
-            // 2. Просто вызываем метод.
-            // Мы не пишем "var result =", так как метод возвращает Task (void).
             await FavoriteService.ToggleFavoriteAsync(currentUserId, null, profile.Id);
-
-            // 3. Если выполнение дошло до этой строки (не вылетело Exception),
-            // значит в БД изменения сохранились. Обновляем UI.
             isFavorite = !isFavorite;
-
-            // В Blazor Server иногда стоит вызвать это явно после асинхронных операций
             StateHasChanged();
         }
         catch (Exception ex)
         {
-            // Если, например, пропал интернет или упала БД
             Console.WriteLine($"Ошибка при обновлении избранного: {ex.Message}");
         }
     }

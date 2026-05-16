@@ -117,70 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title" xml:space="preserve">
-    <value>Стать специалистом</value>
+  <data name="FullName" xml:space="preserve">
+    <value>Full name of the specialist</value>
   </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Фамилия</value>
+  <data name="FormatLabel" xml:space="preserve">
+    <value>Work format</value>
   </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Имя</value>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>Brief description</value>
   </data>
-  <data name="MiddleName" xml:space="preserve">
-    <value>Отчество</value>
+  <data name="SecBio" xml:space="preserve">
+    <value>Full biography</value>
   </data>
-  <data name="ProfilePhoto" xml:space="preserve">
-    <value>Фото профиля</value>
+  <data name="NoBioProvided" xml:space="preserve">
+    <value>No information available.</value>
   </data>
-  <data name="PhotoHint" xml:space="preserve">
-    <value>Поддерживаются JPG, PNG, PDF. Можно выбрать несколько (до 5 файлов).</value>
+  <data name="Document" xml:space="preserve">
+    <value>Document</value>
   </data>
-  <data name="Specialization" xml:space="preserve">
-    <value>Специализация</value>
-  </data>
-  <data name="SpecPlaceholder" xml:space="preserve">
-    <value>Например: Логопед-дефектолог</value>
-  </data>
-  <data name="Experience" xml:space="preserve">
-    <value>Стаж (лет)</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Стоимость часа</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>Город</value>
+  <data name="OpenPDF" xml:space="preserve">
+    <value>Open PDF</value>
   </data>
   <data name="Address" xml:space="preserve">
-    <value>Адрес для карты</value>
+    <value>Address</value>
   </data>
-  <data name="AddressPlaceholder" xml:space="preserve">
-    <value>пр-т Победителей, 103</value>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Application Moderation — Admin Center</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Applications for Moderation</value>
+  </data>
+  <data name="TotalPending" xml:space="preserve">
+    <value>Total pending</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading data...</value>
+  </data>
+  <data name="NoApplications" xml:space="preserve">
+    <value>No new applications from specialists.</value>
+  </data>
+  <data name="ColSpecialization" xml:space="preserve">
+    <value>Specialization / City</value>
+  </data>
+  <data name="ColExperience" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="ColPrice" xml:space="preserve">
+    <value>Hourly rate</value>
+  </data>
+  <data name="ColActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>hr</value>
+  </data>
+  <data name="BtnDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="BtnApprove" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="BtnClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="DetailsTitle" xml:space="preserve">
+    <value>Detailed Application Info</value>
+  </data>
+  <data name="SecMainInfo" xml:space="preserve">
+    <value>Main Information</value>
   </data>
   <data name="Education" xml:space="preserve">
-    <value>Образование</value>
+    <value>Education</value>
   </data>
-  <data name="FullBio" xml:space="preserve">
-    <value>О себе</value>
+  <data name="NoFilesUploaded" xml:space="preserve">
+    <value>No documents uploaded by the user.</value>
   </data>
-  <data name="WorkFormat" xml:space="preserve">
-    <value>Формат работы</value>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
   </data>
-  <data name="SaveButton" xml:space="preserve">
-    <value>Сохранить изменения</value>
-  </data>
-  <data name="Saved" xml:space="preserve">
-    <value>Сохранено!</value>
-  </data>
-  <data name="SubmitButton" xml:space="preserve">
-    <value>Отправить заявку</value>
-  </data>
-  <data name="FormatOnline" xml:space="preserve">
-    <value>Онлайн (дистанционно)</value>
-  </data>
-  <data name="FormatOffline" xml:space="preserve">
-    <value>Очно (в кабинете)</value>
-  </data>
-  <data name="FormatHybrid" xml:space="preserve">
-    <value>Гибрид (онлайн и очно)</value>
+  <data name="SecDocuments" xml:space="preserve">
+    <value>Documents and certificates</value>
   </data>
 </root>

@@ -3,47 +3,81 @@
 @using System.Security.Claims
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
+@using Microsoft.Extensions.Localization
+
 @attribute [Authorize]
 @inject IChildService ChildService
 @inject ILectureService LectureService
 @inject AuthenticationStateProvider AuthStateProvider
+@inject IStringLocalizer<Recommended> L
 
-<PageTitle>Рекомендации</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
-<h3>Рекомендованные лекции</h3>
-<p class="text-muted">Подобрано специально на основе профилей ваших детей</p>
-
-@if (recommendedLectures == null)
-{
-    <div class="spinner-border" role="status"></div>
-}
-else if (!recommendedLectures.Any())
-{
-    <div class="alert alert-info">
-        Добавьте данные о детях и их особенностях в профиле, чтобы мы могли подобрать полезные материалы.
+<div class="container py-4">
+    <div class="catalog-header mb-5">
+        <h1 class="catalog-title">@L["Header"]</h1>
+        <p class="catalog-subtitle">@L["Subtitle"]</p>
     </div>
-}
-else
-{
-    <div class="row">
-        @foreach (var lecture in recommendedLectures)
-        {
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <span class="badge bg-primary mb-2">@lecture.TargetDiagnosis</span>
-                        <h5 class="card-title">@lecture.Title</h5>
-                        <p class="card-text text-truncate">@lecture.Description</p>
-                    </div>
-                    <div class="card-footer bg-transparent border-top-0">
-                        <button class="btn btn-primary w-100">Смотреть видео</button>
+
+    @if (recommendedLectures == null)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="text-muted mt-2">@L["Loading"]</p>
+        </div>
+    }
+    else if (!recommendedLectures.Any())
+    {
+        <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-light">
+            <i class="bi bi-info-circle text-primary display-4 mb-3"></i>
+            <h5 class="text-muted mb-3">@L["NoLecturesHeader"]</h5>
+            <p class="text-muted small mx-auto" style="max-width: 500px;">@L["NoLecturesHint"]</p>
+            <a href="/Account/Manage" class="btn btn-primary rounded-pill px-4 mt-2">
+                @L["BtnGoToProfile"]
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var lecture in recommendedLectures)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative d-flex flex-column style-card">
+
+                        @* Верхняя картинка-превью с учетом ImagePath *@
+                        <div class="position-relative" style="height: 180px; background: #FFF0EA;">
+                            <img src="@(string.IsNullOrEmpty(lecture.ImagePath) ? "/img/default-lecture.png" : lecture.ImagePath)"
+                                 class="w-100 h-100"
+                                 style="object-fit: cover;" alt="Lecture preview" />
+
+                            @* Бейдж диагноза/категории *@
+                            <span class="badge position-absolute top-3 start-3 bg-info rounded-pill px-3 py-1 shadow-sm" style="font-size: 0.8rem;">
+                                @lecture.TargetDiagnosis
+                            </span>
+                        </div>
+
+                        <div class="card-body p-4 d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title fw-bold text-dark mb-2">@lecture.Title</h5>
+                                <p class="card-text text-muted small mb-4" style="line-height: 1.5;">
+                                    @lecture.Description
+                                </p>
+                            </div>
+
+                            @* Ссылка на просмотр конкретной лекции *@
+                            <a href="/lecture/@lecture.Id" class="btn btn-primary w-100 rounded-pill py-2 fw-bold text-white shadow-sm btn-action">
+                                @L["BtnWatch"]
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-}
+            }
+        </div>
+    }
+</div>
 
+@* Оставляем оригинальную C# логику фильтрации по диагнозам детей *@
 @code {
     private List<Lecture>? recommendedLectures;
 
@@ -59,6 +93,7 @@ else
             if (children != null && children.Any())
             {
                 var diagnoses = children
+                    .Where(c => !string.IsNullOrWhiteSpace(c.Diagnosis))
                     .Select(c => c.Diagnosis.Trim().ToLower())
                     .Distinct()
                     .ToList();
@@ -66,7 +101,8 @@ else
                 var allLectures = await LectureService.GetAllLecturesAsync();
 
                 recommendedLectures = allLectures
-                    .Where(l => diagnoses.Any(d => l.TargetDiagnosis.ToLower().Contains(d)))
+                    .Where(l => !string.IsNullOrWhiteSpace(l.TargetDiagnosis) &&
+                                diagnoses.Any(d => l.TargetDiagnosis.ToLower().Contains(d)))
                     .ToList();
             }
             else

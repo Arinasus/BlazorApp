@@ -26,6 +26,10 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEFjY2Vzc0RlbmllZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Admin/Applications.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEFkbWluXEFwcGxpY2F0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Admin/ManageLectures.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEFkbWluXE1hbmFnZUxlY3R1cmVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

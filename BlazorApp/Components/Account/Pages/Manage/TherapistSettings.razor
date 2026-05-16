@@ -1,5 +1,4 @@
-﻿@rendermode InteractiveServer
-@page "/Account/Manage/TherapistSettings"
+﻿@page "/Account/Manage/TherapistSettings"
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
 @using Microsoft.AspNetCore.Identity
@@ -39,7 +38,7 @@
         </div>
     </div>
 
-    @* Блок ФИО (Новое!) *@
+    @* Блок ФИО *@
     <div class="col-md-4">
         <label class="form-label fw-bold">@L["LastName"]</label>
         <InputText @bind-Value="profile.LastName" class="form-control" />
@@ -69,20 +68,34 @@
         <InputNumber @bind-Value="profile.PricePerHour" class="form-control" />
     </div>
 
-    @* Контакты и локация (Новое!) *@
+    <div class="col-md-4">
+        <label class="form-label fw-bold">@L["WorkFormat"]</label>
+        @* Используем @onchange для мгновенного перехвата клика *@
+        <select class="form-select" value="@profile.WorkFormat" @onchange="OnWorkFormatChanged">
+            <option value="Online">@L["FormatOnline"]</option>
+            <option value="Offline">@L["FormatOffline"]</option>
+            <option value="Hybrid">@L["FormatHybrid"]</option>
+        </select>
+    </div>
+
     <div class="col-md-4">
         <label class="form-label fw-bold">@L["Phone"]</label>
         <InputText @bind-Value="profile.Phone" class="form-control" placeholder="+375..." />
     </div>
+
     <div class="col-md-4">
         <label class="form-label fw-bold">@L["City"]</label>
         <InputText @bind-Value="profile.City" class="form-control" />
-        <div class="form-text small text-muted">@L["OptionalForOnline"]</div>
     </div>
-    <div class="col-md-4">
-        <label class="form-label fw-bold">@L["Address"]</label>
-        <InputText @bind-Value="profile.Address" class="form-control" />
-    </div>
+
+    @* Умное скрытие адреса: если онлайн, адрес прячется *@
+    @if (profile.WorkFormat != "Online")
+    {
+        <div class="col-md-12 animate-fade">
+            <label class="form-label fw-bold">@L["Address"]</label>
+            <InputText @bind-Value="profile.Address" class="form-control" placeholder="@L["AddressPlaceholder"]" />
+        </div>
+    }
 
     <div class="col-md-12">
         <label class="form-label fw-bold">@L["Education"]</label>
@@ -99,16 +112,11 @@
         <InputText @bind-Value="profile.ShortDescription" class="form-control" />
     </div>
 
-    <div class="col-md-6">
-        <label class="form-label fw-bold">@L["WorkFormat"]</label>
-        <InputText @bind-Value="profile.WorkFormat" class="form-control" placeholder="Online, Offline..." />
-    </div>
-
     <div class="col-12 mt-4">
         <button type="submit" class="btn btn-primary rounded-pill px-5 shadow-sm">@L["SaveButton"]</button>
         @if (showSuccessMessage)
         {
-            <span class="text-success ms-3 animate__animated animate__fadeIn">
+            <span class="text-success ms-3 animate-fade">
                 <i class="bi bi-check-circle-fill"></i> @L["SavedSuccess"]
             </span>
         }
@@ -138,6 +146,7 @@
                 else
                 {
                     profile.UserId = user.Id;
+                    profile.WorkFormat = "Online"; // Дефолтное значение
                 }
             }
         }
@@ -145,10 +154,18 @@
 
     private async Task HandleValidSubmit()
     {
-        // Обработка пустых строк для nullable полей
         profile.City = string.IsNullOrWhiteSpace(profile.City) ? null : profile.City;
-        profile.Address = string.IsNullOrWhiteSpace(profile.Address) ? null : profile.Address;
         profile.Phone = string.IsNullOrWhiteSpace(profile.Phone) ? null : profile.Phone;
+
+        // Если выбран онлайн-режим, принудительно очищаем адрес перед сохранением
+        if (profile.WorkFormat == "Online")
+        {
+            profile.Address = null;
+        }
+        else
+        {
+            profile.Address = string.IsNullOrWhiteSpace(profile.Address) ? null : profile.Address;
+        }
 
         profile.ShortDescription ??= string.Empty;
         profile.FullBio ??= string.Empty;
@@ -192,5 +209,13 @@
                 Console.WriteLine($"Ошибка при загрузке: {ex.Message}");
             }
         }
+    }
+    private void OnWorkFormatChanged(ChangeEventArgs e)
+    {
+        // Записываем выбранное значение напрямую в модель
+        profile.WorkFormat = e.Value?.ToString() ?? "Online";
+
+        // Принудительно заставляем Blazor мгновенно перерисовать страницу
+        StateHasChanged();
     }
 }

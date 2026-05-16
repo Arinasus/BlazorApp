@@ -117,70 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title" xml:space="preserve">
-    <value>Стать специалистом</value>
+  <data name="BtnHome" xml:space="preserve">
+    <value>Home</value>
   </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Фамилия</value>
+  <data name="Header" xml:space="preserve">
+    <value>Access denied</value>
   </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Имя</value>
+  <data name="Message" xml:space="preserve">
+    <value>You do not have sufficient rights to view this section. If you believe this is an error, please contact support.</value>
   </data>
-  <data name="MiddleName" xml:space="preserve">
-    <value>Отчество</value>
-  </data>
-  <data name="ProfilePhoto" xml:space="preserve">
-    <value>Фото профиля</value>
-  </data>
-  <data name="PhotoHint" xml:space="preserve">
-    <value>Поддерживаются JPG, PNG, PDF. Можно выбрать несколько (до 5 файлов).</value>
-  </data>
-  <data name="Specialization" xml:space="preserve">
-    <value>Специализация</value>
-  </data>
-  <data name="SpecPlaceholder" xml:space="preserve">
-    <value>Например: Логопед-дефектолог</value>
-  </data>
-  <data name="Experience" xml:space="preserve">
-    <value>Стаж (лет)</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Стоимость часа</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>Город</value>
-  </data>
-  <data name="Address" xml:space="preserve">
-    <value>Адрес для карты</value>
-  </data>
-  <data name="AddressPlaceholder" xml:space="preserve">
-    <value>пр-т Победителей, 103</value>
-  </data>
-  <data name="Education" xml:space="preserve">
-    <value>Образование</value>
-  </data>
-  <data name="FullBio" xml:space="preserve">
-    <value>О себе</value>
-  </data>
-  <data name="WorkFormat" xml:space="preserve">
-    <value>Формат работы</value>
-  </data>
-  <data name="SaveButton" xml:space="preserve">
-    <value>Сохранить изменения</value>
-  </data>
-  <data name="Saved" xml:space="preserve">
-    <value>Сохранено!</value>
-  </data>
-  <data name="SubmitButton" xml:space="preserve">
-    <value>Отправить заявку</value>
-  </data>
-  <data name="FormatOnline" xml:space="preserve">
-    <value>Онлайн (дистанционно)</value>
-  </data>
-  <data name="FormatOffline" xml:space="preserve">
-    <value>Очно (в кабинете)</value>
-  </data>
-  <data name="FormatHybrid" xml:space="preserve">
-    <value>Гибрид (онлайн и очно)</value>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Access limited</value>
   </data>
 </root>

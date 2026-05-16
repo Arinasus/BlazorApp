@@ -1,25 +1,35 @@
 ﻿@page "/Account/Manage/PersonalData"
-
+@using Microsoft.Extensions.Localization
 @inject IdentityUserAccessor UserAccessor
+@inject IStringLocalizer<PersonalData> L
 
-<PageTitle>Personal Data</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
 <StatusMessage />
-<h3>Personal Data</h3>
+<h3 class="fw-bold mb-3">@L["Header"]</h3>
 
-<div class="row">
+<div class="row animate-fade">
     <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
-        <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
-        </p>
-        <form action="Account/Manage/DownloadPersonalData" method="post">
-            <AntiforgeryToken />
-            <button class="btn btn-primary" type="submit">Download</button>
-        </form>
-        <p>
-            <a href="Account/Manage/DeletePersonalData" class="btn btn-danger">Delete</a>
-        </p>
+        <p class="text-muted">@L["MainDescription"]</p>
+        <div class="alert alert-warning border-0 rounded-3 small mb-4 shadow-sm">
+            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+            <strong>@L["WarningText"]</strong>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+            <form action="Account/Manage/DownloadPersonalData" method="post">
+                <AntiforgeryToken />
+                <button class="w-100 btn btn-outline-primary rounded-pill py-2 fw-bold" type="submit">
+                    <i class="bi bi-download me-2"></i>@L["BtnDownload"]
+                </button>
+            </form>
+
+            <div>
+                <a href="Account/Manage/DeletePersonalData" class="w-100 btn btn-danger rounded-pill py-2 fw-bold shadow-sm">
+                    <i class="bi bi-trash me-2"></i>@L["BtnDelete"]
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

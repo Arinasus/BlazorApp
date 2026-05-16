@@ -1,8 +1,27 @@
 ﻿@page "/Account/AccessDenied"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<AccessDenied> L
+@inject NavigationManager Navigation
 
-<PageTitle>Access denied</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
-<header>
-    <h1 class="text-danger">Access denied</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center animate-fade">
+            <div class="card border-0 shadow-sm rounded-4 p-5">
+                <div class="mb-4">
+                    <div class="display-1 text-danger">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                </div>
+
+                <h1 class="fw-bold text-dark mb-3">@L["Header"]</h1>
+                <p class="text-muted mb-4">@L["Message"]</p>
+
+                <button class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" @onclick='() => Navigation.NavigateTo("/")'>
+                    @L["BtnHome"]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

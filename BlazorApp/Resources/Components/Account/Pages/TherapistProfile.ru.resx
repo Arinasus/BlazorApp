@@ -117,70 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title" xml:space="preserve">
-    <value>Стать специалистом</value>
+  <data name="BtnBookAppointment" xml:space="preserve">
+    <value>Записаться на прием</value>
   </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Фамилия</value>
+  <data name="BtnSendReview" xml:space="preserve">
+    <value>Отправить отзыв</value>
   </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Имя</value>
+  <data name="Hour" xml:space="preserve">
+    <value>час</value>
   </data>
-  <data name="MiddleName" xml:space="preserve">
-    <value>Отчество</value>
+  <data name="InFavorites" xml:space="preserve">
+    <value>В избранном</value>
   </data>
-  <data name="ProfilePhoto" xml:space="preserve">
-    <value>Фото профиля</value>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>Адрес кабинета</value>
   </data>
-  <data name="PhotoHint" xml:space="preserve">
-    <value>Поддерживаются JPG, PNG, PDF. Можно выбрать несколько (до 5 файлов).</value>
-  </data>
-  <data name="Specialization" xml:space="preserve">
-    <value>Специализация</value>
-  </data>
-  <data name="SpecPlaceholder" xml:space="preserve">
-    <value>Например: Логопед-дефектолог</value>
-  </data>
-  <data name="Experience" xml:space="preserve">
-    <value>Стаж (лет)</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Стоимость часа</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>Город</value>
-  </data>
-  <data name="Address" xml:space="preserve">
-    <value>Адрес для карты</value>
-  </data>
-  <data name="AddressPlaceholder" xml:space="preserve">
-    <value>пр-т Победителей, 103</value>
-  </data>
-  <data name="Education" xml:space="preserve">
+  <data name="LabelEducation" xml:space="preserve">
     <value>Образование</value>
   </data>
-  <data name="FullBio" xml:space="preserve">
-    <value>О себе</value>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Стоимость</value>
   </data>
-  <data name="WorkFormat" xml:space="preserve">
-    <value>Формат работы</value>
+  <data name="NoReviewsYet" xml:space="preserve">
+    <value>Отзывов пока нет. Будьте первым!</value>
   </data>
-  <data name="SaveButton" xml:space="preserve">
-    <value>Сохранить изменения</value>
+  <data name="PlaceholderReviewName" xml:space="preserve">
+    <value>Ваше имя</value>
   </data>
-  <data name="Saved" xml:space="preserve">
-    <value>Сохранено!</value>
+  <data name="PlaceholderReviewText" xml:space="preserve">
+    <value>Ваш опыт работы со специалистом...</value>
   </data>
-  <data name="SubmitButton" xml:space="preserve">
-    <value>Отправить заявку</value>
+  <data name="SecAbout" xml:space="preserve">
+    <value>О специалисте</value>
   </data>
-  <data name="FormatOnline" xml:space="preserve">
-    <value>Онлайн (дистанционно)</value>
+  <data name="SecCertificates" xml:space="preserve">
+    <value>Сертификаты и дипломы</value>
   </data>
-  <data name="FormatOffline" xml:space="preserve">
-    <value>Очно (в кабинете)</value>
+  <data name="SecLocation" xml:space="preserve">
+    <value>Место проведения занятий</value>
   </data>
-  <data name="FormatHybrid" xml:space="preserve">
-    <value>Гибрид (онлайн и очно)</value>
+  <data name="SecReviews" xml:space="preserve">
+    <value>Отзывы родителей</value>
+  </data>
+  <data name="ToFavorites" xml:space="preserve">
+    <value>В избранное</value>
+  </data>
+  <data name="ViewPDF" xml:space="preserve">
+    <value>Просмотреть PDF</value>
+  </data>
+  <data name="WriteReview" xml:space="preserve">
+    <value>Оставить отзыв</value>
+  </data>
+  <data name="YourRating" xml:space="preserve">
+    <value>Ваша оценка</value>
   </data>
 </root>
