@@ -1,5 +1,12 @@
 ﻿@implements IDisposable
 @inject NavigationManager NavigationManager
+@using BlazorApp.Shared.Interfaces
+@using Microsoft.AspNetCore.Identity
+@using BlazorApp.Data
+@inject IDiaryService DiaryService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject UserManager<ApplicationUser> UserManager
+@rendermode InteractiveServer
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container-fluid px-4">
@@ -27,6 +34,18 @@
                     </ul>
                 </li>
 
+                @* ВОТ СЮДА МЫ ЕЕ И ПОСТАВИЛИ (Доступна всем авторизованным пользователям) *@
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="chats">
+                                <i class="bi bi-chat-left-text me-1"></i> Чаты
+                            </NavLink>
+                        </li>
+                    </Authorized>
+                </AuthorizeView>
+
+                @* АДМИН-ЦЕНТР *@
                 <AuthorizeView Roles="Admin">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle manage-pill admin-pill d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,33 +58,67 @@
                     </li>
                 </AuthorizeView>
 
+                @* КНОПКИ ДЛЯ ЛОГОПЕДА (THERAPIST) *@
                 <AuthorizeView Roles="Therapist">
-                    <li class="nav-item">
+                    <li class="nav-item d-flex gap-2">
                         <NavLink class="nav-link manage-pill therapist-pill d-inline-flex align-items-center" href="admin/lectures">
                             <i class="bi bi-journal-plus me-2"></i> <span>Добавить лекцию</span>
+                        </NavLink>
+
+                        <NavLink class="nav-link manage-pill therapist-pill d-inline-flex align-items-center ms-2" href="Account/Manage/TherapistDiary">
+                            <i class="bi bi-journal-bookmark-fill me-2"></i> <span>Дневник занятий</span>
                         </NavLink>
                     </li>
                 </AuthorizeView>
             </ul>
 
             <div class="d-flex align-items-center gap-3">
+                @* ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА (Доступен всегда и всем на верхнем уровне) *@
+                <CultureSelector />
+
                 <AuthorizeView>
                     <Authorized>
                         <div class="d-flex align-items-center gap-3">
-                            <!-- Кнопка Избранное с иконкой сердечка -->
+                            @* ИКОНКА С УВЕДОМЛЕНИЕМ: строго для Client *@
+                            <AuthorizeView Roles="Client" Context="parentContext">
+                                <NavLink class="nav-link favorite-link d-flex align-items-center justify-content-center position-relative"
+                                         href="parent/diary"
+                                         title="Дневник ребенка">
+                                    <i class="bi bi-person-heart"></i>
+                                    @if (unreadInvitationsCount > 0)
+                                    {
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger animate-pulse"
+                                              style="font-size: 0.65rem; padding: 0.35em 0.5em;">
+                                            @unreadInvitationsCount
+                                        </span>
+                                    }
+                                </NavLink>
+                            </AuthorizeView>
+
                             <NavLink class="nav-link favorite-link d-flex align-items-center justify-content-center"
                                      href="Account/Manage/Favorites"
                                      title="Избранное">
                                 <i class="bi bi-heart-fill"></i>
                             </NavLink>
 
+                            @* ВЫПАДАЮЩЕЕ МЕНЮ ПРОФИЛЯ *@
                             <div class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle profile-btn rounded-pill px-3 shadow-sm d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
                                     <i class="bi bi-person-circle me-2"></i> <span>@context.User.Identity?.Name</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
                                     <li><NavLink class="dropdown-item" href="Account/Manage">Профиль</NavLink></li>
-                                    <!-- Можно также продублировать ссылку здесь для удобства -->
+
+                                    @* Ссылка в меню для Client *@
+                                    <AuthorizeView Roles="Client" Context="parentMenuContext">
+                                        <li><NavLink class="dropdown-item" href="parent/diary">Дневник ребенка</NavLink></li>
+                                    </AuthorizeView>
+
+                                    @* Ссылка в меню для Therapist *@
+                                    <AuthorizeView Roles="Therapist" Context="therapistMenuContext">
+                                        <li><NavLink class="dropdown-item" href="Account/Manage/TherapistDiary">Дневник занятий</NavLink></li>
+                                    </AuthorizeView>
+
                                     <li><NavLink class="dropdown-item" href="Account/Manage/Favorites">Избранное</NavLink></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
@@ -89,17 +142,97 @@
     </div>
 </nav>
 
+<style>
+    .animate-pulse {
+        animation: pulse-ring 2s infinite;
+    }
+
+    @("@keyframes") pulse-ring {
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+        }
+
+        70% {
+            transform: scale(1);
+            box-shadow: 0 0 0 5px rgba(220, 53, 69, 0);
+        }
+
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+        }
+    }
+</style>
+
 @code {
     private string? currentUrl;
+    private int unreadInvitationsCount = 0;
+    private bool isAfterRender = false;
+
     protected override void OnInitialized()
     {
+        // Синхронная быстрая инициализация ссылки при старте
         currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
         NavigationManager.LocationChanged += OnLocationChanged;
     }
+
+    // Этот метод вызывается, когда компонент БЕЗОПАСНО ожил в браузере
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isAfterRender = true;
+            await CheckInvitationsAsync();
+            StateHasChanged(); // Перерисовываем UI, когда цифра уведомлений пришла
+        }
+    }
+
+    private async Task CheckInvitationsAsync()
+    {
+        // Если мы еще на этапе пререндера — ничего не делаем, чтобы не ломать потоки
+        if (!isAfterRender) return;
+
+        try
+        {
+            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+            var userPrincipal = authState?.User;
+
+            if (userPrincipal?.Identity?.IsAuthenticated == true)
+            {
+                if (userPrincipal.IsInRole("Client"))
+                {
+                    // ИСПОЛЬЗУЕМ ИМЯ ИЗ CLAIMS (это и есть Email в стандартном Identity),
+                    // чтобы не дергать тяжелый UserManager через базу данных!
+                    var userEmail = userPrincipal.Identity.Name;
+
+                    if (!string.IsNullOrEmpty(userEmail))
+                    {
+                        var invites = await DiaryService.GetPendingInvitationsAsync(userEmail);
+                        unreadInvitationsCount = invites?.Count ?? 0;
+                    }
+                }
+                else
+                {
+                    unreadInvitationsCount = 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Ошибка подсчета уведомлений: {ex.Message}");
+            unreadInvitationsCount = 0;
+        }
+    }
+
     private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
     {
         currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
         StateHasChanged();
     }
-    public void Dispose() => NavigationManager.LocationChanged -= OnLocationChanged;
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
 }

@@ -132,6 +132,9 @@
   <data name="FormatAny" xml:space="preserve">
     <value>Any format</value>
   </data>
+  <data name="FormatHybrid" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
   <data name="FormatOffline" xml:space="preserve">
     <value>In person</value>
   </data>

@@ -714,6 +714,7 @@ main[b-qgsvw684bo] {
     --bg-hover: rgba(255, 138, 91, 0.1);
 }
 
+/* Стили навигационных ссылок */
 .nav-link.active:not(.manage-pill)[b-g8o6n169oq] {
     background-color: transparent !important;
     color: var(--text-dark) !important;
@@ -727,6 +728,7 @@ main[b-qgsvw684bo] {
     outline: none !important;
 }
 
+/* Выпадающие списки */
 .dropdown-item[b-g8o6n169oq] {
     transition: all 0.2s;
     color: var(--text-dark) !important;
@@ -741,15 +743,16 @@ main[b-qgsvw684bo] {
         outline: none !important;
     }
 
+/* Пилы (плашки) ролей */
 .admin-pill[b-g8o6n169oq] {
-    background-color: transparent !important; 
+    background-color: transparent !important;
     color: var(--text-dark) !important;
     border: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
     .admin-pill:hover[b-g8o6n169oq], .show > .admin-pill[b-g8o6n169oq] {
-        background-color: #FFF3E0 !important; 
+        background-color: #FFF3E0 !important;
         color: #E65100 !important;
     }
 
@@ -767,25 +770,26 @@ main[b-qgsvw684bo] {
     box-shadow: none !important;
 }
 
+/* Брендинг и Логотип */
 .nav-logo-img[b-g8o6n169oq] {
     height: 40px !important;
 }
 
-/* Делаем логотип визуально интерактивным */
 .navbar-brand[b-g8o6n169oq] {
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
     .navbar-brand:hover[b-g8o6n169oq] {
         opacity: 0.85;
-        transform: translateY(-1px); /* Легкий подъем при наведении */
+        transform: translateY(-1px);
     }
 
-    /* Убираем синее выделение текста "Речевик" при нажатии, если оно есть */
     .navbar-brand span[b-g8o6n169oq] {
-        color: #2D3436; /* Цвет вашего бренда для текста */
+        color: #2D3436;
         text-decoration: none;
     }
+
+/* Кнопки авторизации */
 .btn-login[b-g8o6n169oq] {
     color: var(--primary-coral) !important;
     border: 2px solid var(--primary-coral) !important;
@@ -797,9 +801,10 @@ main[b-qgsvw684bo] {
     color: white !important;
     border-radius: 50px;
 }
-/* Стиль для кнопки избранного в Navbar */
+
+/* Иконки Избранного и Дневника */
 .favorite-link[b-g8o6n169oq] {
-    color: var(--brand-coral) !important; /* Твой коралловый цвет */
+    color: var(--primary-coral) !important; /* Исправлено: привели к единой переменной */
     font-size: 1.25rem;
     padding: 8px;
     border-radius: 50%;
@@ -808,14 +813,32 @@ main[b-qgsvw684bo] {
 }
 
     .favorite-link:hover[b-g8o6n169oq] {
-        background-color: var(--brand-light-bg); /* Твой светлый фон */
+        background-color: var(--bg-hover); /* Исправлено: привели к единой переменной */
         transform: scale(1.1);
     }
 
-    /* Эффект для активной вкладки избранного */
     .favorite-link.active[b-g8o6n169oq] {
         background-color: rgba(255, 138, 91, 0.1);
     }
+
+/* Анимация пульсации для уведомлений (теперь в CSS работает идеально!) */
+.animate-pulse[b-g8o6n169oq] {
+    animation: pulse-ring-b-g8o6n169oq 2s infinite;
+}
+
+@keyframes pulse-ring-b-g8o6n169oq {
+    0% {
+        transform: translate(50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(50%, -50%) scale(1.15);
+    }
+
+    100% {
+        transform: translate(50%, -50%) scale(1);
+    }
+}
 /* /Components/Pages/Home.razor.rz.scp.css */
 /* Твои существующие стили остаются без изменений */
 .home-hero[b-7gt2111kuu] {

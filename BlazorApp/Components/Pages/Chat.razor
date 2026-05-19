@@ -1,0 +1,138 @@
+﻿@page "/chat/{ReceiverId}"
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp.Data
+@using BlazorApp.Shared.Models
+
+@inject IDbContextFactory<ApplicationDbContext> DbFactory
+@inject AuthenticationStateProvider AuthStateProvider
+
+<h3>Чат: @opponentName</h3>
+
+<div class="chat-container border rounded p-3 bg-light" id="chatWindow" style="height: 400px; overflow-y: scroll;">
+    @if (!messages.Any())
+    {
+        <p class="text-muted" id="noMessages">Сообщений пока нет. Начните диалог первым!</p>
+    }
+    else
+    {
+        @foreach (var msg in messages)
+        {
+            <div class="mb-2 p-2 rounded @(msg.SenderId == currentUserId ? "bg-primary text-white text-end ms-auto" : "bg-white text-dark text-start me-auto")"
+                 style="max-width: 70%; width: fit-content;">
+                <strong>@msg.SenderName:</strong> <span class="ms-2">@msg.MessageText</span>
+                <div style="font-size: 0.8rem;" class="@(msg.SenderId == currentUserId ? "text-white-50" : "text-muted")">
+                    @msg.SentAt.ToLocalTime().ToString("HH:mm")
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<div class="input-group mt-3">
+    <input type="text" id="msgInput" class="form-control" placeholder="Введите сообщение..." />
+    <button type="button" class="btn btn-primary" id="btnSend"
+            onclick="
+            const input=document.getElementById('msgInput');
+            const text=input.value;
+            if (!text.trim()) return;
+            fetch(' /api/chat/send', {
+            method: 'POST' ,
+            headers: { 'Content-Type' : 'application/json' },
+            body: JSON.stringify({
+            senderId: document.getElementById('currentUserIdField').value,
+            senderName: document.getElementById('currentUserNameField').value,
+            receiverId: document.getElementById('receiverIdField').value,
+            text: text
+            })
+            }).then(res=>
+        {
+        if (res.ok) {
+        input.value = '';
+        window.location.reload();
+        }
+        });
+        ">
+        Отправить
+    </button>
+</div>
+
+@* --- ВОТ СЮДА МЫ ДОБАВИЛИ СКРЫТЫЕ ПОЛЯ ДЛЯ НАДЕЖНОЙ ПЕРЕДАЧИ В JS --- *@
+<input type="hidden" id="currentUserIdField" value="@currentUserId" />
+<input type="hidden" id="currentUserNameField" value="@currentUserName" />
+<input type="hidden" id="receiverIdField" value="@ReceiverId" />
+<input type="hidden" id="localCountField" value="@messages.Count" />
+
+@* Обновленный скрипт автообновления *@
+<script>
+    if (window.chatTimer) {
+        clearInterval(window.chatTimer);
+    }
+
+    const chatWin = document.getElementById('chatWindow');
+    if (chatWin) { chatWin.scrollTop = chatWin.scrollHeight; }
+
+    window.chatTimer = setInterval(function () {
+        const input = document.getElementById('msgInput');
+
+        // Если пользователь пишет — не мешаем, не обновляем страницу
+        if (input && input.value.trim() !== '') { return; }
+
+        // Достаем ID динамически из HTML-полей
+        const u1 = document.getElementById('currentUserIdField').value;
+        const u2 = document.getElementById('receiverIdField').value;
+        const localCount = parseInt(document.getElementById('localCountField').value) || 0;
+
+        // Если Blazor еще не успел отрендерить ID, пропускаем этот тик таймера
+        if (!u1 || !u2 || u1 === "user-123") return;
+
+        fetch(`/api/chat/count?user1=${u1}&user2=${u2}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Ошибка ответа сервера');
+                return res.json();
+            })
+            .then(serverCount => {
+                // Если сообщений в БД стало больше — плавно перезагружаем чат
+                if (serverCount > localCount) {
+                    clearInterval(window.chatTimer);
+                    window.location.reload();
+                }
+            })
+            .catch(err => console.error('Ошибка автообновления:', err));
+    }, 3000);
+</script>
+
+@code {
+    [Parameter] public string ReceiverId { get; set; } = string.Empty;
+
+    private List<ChatMessage> messages = new();
+    private string currentUserId = "";
+    private string currentUserName = "";
+    private string opponentName = "Собеседник";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            currentUserId = user.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+            currentUserName = user.Identity.Name ?? "User";
+        }
+
+        using var db = await DbFactory.CreateDbContextAsync();
+
+        messages = await db.ChatMessages
+            .Where(m => (m.SenderId == currentUserId && m.ReceiverId == ReceiverId)
+                     || (m.SenderId == ReceiverId && m.ReceiverId == currentUserId))
+            .OrderBy(m => m.SentAt)
+            .ToListAsync();
+
+        var opponent = await db.Users.FirstOrDefaultAsync(u => u.Id == ReceiverId);
+        if (opponent != null)
+        {
+            opponentName = opponent.UserName ?? "Собеседник";
+        }
+    }
+}

@@ -1,0 +1,137 @@
+﻿@page "/parent/diary"
+@using BlazorApp.Data
+@using BlazorApp.Services
+@using BlazorApp.Shared.DTOs
+@using BlazorApp.Shared.Interfaces
+@using BlazorApp.Shared.Models
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Localization
+
+@attribute [Authorize(Roles = "Client")] 
+@inject IDiaryService DiaryService
+@inject IChildService ChildrenService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject UserManager<ApplicationUser> UserManager
+@inject IStringLocalizer<Diary> L
+@rendermode InteractiveServer
+
+<div class="container py-4 animate-fade">
+    <h3 class="text-coral fw-bold mb-4"><i class="bi bi-person-heart me-2"></i>@L["ParentDiaryTitle"]</h3>
+
+    @if (pendingInvitations != null && pendingInvitations.Any())
+    {
+        <div class="alert alert-warning rounded-4 shadow-sm p-4 mb-4">
+            <h5 class="fw-bold"><i class="bi bi-envelope-open-fill me-2"></i>@L["NewInvitationsTitle"]</h5>
+            <p class="small">@L["InvitationHint"]</p>
+            @foreach (var inv in pendingInvitations)
+            {
+                <div class="d-flex flex-wrap align-items-center justify-content-between bg-white p-3 rounded-3 shadow-sm mt-2">
+                    <div>
+                        <strong>@L["Therapist"]:</strong> @inv.TherapistProfileId
+                    </div>
+                    <div class="d-flex gap-2 mt-2 mt-md-0">
+                        <select class="form-select form-select-sm" @bind="selectedChildId">
+                            <option value="0">-- @L["SelectChild"] --</option>
+                            @foreach (var child in myChildren)
+                            {
+                                <option value="@child.Id">@child.Name</option>
+                            }
+                        </select>
+                        <button class="btn btn-success btn-sm rounded-pill px-3" @onclick="() => AcceptInvite(inv.Id)">
+                            @L["BtnAccept"]
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <div class="card border-0 shadow-sm rounded-4 p-4">
+        @if (diaryLogs == null)
+        {
+            <p class="text-muted">@L["Loading"]</p>
+        }
+        else if (!diaryLogs.Any())
+        {
+            <div class="text-center py-5 text-muted">
+                <i class="bi bi-journal-x display-3"></i>
+                <p class="mt-2">@L["NoLogsYet"]</p>
+            </div>
+        }
+        else
+        {
+            <div class="timeline">
+                @foreach (var log in diaryLogs)
+                {
+                    <div class="p-3 mb-3 border-start border-3 border-success bg-light rounded-end shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-child me-1"></i>@log.ChildName</h6>
+                            <span class="badge bg-white text-secondary border rounded-pill">
+                                @log.SessionDate.ToString("dd.MM.yyyy")
+                            </span>
+                        </div>
+                        <p class="mb-1 text-coral fw-semibold small">@L["Topic"]: @log.Topic</p>
+                        <p class="mb-1 text-muted small"><strong>@L["WorkDone"]:</strong> @log.WorkDone</p>
+                        @if (!string.IsNullOrEmpty(log.Homework))
+                        {
+                            <div class="mt-2 p-2 bg-white rounded border border-success-subtle">
+                                <span class="text-success small fw-bold d-block"><i class="bi bi-house-door-fill me-1"></i>@L["Homework"]:</span>
+                                <span class="small text-dark">@log.Homework</span>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        } @* ИСПРАВЛЕНО: Закрыли блок else для вывода логов *@
+    </div>
+</div>
+
+@code {
+    private List<TherapyDiaryLogDto> diaryLogs = new();
+    private List<DiaryInvitation> pendingInvitations = new(); 
+    private List<Child> myChildren = new();
+    private int selectedChildId;
+    private string currentUserId = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPageData();
+    }
+
+    private async Task LoadPageData()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = await UserManager.GetUserAsync(authState.User);
+
+        if (user != null)
+        {
+            currentUserId = user.Id;
+
+            // 1. Загружаем логи дневника для этого родителя
+            diaryLogs = await DiaryService.GetLogsForParentAsync(user.Id);
+
+            // 2. Загружаем инвайты по Email родителя
+            if (!string.IsNullOrEmpty(user.Email))
+            {
+                pendingInvitations = await DiaryService.GetPendingInvitationsAsync(user.Email);
+            }
+            
+            // 3. Загружаем список детей
+            myChildren = await ChildrenService.GetChildrenByParentIdAsync(user.Id);
+        }
+    }
+
+    private async Task AcceptInvite(int inviteId)
+    {
+        if (selectedChildId == 0) return;
+
+        var success = await DiaryService.AcceptInvitationAsync(inviteId, selectedChildId, currentUserId);
+
+        if (success)
+        {
+            selectedChildId = 0;
+            await LoadPageData();
+        }
+    }
+}

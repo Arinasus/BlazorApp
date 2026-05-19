@@ -18,10 +18,11 @@
                    placeholder="@L["SearchPlaceholder"]"
                    @bind="searchQuery" @bind:event="oninput" />
 
-            <select class="form-select filter-select" @bind="selectedFormat" style="max-width: 200px;">
+            <select class="form-select filter-select" @bind="selectedFormat" style="max-width: 230px;">
                 <option value="">@L["FormatAny"]</option>
-                <option value="Онлайн">@L["FormatOnline"]</option>
-                <option value="Очно">@L["FormatOffline"]</option>
+                <option value="Online">@L["FormatOnline"]</option>
+                <option value="Offline">@L["FormatOffline"]</option>
+                <option value="Hybrid">@L["FormatHybrid"]</option>
             </select>
         </div>
     </div>
@@ -57,7 +58,25 @@
                                         @therapist.PricePerHour <span class="small text-muted fw-normal">BYN / @L["Hour"]</span>
                                     </span>
                                     <span class="format badge bg-light text-secondary border rounded-pill px-3 py-1 small">
-                                        <i class="bi bi-geo-alt me-1"></i>@(therapist.WorkFormat == "Online" || therapist.WorkFormat == "Онлайн" ? L["FormatOnline"] : L["FormatOffline"])
+                                        <i class="bi bi-geo-alt me-1"></i>
+                                        @switch (therapist.WorkFormat)
+                                        {
+                                            case "Online":
+                                                @L["FormatOnline"]
+                                                ; break;
+                                            case "Offline":
+
+                                                @L["FormatOffline"]
+                                                ; break;
+                                            case "Hybrid":
+
+                                                @L["FormatHybrid"]
+                                                ; break;
+                                            default:
+
+                                                @L["FormatOnline"]
+                                                ; break;
+                                        }
                                     </span>
                                 </div>
 
@@ -124,5 +143,5 @@
          t.Specialization.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
          t.LastName.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
          t.FirstName.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) &&
-        (string.IsNullOrEmpty(selectedFormat) || t.WorkFormat == selectedFormat));
+        (string.IsNullOrEmpty(selectedFormat) || string.Equals(t.WorkFormat, selectedFormat, StringComparison.OrdinalIgnoreCase)));
 }

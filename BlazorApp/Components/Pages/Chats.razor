@@ -1,0 +1,127 @@
+﻿@page "/chats"
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp.Data
+@using BlazorApp.Shared.Models
+
+@inject IDbContextFactory<ApplicationDbContext> DbFactory
+@inject AuthenticationStateProvider AuthStateProvider
+
+<div class="container mt-4" style="max-width: 800px;">
+    <h3 class="mb-4 fw-bold">Ваши диалоги</h3>
+
+    @if (chatPartners == null)
+    {
+        <div class="text-center p-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Загрузка списка чатов...</p>
+        </div>
+    }
+    else if (!chatPartners.Any())
+    {
+        <div class="alert alert-info text-center p-4 shadow-sm border-0 rounded-3">
+            <i class="bi bi-chat-dots fs-1 d-block mb-2 text-primary"></i>
+            <h5>У вас пока нет активных переписок</h5>
+            <p class="text-muted mb-0">Перейдите в раздел <strong>"Специалисты"</strong>, чтобы начать свой первый диалог!</p>
+        </div>
+    }
+    else
+    {
+        <div class="list-group shadow-sm rounded-3">
+            @foreach (var partner in chatPartners)
+            {
+                @* Ссылка перенаправляет на конкретный роут /chat/{Id} *@
+                <a href="chat/@partner.Id" class="list-group-item list-group-item-action d-flex align-items-center p-3 gap-3">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px; font-size: 1.2rem;">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    <div class="w-100">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <h6 class="mb-1 fw-bold text-dark">@partner.Name</h6>
+                            <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-2 py-1" style="font-size: 0.75rem;">Открыть чат</span>
+                        </div>
+                        <p class="mb-0 text-muted small">Нажмите, чтобы перейти к переписке</p>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<UserDto> chatPartners = new();
+    private string currentUserId = string.Empty;
+
+    public class UserDto
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            currentUserId = user.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "";
+        }
+
+        if (string.IsNullOrEmpty(currentUserId)) return;
+
+        using var db = await DbFactory.CreateDbContextAsync();
+
+        // 1. Сначала ищем тех, с кем уже РЕАЛЬНО есть переписка в базе
+        var partnerIds = await db.ChatMessages
+            .Where(m => m.SenderId == currentUserId || m.ReceiverId == currentUserId)
+            .Select(m => m.SenderId == currentUserId ? m.ReceiverId : m.SenderId)
+            .Distinct()
+            .ToListAsync();
+
+        var usersWithHistory = await db.Users
+            .Where(u => partnerIds.Contains(u.Id))
+            .ToListAsync();
+
+        chatPartners = usersWithHistory.Select(u => new UserDto
+        {
+            Id = u.Id,
+            Name = u.UserName ?? "Пользователь"
+        }).ToList();
+
+        // 2. ФОКУС ДЛЯ ТЕСТОВ: Если переписок вообще нет, выводим людей для старта диалога
+        if (!chatPartners.Any())
+        {
+            if (user.IsInRole("Therapist"))
+            {
+                // Если ты ЛОГОПЕД, выводим в список потенциальных КЛИЕНТОВ для теста.
+                // Ищем пользователей, у которых в таблице AspNetUserRoles стоит роль Client.
+                // Если связи сложны, временно выведем просто первых 5 пользователей из базы для теста:
+                var testClients = await db.Users
+                    .Where(u => u.Id != currentUserId)
+                    .Take(5)
+                    .ToListAsync();
+
+                chatPartners = testClients.Select(u => new UserDto
+                {
+                    Id = u.Id,
+                    Name = u.UserName + " (Тестовый клиент)"
+                }).ToList();
+            }
+            else
+            {
+                // Если зашел КЛИЕНТ, выводим ему список врачей
+                var testTherapists = await db.Users
+                    .Where(u => u.Id != currentUserId)
+                    .Take(5)
+                    .ToListAsync();
+
+                chatPartners = testTherapists.Select(u => new UserDto
+                {
+                    Id = u.Id,
+                    Name = u.UserName + " (Тестовый специалист)"
+                }).ToList();
+            }
+        }
+    }
+}
