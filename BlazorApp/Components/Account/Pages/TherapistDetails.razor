@@ -4,6 +4,7 @@
 @inject ITherapistService TherapistService
 @inject IFavoriteService FavoriteService
 @inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<TherapistProfile> L
@@ -43,9 +44,18 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary rounded-pill py-3 fw-bold shadow-sm mb-2">
+                            <button class="btn btn-primary rounded-pill py-3 fw-bold shadow-sm mb-1">
                                 Записаться на прием
                             </button>
+
+                            @* КНОПКА: Написать сообщение (перенаправляет в ваш чат) *@
+                            @if (!string.IsNullOrEmpty(currentUserId) && currentUserId != UserId)
+                            {
+                                <button class="btn btn-coral rounded-pill py-2 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2 mb-1"
+                                        @onclick="NavigateToChat">
+                                    <i class="bi bi-chat-dots-fill"></i> Написать сообщение
+                                </button>
+                            }
 
                             <button class="btn @(isFavorite ? "btn-outline-danger" : "btn-outline-secondary") rounded-pill py-2 border-dashed" @onclick="ToggleFavorite">
                                 <i class="bi @(isFavorite ? "bi-heart-fill" : "bi-heart") me-2"></i>
@@ -312,5 +322,9 @@
             newReviewRating = 5;
             StateHasChanged();
         }
+    }
+    private void NavigateToChat()
+    {
+        NavigationManager.NavigateTo($"/chat/{UserId}");
     }
 }

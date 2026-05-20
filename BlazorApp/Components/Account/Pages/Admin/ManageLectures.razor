@@ -5,45 +5,50 @@
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
 @using Blazorized.HtmlTextEditor
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.AspNetCore.Identity
+@using BlazorApp.Data
+
 @attribute [Authorize(Roles = "Admin, Therapist")]
 @inject ILectureService LectureService
-@using Microsoft.AspNetCore.Hosting
 @inject IWebHostEnvironment WebHostEnvironment
+@inject AuthenticationStateProvider AuthStateProvider
+@inject UserManager<ApplicationUser> UserManager
 
 <div class="container mt-4">
     <h3>Управление базой знаний</h3>
 
     <div class="card mb-4 shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Добавить новую лекцию</h5>
+        <div class="card-header @(isEditing ? "bg-warning text-dark" : "bg-primary text-white")">
+            <h5 class="mb-0">@(isEditing ? "Редактировать лекцию" : "Добавить новую лекцию")</h5>
         </div>
         <div class="card-body">
-            <EditForm Model="newLecture" OnValidSubmit="HandleAddLecture">
+            <EditForm Model="currentLecture" OnValidSubmit="HandleSaveLecture">
                 <DataAnnotationsValidator />
-                
+
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Название лекции:</label>
-                        <InputText @bind-Value="newLecture.Title" class="form-control" />
+                        <InputText @bind-Value="currentLecture.Title" class="form-control" />
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Целевой диагноз:</label>
-                        <InputText @bind-Value="newLecture.TargetDiagnosis" class="form-control" />
+                        <InputText @bind-Value="currentLecture.TargetDiagnosis" class="form-control" />
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label>Обложка лекции (картинка):</label>
                     <InputFile OnChange="HandleFileSelected" class="form-control" accept=".jpg,.png" />
-                    @if (!string.IsNullOrEmpty(newLecture.ImagePath))
+                    @if (!string.IsNullOrEmpty(currentLecture.ImagePath))
                     {
-                        <img src="@newLecture.ImagePath" class="mt-2" style="height:80px; border-radius:5px;" />
+                        <img src="@currentLecture.ImagePath" class="mt-2" style="height:80px; border-radius:5px;" />
                     }
                 </div>
 
                 <div class="mb-3">
                     <label>Краткое описание (для ленты):</label>
-                    <InputTextArea @bind-Value="newLecture.Description" class="form-control" rows="2" />
+                    <InputTextArea @bind-Value="currentLecture.Description" class="form-control" rows="2" />
                 </div>
 
                 <div class="mb-3">
@@ -67,15 +72,25 @@
 
                 <div class="mb-3">
                     <label>Ссылка на видео:</label>
-                    <InputText @bind-Value="newLecture.VideoUrl" class="form-control" />
+                    <InputText @bind-Value="currentLecture.VideoUrl" class="form-control" />
                 </div>
 
-                <button type="submit" class="btn btn-success">Опубликовать лекцию</button>
+                <div class="d-flex gap-2">
+                    @if (isEditing)
+                    {
+                        <button type="submit" class="btn btn-warning">Сохранить изменения</button>
+                        <button type="button" class="btn btn-secondary" @onclick="CancelEditing">Отмена</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-success">Опубликовать лекцию</button>
+                    }
+                </div>
             </EditForm>
         </div>
     </div>
 
-    <h4>Все лекции в системе</h4>
+    <h4>Доступные вам лекции</h4>
     <div class="table-responsive">
         <table class="table table-hover mt-3">
             <thead class="table-light">
@@ -86,18 +101,31 @@
                 </tr>
             </thead>
             <tbody>
-                @if (allLectures != null)
+                @if (displayedLectures != null)
                 {
-                    @foreach (var lecture in allLectures)
+                    @foreach (var lecture in displayedLectures)
                     {
                         <tr>
                             <td>@lecture.Title</td>
                             <td><span class="badge bg-secondary">@lecture.TargetDiagnosis</span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-danger">Удалить</button>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary" @onclick="() => StartEdit(lecture)">
+                                        Изменить
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" @onclick="() => DeleteLecture(lecture.Id)">
+                                        Удалить
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">Загрузка лекций...</td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -105,19 +133,40 @@
 </div>
 
 @code {
-    private Lecture newLecture = new();
-    private List<Lecture>? allLectures;
+    private Lecture currentLecture = new();
+    private List<Lecture>? displayedLectures;
     private HtmlTextEditor QuillHtml = default!;
+
+    private bool isEditing = false;
+    private string currentUserId = string.Empty;
+    private bool isAdmin = false;
 
     protected override async Task OnInitializedAsync()
     {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = await UserManager.GetUserAsync(authState.User);
+
+        if (user != null)
+        {
+            currentUserId = user.Id;
+            isAdmin = authState.User.IsInRole("Admin");
+        }
+
         await LoadLectures();
     }
 
     private async Task LoadLectures()
     {
-        allLectures = await LectureService.GetAllLecturesAsync();
+        if (isAdmin)
+        {
+            displayedLectures = await LectureService.GetAllLecturesAsync();
+        }
+        else
+        {
+            displayedLectures = await LectureService.GetLecturesByAuthorAsync(currentUserId);
+        }
     }
+
     private async Task HandleFileSelected(InputFileChangeEventArgs e)
     {
         var file = e.File;
@@ -126,7 +175,7 @@
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
             var folderPath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads");
 
-            if (!Directory.Exists(folderPath)) 
+            if (!Directory.Exists(folderPath))
                 Directory.CreateDirectory(folderPath);
 
             var filePath = Path.Combine(folderPath, fileName);
@@ -134,28 +183,52 @@
             using var fileStream = new FileStream(filePath, FileMode.Create);
             await stream.CopyToAsync(fileStream);
 
-            newLecture.ImagePath = $"/uploads/{fileName}";
+            currentLecture.ImagePath = $"/uploads/{fileName}";
         }
     }
-    private async Task HandleAddLecture()
+
+    private async Task HandleSaveLecture()
     {
-        newLecture.Content = await QuillHtml.GetHtml();
+        currentLecture.Content = await QuillHtml.GetHtml();
 
-        await LectureService.AddLectureAsync(newLecture);
-        newLecture = new();
+        if (isEditing)
+        {
+            await LectureService.UpdateLectureAsync(currentLecture);
+            isEditing = false;
+        }
+        else
+        {
+            currentLecture.AuthorId = currentUserId;
+            await LectureService.AddLectureAsync(currentLecture);
+        }
+
+        currentLecture = new();
         await QuillHtml.LoadHtmlContent("");
-
         await LoadLectures();
     }
-    private async Task UploadFile(IBrowserFile file)
+
+    private async Task StartEdit(Lecture lecture)
     {
-        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
-        var folderPath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads");
-        if(Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-        var filePath = Path.Combine(folderPath, fileName);
-        using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 5);
-        using var fileStream = new FileStream(filePath, FileMode.Create);
-        await stream.CopyToAsync(fileStream);
-        newLecture.ImagePath = $"/uploads/{fileName}";
+        // Делаем копию ссылки на лекцию для формы
+        currentLecture = lecture;
+        isEditing = true;
+
+        if (QuillHtml != null)
+        {
+            await QuillHtml.LoadHtmlContent(currentLecture.Content ?? "");
+        }
+    }
+
+    private async Task CancelEditing()
+    {
+        currentLecture = new();
+        isEditing = false;
+        await QuillHtml.LoadHtmlContent("");
+    }
+
+    private async Task DeleteLecture(int id)
+    {
+        await LectureService.DeleteLectureAsync(id);
+        await LoadLectures();
     }
 }

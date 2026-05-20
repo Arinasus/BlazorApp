@@ -89,37 +89,36 @@
             Name = u.UserName ?? "Пользователь"
         }).ToList();
 
-        // 2. ФОКУС ДЛЯ ТЕСТОВ: Если переписок вообще нет, выводим людей для старта диалога
+        // 2. Если переписок еще нет — помогаем начать диалог с кем угодно
         if (!chatPartners.Any())
         {
             if (user.IsInRole("Therapist"))
             {
-                // Если ты ЛОГОПЕД, выводим в список потенциальных КЛИЕНТОВ для теста.
-                // Ищем пользователей, у которых в таблице AspNetUserRoles стоит роль Client.
-                // Если связи сложны, временно выведем просто первых 5 пользователей из базы для теста:
-                var testClients = await db.Users
+                // Специалист видит список потенциальных клиентов/пользователей для связи
+                // Исключаем самого себя из списка
+                var availableUsers = await db.Users
                     .Where(u => u.Id != currentUserId)
-                    .Take(5)
+                    .Take(10)
                     .ToListAsync();
 
-                chatPartners = testClients.Select(u => new UserDto
+                chatPartners = availableUsers.Select(u => new UserDto
                 {
                     Id = u.Id,
-                    Name = u.UserName + " (Тестовый клиент)"
+                    Name = u.UserName ?? "Пользователь"
                 }).ToList();
             }
             else
             {
-                // Если зашел КЛИЕНТ, выводим ему список врачей
-                var testTherapists = await db.Users
+                // Обычный клиент видит список специалистов
+                var availableTherapists = await db.Users
                     .Where(u => u.Id != currentUserId)
-                    .Take(5)
+                    .Take(10)
                     .ToListAsync();
 
-                chatPartners = testTherapists.Select(u => new UserDto
+                chatPartners = availableTherapists.Select(u => new UserDto
                 {
                     Id = u.Id,
-                    Name = u.UserName + " (Тестовый специалист)"
+                    Name = u.UserName ?? "Специалист"
                 }).ToList();
             }
         }

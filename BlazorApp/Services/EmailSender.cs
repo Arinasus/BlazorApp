@@ -26,7 +26,7 @@ namespace BlazorApp.Services
 
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress(mailSettings["SenderEmail"], mailSettings["SenderName"]),
+                    From = new MailAddress(mailSettings["SenderEmail"], "BlazorAppSupport"),
                     Subject = subject,
                     Body = htmlMessage,
                     IsBodyHtml = true
@@ -52,7 +52,14 @@ namespace BlazorApp.Services
 
             await SendEmailAsync(email, subject, message);
         }
+        // Этот метод Identity вызывает автоматически при входе пользователя, если включена 2FA!
+        public Task SendTwoFactorCodeAsync(ApplicationUser user, string email, string twoFactorCode)
+        {
+            string subject = "Код подтверждения входа (2FA)";
+            string message = $" Ваш одноразовый код для входа в систему: <strong>{twoFactorCode}</strong>. Никому не сообщайте его.";
 
+            return SendEmailAsync(email, subject, message);
+        }
         // Реализуем остальные методы интерфейса (можно оставить пустыми или добавить логику позже)
         public Task SendPasswordResetLinkAsync(ApplicationUser user, string email, string resetLink) =>
             SendEmailAsync(email, "Сброс пароля", $"Для сброса пароля перейдите по <a href='{resetLink}'>ссылке</a>.");

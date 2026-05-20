@@ -5,15 +5,14 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using System.Security.Claims;
 
 namespace BlazorApp.Components.Account
 {
-    // This is a server-side AuthenticationStateProvider that revalidates the security stamp for the connected user
-    // every 30 minutes an interactive circuit is connected. It also uses PersistentComponentState to flow the
-    // authentication state to the client which is then fixed for the lifetime of the WebAssembly application.
+
     internal sealed class PersistingRevalidatingAuthenticationStateProvider : RevalidatingServerAuthenticationStateProvider
     {
         private readonly IServiceScopeFactory scopeFactory;
@@ -88,6 +87,7 @@ namespace BlazorApp.Components.Account
             {
                 var userId = principal.FindFirst(options.ClaimsIdentity.UserIdClaimType)?.Value;
                 var email = principal.FindFirst(options.ClaimsIdentity.EmailClaimType)?.Value;
+                var userName = principal.Identity.Name;
 
                 if (userId != null && email != null)
                 {
@@ -95,6 +95,7 @@ namespace BlazorApp.Components.Account
                     {
                         UserId = userId,
                         Email = email,
+                        UserName = userName ?? string.Empty
                     });
                 }
             }

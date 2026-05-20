@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
 @using Microsoft.Extensions.Localization
+@using System.Text.RegularExpressions
 
 @inject IStringLocalizer<Index> L
 @inject UserManager<ApplicationUser> UserManager
@@ -21,10 +22,13 @@
         <EditForm Model="Input" FormName="profile" OnValidSubmit="OnValidSubmitAsync" method="post">
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
+
             <div class="form-floating mb-3">
-                <input type="text" value="@username" class="form-control" placeholder="@L["ChooseUsername"]" disabled />
-                <label for="username" class="form-label">@L["Username"]</label>
+                <InputText @bind-Value="Input.UserName" class="form-control" placeholder="Выберите имя пользователя" />
+                <label for="username" class="form-label">Имя пользователя (только английские буквы)</label>
+                <ValidationMessage For="() => Input.UserName" class="text-danger" />
             </div>
+
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
                 <label for="phone-number" class="form-label">@L["PhoneNumber"]</label>
@@ -52,27 +56,74 @@
         username = await UserManager.GetUserNameAsync(user);
         phoneNumber = await UserManager.GetPhoneNumberAsync(user);
 
+        Input.UserName ??= username;
         Input.PhoneNumber ??= phoneNumber;
     }
 
     private async Task OnValidSubmitAsync()
     {
+        bool isChanged = false;
+
+        // Сохраняем измененный UserName
+        if (Input.UserName != username)
+        {
+            var setUsernameResult = await UserManager.SetUserNameAsync(user, Input.UserName);
+            if (!setUsernameResult.Succeeded)
+            {
+                // Переводим системные ошибки ASP.NET Identity на русский язык
+                var errorMessages = new List<string>();
+                foreach (var error in setUsernameResult.Errors)
+                {
+                    if (error.Code == "DuplicateUserName")
+                    {
+                        errorMessages.Add("Ошибка: Это имя пользователя уже занято другим человеком.");
+                    }
+                    else if (error.Code == "InvalidUserName")
+                    {
+                        errorMessages.Add("Ошибка: Имя пользователя содержит недопустимые символы.");
+                    }
+                    else
+                    {
+                        errorMessages.Add($"Ошибка: {error.Description}");
+                    }
+                }
+
+                string summaryError = string.Join(" ", errorMessages);
+                RedirectManager.RedirectToCurrentPageWithStatus($"Error: {summaryError}", HttpContext);
+                return;
+            }
+            isChanged = true;
+        }
+
+        // Сохраняем телефон
         if (Input.PhoneNumber != phoneNumber)
         {
             var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
             if (!setPhoneResult.Succeeded)
             {
-                RedirectManager.RedirectToCurrentPageWithStatus("Error: Failed to set phone number.", HttpContext);
+                RedirectManager.RedirectToCurrentPageWithStatus("Error: Не удалось сохранить номер телефона.", HttpContext);
+                return;
             }
+            isChanged = true;
         }
 
-        await SignInManager.RefreshSignInAsync(user);
-        RedirectManager.RedirectToCurrentPageWithStatus("Your profile has been updated", HttpContext);
+        if (isChanged)
+        {
+            await SignInManager.RefreshSignInAsync(user);
+            RedirectManager.RedirectToCurrentPageWithStatus("Профиль успешно обновлен!", HttpContext);
+        }
     }
 
     private sealed class InputModel
     {
-        [Phone]
+        [Required(ErrorMessage = "Пожалуйста, введите имя пользователя")]
+        [StringLength(50, ErrorMessage = "Имя пользователя слишком длинное")]
+        // РЕГУЛЯРНОЕ ВЫРАЖЕНИЕ: Разрешает только латинские буквы (a-z, A-Z), цифры (0-9) и знаки подчеркивания/точки
+        [RegularExpression(@"^[a-zA-Z0-9._]+$", ErrorMessage = "Разрешены только английские буквы, цифры, точки и нижнее подчеркивание.")]
+        [Display(Name = "Имя пользователя")]
+        public string? UserName { get; set; }
+
+        [Phone(ErrorMessage = "Неверный формат номера телефона")]
         [Display(Name = "Phone number")]
         public string? PhoneNumber { get; set; }
     }

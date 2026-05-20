@@ -3,18 +3,22 @@
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
+@using BlazorApp.Services @* 1. Подключаем твои сервисы *@
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<LoginWith2fa> Logger
+@inject EmailSender EmailSender 
 
-<PageTitle>Two-factor authentication</PageTitle>
+<PageTitle>Двухэтапная аутентификация</PageTitle>
 
-<h1>Two-factor authentication</h1>
+<h1>Двухэтапная аутентификация</h1>
 <hr />
 <StatusMessage Message="@message" />
-<p>Your login is protected with an authenticator app. Enter your authenticator code below.</p>
+
+<p class="text-info"><strong>Ваш аккаунт защищен.</strong> Одноразовый 6-значный код подтверждения уже отправлен на вашу электронную почту. Пожалуйста, введите его ниже.</p>
+
 <div class="row">
     <div class="col-md-4">
         <EditForm Model="Input" FormName="login-with-2fa" OnValidSubmit="OnValidSubmitAsync" method="post">
@@ -22,27 +26,26 @@
             <input type="hidden" name="RememberMe" value="@RememberMe" />
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
+            
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.TwoFactorCode" class="form-control" autocomplete="off" />
-                <label for="two-factor-code" class="form-label">Authenticator code</label>
+                <label for="two-factor-code" class="form-label">Код подтверждения из письма</label>
                 <ValidationMessage For="() => Input.TwoFactorCode" class="text-danger" />
             </div>
+            
             <div class="checkbox mb-3">
                 <label for="remember-machine" class="form-label">
                     <InputCheckbox @bind-Value="Input.RememberMachine" />
-                    Remember this machine
+                    Запомнить это устройство
                 </label>
             </div>
+            
             <div>
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">Войти</button>
             </div>
         </EditForm>
     </div>
 </div>
-<p>
-    Don't have access to your authenticator device? You can
-    <a href="Account/LoginWithRecoveryCode?ReturnUrl=@ReturnUrl">log in with a recovery code</a>.
-</p>
 
 @code {
     private string? message;
@@ -59,43 +62,60 @@
 
     protected override async Task OnInitializedAsync()
     {
-        // Ensure the user has gone through the username & password screen first
-        user = await SignInManager.GetTwoFactorAuthenticationUserAsync() ??
-            throw new InvalidOperationException("Unable to load two-factor authentication user.");
+        // Гарантируем, что пользователь проходит двухфакторку
+        user = await SignInManager.GetTwoFactorAuthenticationUserAsync();
+
+        if (user is null)
+        {
+            RedirectManager.RedirectTo("Account/Login");
+            return;
+        }
+
+        // Автоматическая генерация и отправка кода при загрузке страницы
+        var code = await UserManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
+        var email = await UserManager.GetEmailAsync(user);
+
+        // Вызываем твой рабочий метод отправки
+        await EmailSender.SendTwoFactorCodeAsync(user, email!, code);
     }
 
     private async Task OnValidSubmitAsync()
     {
-        var authenticatorCode = Input.TwoFactorCode!.Replace(" ", string.Empty).Replace("-", string.Empty);
-        var result = await SignInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, RememberMe, Input.RememberMachine);
-        var userId = await UserManager.GetUserIdAsync(user);
+        var code = Input.TwoFactorCode!.Replace(" ", string.Empty).Replace("-", string.Empty);
+
+        // Проверяем код именно через Email-провайдер!
+        var result = await SignInManager.TwoFactorSignInAsync(TokenOptions.DefaultEmailProvider, code, RememberMe, Input.RememberMachine);
 
         if (result.Succeeded)
         {
-            Logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", userId);
+            var userId = await UserManager.GetUserIdAsync(user);
+            Logger.LogInformation("Пользователь с ID '{UserId}' успешно вошел с помощью 2FA через Email.", userId);
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.IsLockedOut)
         {
-            Logger.LogWarning("User with ID '{UserId}' account locked out.", userId);
+            var userId = await UserManager.GetUserIdAsync(user);
+            Logger.LogWarning("Аккаунт пользователя с ID '{UserId}' заблокирован.", userId);
             RedirectManager.RedirectTo("Account/Lockout");
         }
         else
         {
-            Logger.LogWarning("Invalid authenticator code entered for user with ID '{UserId}'.", userId);
-            message = "Error: Invalid authenticator code.";
+            Logger.LogWarning("Введен неверный код 2FA.");
+            // ИСПРАВЛЕНО: Заменили 'StatusMessage' на переменную 'message'
+            message = "Ошибка: Неверный код подтверждения из письма.";
         }
     }
 
+    // ИСПРАВЛЕНО: Убрана лишняя скобка перед классом модели, теперь всё внутри одного контекста @code
     private sealed class InputModel
     {
-        [Required]
-        [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Поле обязательно для заполнения.")]
+        [StringLength(7, ErrorMessage = "Код должен состоять из 6 символов.", MinimumLength = 6)]
         [DataType(DataType.Text)]
-        [Display(Name = "Authenticator code")]
+        [Display(Name = "Код подтверждения")]
         public string? TwoFactorCode { get; set; }
 
-        [Display(Name = "Remember this machine")]
+        [Display(Name = "Запомнить это устройство")]
         public bool RememberMachine { get; set; }
     }
 }

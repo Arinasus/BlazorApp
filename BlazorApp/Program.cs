@@ -1,4 +1,3 @@
-using BlazorApp.Client.Pages;
 using BlazorApp.Components;
 using BlazorApp.Components.Account;
 using BlazorApp.Data;
@@ -71,7 +70,7 @@ builder.Services.AddTransient<IDiaryService, DiaryService>();
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddTransient<IEmailSender<ApplicationUser>, EmailSender>();
-
+builder.Services.AddScoped<BlazorApp.Services.EmailSender>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
