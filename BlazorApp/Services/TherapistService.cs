@@ -58,14 +58,28 @@ namespace BlazorApp.Services
 
             if (existing != null)
             {
+                // 1. Сохраняем текущий статус одобрения и дату из базы данных, чтобы они не потерялись
+                var currentApprovedStatus = existing.IsApproved;
+                var currentCreatedAt = existing.CreatedAt;
+
+                // 2. Копируем все новые значения из формы (ФИО, формат работы, телефон и т.д.)
                 _context.Entry(existing).CurrentValues.SetValues(profile);
+
+                // 3. Возвращаем оригинальный статус модерации и дату обратно объекту
+                existing.IsApproved = currentApprovedStatus;
+                existing.CreatedAt = currentCreatedAt;
             }
             else
             {
+                // Если профиля вообще не было (первое создание через настройки),
+                // отправляем на модерацию и ставим текущую дату
+                profile.IsApproved = false;
+                profile.CreatedAt = DateTime.UtcNow;
                 _context.TherapistProfiles.Add(profile);
             }
+
             var affectedRows = await _context.SaveChangesAsync();
-            Console.WriteLine($"DB UPDATE: Изменено строк: {affectedRows}");
+            Console.WriteLine($"DB UPDATE: Профиль обновлен. Изменено строк: {affectedRows}. Статус IsApproved: {existing?.IsApproved}");
         }
         public async Task<List<TherapistProfile>> GetApprovedProfilesAsync()
         {

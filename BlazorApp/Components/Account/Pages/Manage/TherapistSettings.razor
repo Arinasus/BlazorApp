@@ -1,0 +1,225 @@
+﻿@page "/Account/Manage/TherapistSettings"
+@using BlazorApp.Shared.Models
+@using BlazorApp.Shared.Interfaces
+@using Microsoft.AspNetCore.Identity
+@using BlazorApp.Data
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+
+@attribute [Authorize(Roles = "Therapist")]
+
+@inject ITherapistService TherapistService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject UserManager<ApplicationUser> UserManager
+@inject IWebHostEnvironment Environment
+@inject IStringLocalizer<BecomeTherapist> L
+
+<h3 class="text-coral fw-bold mb-4">@L["SettingsTitle"]</h3>
+
+<EditForm Model="profile" OnValidSubmit="HandleValidSubmit" class="row g-3" FormName="TherapistProfileForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger small" />
+
+    <InputNumber @bind-Value="profile.Id" hidden />
+    <InputText @bind-Value="profile.UserId" hidden />
+    <InputText @bind-Value="profile.ImageUrl" hidden />
+
+    @* Секция Фото *@
+    <div class="col-md-12 d-flex align-items-center gap-4 mb-3">
+        <div class="position-relative">
+            <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
+                 class="rounded-circle border shadow-sm"
+                 style="width: 120px; height: 120px; object-fit: cover;" />
+        </div>
+        <div class="flex-grow-1" style="max-width: 300px;">
+            <label class="form-label fw-bold">@L["ProfilePhoto"]</label>
+            <InputFile OnChange="LoadFiles" class="form-control form-control-sm" accept=".jpg,.jpeg,.png" />
+            <div class="form-text">@L["PhotoHint"]</div>
+        </div>
+    </div>
+
+    @* Блок ФИО *@
+    <div class="col-md-4">
+        <label class="form-label fw-bold">@L["LastName"]</label>
+        <InputText @bind-Value="profile.LastName" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label fw-bold">@L["FirstName"]</label>
+        <InputText @bind-Value="profile.FirstName" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label fw-bold">@L["MiddleName"]</label>
+        <InputText @bind-Value="profile.MiddleName" class="form-control" />
+    </div>
+
+    @* Основные проф. данные *@
+    <div class="col-md-6">
+        <label class="form-label fw-bold">@L["Specialization"]</label>
+        <InputText @bind-Value="profile.Specialization" class="form-control" />
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label fw-bold">@L["Experience"]</label>
+        <InputNumber @bind-Value="profile.ExperienceYears" class="form-control" />
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label fw-bold">@L["Price"] (<i class="nbrb-icon">BYN</i>)</label>
+        <InputNumber @bind-Value="profile.PricePerHour" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label fw-bold">@L["WorkFormat"]</label>
+
+        <InputSelect @bind-Value="profile.WorkFormat" @bind-Value:after="OnWorkFormatUpdated" class="form-select">
+            <option value="Online">@L["FormatOnline"]</option>
+            <option value="Offline">@L["FormatOffline"]</option>
+            <option value="Hybrid">@L["FormatHybrid"]</option>
+        </InputSelect>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label fw-bold">@L["Phone"]</label>
+        <InputText @bind-Value="profile.Phone" class="form-control" placeholder="+375..." />
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label fw-bold">@L["City"]</label>
+        <InputText @bind-Value="profile.City" class="form-control" />
+    </div>
+
+    @* Умное скрытие адреса: если онлайн, адрес прячется *@
+    @if (profile.WorkFormat != "Online")
+    {
+        <div class="col-md-12 animate-fade">
+            <label class="form-label fw-bold">@L["Address"]</label>
+            <InputText @bind-Value="profile.Address" class="form-control" placeholder="@L["AddressPlaceholder"]" />
+        </div>
+    }
+
+    <div class="col-md-12">
+        <label class="form-label fw-bold">@L["Education"]</label>
+        <InputTextArea @bind-Value="profile.Education" class="form-control" rows="2" />
+    </div>
+
+    <div class="col-md-12">
+        <label class="form-label fw-bold">@L["FullBio"]</label>
+        <InputTextArea @bind-Value="profile.FullBio" class="form-control" rows="5" />
+    </div>
+
+    <div class="col-md-12">
+        <label class="form-label fw-bold">@L["ShortDescription"]</label>
+        <InputText @bind-Value="profile.ShortDescription" class="form-control" />
+    </div>
+
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary rounded-pill px-5 shadow-sm">@L["SaveButton"]</button>
+        @if (showSuccessMessage)
+        {
+            <span class="text-success ms-3 animate-fade">
+                <i class="bi bi-check-circle-fill"></i> @L["SavedSuccess"]
+            </span>
+        }
+    </div>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private TherapistProfile profile { get; set; } = new();
+
+    private bool showSuccessMessage = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = await UserManager.GetUserAsync(authState.User);
+
+        if (user != null)
+        {
+            if (profile.Id == 0)
+            {
+                var existingProfile = await TherapistService.GetProfileByUserId(user.Id);
+                if (existingProfile != null)
+                {
+                    profile = existingProfile;
+                }
+                else
+                {
+                    profile.UserId = user.Id;
+                    profile.WorkFormat = "Online"; // Дефолтное значение
+                }
+            }
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        profile.City = string.IsNullOrWhiteSpace(profile.City) ? null : profile.City;
+        profile.Phone = string.IsNullOrWhiteSpace(profile.Phone) ? null : profile.Phone;
+
+        // Если выбран онлайн-режим, принудительно очищаем адрес перед сохранением
+        if (profile.WorkFormat == "Online")
+        {
+            profile.Address = null;
+        }
+        else
+        {
+            profile.Address = string.IsNullOrWhiteSpace(profile.Address) ? null : profile.Address;
+        }
+
+        profile.ShortDescription ??= string.Empty;
+        profile.FullBio ??= string.Empty;
+        profile.Education ??= string.Empty;
+        profile.WorkFormat ??= "Online";
+        profile.Specialization ??= "Логопед";
+
+        await TherapistService.UpdateProfile(profile);
+
+        showSuccessMessage = true;
+        StateHasChanged();
+
+        await Task.Delay(3000);
+        showSuccessMessage = false;
+        StateHasChanged();
+    }
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            try
+            {
+                var fileName = $"{Guid.NewGuid()}_{file.Name}";
+                var uploadsPath = Path.Combine(Environment.WebRootPath, "uploads", "avatars");
+
+                if (!Directory.Exists(uploadsPath))
+                    Directory.CreateDirectory(uploadsPath);
+
+                var fullPath = Path.Combine(uploadsPath, fileName);
+
+                using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 2);
+                using var fileStream = new FileStream(fullPath, FileMode.Create);
+                await stream.CopyToAsync(fileStream);
+
+                profile.ImageUrl = $"/uploads/avatars/{fileName}";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при загрузке: {ex.Message}");
+            }
+        }
+    }
+    // Удаляем старый OnWorkFormatChanged(ChangeEventArgs e) и вставляем этот:
+    private void OnWorkFormatUpdated()
+    {
+        // Если пользователь выбрал Онлайн, можно сразу почистить адрес на экране
+        if (profile.WorkFormat == "Online")
+        {
+            profile.Address = null;
+        }
+
+        // Мгновенно обновляем интерфейс, чтобы показать/скрыть поле адреса
+        StateHasChanged();
+    }
+}

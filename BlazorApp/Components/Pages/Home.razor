@@ -1,31 +1,32 @@
 ﻿@page "/"
 @using BlazorApp.Client.Pages
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Home> L
 
-<PageTitle>Речевик — Центр развития речи</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
 <div class="home-hero animate__animated animate__fadeIn">
     <div class="container">
         <div class="row align-items-center min-vh-75">
             <div class="col-lg-6">
                 <h1 class="display-3 fw-bold mb-4">
-                    Развиваем <span class="text-primary">речь</span> играя и с любовью
+                    @L["HeroTitle1"] <span class="text-primary">@L["HeroTitle2"]</span> @L["HeroTitle3"]
                 </h1>
                 <p class="lead text-muted mb-5">
-                    Онлайн-платформа для занятий с логопедом. Индивидуальный подход,
-                    профессиональные методики и видимый результат уже после первых занятий.
+                    @L["HeroSubtitle"]
                 </p>
                 <div class="d-flex gap-3">
                     <a href="Account/Register" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
-                        Начать бесплатно
+                        @L["BtnStartFree"]
                     </a>
                     <a href="lectures" class="btn btn-outline-secondary btn-lg px-5 py-3 rounded-pill">
-                        Узнать больше
+                        @L["BtnLearnMore"]
                     </a>
                 </div>
             </div>
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="hero-img-wrapper">
-                    <img src="/images/therapist_kids.png" alt="Дети занимаются" class="img-fluid floating-anim" />
+                    <img src="/images/therapist_kids.png" alt="@L["ImgAltKids"]" class="img-fluid floating-anim" />
                 </div>
             </div>
         </div>
@@ -37,25 +38,24 @@
 
         <AuthorizeView Roles="Therapist" Context="therapistContext">
             <Authorized>
-
+                @* Пустой блок оставлен как в исходном коде *@
             </Authorized>
             <NotAuthorized>
                 <div class="promo-card p-5 rounded-5 shadow-sm">
-                    <h2 class="fw-bold mb-3">Вы профессиональный <span class="text-secondary-custom">логопед</span>?</h2>
+                    <h2 class="fw-bold mb-3">@L["PromoTitle1"] <span class="text-secondary-custom">@L["PromoTitle2"]</span>?</h2>
                     <p class="lead text-muted mb-4 mx-auto" style="max-width: 700px;">
-                        Присоединяйтесь к сообществу «Речевик». Публикуйте свои лекции,
-                        помогайте родителям и находите новых учеников.
+                        @L["PromoSubtitle"]
                     </p>
 
                     <AuthorizeView Context="authContext">
                         <Authorized>
                             <a href="become-therapist" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm">
-                                Стать специалистом
+                                @L["BtnBecomeExpert"]
                             </a>
                         </Authorized>
                         <NotAuthorized>
                             <a href="Account/Login" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm">
-                                Подать заявку
+                                @L["BtnApply"]
                             </a>
                         </NotAuthorized>
                     </AuthorizeView>
@@ -64,17 +64,18 @@
         </AuthorizeView>
     </div>
 </section>
+
 <section class="support-contact py-5 bg-light">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
                 <div class="support-box p-4">
-                    <h3 class="fw-bold mb-3">Остались вопросы?</h3>
+                    <h3 class="fw-bold mb-3">@L["SupportTitle"]</h3>
                     <p class="text-muted mb-4">
-                        Если у вас возникли трудности с использованием платформы или вы хотите внести предложение — наша поддержка всегда на связи.
+                        @L["SupportSubtitle"]
                     </p>
                     <a href="support" class="btn btn-outline-primary rounded-pill px-4 py-2">
-                        <i class="bi bi-chat-dots me-2"></i>Связаться с нами
+                        <i class="bi bi-chat-dots me-2"></i>@L["BtnContactUs"]
                     </a>
                 </div>
             </div>

@@ -117,79 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title" xml:space="preserve">
-    <value>Become Therapist</value>
+  <data name="ChangeSettings" xml:space="preserve">
+    <value>Изменение настроек вашей учетной записи</value>
   </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
-  </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="MiddleName" xml:space="preserve">
-    <value>Middle Name</value>
-  </data>
-  <data name="ProfilePhoto" xml:space="preserve">
-    <value>Profile Photo</value>
-  </data>
-  <data name="PhotoHint" xml:space="preserve">
-    <value>Supports JPG, PNG, PDF.</value>
-  </data>
-  <data name="Specialization" xml:space="preserve">
-    <value>Specialization</value>
-  </data>
-  <data name="SpecPlaceholder" xml:space="preserve">
-    <value>Speech therapist</value>
-  </data>
-  <data name="Experience" xml:space="preserve">
-    <value>Experience (years)</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Price per hour</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="Address" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="AddressPlaceholder" xml:space="preserve">
-    <value>103 Pobediteley Ave</value>
-  </data>
-  <data name="Education" xml:space="preserve">
-    <value>Education</value>
-  </data>
-  <data name="FullBio" xml:space="preserve">
-    <value>About Me</value>
-  </data>
-  <data name="WorkFormat" xml:space="preserve">
-    <value>Work Format</value>
-  </data>
-  <data name="SaveButton" xml:space="preserve">
-    <value>Save Changes</value>
-  </data>
-  <data name="Saved" xml:space="preserve">
-    <value>Saved!</value>
-  </data>
-  <data name="SubmitButton" xml:space="preserve">
-    <value>Submit</value>
-  </data>
-  <data name="FormatOnline" xml:space="preserve">
-    <value>Online</value>
-  </data>
-  <data name="FormatOffline" xml:space="preserve">
-    <value>In-person (Offline)</value>
-  </data>
-  <data name="FormatHybrid" xml:space="preserve">
-    <value>Hybrid</value>
-  </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>Specialist Profile Settings</value>
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="ShortDescription" xml:space="preserve">
-    <value>Brief description</value>
+  <data name="ManageAccount" xml:space="preserve">
+    <value>Управление аккаунтом</value>
   </data>
 </root>

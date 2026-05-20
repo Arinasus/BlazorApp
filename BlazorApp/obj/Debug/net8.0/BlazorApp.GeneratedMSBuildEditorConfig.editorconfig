@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXENvbmZpcm1FbWFpbENoYW5nZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Diary.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXERpYXJ5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/ExternalLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEV4dGVybmFsTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -126,6 +130,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxUaGVyYXBpc3REaWFyeS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Manage/TherapistSettings.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxUaGVyYXBpc3RTZXR0aW5ncy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Diplom/BlazorApp/BlazorApp/Components/Account/Pages/Manage/TwoFactorAuthentication.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxUd29GYWN0b3JBdXRoZW50aWNhdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -184,6 +192,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Diplom/BlazorApp/BlazorApp/Components/Layout/CultureSelector.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcQ3VsdHVyZVNlbGVjdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Diplom/BlazorApp/BlazorApp/Components/Pages/Chat.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Diplom/BlazorApp/BlazorApp/Components/Pages/Chats.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Diplom/BlazorApp/BlazorApp/Components/Pages/Error.razor]

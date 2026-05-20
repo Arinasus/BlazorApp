@@ -183,4 +183,13 @@
   <data name="FormatHybrid" xml:space="preserve">
     <value>Гибрид (онлайн и очно)</value>
   </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Настройки профиля специалиста</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>Краткое описание</value>
+  </data>
 </root>

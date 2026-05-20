@@ -166,7 +166,7 @@
     <value>Saved!</value>
   </data>
   <data name="ShortDescription" xml:space="preserve">
-    <value>Краткое описани</value>
+    <value>Brief description</value>
   </data>
   <data name="Specialization" xml:space="preserve">
     <value>Specialization</value>
@@ -179,5 +179,14 @@
   </data>
   <data name="WorkFormat" xml:space="preserve">
     <value>Work Format</value>
+  </data>
+  <data name="FormatHybrid" xml:space="preserve">
+    <value>hybrid</value>
+  </data>
+  <data name="FormatOnline" xml:space="preserve">
+    <value>online</value>
+  </data>
+  <data name="FormatOffline" xml:space="preserve">
+    <value>offline</value>
   </data>
 </root>
