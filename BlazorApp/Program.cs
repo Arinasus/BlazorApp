@@ -13,13 +13,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+// 1. Обычный контекст для Identity (по умолчанию Scoped)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
+
+// 2. ИСПРАВЛЕННАЯ Фабрика контекстов (теперь тоже Scoped)
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString),
+    ServiceLifetime.Scoped); // <- Добавили этот параметр
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = true; 
+    options.SignIn.RequireConfirmedAccount = true;
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -41,20 +48,26 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
+
+// Локализация
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-var supportedCultures = new[] { "ru-RU", "en-US" };
+var supportedCultures = new[] { "ru", "en" };
 var localizationOptions = new RequestLocalizationOptions()
-    .SetDefaultCulture(supportedCultures[0]) 
+    .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
     .AddSupportedUICultures(supportedCultures);
 
+// Регистрация сервисов приложения
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
 builder.Services.AddScoped<IChildService, ChildrenService>();
 builder.Services.AddScoped<ILectureService, LectureService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
+builder.Services.AddControllers();
+// НОВОЕ: Регистрация твоего изолированного сервиса для Дневника
+builder.Services.AddTransient<IDiaryService, DiaryService>();
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddTransient<IEmailSender<ApplicationUser>, EmailSender>();
@@ -66,6 +79,8 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     await DbInitializer.SeedRolesAsync(services);
 }
+
+// Передаем настройки локализации в конвейер обработки запросов
 app.UseRequestLocalization(localizationOptions);
 
 if (app.Environment.IsDevelopment())
@@ -82,6 +97,8 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.MapControllers();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()

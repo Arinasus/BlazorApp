@@ -70,8 +70,22 @@ namespace BlazorApp.Services
         public async Task<List<TherapistProfile>> GetApprovedProfilesAsync()
         {
             return await _context.TherapistProfiles
-                .Include(p => p.Reviews) 
+                .Include(p => p.Reviews)
                 .Where(p => p.IsApproved)
+                .Select(p => new TherapistProfile
+                {
+                    Id = p.Id,
+                    UserId = p.UserId,
+                    FirstName = p.FirstName ?? "",
+                    LastName = p.LastName ?? "",
+                    MiddleName = p.MiddleName ?? "",
+                    Specialization = p.Specialization ?? "",
+                    ShortDescription = p.ShortDescription ?? "",
+                    WorkFormat = p.WorkFormat ?? "Online",
+                    ImageUrl = p.ImageUrl ?? "/img/default-avatar.png",
+                    PricePerHour = p.PricePerHour,
+                    Reviews = p.Reviews
+                })
                 .ToListAsync();
         }
         public async Task<List<TherapistReview>> GetReviewsByTherapistIdAsync(int therapistProfileId)

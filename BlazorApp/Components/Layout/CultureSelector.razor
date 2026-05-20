@@ -1,0 +1,46 @@
+﻿@inject NavigationManager NavigationManager
+@using System.Globalization
+
+<div class="dropdown">
+    <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+        <i class="bi bi-globe"></i>
+        <span>@CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToUpper()</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+        <li>
+            <button type="button"
+                    class="dropdown-item @(CultureInfo.CurrentCulture.Name.StartsWith("ru", StringComparison.OrdinalIgnoreCase) ? "active" : "")"
+                    @onclick='() => ChangeLanguage("ru")'>
+                Русский
+            </button>
+        </li>
+        <li>
+            <button type="button"
+                    class="dropdown-item @(CultureInfo.CurrentCulture.Name.StartsWith("en", StringComparison.OrdinalIgnoreCase) ? "active" : "")"
+                    @onclick='() => ChangeLanguage("en")'>
+                English
+            </button>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private void ChangeLanguage(string cultureName)
+    {
+        // 1. Берем текущий относительный путь (например, "admin/lectures" или "therapists")
+        var currentUri = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+
+        // 2. Формируем чистый URI для возврата
+        var redirectUri = string.IsNullOrEmpty(currentUri) ? "/" : $"/{currentUri}";
+
+        // 3. Собираем полный адрес для нашего контроллера
+        var cultureControllerUrl = $"/Culture/SetCulture?culture={cultureName}&redirectUri={Uri.EscapeDataString(redirectUri)}";
+
+        // 4. МИСТИКА ТУТ: forceLoad: true заставляет Blazor полностью перезагрузить страницу в браузере.
+        // Браузер честно идет на контроллер, контроллер меняет куку и возвращает пользователя ровно на redirectUri.
+        NavigationManager.NavigateTo(cultureControllerUrl, forceLoad: true);
+    }
+}

@@ -1,0 +1,355 @@
+﻿@page "/Account/Manage/TherapistDiary"
+@using BlazorApp.Data
+@using BlazorApp.Shared.DTOs
+@using BlazorApp.Shared.Interfaces
+@using BlazorApp.Shared.Models
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Identity
+
+@attribute [Authorize(Roles = "Therapist")]
+@inject IDiaryService DiaryService
+@inject ITherapistService TherapistService
+@inject AuthenticationStateProvider AuthStateProvider
+@inject UserManager<ApplicationUser> UserManager
+@inject IStringLocalizer<TherapistDiary> L
+@rendermode InteractiveServer
+
+<h3 class="text-coral fw-bold mb-4">
+    <i class="bi bi-journal-bookmark-fill me-2"></i>@L["DiaryTitle"]
+</h3>
+
+<div class="row animate-fade">
+    @* ЛЕВАЯ КОЛОНКА: ВЫБОР РЕБЕНКА И ФОРМА ЗАПИСИ *@
+    <div class="col-lg-4 mb-4">
+        @* СЕЛЕКТОР ДЛЯ ВЫБОРА ТЕКУЩЕГО КЛИЕНТА *@
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+            <h5 class="fw-bold text-dark mb-3"><i class="bi bi-person-lines-fill me-2 text-coral"></i>Текущий ученик</h5>
+            <label class="form-label small text-muted">Выберите ребенка для ведения дневника и просмотра истории занятий:</label>
+            <select class="form-select form-select-sm rounded-3 shadow-sm" @onchange="OnSelectedChildChanged">
+                <option value="0">-- Все ученики --</option>
+                @foreach (var child in connectedChildren)
+                {
+                    <option value="@child.ChildId">@child.ChildName (Родитель: @child.ParentEmail)</option>
+                }
+            </select>
+        </div>
+
+        @* ФОРМА СОЗДАНИЯ ЗАПИСИ *@
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-light">
+            <h5 class="fw-bold text-dark mb-3">@L["NewRecord"]</h5>
+            <EditForm Model="newLog" OnValidSubmit="SaveLog">
+                <DataAnnotationsValidator />
+
+                <div class="mb-2">
+                    <label class="form-label small fw-bold">@L["ChildName"]</label>
+                    <InputText @bind-Value="newLog.ChildName" class="form-control form-control-sm" placeholder="@L["ChildNamePlaceholder"]" />
+                    <ValidationMessage For="() => newLog.ChildName" class="text-danger small" />
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label small fw-bold">@L["SessionDate"]</label>
+                    <InputDate @bind-Value="newLog.SessionDate" class="form-control form-control-sm" />
+                    <ValidationMessage For="() => newLog.SessionDate" class="text-danger small" />
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label small fw-bold">@L["Topic"]</label>
+                    <InputText @bind-Value="newLog.Topic" class="form-control form-control-sm" placeholder="@L["TopicPlaceholder"]" />
+                    <ValidationMessage For="() => newLog.Topic" class="text-danger small" />
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label small fw-bold">@L["WorkDone"]</label>
+                    <InputTextArea @bind-Value="newLog.WorkDone" class="form-control form-control-sm" rows="3" placeholder="@L["WorkDonePlaceholder"]" />
+                    <ValidationMessage For="() => newLog.WorkDone" class="text-danger small" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">@L["Homework"]</label>
+                    <InputTextArea @bind-Value="newLog.Homework" class="form-control form-control-sm" rows="2" placeholder="@L["HomeworkPlaceholder"]" />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 rounded-pill btn-details fw-bold py-2">
+                    @L["BtnSave"]
+                </button>
+            </EditForm>
+        </div>
+    </div>
+
+    @* ПРАВАЯ КОЛОНКА: ИСТОРИЯ С ФИЛЬТРАЦИЕЙ *@
+    <div class="col-lg-8 mb-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4" style="min-height: 480px;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold text-dark mb-0">@L["HistoryTitle"]</h5>
+                @if (!string.IsNullOrEmpty(selectedChildName))
+                {
+                    <span class="badge bg-coral-light text-coral rounded-pill px-3 py-2 small">
+                        Фильтр: <b>@selectedChildName</b>
+                    </span>
+                }
+            </div>
+
+            @if (filteredLogs == null)
+            {
+                <p class="text-muted">@L["Loading"]</p>
+            }
+            else if (!filteredLogs.Any())
+            {
+                <div class="text-center py-5 text-muted">
+                    <i class="bi bi-folder-x display-4 text-secondary"></i>
+                    <p class="mt-2">@L["EmptyState"]</p>
+                </div>
+            }
+            else
+            {
+                <div class="timeline" style="max-height: 600px; overflow-y: auto; padding-right: 5px;">
+                    @foreach (var log in filteredLogs)
+                    {
+                        <div class="p-3 mb-3 border-start border-3 border-primary bg-white rounded-end shadow-sm animate-fade">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="fw-bold mb-0 text-dark">@L["Child"]: @log.ChildName</h6>
+                                <span class="badge bg-light text-secondary border rounded-pill small">
+                                    <i class="bi bi-calendar3 me-1"></i> @log.SessionDate.ToString("dd.MM.yyyy")
+                                </span>
+                            </div>
+                            <p class="mb-1 text-coral fw-semibold small">@L["TopicLabel"]: @log.Topic</p>
+                            <p class="mb-1 text-muted small"><strong>@L["WorkDoneLabel"]:</strong> @log.WorkDone</p>
+                            @if (!string.IsNullOrEmpty(log.Homework))
+                            {
+                                <p class="mb-0 text-success small bg-light p-2 rounded mt-2">
+                                    <i class="bi bi-house-door-fill me-1"></i> <strong>@L["HomeworkLabel"]:</strong> @log.Homework
+                                </p>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@* НИЖНИЙ БЛОК: УПРАВЛЕНИЕ СВЯЗЯМИ И СТАТУСЫ ПРИГЛАШЕНИЙ *@
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+            <h5 class="fw-bold text-dark mb-4">
+                <i class="bi bi-people-fill me-2 text-coral"></i>Работа с родителями и приглашения
+            </h5>
+
+            <div class="row g-4">
+                @* Форма отправки инвайта *@
+                <div class="col-md-5 border-end">
+                    <h6 class="fw-bold text-secondary mb-2">Подключить нового родителя</h6>
+                    <p class="text-muted small">Введите Email зарегистрированного родителя, чтобы отправить ему запрос на ведение дневника ребенка.</p>
+                    <div class="d-flex gap-2 mt-3">
+                        <input type="email" class="form-control form-control-sm" placeholder="parent@example.com" @bind="inviteEmail" />
+                        <button class="btn btn-primary btn-sm rounded-pill px-4 btn-details fw-bold text-nowrap" @onclick="SendParentInvite">
+                            Отправить запрос
+                        </button>
+                    </div>
+                    @if (!string.IsNullOrEmpty(inviteMessage))
+                    {
+                        <div class="alert alert-info py-2 px-3 small rounded-3 mt-3 mb-0 animate-fade">@inviteMessage</div>
+                    }
+                </div>
+
+                @* Мониторинг отправленных приглашений *@
+                <div class="col-md-7">
+                    <h6 class="fw-bold text-secondary mb-3">Статус отправленных запросов</h6>
+                    @if (myInvitations == null)
+                    {
+                        <p class="text-muted small">Загрузка запросов...</p>
+                    }
+                    else if (!myInvitations.Any())
+                    {
+                        <p class="text-muted small text-center py-3">Вы еще не отправляли запросы родителям.</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive" style="max-height: 180px; overflow-y: auto;">
+                            <table class="table table-sm table-hover align-middle small">
+                                <thead class="table-light sticky-top">
+                                    <tr>
+                                        <th>Email родителя</th>
+                                        <th>Дата отправки</th>
+                                        <th class="text-center">Статус</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var invite in myInvitations)
+                                    {
+                                        <tr>
+                                            <td>@invite.ParentEmail</td>
+                                            <td>@invite.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                            <td class="text-center">
+                                                @if (invite.IsAccepted)
+                                                {
+                                                    <span class="badge bg-success-light text-success rounded-pill px-2 py-1">Принято</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning-light text-warning rounded-pill px-2 py-1">Ожидает</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-coral {
+        color: #FF8A5B;
+    }
+
+    .bg-coral-light {
+        background-color: rgba(255, 138, 91, 0.15);
+    }
+
+    .btn-details {
+        background: #FF8A5B;
+        border: none;
+        color: white;
+    }
+
+        .btn-details:hover {
+            background: #e67a4e;
+        }
+
+    .border-primary {
+        border-color: #FF8A5B !important;
+    }
+
+    /* Кастомные стили для мягких цветов статусов */
+    .bg-success-light {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    .bg-warning-light {
+        background-color: rgba(255, 193, 7, 0.15);
+    }
+</style>
+
+@code {
+    private TherapyDiaryLogDto newLog = new() { SessionDate = DateTime.Today };
+    private List<TherapyDiaryLogDto> allDiaryLogs = new();
+    private List<TherapyDiaryLogDto> filteredLogs = new();
+
+    // Новые коллекции для управления списком детей и статусами инвайтов
+    private List<ChildConnectionDto> connectedChildren = new();
+    private List<InvitationStatusDto> myInvitations = new();
+
+    private TherapistProfile currentTherapist = new();
+    private string? selectedChildName;
+    private string inviteEmail = "";
+    private string inviteMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = await UserManager.GetUserAsync(authState.User);
+
+        if (user != null)
+        {
+            currentTherapist = await TherapistService.GetProfileByUserId(user.Id);
+            if (currentTherapist != null)
+            {
+                newLog.TherapistProfileId = currentTherapist.Id;
+
+                // Загружаем данные
+                await RefreshLogs();
+                await LoadConnectionsAndInvitations();
+            }
+        }
+    }
+
+    private async Task RefreshLogs()
+    {
+        allDiaryLogs = await DiaryService.GetLogsForTherapistAsync(currentTherapist.Id);
+        ApplyFilter();
+    }
+
+    private async Task LoadConnectionsAndInvitations()
+    {
+        // Вытягиваем подтвержденных детей для селектора
+        connectedChildren = await DiaryService.GetConnectedChildrenForTherapistAsync(currentTherapist.Id) ?? new();
+        // Вытягиваем историю всех отправленных инвайтов логопеда
+        myInvitations = await DiaryService.GetInvitationsByTherapistAsync(currentTherapist.Id) ?? new();
+    }
+
+    private void OnSelectedChildChanged(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out var childId) && childId > 0)
+        {
+            var selectedChild = connectedChildren.FirstOrDefault(c => c.ChildId == childId);
+            if (selectedChild != null)
+            {
+                selectedChildName = selectedChild.ChildName;
+
+                // Напрямую привязываем данные к нашей модели новой записи!
+                newLog.TargetChildId = childId;
+                newLog.ChildName = selectedChild.ChildName;
+            }
+        }
+        else
+        {
+            selectedChildName = null;
+            newLog.TargetChildId = 0;
+            newLog.ChildName = string.Empty;
+        }
+
+        ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        if (string.IsNullOrEmpty(selectedChildName))
+        {
+            filteredLogs = allDiaryLogs;
+        }
+        else
+        {
+            filteredLogs = allDiaryLogs.Where(l => l.ChildName == selectedChildName).ToList();
+        }
+    }
+
+    private async Task SaveLog()
+    {
+        var success = await DiaryService.AddDiaryLogAsync(newLog);
+        if (success)
+        {
+            // Очищаем форму, сохраняя привязку к выбранному ребенку, если он выбран
+            newLog = new TherapyDiaryLogDto
+            {
+                TherapistProfileId = currentTherapist.Id,
+                SessionDate = DateTime.Today,
+                ChildName = selectedChildName ?? string.Empty
+            };
+            await RefreshLogs();
+        }
+    }
+
+    private async Task SendParentInvite()
+    {
+        if (string.IsNullOrWhiteSpace(inviteEmail)) return;
+
+        var success = await DiaryService.SendInvitationAsync(currentTherapist.Id, inviteEmail);
+        if (success)
+        {
+            inviteMessage = "Приглашение успешно отправлено родителю!";
+            inviteEmail = "";
+            await LoadConnectionsAndInvitations(); // Сразу перечитываем таблицу статусов
+        }
+        else
+        {
+            inviteMessage = "Не удалось отправить запрос. Возможно, он уже существует или введен некорректный Email.";
+        }
+    }
+}

@@ -20,8 +20,9 @@
 
             <select class="form-select filter-select" @bind="selectedFormat" style="max-width: 200px;">
                 <option value="">@L["FormatAny"]</option>
-                <option value="Онлайн">@L["FormatOnline"]</option>
-                <option value="Очно">@L["FormatOffline"]</option>
+                <option value="Online">@L["FormatOnline"]</option>
+                <option value="Offline">@L["FormatOffline"]</option>
+                <option value="Hybrid">Гибридный</option>
             </select>
         </div>
     </div>
@@ -108,7 +109,7 @@
         }
 </style>
 
-@code {
+@code{
     private List<TherapistProfile> allTherapists = new();
     private string searchQuery = "";
     private string selectedFormat = "";
@@ -126,3 +127,4 @@
          t.FirstName.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) &&
         (string.IsNullOrEmpty(selectedFormat) || t.WorkFormat == selectedFormat));
 }
+        

@@ -488,7 +488,6 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Page
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Admin\AdminDashboard.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\Children.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Shared\ManageNavMenu.razor.rz.scp.css
-D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\TherapistsCatalog.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\TherapistDetails.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\BecomeTherapist.razor.rz.scp.css
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\LectureDetails.razor.rz.scp.css
@@ -535,3 +534,10 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Ac
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistProfile.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistsCatalog.en.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistsCatalog.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Home.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Home.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Recommended.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Recommended.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.TherapistDiary.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.TherapistDiary.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\scopedcss\Components\Account\Pages\TherapistsCatalog.razor.rz.scp.css

@@ -9,6 +9,14 @@ namespace BlazorApp.Shared.DTOs
 {
     public class RegisterTherapistDto
     {
+        [Required(ErrorMessage = "Введите фамилию")]
+        public string LastName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Введите имя")]
+        public string FirstName { get; set; } = string.Empty;
+
+        public string? MiddleName { get; set; }
+
         [Required(ErrorMessage = "Укажите специализацию")]
         public string Specialization { get; set; } = string.Empty;
 
@@ -20,5 +28,7 @@ namespace BlazorApp.Shared.DTOs
 
         [Range(1, 100000, ErrorMessage = "Укажите корректную цену")]
         public decimal PricePerHour { get; set; }
+
+        public List<string> CertificateUrls { get; set; } = new();
     }
 }

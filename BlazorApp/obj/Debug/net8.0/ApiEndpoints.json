@@ -85,5 +85,63 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "BlazorApp.Controllers.ChatApiController",
+    "Method": "GetMessageCount",
+    "RelativePath": "api/chat/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user1",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "user2",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BlazorApp.Controllers.ChatApiController",
+    "Method": "SendMessage",
+    "RelativePath": "api/chat/send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BlazorApp.Controllers.ChatMessageRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BlazorApp.Controllers.CultureController",
+    "Method": "SetCulture",
+    "RelativePath": "Culture/SetCulture",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "culture",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "redirectUri",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

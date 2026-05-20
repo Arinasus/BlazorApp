@@ -12,5 +12,10 @@ namespace BlazorApp.Shared.Interfaces
         Task CreateApplicationAsync(TherapistProfile profile);
         Task ApproveTherapistAsync(int profileId);
         Task<List<TherapistProfile>> GetPendingApplicationsAsync();
+        Task<TherapistProfile?> GetProfileByUserId(string userId);
+        Task UpdateProfile(TherapistProfile profile);
+        Task<List<TherapistProfile>> GetApprovedProfilesAsync();
+        Task<List<TherapistReview>> GetReviewsByTherapistIdAsync(int therapistProfileId);
+        Task<bool> AddReviewAsync(TherapistReview review);
     }
 }

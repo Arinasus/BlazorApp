@@ -11,5 +11,7 @@ namespace BlazorApp.Shared.Interfaces
     {
         Task<List<Child>> GetChildrenByParentIdAsync(string parentId);
         Task<bool> AddChildAsync(Child child);
+        Task<bool> UpdateChildAsync(Child child);
+        Task<bool> DeleteChildAsync(int id);
     }
 }
