@@ -840,7 +840,6 @@ main[b-qgsvw684bo] {
     }
 }
 /* /Components/Pages/Home.razor.rz.scp.css */
-/* Твои существующие стили остаются без изменений */
 .home-hero[b-7gt2111kuu] {
     background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F4 100%);
     padding: 60px 0;
@@ -860,14 +859,11 @@ main[b-qgsvw684bo] {
     background: transparent;
 }
 
-    .btn-outline-secondary:hover[b-7gt2111kuu] {
-        background: #6ECEDA !important;
-        color: white !important;
-    }
+.btn-outline-secondary:hover[b-7gt2111kuu] {
+    background: #6ECEDA !important;
+    color: white !important;
+}
 
-/* НОВЫЕ СТИЛИ ДЛЯ БЛОКА СПЕЦИАЛИСТОВ */
-
-/* Коралловая кнопка (основная) */
 .btn-primary[b-7gt2111kuu] {
     background-color: #FF6B6B !important;
     border: none !important;
@@ -875,32 +871,61 @@ main[b-qgsvw684bo] {
     transition: transform 0.2s;
 }
 
-    .btn-primary:hover[b-7gt2111kuu] {
-        transform: translateY(-3px);
-        opacity: 0.9;
-    }
+.btn-primary:hover[b-7gt2111kuu] {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
 
-/* Бирюзовый текст для акцента в блоке */
 .text-secondary-custom[b-7gt2111kuu] {
     color: #6ECEDA;
 }
 
-/* Карточка призыва */
 .promo-card[b-7gt2111kuu] {
     background: white;
-    border: 2px solid #FFF9F4; /* Легкий бежевый как в твоем градиенте */
+    border: 2px solid #FFF9F4; 
     position: relative;
     overflow: hidden;
 }
 
-    /* Декоративный элемент (бирюзовый круг) в углу карточки */
-    .promo-card[b-7gt2111kuu]::before {
-        content: '';
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        background: rgba(110, 206, 218, 0.05);
-        border-radius: 50%;
-        bottom: -100px;
-        right: -100px;
+.promo-card[b-7gt2111kuu]::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(110, 206, 218, 0.05);
+    border-radius: 50%;
+    bottom: -100px;
+    right: -100px;
+}
+
+.floating-anim[b-7gt2111kuu] {
+    animation: floatAnimation-b-7gt2111kuu 3s ease-in-out infinite;
+}
+
+@keyframes floatAnimation-b-7gt2111kuu {
+    0% {
+        transform: translateY(0px);
     }
+
+    50% {
+        transform: translateY(-15px); 
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.btn-outline-primary[b-7gt2111kuu] {
+    border: 2px solid var(--brand-coral) !important;
+    color: var(--brand-coral) !important;
+    background: transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-outline-primary:hover[b-7gt2111kuu] {
+    background-color: var(--brand-coral) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 138, 91, 0.25);
+}

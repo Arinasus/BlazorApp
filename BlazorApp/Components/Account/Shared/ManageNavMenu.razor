@@ -1,14 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
 @inject AuthenticationStateProvider AuthStateProvider
 @inject SignInManager<ApplicationUser> SignInManager
+@inject IStringLocalizer<ManageNavMenu> L
+
 <style>
-    .nav-pills .nav-link.active,
-    .nav-pills .show > .nav-link {
-        background-color: #FF8A5B !important; 
+    .nav-pills .nav-link.active {
+        background-color: #FF8A5B !important;
         color: white !important;
-        box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3) !important;
     }
 
     .nav-link {
@@ -20,34 +21,35 @@
             background-color: rgba(255, 138, 91, 0.1) !important;
         }
 </style>
+
 <ul class="nav nav-pills flex-column gap-1">
     <li class="nav-item">
         <NavLink class="nav-link rounded-3" href="Account/Manage" Match="NavLinkMatch.All">
-            <i class="bi bi-person me-2"></i>Профиль
+            <i class="bi bi-person me-2"></i>@L["Profile"]
         </NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link rounded-3" href="children">
-            <i class="bi bi-heart me-2"></i>Мои дети
+            <i class="bi bi-heart me-2"></i>@L["MyChildren"]
         </NavLink>
     </li>
 
     <AuthorizeView Roles="Therapist">
         <li class="nav-item">
             <NavLink class="nav-link rounded-3" href="Account/Manage/TherapistSettings">
-                <i class="bi bi-journal-check me-2"></i>Моя анкета
+                <i class="bi bi-journal-check me-2"></i>@L["MyProfile"]
             </NavLink>
         </li>
     </AuthorizeView>
 
     <li class="nav-item">
         <NavLink class="nav-link rounded-3" href="Account/Manage/Email">
-            <i class="bi bi-envelope me-2"></i>Email
+            <i class="bi bi-envelope me-2"></i>@L["Email"]
         </NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link rounded-3" href="Account/Manage/ChangePassword">
-            <i class="bi bi-key me-2"></i>Пароль
+            <i class="bi bi-key me-2"></i>@L["Password"]
         </NavLink>
     </li>
 
@@ -55,26 +57,25 @@
     {
         <li class="nav-item">
             <NavLink class="nav-link rounded-3" href="Account/Manage/ExternalLogins">
-                <i class="bi bi-shield-lock me-2"></i>Внешний вход
+                <i class="bi bi-shield-lock me-2"></i>@L["ExternalLogins"]
             </NavLink>
         </li>
     }
 
     <li class="nav-item">
         <NavLink class="nav-link rounded-3" href="Account/Manage/TwoFactorAuthentication">
-            <i class="bi bi-patch-check me-2"></i>2FA
+            <i class="bi bi-patch-check me-2"></i>@L["TwoFactorAuth"]
         </NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link rounded-3" href="Account/Manage/PersonalData">
-            <i class="bi bi-database-exclamation me-2"></i>Личные данные
+            <i class="bi bi-database-exclamation me-2"></i>@L["PersonalData"]
         </NavLink>
     </li>
 </ul>
 
 @code {
     private bool hasExternalLogins;
-
     protected override async Task OnInitializedAsync()
     {
         hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

@@ -83,7 +83,7 @@
                     </div>
                 }
             </div>
-        } @* ИСПРАВЛЕНО: Закрыли блок else для вывода логов *@
+        }
     </div>
 </div>
 
@@ -108,16 +108,13 @@
         {
             currentUserId = user.Id;
 
-            // 1. Загружаем логи дневника для этого родителя
             diaryLogs = await DiaryService.GetLogsForParentAsync(user.Id);
 
-            // 2. Загружаем инвайты по Email родителя
             if (!string.IsNullOrEmpty(user.Email))
             {
                 pendingInvitations = await DiaryService.GetPendingInvitationsAsync(user.Email);
             }
-            
-            // 3. Загружаем список детей
+
             myChildren = await ChildrenService.GetChildrenByParentIdAsync(user.Id);
         }
     }

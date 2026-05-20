@@ -123,6 +123,33 @@
   <data name="EnterNumber." xml:space="preserve">
     <value>Пожалуйста, введите номер телефона.</value>
   </data>
+  <data name="ErrDuplicateUser" xml:space="preserve">
+    <value>Это имя пользователя уже занято.</value>
+  </data>
+  <data name="ErrInvalidUser" xml:space="preserve">
+    <value>Имя пользователя содержит недопустимые символы.</value>
+  </data>
+  <data name="ErrLenUser" xml:space="preserve">
+    <value>Имя пользователя слишком длинное.</value>
+  </data>
+  <data name="ErrPhoneFormat" xml:space="preserve">
+    <value>Неверный формат номера телефона.</value>
+  </data>
+  <data name="ErrPhoneSave" xml:space="preserve">
+    <value>Не удалось сохранить номер телефона.</value>
+  </data>
+  <data name="ErrPrefix" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ErrRegexUser" xml:space="preserve">
+    <value>Разрешены только английские буквы, цифры, точки и нижнее подчеркивание.</value>
+  </data>
+  <data name="ErrRequiredUser" xml:space="preserve">
+    <value>Пожалуйста, введите имя пользователя.</value>
+  </data>
+  <data name="MsgSuccess" xml:space="preserve">
+    <value>Профиль успешно обновлен!</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Номер телефона</value>
   </data>

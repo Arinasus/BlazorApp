@@ -55,7 +55,6 @@
                         </div>
 
                         <div class="col-md-6">
-                            @* Оставляем иконку как есть, локализуем только текст *@
                             <label class="form-label fw-bold">@L["Price"] (<i class="nbrb-icon">BYN</i>)</label>
                             <InputNumber @bind-Value="model.PricePerHour" class="form-control" />
                         </div>
@@ -111,7 +110,7 @@
     private async Task HandleFileSelected(InputFileChangeEventArgs e)
     {
         isUploading = true;
-        var files = e.GetMultipleFiles(5); // Лимит 5 файлов
+        var files = e.GetMultipleFiles(5); 
 
         foreach (var file in files)
         {

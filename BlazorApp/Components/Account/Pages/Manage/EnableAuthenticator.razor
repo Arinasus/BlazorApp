@@ -3,42 +3,57 @@
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
-@using BlazorApp.Services 
+@using BlazorApp.Services
+@using Microsoft.Extensions.Localization
 
 @inject EmailSender EmailSender
 @inject UserManager<ApplicationUser> UserManager
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<EnableAuthenticator> Logger
+@inject IStringLocalizer<EnableAuthenticator> L
 
-<PageTitle>Настройка двухэтапной аутентификации</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
+<h3 class="fw-bold mb-3">@L["Header"]</h3>
 <StatusMessage Message="@message" />
-<h3>Подтверждение включения 2FA</h3>
 
-<div class="row">
+<div class="row animate-fade">
     <div class="col-md-6">
         @if (!codeSent)
         {
-            <p>Для активации защиты нам нужно проверить, что ваш Email активен. Нажмите на кнопку ниже, чтобы получить проверочный код.</p>
-            <button type="button" class="btn btn-primary" @onclick="SendVerificationCodeAsync">Отправить код на почту</button>
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-3 bg-white">
+                <p class="text-muted mb-4">@L["IntroText"]</p>
+                <button type="button" class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm" @onclick="SendVerificationCodeAsync">
+                    @L["BtnSendCode"]
+                </button>
+            </div>
         }
         else
         {
-            <p class="text-success"><strong>Код успешно отправлен!</strong> Проверьте ваш почтовый ящик и введите 6-значный код ниже.</p>
+            <div class="alert alert-success rounded-4 border-0 shadow-sm p-3 mb-4" role="alert">
+                <p class="mb-0 small">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <strong>@L["CodeSentSuccessTitle"]</strong> @L["CodeSentSuccessDesc"]
+                </p>
+            </div>
 
-            <EditForm Model="Input" FormName="send-code" OnValidSubmit="OnValidSubmitAsync" method="post">
-                <DataAnnotationsValidator />
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                <EditForm Model="Input" FormName="send-code" OnValidSubmit="OnValidSubmitAsync" method="post">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary class="text-danger small" role="alert" />
 
-                <div class="form-floating mb-3">
-                    <InputText @bind-Value="Input.Code" class="form-control" autocomplete="off" placeholder="Введите код" />
-                    <label for="code" class="control-label form-label">Код подтверждения</label>
-                    <ValidationMessage For="() => Input.Code" class="text-danger" />
-                </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Code" class="form-control" autocomplete="off" placeholder="123456" />
+                        <label for="code" class="control-label form-label">@L["CodeLabel"]</label>
+                        <ValidationMessage For="() => Input.Code" class="text-danger small" />
+                    </div>
 
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Подтвердить и включить</button>
-                <ValidationSummary class="text-danger" role="alert" />
-            </EditForm>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary rounded-pill py-2 fw-bold shadow-sm">
+                        @L["BtnVerifyAndEnable"]
+                    </button>
+                </EditForm>
+            </div>
         }
     </div>
 </div>
@@ -64,18 +79,15 @@
         var email = await UserManager.GetEmailAsync(user);
         if (string.IsNullOrEmpty(email))
         {
-            message = "Error: У вашего аккаунта не указан Email.";
+            message = $"{L["ErrorPrefix"]}: {L["ErrEmailMissing"]}";
             return;
         }
 
-        // Генерируем стандартный безопасный токен 2FA для почты
         var code = await UserManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
-
-        // Теперь этот метод 100% вызовется, так как мы работаем напрямую с твоим классом!
         await EmailSender.SendTwoFactorCodeAsync(user, email, code);
 
         codeSent = true;
-        message = "Код подтверждения отправлен на вашу почту.";
+        message = L["MsgCodeSentFeedback"];
     }
 
     private async Task OnValidSubmitAsync()
@@ -87,28 +99,26 @@
 
         if (!is2faTokenValid)
         {
-            message = "Error: Неверный код подтверждения. Попробуйте еще раз.";
+            message = $"{L["ErrorPrefix"]}: {L["ErrIncorrectCode"]}";
             return;
         }
 
-        // Включаем 2FA
         await UserManager.SetTwoFactorEnabledAsync(user, true);
 
         var userId = await UserManager.GetUserIdAsync(user);
-        Logger.LogInformation("Пользователь с ID '{UserId}' успешно включил 2FA через Email.", userId);
+        Logger.LogInformation("User with ID '{UserId}' successfully enabled 2FA via Email.", userId);
 
         RedirectManager.RedirectToWithStatus(
             "Account/Manage/TwoFactorAuthentication",
-            "Двухэтапная аутентификация через Email успешно настроена и активна.",
+            L["SuccessRedirectMessage"],
             HttpContext);
     }
 
     private sealed class InputModel
     {
-        [Required(ErrorMessage = "Введите код")]
-        [StringLength(7, ErrorMessage = "Код должен состоять из 6 символов.", MinimumLength = 6)]
+        [Required(ErrorMessageResourceType = typeof(EnableAuthenticator), ErrorMessageResourceName = "ErrCodeRequired")]
+        [StringLength(7, ErrorMessageResourceType = typeof(EnableAuthenticator), ErrorMessageResourceName = "ErrCodeLength", MinimumLength = 6)]
         [DataType(DataType.Text)]
-        [Display(Name = "Код подтверждения")]
         public string Code { get; set; } = "";
     }
 }

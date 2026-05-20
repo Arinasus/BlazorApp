@@ -1,5 +1,4 @@
-﻿/* Твои существующие стили остаются без изменений */
-.home-hero {
+﻿.home-hero {
     background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F4 100%);
     padding: 60px 0;
 }
@@ -18,14 +17,11 @@
     background: transparent;
 }
 
-    .btn-outline-secondary:hover {
-        background: #6ECEDA !important;
-        color: white !important;
-    }
+.btn-outline-secondary:hover {
+    background: #6ECEDA !important;
+    color: white !important;
+}
 
-/* НОВЫЕ СТИЛИ ДЛЯ БЛОКА СПЕЦИАЛИСТОВ */
-
-/* Коралловая кнопка (основная) */
 .btn-primary {
     background-color: #FF6B6B !important;
     border: none !important;
@@ -33,32 +29,61 @@
     transition: transform 0.2s;
 }
 
-    .btn-primary:hover {
-        transform: translateY(-3px);
-        opacity: 0.9;
-    }
+.btn-primary:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
 
-/* Бирюзовый текст для акцента в блоке */
 .text-secondary-custom {
     color: #6ECEDA;
 }
 
-/* Карточка призыва */
 .promo-card {
     background: white;
-    border: 2px solid #FFF9F4; /* Легкий бежевый как в твоем градиенте */
+    border: 2px solid #FFF9F4; 
     position: relative;
     overflow: hidden;
 }
 
-    /* Декоративный элемент (бирюзовый круг) в углу карточки */
-    .promo-card::before {
-        content: '';
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        background: rgba(110, 206, 218, 0.05);
-        border-radius: 50%;
-        bottom: -100px;
-        right: -100px;
+.promo-card::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(110, 206, 218, 0.05);
+    border-radius: 50%;
+    bottom: -100px;
+    right: -100px;
+}
+
+.floating-anim {
+    animation: floatAnimation 3s ease-in-out infinite;
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0px);
     }
+
+    50% {
+        transform: translateY(-15px); 
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--brand-coral) !important;
+    color: var(--brand-coral) !important;
+    background: transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--brand-coral) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 138, 91, 0.25);
+}

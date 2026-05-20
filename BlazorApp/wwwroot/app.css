@@ -40,32 +40,39 @@
     transition: all 0.3s ease !important;
 }
 
-    .btn-primary:hover {
-        background-color: #ff7a45 !important;
-        border-color: #ff7a45 !important;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
-    }
+.btn-primary:hover {
+    background-color: #ff7a45 !important;
+    border-color: #ff7a45 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 138, 91, 0.3);
+}
 
 .form-control {
-    background-color: var(--brand-light-bg) !important;
-    border: 2px solid transparent !important;
+    background-color: #f0f4f8 !important;
+    border: 1px solid #1c131326 !important;
     border-radius: var(--brand-radius) !important;
     padding: 0.8rem 1rem !important;
+    color: #333 !important; 
     transition: all 0.2s ease-in-out !important;
 }
 
-    .form-control:focus {
-        border-color: var(--brand-coral) !important;
-        background-color: #ffffff !important;
-        box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.15) !important;
-        outline: none !important;
-    }
-
-.form-floating > label {
-    color: #888;
+.form-control:hover {
+    border-color: #b8c4d6 !important;
 }
 
-.form-floating > .form-control:focus ~ label {
+.form-control:focus {
+    border-color: var(--brand-coral) !important;
+    background-color: #ffffff !important; 
+    box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.15) !important;
+    outline: none !important;
+}
+
+.form-floating > label {
+    color: #6c757d; 
+    padding: 0.8rem 1rem !important;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
     color: var(--brand-coral) !important;
 }

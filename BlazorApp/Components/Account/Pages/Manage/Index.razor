@@ -1,10 +1,8 @@
 ﻿@page "/Account/Manage"
-
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
 @using Microsoft.Extensions.Localization
-@using System.Text.RegularExpressions
 
 @inject IStringLocalizer<Index> L
 @inject UserManager<ApplicationUser> UserManager
@@ -12,29 +10,30 @@
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>@L["Profile"]</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
-<h3>@L["Profile"]</h3>
+<h3 class="fw-bold mb-3">@L["Header"]</h3>
 <StatusMessage />
 
-<div class="row">
+<div class="row animate-fade">
     <div class="col-md-6">
         <EditForm Model="Input" FormName="profile" OnValidSubmit="OnValidSubmitAsync" method="post">
             <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert" />
+            <ValidationSummary class="text-danger small" role="alert" />
 
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.UserName" class="form-control" placeholder="Выберите имя пользователя" />
-                <label for="username" class="form-label">Имя пользователя (только английские буквы)</label>
-                <ValidationMessage For="() => Input.UserName" class="text-danger" />
+                <InputText @bind-Value="Input.UserName" class="form-control" placeholder="@L["UserNamePlaceholder"]" />
+                <label class="form-label">@L["UserNameLabel"]</label>
+                <ValidationMessage For="() => Input.UserName" class="text-danger small" />
             </div>
 
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
-                <label for="phone-number" class="form-label">@L["PhoneNumber"]</label>
-                <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
+                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="@L["PhonePlaceholder"]" />
+                <label class="form-label">@L["PhoneNumber"]</label>
+                <ValidationMessage For="() => Input.PhoneNumber" class="text-danger small" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">@L["Save"]</button>
+
+            <button type="submit" class="w-100 btn btn-lg btn-primary rounded-pill py-2 fw-bold shadow-sm">@L["Save"]</button>
         </EditForm>
     </div>
 </div>
@@ -64,44 +63,29 @@
     {
         bool isChanged = false;
 
-        // Сохраняем измененный UserName
         if (Input.UserName != username)
         {
-            var setUsernameResult = await UserManager.SetUserNameAsync(user, Input.UserName);
-            if (!setUsernameResult.Succeeded)
+            var result = await UserManager.SetUserNameAsync(user, Input.UserName!);
+            if (!result.Succeeded)
             {
-                // Переводим системные ошибки ASP.NET Identity на русский язык
-                var errorMessages = new List<string>();
-                foreach (var error in setUsernameResult.Errors)
+                var errors = result.Errors.Select(e => e.Code switch
                 {
-                    if (error.Code == "DuplicateUserName")
-                    {
-                        errorMessages.Add("Ошибка: Это имя пользователя уже занято другим человеком.");
-                    }
-                    else if (error.Code == "InvalidUserName")
-                    {
-                        errorMessages.Add("Ошибка: Имя пользователя содержит недопустимые символы.");
-                    }
-                    else
-                    {
-                        errorMessages.Add($"Ошибка: {error.Description}");
-                    }
-                }
-
-                string summaryError = string.Join(" ", errorMessages);
-                RedirectManager.RedirectToCurrentPageWithStatus($"Error: {summaryError}", HttpContext);
+                    "DuplicateUserName" => L["ErrDuplicateUser"],
+                    "InvalidUserName" => L["ErrInvalidUser"],
+                    _ => e.Description
+                });
+                RedirectManager.RedirectToCurrentPageWithStatus($"{L["ErrPrefix"]}: {string.Join(" ", errors)}", HttpContext);
                 return;
             }
             isChanged = true;
         }
 
-        // Сохраняем телефон
         if (Input.PhoneNumber != phoneNumber)
         {
-            var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-            if (!setPhoneResult.Succeeded)
+            var result = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            if (!result.Succeeded)
             {
-                RedirectManager.RedirectToCurrentPageWithStatus("Error: Не удалось сохранить номер телефона.", HttpContext);
+                RedirectManager.RedirectToCurrentPageWithStatus($"{L["ErrPrefix"]}: {L["ErrPhoneSave"]}", HttpContext);
                 return;
             }
             isChanged = true;
@@ -110,21 +94,18 @@
         if (isChanged)
         {
             await SignInManager.RefreshSignInAsync(user);
-            RedirectManager.RedirectToCurrentPageWithStatus("Профиль успешно обновлен!", HttpContext);
+            RedirectManager.RedirectToCurrentPageWithStatus(L["MsgSuccess"], HttpContext);
         }
     }
 
     private sealed class InputModel
     {
-        [Required(ErrorMessage = "Пожалуйста, введите имя пользователя")]
-        [StringLength(50, ErrorMessage = "Имя пользователя слишком длинное")]
-        // РЕГУЛЯРНОЕ ВЫРАЖЕНИЕ: Разрешает только латинские буквы (a-z, A-Z), цифры (0-9) и знаки подчеркивания/точки
-        [RegularExpression(@"^[a-zA-Z0-9._]+$", ErrorMessage = "Разрешены только английские буквы, цифры, точки и нижнее подчеркивание.")]
-        [Display(Name = "Имя пользователя")]
+        [Required(ErrorMessageResourceType = typeof(Index), ErrorMessageResourceName = "ErrRequiredUser")]
+        [StringLength(50, ErrorMessageResourceType = typeof(Index), ErrorMessageResourceName = "ErrLenUser")]
+        [RegularExpression(@"^[a-zA-Z0-9._]+$", ErrorMessageResourceType = typeof(Index), ErrorMessageResourceName = "ErrRegexUser")]
         public string? UserName { get; set; }
 
-        [Phone(ErrorMessage = "Неверный формат номера телефона")]
-        [Display(Name = "Phone number")]
+        [Phone(ErrorMessageResourceType = typeof(Index), ErrorMessageResourceName = "ErrPhoneFormat")]
         public string? PhoneNumber { get; set; }
     }
 }

@@ -1,23 +1,24 @@
 ﻿@page "/Account/LoginWith2fa"
-
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
-@using BlazorApp.Services @* 1. Подключаем твои сервисы *@
+@using BlazorApp.Services
+@using Microsoft.Extensions.Localization
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<LoginWith2fa> Logger
-@inject EmailSender EmailSender 
+@inject EmailSender EmailSender
+@inject IStringLocalizer<LoginWith2fa> L
 
-<PageTitle>Двухэтапная аутентификация</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
-<h1>Двухэтапная аутентификация</h1>
+<h1>@L["Header"]</h1>
 <hr />
 <StatusMessage Message="@message" />
 
-<p class="text-info"><strong>Ваш аккаунт защищен.</strong> Одноразовый 6-значный код подтверждения уже отправлен на вашу электронную почту. Пожалуйста, введите его ниже.</p>
+<p class="text-info"><strong>@L["DescriptionBold"]</strong> @L["DescriptionText"]</p>
 
 <div class="row">
     <div class="col-md-4">
@@ -26,22 +27,22 @@
             <input type="hidden" name="RememberMe" value="@RememberMe" />
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
-            
+
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.TwoFactorCode" class="form-control" autocomplete="off" />
-                <label for="two-factor-code" class="form-label">Код подтверждения из письма</label>
+                <label for="two-factor-code" class="form-label">@L["CodeLabel"]</label>
                 <ValidationMessage For="() => Input.TwoFactorCode" class="text-danger" />
             </div>
-            
+
             <div class="checkbox mb-3">
                 <label for="remember-machine" class="form-label">
                     <InputCheckbox @bind-Value="Input.RememberMachine" />
-                    Запомнить это устройство
+                    @L["RememberMachine"]
                 </label>
             </div>
-            
+
             <div>
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Войти</button>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">@L["BtnLogin"]</button>
             </div>
         </EditForm>
     </div>
@@ -62,7 +63,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        // Гарантируем, что пользователь проходит двухфакторку
         user = await SignInManager.GetTwoFactorAuthenticationUserAsync();
 
         if (user is null)
@@ -71,11 +71,9 @@
             return;
         }
 
-        // Автоматическая генерация и отправка кода при загрузке страницы
         var code = await UserManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
         var email = await UserManager.GetEmailAsync(user);
 
-        // Вызываем твой рабочий метод отправки
         await EmailSender.SendTwoFactorCodeAsync(user, email!, code);
     }
 
@@ -83,39 +81,27 @@
     {
         var code = Input.TwoFactorCode!.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-        // Проверяем код именно через Email-провайдер!
         var result = await SignInManager.TwoFactorSignInAsync(TokenOptions.DefaultEmailProvider, code, RememberMe, Input.RememberMachine);
 
         if (result.Succeeded)
         {
-            var userId = await UserManager.GetUserIdAsync(user);
-            Logger.LogInformation("Пользователь с ID '{UserId}' успешно вошел с помощью 2FA через Email.", userId);
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.IsLockedOut)
         {
-            var userId = await UserManager.GetUserIdAsync(user);
-            Logger.LogWarning("Аккаунт пользователя с ID '{UserId}' заблокирован.", userId);
             RedirectManager.RedirectTo("Account/Lockout");
         }
         else
         {
-            Logger.LogWarning("Введен неверный код 2FA.");
-            // ИСПРАВЛЕНО: Заменили 'StatusMessage' на переменную 'message'
-            message = "Ошибка: Неверный код подтверждения из письма.";
+            message = L["ErrInvalidCode"];
         }
     }
 
-    // ИСПРАВЛЕНО: Убрана лишняя скобка перед классом модели, теперь всё внутри одного контекста @code
     private sealed class InputModel
     {
         [Required(ErrorMessage = "Поле обязательно для заполнения.")]
-        [StringLength(7, ErrorMessage = "Код должен состоять из 6 символов.", MinimumLength = 6)]
-        [DataType(DataType.Text)]
-        [Display(Name = "Код подтверждения")]
+        [StringLength(7, ErrorMessage = "Код должен быть 6 символов.", MinimumLength = 6)]
         public string? TwoFactorCode { get; set; }
-
-        [Display(Name = "Запомнить это устройство")]
         public bool RememberMachine { get; set; }
     }
 }

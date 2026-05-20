@@ -6,7 +6,7 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using BlazorApp.Data
-
+@using Microsoft.Extensions.Localization
 @inject UserManager<ApplicationUser> UserManager
 @inject IUserStore<ApplicationUser> UserStore
 @inject SignInManager<ApplicationUser> SignInManager
@@ -14,19 +14,26 @@
 @inject ILogger<Register> Logger
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
+@inject IStringLocalizer<Register> L
 
-<PageTitle>Register</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
+
 <div class="auth-background-system">
     <div class="auth-bg-image"></div>
 </div>
 
 <div class="auth-main-content">
     <div class="auth-card animate-fade">
-        <h2 class="auth-header">Создать аккаунт</h2>
-        <p class="text-center text-muted mb-4 small">Добро пожаловать в наше сообщество!</p>
+        <h2 class="auth-header">@L["Header"]</h2>
+        <p class="text-center text-muted mb-4 small">@L["SubHeader"]</p>
 
         <EditForm Model="Input" OnValidSubmit="RegisterUser" FormName="register">
             <DataAnnotationsValidator />
+
+            @if (Message != null)
+            {
+                <div class="alert alert-danger">@Message</div>
+            }
 
             <div class="form-floating mb-2">
                 <InputText @bind-Value="Input.Email" class="form-control" placeholder="Email" />
@@ -34,25 +41,26 @@
             </div>
 
             <div class="form-floating mb-2">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" placeholder="Пароль" />
-                <label>Пароль</label>
+                <InputText type="password" @bind-Value="Input.Password" class="form-control" placeholder="@L["Password"]" />
+                <label>@L["Password"]</label>
             </div>
 
             <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" placeholder="Повторите" />
-                <label>Повторите пароль</label>
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" placeholder="@L["ConfirmPassword"]" />
+                <label>@L["ConfirmPassword"]</label>
             </div>
 
             <button type="submit" class="w-100 btn btn-lg btn-primary rounded-pill py-2 fw-bold shadow-sm">
-                ЗАРЕГИСТРИРОВАТЬСЯ
+                @L["BtnRegister"]
             </button>
         </EditForm>
 
         <div class="text-center mt-3">
-            <p class="small text-muted">Уже есть аккаунт? <a href="Account/Login" class="text-primary fw-bold text-decoration-none">Войти</a></p>
+            <p class="small text-muted">@L["AlreadyHaveAccount"] <a href="Account/Login" class="text-primary fw-bold text-decoration-none">@L["LoginLink"]</a></p>
         </div>
     </div>
 </div>
+
 @code {
     private IEnumerable<IdentityError>? identityErrors;
 
@@ -62,15 +70,15 @@
     [SupplyParameterFromQuery]
     private string? ReturnUrl { get; set; }
 
-    private string? Message => identityErrors is null ? null : $"Error: {string.Join(", ", identityErrors.Select(error => error.Description))}";
+    private string? Message => identityErrors is null ? null : string.Join(", ", identityErrors.Select(e => e.Description));
 
     public async Task RegisterUser(EditContext editContext)
     {
         var user = CreateUser();
-
         await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
         var emailStore = GetEmailStore();
         await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
         var result = await UserManager.CreateAsync(user, Input.Password);
 
         if (!result.Succeeded)
@@ -129,18 +137,15 @@
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; } = "";
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password { get; set; } = "";
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; } = "";
     }
 }

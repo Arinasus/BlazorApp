@@ -1,31 +1,33 @@
 ﻿@page "/lectures"
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
+@using Microsoft.Extensions.Localization
 @inject ILectureService LectureService
+@inject IStringLocalizer<LecturesFeed> L
 @rendermode InteractiveServer
 
-<PageTitle>Лента лекций</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3>Библиотека знаний</h3>
+        <h3>@L["LibraryTitle"]</h3>
         <div class="search-box">
             <input type="text" @bind-value="searchText" @bind-value:event="oninput"
-                   class="form-control" placeholder="Поиск по теме..." />
+                   class="form-control" placeholder="@L["SearchPlaceholder"]" />
         </div>
     </div>
 
-    @if (filteredLectures == null)
+    @if (allLectures == null)
     {
         <div class="text-center">
             <div class="spinner-border text-primary" role="status"></div>
-            <p>Загружаем полезные материалы...</p>
+            <p>@L["Loading"]</p>
         </div>
     }
-    else if (!filteredLectures.Any())
+    else if (!filteredLectures!.Any())
     {
         <div class="alert alert-light text-center shadow-sm">
-            <p>По вашему запросу ничего не найдено.</p>
+            <p>@L["NoResults"]</p>
         </div>
     }
     else
@@ -49,7 +51,7 @@
                         </div>
 
                         <div class="card-footer bg-white border-0 pb-3">
-                            <a href="/lecture/@lecture.Id" class="btn btn-primary w-100 rounded-pill">Читать далее</a>
+                            <a href="/lecture/@lecture.Id" class="btn btn-primary w-100 rounded-pill">@L["BtnReadMore"]</a>
                         </div>
                     </div>
                 </div>
@@ -94,5 +96,5 @@
         string.IsNullOrWhiteSpace(searchText)
         ? allLectures
         : allLectures?.Where(x => x.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase)
-                               || x.TargetDiagnosis.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+                                 || x.TargetDiagnosis.Contains(searchText, StringComparison.OrdinalIgnoreCase));
 }

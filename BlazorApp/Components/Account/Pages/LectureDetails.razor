@@ -3,23 +3,25 @@
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
 @using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.Extensions.Localization
 @inject ILectureService LectureService
 @inject IFavoriteService FavoriteService
 @inject NavigationManager NavManager
 @inject AuthenticationStateProvider AuthStateProvider
+@inject IStringLocalizer<LectureDetails> L
 
 <div class="container mt-4 mb-5 animate-fade">
     @if (lecture == null)
     {
         <div class="text-center py-5">
             <div class="spinner-border" style="color: var(--primary)" role="status"></div>
-            <p class="mt-2 text-muted">Загрузка материалов...</p>
+            <p class="mt-2 text-muted">@L["Loading"]</p>
         </div>
     }
     else
     {
         <button class="btn btn-link text-decoration-none p-0 mb-4 back-link" @onclick="GoBack">
-            <i class="bi bi-arrow-left-circle-fill"></i> Вернуться к списку
+            <i class="bi bi-arrow-left-circle-fill"></i> @L["BtnBack"]
         </button>
 
         <div class="row g-5">
@@ -32,7 +34,7 @@
                     </span>
 
                     <span class="lecture-number">
-                        Лекция №@lecture.Id
+                        @L["LectureNumber"] @lecture.Id
                     </span>
                 </div>
 
@@ -40,10 +42,7 @@
                 {
                     <div class="video-card shadow-md rounded-4 overflow-hidden mb-5">
                         <div class="video-container">
-                            <iframe src="@GetEmbedUrl(lecture.VideoUrl)"
-                                    frameborder="0"
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe src="@GetEmbedUrl(lecture.VideoUrl)" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 }
@@ -53,29 +52,27 @@
                 </div>
             </div>
 
-            <!-- Боковая панель -->
             <div class="col-lg-4">
                 <div class="card sticky-top border-0 shadow-md p-2" style="top: 100px; border-radius: 20px;">
                     @if (!string.IsNullOrEmpty(lecture.ImagePath))
                     {
-                        <img src="@lecture.ImagePath" class="card-img-top rounded-4 mb-3" alt="Обложка">
+                        <img src="@lecture.ImagePath" class="card-img-top rounded-4 mb-3" alt="@L["CoverAlt"]">
                     }
                     <div class="card-body">
-                        <h5 class="fw-bold" style="color: var(--primary)">Материал портала</h5>
-                        <p class="text-muted small">Этот контент доступен для сохранения в ваш личный кабинет.</p>
+                        <h5 class="fw-bold" style="color: var(--primary)">@L["PortalMaterialTitle"]</h5>
+                        <p class="text-muted small">@L["PortalMaterialHint"]</p>
                         <hr class="opacity-10" />
 
                         <AuthorizeView>
                             <Authorized>
-                                <button class="btn btn-favorite w-100 mb-2 @(isFavorite ? "is-active" : "")"
-                                        @onclick="ToggleFavorite">
+                                <button class="btn btn-favorite w-100 mb-2 @(isFavorite ? "is-active" : "")" @onclick="ToggleFavorite">
                                     <i class="bi @(isFavorite ? "bi-bookmark-star-fill" : "bi-bookmark-star") me-2"></i>
-                                    @(isFavorite ? "В избранном" : "В избранное")
+                                    @(isFavorite? L["BtnFavoriteActive"] : L["BtnFavorite"])
                                 </button>
                             </Authorized>
                             <NotAuthorized>
                                 <a href="Account/Login" class="btn btn-favorite w-100 mb-2 text-center d-block text-decoration-none">
-                                    <i class="bi bi-bookmark-star me-2"></i> В избранное
+                                    <i class="bi bi-bookmark-star me-2"></i> @L["BtnFavorite"]
                                 </a>
                             </NotAuthorized>
                         </AuthorizeView>

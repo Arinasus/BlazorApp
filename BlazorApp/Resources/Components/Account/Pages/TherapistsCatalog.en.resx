@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnSubmitReview" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
   <data name="BtnViewProfile" xml:space="preserve">
     <value>View profile</value>
   </data>
@@ -125,6 +128,12 @@
   </data>
   <data name="CatalogTitle" xml:space="preserve">
     <value>Our specialists</value>
+  </data>
+  <data name="CertificatesTitle" xml:space="preserve">
+    <value>Certificates and diplomas</value>
+  </data>
+  <data name="EducationLabel" xml:space="preserve">
+    <value>Education</value>
   </data>
   <data name="EmptyStateText" xml:space="preserve">
     <value>No specialists were found matching your request.</value>
@@ -141,7 +150,73 @@
   <data name="Hour" xml:space="preserve">
     <value>hour</value>
   </data>
+  <data name="Hour1" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>Office address</value>
+  </data>
+  <data name="LabelEducation" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="LeaveReview" xml:space="preserve">
+    <value>Leave feedback</value>
+  </data>
+  <data name="LocationTitle" xml:space="preserve">
+    <value>Class location</value>
+  </data>
+  <data name="NoReviewsYet" xml:space="preserve">
+    <value>There are no reviews yet. Be the first!</value>
+  </data>
+  <data name="PerHour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="PlaceholderReviewName" xml:space="preserve">
+    <value>your name</value>
+  </data>
+  <data name="PlaceholderReviewText" xml:space="preserve">
+    <value>Your experience working with a specialist...</value>
+  </data>
+  <data name="PriceLabel" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ReviewsTitle" xml:space="preserve">
+    <value>Reviews from parents</value>
+  </data>
   <data name="SearchPlaceholder" xml:space="preserve">
     <value>Search by specialization or name...</value>
+  </data>
+  <data name="SecAbout" xml:space="preserve">
+    <value>About the specialist</value>
+  </data>
+  <data name="SecCertificates" xml:space="preserve">
+    <value>Certificates and diplomas</value>
+  </data>
+  <data name="SecLocation" xml:space="preserve">
+    <value>Class location</value>
+  </data>
+  <data name="SecReviews" xml:space="preserve">
+    <value>Reviews from parents</value>
+  </data>
+  <data name="ToFavorites" xml:space="preserve">
+    <value>Add to favorites</value>
+  </data>
+  <data name="ViewPDF" xml:space="preserve">
+    <value>View PDF</value>
+  </data>
+  <data name="WriteReview" xml:space="preserve">
+    <value>Leave feedback</value>
+  </data>
+  <data name="YourExp" xml:space="preserve">
+    <value>Your work experience...</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>your name</value>
+  </data>
+  <data name="YourRating" xml:space="preserve">
+    <value>Your rating</value>
   </data>
 </root>

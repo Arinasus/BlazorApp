@@ -35,7 +35,6 @@
                             </button>
                         </div>
 
-                        @* Выводим Имя специалиста, а ниже его специализацию *@
                         <h3 class="fw-bold text-dark mb-1">@profile.FirstName</h3>
                         <h5 class="text-muted mb-2">@profile.Specialization</h5>
 
@@ -44,11 +43,7 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary rounded-pill py-3 fw-bold shadow-sm mb-1">
-                                Записаться на прием
-                            </button>
 
-                            @* КНОПКА: Написать сообщение (перенаправляет в ваш чат) *@
                             @if (!string.IsNullOrEmpty(currentUserId) && currentUserId != UserId)
                             {
                                 <button class="btn btn-coral rounded-pill py-2 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2 mb-1"
@@ -65,28 +60,26 @@
                     </div>
                 </div>
 
-                @* Правая колонка *@
                 <div class="col-lg-8">
-                    @* Блок "О специалисте" *@
+
                     <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
-                        <h4 class="fw-bold mb-3 text-coral">О специалисте</h4>
+                        <h4 class="fw-bold mb-3 text-coral">@L["AboutTitle"]</h4>
                         <p class="fs-5 text-secondary">@profile.FullBio</p>
                         <hr class="my-4 opacity-10">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="text-muted small d-block">Образование</label>
+                                <label class="text-muted small d-block">@L["EducationLabel"]</label>
                                 <span class="fw-bold">@profile.Education</span>
                             </div>
                             <div class="col-md-6">
-                                <label class="text-muted small d-block">Стоимость</label>
+                                <label class="text-muted small d-block">@L["PriceLabel"]</label>
                                 <span class="fw-bold text-coral fs-4">
-                                    @profile.PricePerHour <i class="nbrb-icon">BYN</i> / час
+                                    @profile.PricePerHour <i class="nbrb-icon">BYN</i> / @L["PerHour"]
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    @* НОВЫЙ БЛОК: Местоположение и карта *@
                     @if (!string.IsNullOrEmpty(profile.Address))
                     {
                         <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
@@ -97,7 +90,6 @@
                                 <span class="text-muted fw-normal">Адрес кабинета:</span> @profile.Address
                             </p>
 
-                            @* Интерактивная карта Яндекс *@
                             <div class="map-container border rounded-4 overflow-hidden shadow-sm" style="height: 300px; width: 100%;">
                                 <iframe src="https://maps.google.com/maps?q=@(Uri.EscapeDataString(profile.Address))&t=&z=15&ie=UTF8&iwloc=&output=embed"
                                         width="100%"
@@ -110,7 +102,6 @@
                         </div>
                     }
 
-                    @* Сертификаты *@
                     @if (!string.IsNullOrEmpty(profile.CertificateUrls))
                     {
                         <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
@@ -140,7 +131,6 @@
                         </div>
                     }
 
-                    @* Отзывы *@
                     <div class="card border-0 shadow-sm rounded-4 p-4">
                         <h4 class="fw-bold mb-4 text-coral">Отзывы родителей</h4>
 

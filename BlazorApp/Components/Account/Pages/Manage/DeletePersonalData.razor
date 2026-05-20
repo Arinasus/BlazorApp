@@ -3,39 +3,44 @@
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
+@using Microsoft.Extensions.Localization
 
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<DeletePersonalData> Logger
+@inject IStringLocalizer<DeletePersonalData> L
 
-<PageTitle>Delete Personal Data</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
+<h3 class="fw-bold mb-3">@L["Header"]</h3>
 <StatusMessage Message="@message" />
 
-<h3>Delete Personal Data</h3>
-
-<div class="alert alert-warning" role="alert">
-    <p>
-        <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+<div class="alert alert-warning rounded-4 border-0 shadow-sm p-4 mb-4" role="alert">
+    <p class="mb-0">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <strong>@L["WarningText"]</strong>
     </p>
 </div>
 
-<div>
-    <EditForm Model="Input" FormName="delete-user" OnValidSubmit="OnValidSubmitAsync" method="post">
-        <DataAnnotationsValidator />
-        <ValidationSummary class="text-danger" role="alert" />
-        @if (requirePassword)
-        {
-            <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Please enter your password." />
-                <label for="password" class="form-label">Password</label>
-                <ValidationMessage For="() => Input.Password" class="text-danger" />
-            </div>
-        }
-        <button class="w-100 btn btn-lg btn-danger" type="submit">Delete data and close my account</button>
-    </EditForm>
+<div class="row animate-fade">
+    <div class="col-md-6">
+        <EditForm Model="Input" FormName="delete-user" OnValidSubmit="OnValidSubmitAsync" method="post">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger small" role="alert" />
+
+            @if (requirePassword)
+            {
+                <div class="form-floating mb-3">
+                    <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="@L["PasswordPlaceholder"]" />
+                    <label for="password" class="form-label">@L["PasswordLabel"]</label>
+                    <ValidationMessage For="() => Input.Password" class="text-danger small" />
+                </div>
+            }
+            <button class="w-100 btn btn-lg btn-danger rounded-pill py-2 fw-bold shadow-sm" type="submit">@L["BtnDeleteAccount"]</button>
+        </EditForm>
+    </div>
 </div>
 
 @code {
@@ -60,7 +65,7 @@
     {
         if (requirePassword && !await UserManager.CheckPasswordAsync(user, Input.Password))
         {
-            message = "Error: Incorrect password.";
+            message = $"{L["ErrorPrefix"]}: {L["ErrIncorrectPassword"]}";
             return;
         }
 
@@ -80,6 +85,7 @@
 
     private sealed class InputModel
     {
+        [Required(ErrorMessageResourceType = typeof(DeletePersonalData), ErrorMessageResourceName = "ErrPasswordRequired")]
         [DataType(DataType.Password)]
         public string Password { get; set; } = "";
     }

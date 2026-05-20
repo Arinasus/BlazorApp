@@ -2,31 +2,40 @@
 
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
+@using Microsoft.Extensions.Localization
 
 @inject UserManager<ApplicationUser> UserManager
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<Disable2fa> Logger
+@inject IStringLocalizer<Disable2fa> L
 
-<PageTitle>Отключение двухэтапной аутентификации (2FA)</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
+<h3 class="fw-bold mb-3">@L["Header"]</h3>
 <StatusMessage />
-<h3>Отключение двухэтапной аутентификации (2FA)</h3>
 
-<div class="alert alert-warning" role="alert">
-    <p>
-        <strong>Внимание: это действие снизит безопасность вашего аккаунта.</strong>
+<div class="alert alert-warning rounded-4 border-0 shadow-sm p-4 mb-4" role="alert">
+    <p class="mb-2">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <strong>@L["WarningTitle"]</strong>
     </p>
-    <p>
-        После отключения для входа в систему потребуется только логин и пароль. Вы сможете повторно включить защиту через Email в любой момент в настройках профиля.
+    <p class="mb-0 text-muted small">
+        @L["WarningDescription"]
     </p>
 </div>
 
-<div>
+<div class="animate-fade">
     <form @formname="disable-2fa" @onsubmit="OnSubmitAsync" method="post">
         <AntiforgeryToken />
-        <button class="btn btn-danger" type="submit">Отключить защиту</button>
-        <a href="Account/Manage/TwoFactorAuthentication" class="btn btn-secondary">Отмена</a>
+        <div class="d-flex gap-2">
+            <button class="btn btn-danger rounded-pill px-4 py-2 fw-bold shadow-sm" type="submit">
+                @L["BtnDisable"]
+            </button>
+            <a href="Account/Manage/TwoFactorAuthentication" class="btn btn-light border rounded-pill px-4 py-2 text-muted">
+                @L["BtnCancel"]
+            </a>
+        </div>
     </form>
 </div>
 
@@ -42,7 +51,7 @@
 
         if (HttpMethods.IsGet(HttpContext.Request.Method) && !await UserManager.GetTwoFactorEnabledAsync(user))
         {
-            throw new InvalidOperationException("Невозможно отключить 2FA, так как она не активна для этого пользователя.");
+            throw new InvalidOperationException("Cannot disable 2FA as it's not enabled.");
         }
     }
 
@@ -51,15 +60,15 @@
         var disable2faResult = await UserManager.SetTwoFactorEnabledAsync(user, false);
         if (!disable2faResult.Succeeded)
         {
-            throw new InvalidOperationException("Произошла непредвиденная ошибка при отключении 2FA.");
+            throw new InvalidOperationException("Unexpected error occurred disabling 2FA.");
         }
 
         var userId = await UserManager.GetUserIdAsync(user);
-        Logger.LogInformation("Пользователь с ID '{UserId}' отключил 2FA.", userId);
+        Logger.LogInformation("User with ID '{UserId}' has disabled 2fa.", userId);
 
         RedirectManager.RedirectToWithStatus(
             "Account/Manage/TwoFactorAuthentication",
-            "Двухэтапная аутентификация была успешно отключена.",
+            L["SuccessMessage"],
             HttpContext);
     }
 }

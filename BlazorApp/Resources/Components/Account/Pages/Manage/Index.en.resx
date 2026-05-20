@@ -123,6 +123,33 @@
   <data name="EnterNumber." xml:space="preserve">
     <value>Please enter your phone number.</value>
   </data>
+  <data name="ErrDuplicateUser" xml:space="preserve">
+    <value>This username is already taken.</value>
+  </data>
+  <data name="ErrInvalidUser" xml:space="preserve">
+    <value>The username contains invalid characters.</value>
+  </data>
+  <data name="ErrLenUser" xml:space="preserve">
+    <value>The username is too long.</value>
+  </data>
+  <data name="ErrPhoneFormat" xml:space="preserve">
+    <value>Invalid phone number format.</value>
+  </data>
+  <data name="ErrPhoneSave" xml:space="preserve">
+    <value>Failed to save phone number.</value>
+  </data>
+  <data name="ErrPrefix" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrRegexUser" xml:space="preserve">
+    <value>Only English letters, numbers, periods and underscores are allowed.</value>
+  </data>
+  <data name="ErrRequiredUser" xml:space="preserve">
+    <value>Please enter your username.</value>
+  </data>
+  <data name="MsgSuccess" xml:space="preserve">
+    <value>Profile successfully updated!</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>

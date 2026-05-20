@@ -6,13 +6,16 @@
 @using Microsoft.EntityFrameworkCore
 @inject IDbContextFactory<ApplicationDbContext> DbFactory
 @inject AuthenticationStateProvider AuthStateProvider
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<NavMenu> L
+
 @rendermode InteractiveServer
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container-fluid px-4">
         <a class="navbar-brand d-flex align-items-center fw-bold" href="">
             <img src="/images/logo.png" alt="Лого" class="nav-logo-img me-2" style="height: 40px; width: auto;" />
-            <span>Речевик</span>
+            <span>@L["BrandName"]</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar">
@@ -22,15 +25,15 @@
         <div class="collapse navbar-collapse" id="topNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                 <li class="nav-item">
-                    <NavLink class="nav-link" href="therapists">Специалисты</NavLink>
+                    <NavLink class="nav-link" href="therapists">@L["NavTherapists"]</NavLink>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="contentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Обучение
+                        @L["NavTraining"]
                     </a>
                     <ul class="dropdown-menu border-0 shadow-sm">
-                        <li><NavLink class="dropdown-item" href="lectures">Все лекции</NavLink></li>
-                        <li><NavLink class="dropdown-item" href="recommended">Рекомендовано вам</NavLink></li>
+                        <li><NavLink class="dropdown-item" href="lectures">@L["AllLectures"]</NavLink></li>
+                        <li><NavLink class="dropdown-item" href="recommended">@L["Recommended"]</NavLink></li>
                     </ul>
                 </li>
 
@@ -127,8 +130,8 @@
                         </div>
                     </Authorized>
                     <NotAuthorized>
-                        <NavLink class="btn btn-login" href="Account/Login">Вход</NavLink>
-                        <NavLink class="btn btn-register ms-2" href="Account/Register">Регистрация</NavLink>
+                        <NavLink class="btn btn-login" href="Account/Login">@L["BtnLogin"]</NavLink>
+                        <NavLink class="btn btn-register ms-2" href="Account/Register">@L["BtnRegister"]</NavLink>
                     </NotAuthorized>
                 </AuthorizeView>
             </div>

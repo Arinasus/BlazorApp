@@ -3,52 +3,54 @@
 @using Microsoft.AspNetCore.Http.Features
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
+@using Microsoft.Extensions.Localization
 
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
+@inject IStringLocalizer<TwoFactorAuthentication> L
 
-<PageTitle>Двухэтапная аутентификация (2FA)</PageTitle>
+<PageTitle>@L["PageTitle"]</PageTitle>
 
 <StatusMessage />
-<h3>Двухэтапная аутентификация (2FA)</h3>
+<h3>@L["Title"]</h3>
 
 @if (canTrack)
 {
     if (is2faEnabled)
     {
         <div class="alert alert-success">
-            <strong>Двухэтапная аутентификация включена.</strong> Коды подтверждения отправляются на ваш Email при каждом входе.
+            <strong>@L["EnabledStatus"]</strong> @L["EnabledMessage"]
         </div>
 
         if (isMachineRemembered)
         {
             <form style="display: inline-block" @formname="forget-browser" @onsubmit="OnSubmitForgetBrowserAsync" method="post">
                 <AntiforgeryToken />
-                <button type="submit" class="btn btn-secondary me-2">Забыть этот браузер</button>
+                <button type="submit" class="btn btn-secondary me-2">@L["BtnForgetBrowser"]</button>
             </form>
         }
 
-        <a href="Account/Manage/Disable2fa" class="btn btn-danger">Отключить 2FA</a>
+        <a href="Account/Manage/Disable2fa" class="btn btn-danger">@L["BtnDisable2fa"]</a>
     }
     else
     {
         <div class="alert alert-info">
-            <strong>Защитите свой аккаунт!</strong> При включении этой функции, после ввода пароля система дополнительно потребует одноразовый цифровой код, отправленный на вашу электронную почту.
+            <strong>@L["DisabledAlertTitle"]</strong> @L["DisabledAlertMessage"]
         </div>
 
         <form @formname="enable-2fa" @onsubmit="OnSubmitEnable2faAsync" method="post">
             <AntiforgeryToken />
-            <button type="submit" class="btn btn-primary">Включить 2FA через Email</button>
+            <button type="submit" class="btn btn-primary">@L["BtnEnable2fa"]</button>
         </form>
     }
 }
 else
 {
     <div class="alert alert-danger">
-        <strong>Политика конфиденциальности и использования куки не принята.</strong>
-        <p>Вы должны принять политику сайта перед включением двухфакторной аутентификации.</p>
+        <strong>@L["ConsentRequiredTitle"]</strong>
+        <p>@L["ConsentRequiredMessage"]</p>
     </div>
 }
 
@@ -71,29 +73,23 @@ else
 
     private async Task OnSubmitEnable2faAsync()
     {
-        // Включаем двухфакторку в базе данных
         var result = await UserManager.SetTwoFactorEnabledAsync(user, true);
-
         if (result.Succeeded)
         {
-            // Перенаправляем на страницу подтверждения и отправки тестового кода
             RedirectManager.RedirectToWithStatus(
                 "Account/Manage/EnableAuthenticator",
-                "Пожалуйста, подтвердите вашу почту для активации 2FA.",
+                L["StatusVerifyEmail"],
                 HttpContext);
         }
         else
         {
-            RedirectManager.RedirectToCurrentPageWithStatus("Error: Не удалось включить 2FA.", HttpContext);
+            RedirectManager.RedirectToCurrentPageWithStatus(L["ErrEnable"], HttpContext);
         }
     }
 
     private async Task OnSubmitForgetBrowserAsync()
     {
         await SignInManager.ForgetTwoFactorClientAsync();
-
-        RedirectManager.RedirectToCurrentPageWithStatus(
-            "Браузер сброшен. При следующем входе в систему вам снова потребуется ввести код подтверждения.",
-            HttpContext);
+        RedirectManager.RedirectToCurrentPageWithStatus(L["StatusBrowserReset"], HttpContext);
     }
 }

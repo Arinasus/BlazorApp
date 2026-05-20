@@ -20,64 +20,49 @@
 </h3>
 
 <div class="row animate-fade">
-    @* ЛЕВАЯ КОЛОНКА: ВЫБОР РЕБЕНКА И ФОРМА ЗАПИСИ *@
     <div class="col-lg-4 mb-4">
-        @* СЕЛЕКТОР ДЛЯ ВЫБОРА ТЕКУЩЕГО КЛИЕНТА *@
         <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
-            <h5 class="fw-bold text-dark mb-3"><i class="bi bi-person-lines-fill me-2 text-coral"></i>Текущий ученик</h5>
-            <label class="form-label small text-muted">Выберите ребенка для ведения дневника и просмотра истории занятий:</label>
+            <h5 class="fw-bold text-dark mb-3"><i class="bi bi-person-lines-fill me-2 text-coral"></i>@L["CurrentStudent"]</h5>
+            <label class="form-label small text-muted">@L["SelectStudentHint"]</label>
             <select class="form-select form-select-sm rounded-3 shadow-sm" @onchange="OnSelectedChildChanged">
-                <option value="0">-- Все ученики --</option>
+                <option value="0">@L["AllStudents"]</option>
                 @foreach (var child in connectedChildren)
                 {
-                    <option value="@child.ChildId">@child.ChildName (Родитель: @child.ParentEmail)</option>
+                    <option value="@child.ChildId">@child.ChildName (@L["Parent"]: @child.ParentEmail)</option>
                 }
             </select>
         </div>
 
-        @* ФОРМА СОЗДАНИЯ ЗАПИСИ *@
         <div class="card border-0 shadow-sm rounded-4 p-4 bg-light">
             <h5 class="fw-bold text-dark mb-3">@L["NewRecord"]</h5>
             <EditForm Model="newLog" OnValidSubmit="SaveLog">
                 <DataAnnotationsValidator />
-
                 <div class="mb-2">
                     <label class="form-label small fw-bold">@L["ChildName"]</label>
                     <InputText @bind-Value="newLog.ChildName" class="form-control form-control-sm" placeholder="@L["ChildNamePlaceholder"]" />
                     <ValidationMessage For="() => newLog.ChildName" class="text-danger small" />
                 </div>
-
                 <div class="mb-2">
                     <label class="form-label small fw-bold">@L["SessionDate"]</label>
                     <InputDate @bind-Value="newLog.SessionDate" class="form-control form-control-sm" />
-                    <ValidationMessage For="() => newLog.SessionDate" class="text-danger small" />
                 </div>
-
                 <div class="mb-2">
                     <label class="form-label small fw-bold">@L["Topic"]</label>
                     <InputText @bind-Value="newLog.Topic" class="form-control form-control-sm" placeholder="@L["TopicPlaceholder"]" />
-                    <ValidationMessage For="() => newLog.Topic" class="text-danger small" />
                 </div>
-
                 <div class="mb-2">
                     <label class="form-label small fw-bold">@L["WorkDone"]</label>
                     <InputTextArea @bind-Value="newLog.WorkDone" class="form-control form-control-sm" rows="3" placeholder="@L["WorkDonePlaceholder"]" />
-                    <ValidationMessage For="() => newLog.WorkDone" class="text-danger small" />
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label small fw-bold">@L["Homework"]</label>
                     <InputTextArea @bind-Value="newLog.Homework" class="form-control form-control-sm" rows="2" placeholder="@L["HomeworkPlaceholder"]" />
                 </div>
-
-                <button type="submit" class="btn btn-primary w-100 rounded-pill btn-details fw-bold py-2">
-                    @L["BtnSave"]
-                </button>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill btn-details fw-bold py-2">@L["BtnSave"]</button>
             </EditForm>
         </div>
     </div>
 
-    @* ПРАВАЯ КОЛОНКА: ИСТОРИЯ С ФИЛЬТРАЦИЕЙ *@
     <div class="col-lg-8 mb-4">
         <div class="card border-0 shadow-sm rounded-4 p-4" style="min-height: 480px;">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -85,7 +70,7 @@
                 @if (!string.IsNullOrEmpty(selectedChildName))
                 {
                     <span class="badge bg-coral-light text-coral rounded-pill px-3 py-2 small">
-                        Фильтр: <b>@selectedChildName</b>
+                        @L["Filter"]: <b>@selectedChildName</b>
                     </span>
                 }
             </div>
@@ -129,52 +114,42 @@
     </div>
 </div>
 
-@* НИЖНИЙ БЛОК: УПРАВЛЕНИЕ СВЯЗЯМИ И СТАТУСЫ ПРИГЛАШЕНИЙ *@
 <div class="row">
     <div class="col-12">
         <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
             <h5 class="fw-bold text-dark mb-4">
-                <i class="bi bi-people-fill me-2 text-coral"></i>Работа с родителями и приглашения
+                <i class="bi bi-people-fill me-2 text-coral"></i>@L["ParentsSectionTitle"]
             </h5>
-
             <div class="row g-4">
-                @* Форма отправки инвайта *@
                 <div class="col-md-5 border-end">
-                    <h6 class="fw-bold text-secondary mb-2">Подключить нового родителя</h6>
-                    <p class="text-muted small">Введите Email зарегистрированного родителя, чтобы отправить ему запрос на ведение дневника ребенка.</p>
+                    <h6 class="fw-bold text-secondary mb-2">@L["ConnectParentTitle"]</h6>
+                    <p class="text-muted small">@L["ConnectParentHint"]</p>
                     <div class="d-flex gap-2 mt-3">
                         <input type="email" class="form-control form-control-sm" placeholder="parent@example.com" @bind="inviteEmail" />
-                        <button class="btn btn-primary btn-sm rounded-pill px-4 btn-details fw-bold text-nowrap" @onclick="SendParentInvite">
-                            Отправить запрос
-                        </button>
+                        <button class="btn btn-primary btn-sm rounded-pill px-4 btn-details fw-bold text-nowrap" @onclick="SendParentInvite">@L["BtnSendInvite"]</button>
                     </div>
                     @if (!string.IsNullOrEmpty(inviteMessage))
                     {
                         <div class="alert alert-info py-2 px-3 small rounded-3 mt-3 mb-0 animate-fade">@inviteMessage</div>
                     }
                 </div>
-
-                @* Мониторинг отправленных приглашений *@
                 <div class="col-md-7">
-                    <h6 class="fw-bold text-secondary mb-3">Статус отправленных запросов</h6>
+                    <h6 class="fw-bold text-secondary mb-3">@L["InviteStatusTitle"]</h6>
                     @if (myInvitations == null)
                     {
-                        <p class="text-muted small">Загрузка запросов...</p>
+                        <p class="text-muted small">@L["Loading"]</p>
                     }
                     else if (!myInvitations.Any())
                     {
-                        <p class="text-muted small text-center py-3">Вы еще не отправляли запросы родителям.</p>
+
+                        <p class="text-muted small text-center py-3">@L["NoInvites"]</p>
                     }
                     else
                     {
                         <div class="table-responsive" style="max-height: 180px; overflow-y: auto;">
                             <table class="table table-sm table-hover align-middle small">
                                 <thead class="table-light sticky-top">
-                                    <tr>
-                                        <th>Email родителя</th>
-                                        <th>Дата отправки</th>
-                                        <th class="text-center">Статус</th>
-                                    </tr>
+                                    <tr><th>Email</th><th>@L["DateSent"]</th><th class="text-center">@L["Status"]</th></tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var invite in myInvitations)
@@ -183,14 +158,9 @@
                                             <td>@invite.ParentEmail</td>
                                             <td>@invite.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
                                             <td class="text-center">
-                                                @if (invite.IsAccepted)
-                                                {
-                                                    <span class="badge bg-success-light text-success rounded-pill px-2 py-1">Принято</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="badge bg-warning-light text-warning rounded-pill px-2 py-1">Ожидает</span>
-                                                }
+                                                <span class="badge @(invite.IsAccepted ? "bg-success-light text-success" : "bg-warning-light text-warning") rounded-pill px-2 py-1">
+                                                    @(invite.IsAccepted? L["StatusAccepted"] : L["StatusPending"])
+                                                </span>
                                             </td>
                                         </tr>
                                     }
@@ -203,6 +173,7 @@
         </div>
     </div>
 </div>
+
 
 <style>
     .text-coral {
@@ -227,7 +198,6 @@
         border-color: #FF8A5B !important;
     }
 
-    /* Кастомные стили для мягких цветов статусов */
     .bg-success-light {
         background-color: rgba(40, 167, 69, 0.15);
     }
@@ -242,7 +212,6 @@
     private List<TherapyDiaryLogDto> allDiaryLogs = new();
     private List<TherapyDiaryLogDto> filteredLogs = new();
 
-    // Новые коллекции для управления списком детей и статусами инвайтов
     private List<ChildConnectionDto> connectedChildren = new();
     private List<InvitationStatusDto> myInvitations = new();
 
@@ -263,7 +232,6 @@
             {
                 newLog.TherapistProfileId = currentTherapist.Id;
 
-                // Загружаем данные
                 await RefreshLogs();
                 await LoadConnectionsAndInvitations();
             }
@@ -278,9 +246,8 @@
 
     private async Task LoadConnectionsAndInvitations()
     {
-        // Вытягиваем подтвержденных детей для селектора
+
         connectedChildren = await DiaryService.GetConnectedChildrenForTherapistAsync(currentTherapist.Id) ?? new();
-        // Вытягиваем историю всех отправленных инвайтов логопеда
         myInvitations = await DiaryService.GetInvitationsByTherapistAsync(currentTherapist.Id) ?? new();
     }
 
@@ -293,7 +260,6 @@
             {
                 selectedChildName = selectedChild.ChildName;
 
-                // Напрямую привязываем данные к нашей модели новой записи!
                 newLog.TargetChildId = childId;
                 newLog.ChildName = selectedChild.ChildName;
             }
@@ -325,7 +291,6 @@
         var success = await DiaryService.AddDiaryLogAsync(newLog);
         if (success)
         {
-            // Очищаем форму, сохраняя привязку к выбранному ребенку, если он выбран
             newLog = new TherapyDiaryLogDto
             {
                 TherapistProfileId = currentTherapist.Id,
@@ -345,7 +310,7 @@
         {
             inviteMessage = "Приглашение успешно отправлено родителю!";
             inviteEmail = "";
-            await LoadConnectionsAndInvitations(); // Сразу перечитываем таблицу статусов
+            await LoadConnectionsAndInvitations(); 
         }
         else
         {

@@ -5,78 +5,92 @@
 @using BlazorApp.Shared.Models
 @using BlazorApp.Shared.Interfaces
 @using System.Security.Claims
+@using Microsoft.Extensions.Localization
 @attribute [Authorize]
 @inject IChildService ChildService
 @inject AuthenticationStateProvider AuthStateProvider
 @inject IJSRuntime JS
+@inject IStringLocalizer<Children> L
+
+<PageTitle>@L["PageTitle"]</PageTitle>
 
 <div class="container mt-4">
-    <h3 class="fw-bold mb-4">Мои дети</h3>
+    <h3 class="fw-bold mb-4">@L["Header"]</h3>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
             <div class="card border-0 shadow-sm rounded-4 p-3">
-                <h5 class="fw-bold mb-3">@(isEditMode ? "Редактировать данные" : "Добавить ребенка")</h5>
+                <h5 class="fw-bold mb-3">@(isEditMode? L["FormEditHeader"] : L["FormAddHeader"])</h5>
                 <EditForm Model="activeChild" OnValidSubmit="HandleSubmit">
                     <DataAnnotationsValidator />
+
                     <div class="mb-3">
-                        <label class="form-label">Имя:</label>
-                        <InputText @bind-Value="activeChild.Name" class="form-control rounded-3" />
+                        <label class="form-label">@L["LabelName"]</label>
+                        <InputText @bind-Value="activeChild.Name" class="form-control rounded-3" placeholder=" " />
+                        <ValidationMessage For="() => activeChild.Name" class="text-danger small" />
                     </div>
+
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <label class="form-label">Возраст:</label>
+                            <label class="form-label">@L["LabelAge"]</label>
                             <InputNumber @bind-Value="activeChild.Age" class="form-control rounded-3" min="0" max="18" />
-                            <ValidationMessage For="() => activeChild.Age" class="text-danger" />
+                            <ValidationMessage For="() => activeChild.Age" class="text-danger small" />
                         </div>
                     </div>
+
                     <div class="mb-3">
-                        <label class="form-label">Диагноз/Особенности:</label>
-                        <InputTextArea @bind-Value="activeChild.Diagnosis" class="form-control rounded-3" rows="3" />
+                        <label class="form-label">@L["LabelDiagnosis"]</label>
+                        <InputTextArea @bind-Value="activeChild.Diagnosis" class="form-control rounded-3" rows="3" placeholder=" " />
+                        <ValidationMessage For="() => activeChild.Diagnosis" class="text-danger small" />
                     </div>
+
                     <div class="d-flex gap-2">
                         <button type="submit" class="btn btn-brand">
-                            @(isEditMode ? "Сохранить изменения" : "Добавить ребенка")
+                            @(isEditMode? L["BtnSaveChanges"] : L["BtnAddChild"])
                         </button>
                         @if (isEditMode)
                         {
-                            <button type="button" class="btn btn-light px-4 rounded-pill" @onclick="CancelEdit">Отмена</button>
+                            <button type="button" class="btn btn-light px-4 rounded-pill" @onclick="CancelEdit">@L["BtnCancel"]</button>
                         }
                     </div>
                 </EditForm>
             </div>
         </div>
 
+        @* Список детей *@
         <div class="col-md-8">
-            <h5 class="fw-bold mb-3">Список детей</h5>
+            <h5 class="fw-bold mb-3">@L["ListHeader"]</h5>
             @if (children == null)
             {
                 <div class="text-center p-5"><div class="spinner-border text-coral" role="status"></div></div>
             }
             else if (!children.Any())
             {
-                <div class="alert alert-light rounded-4 border-0 shadow-sm">Вы еще не добавили данные о детях.</div>
+                <div class="alert alert-light rounded-4 border-0 shadow-sm">@L["EmptyListMessage"]</div>
             }
             else
             {
                 <div class="list-group">
                     @foreach (var child in children)
                     {
-                        <div class="list-group-item d-flex justify-content-between align-items-center border-0 mb-3 shadow-sm rounded-4 p-3 bg-white">
+                        <div class="list-group-item d-flex justify-content-between align-items-center border-0 mb-3 shadow-sm rounded-4 p-3 bg-white animate-fade">
                             <div>
                                 <h6 class="fw-bold mb-1 text-dark">@child.Name</h6>
-                                <span class="badge bg-light text-muted border rounded-pill">@child.Age лет</span>
-                                <p class="small text-muted mb-0 mt-2">
-                                    <i class="bi bi-info-circle me-1"></i> @child.Diagnosis
-                                </p>
+                                <span class="badge bg-light text-muted border rounded-pill">
+                                    @child.Age @L["AgeSuffix"]
+                                </span>
+                                @if (!string.IsNullOrEmpty(child.Diagnosis))
+                                {
+                                    <p class="small text-muted mb-0 mt-2">
+                                        <i class="bi bi-info-circle me-1"></i> @child.Diagnosis
+                                    </p>
+                                }
                             </div>
                             <div class="d-flex gap-2">
-                                @* Карандаш теперь бирюзовый *@
-                                <button class="btn btn-icon-edit" @onclick="() => EditChild(child)">
+                                <button class="btn btn-icon-edit" @onclick="() => EditChild(child)" title="@L["BtnEditTooltip"]">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
-                                @* Мусорка теперь коралловая *@
-                                <button class="btn btn-icon-delete" @onclick="() => DeleteChild(child)">
+                                <button class="btn btn-icon-delete" @onclick="() => DeleteChild(child)" title="@L["BtnDeleteTooltip"]">
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </div>
@@ -107,7 +121,6 @@
 
     private void EditChild(Child child)
     {
-
         activeChild = new Child
         {
             Id = child.Id,
@@ -145,7 +158,8 @@
 
     private async Task DeleteChild(Child child)
     {
-        bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Удалить данные о ребенке {child.Name}?");
+        var confirmText = string.Format(L["DeleteConfirmText"], child.Name);
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", confirmText);
         if (confirmed)
         {
             await ChildService.DeleteChildAsync(child.Id);

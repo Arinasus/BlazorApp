@@ -120,13 +120,16 @@
   <data name="BtnBookAppointment" xml:space="preserve">
     <value>Записаться на прием</value>
   </data>
+  <data name="BtnSendMessage" xml:space="preserve">
+    <value>Написать сообщение</value>
+  </data>
   <data name="BtnSendReview" xml:space="preserve">
     <value>Отправить отзыв</value>
   </data>
   <data name="Hour" xml:space="preserve">
     <value>час</value>
   </data>
-  <data name="InFavorites" xml:space="preserve">
+  <data name="BtnFavorited" xml:space="preserve">
     <value>В избранном</value>
   </data>
   <data name="LabelAddress" xml:space="preserve">
@@ -170,5 +173,44 @@
   </data>
   <data name="YourRating" xml:space="preserve">
     <value>Ваша оценка</value>
+  </data>
+  <data name="BtnFavorite" xml:space="preserve">
+    <value>В избранное</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>О специалисте</value>
+  </data>
+  <data name="EducationLabel" xml:space="preserve">
+    <value>Образование</value>
+  </data>
+  <data name="PriceLabel" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="PerHour" xml:space="preserve">
+    <value>час</value>
+  </data>
+  <data name="LocationTitle" xml:space="preserve">
+    <value>Место проведения занятий</value>
+  </data>
+  <data name="AddressLabel" xml:space="preserve">
+    <value>Адрес кабинета:</value>
+  </data>
+  <data name="CertificatesTitle" xml:space="preserve">
+    <value>Сертификаты и дипломы</value>
+  </data>
+  <data name="ReviewsTitle" xml:space="preserve">
+    <value>Отзывы родителей</value>
+  </data>
+  <data name="LeaveReview" xml:space="preserve">
+    <value>Оставить отзыв</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Ваше имя</value>
+  </data>
+  <data name="YourExp" xml:space="preserve">
+    <value>Ваш опыт работы...</value>
+  </data>
+  <data name="BtnSubmitReview" xml:space="preserve">
+    <value>Отправить отзыв</value>
   </data>
 </root>

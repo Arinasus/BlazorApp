@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnSubmitReview" xml:space="preserve">
+    <value>Отправить отзыв</value>
+  </data>
   <data name="BtnViewProfile" xml:space="preserve">
     <value>Посмотреть профиль</value>
   </data>
@@ -125,6 +128,12 @@
   </data>
   <data name="CatalogTitle" xml:space="preserve">
     <value>Наши специалисты</value>
+  </data>
+  <data name="CertificatesTitle" xml:space="preserve">
+    <value>Сертификаты и дипломы</value>
+  </data>
+  <data name="EducationLabel" xml:space="preserve">
+    <value>Образование</value>
   </data>
   <data name="EmptyStateText" xml:space="preserve">
     <value>Специалисты по вашему запросу не найдены.</value>
@@ -141,7 +150,73 @@
   <data name="Hour" xml:space="preserve">
     <value>час</value>
   </data>
+  <data name="Hour1" xml:space="preserve">
+    <value>час</value>
+  </data>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>Адрес кабинета</value>
+  </data>
+  <data name="LabelEducation" xml:space="preserve">
+    <value>Образование</value>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="LeaveReview" xml:space="preserve">
+    <value>Оставить отзыв</value>
+  </data>
+  <data name="LocationTitle" xml:space="preserve">
+    <value>Место проведения занятий</value>
+  </data>
+  <data name="NoReviewsYet" xml:space="preserve">
+    <value>Отзывов пока нет. Будьте первым!</value>
+  </data>
+  <data name="PerHour" xml:space="preserve">
+    <value>час</value>
+  </data>
+  <data name="PlaceholderReviewName" xml:space="preserve">
+    <value>Ваше имя</value>
+  </data>
+  <data name="PlaceholderReviewText" xml:space="preserve">
+    <value>Ваш опыт работы со специалистом...</value>
+  </data>
+  <data name="PriceLabel" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="ReviewsTitle" xml:space="preserve">
+    <value>Отзывы родителей</value>
+  </data>
   <data name="SearchPlaceholder" xml:space="preserve">
     <value>Поиск по специализации или имени...</value>
+  </data>
+  <data name="SecAbout" xml:space="preserve">
+    <value>О специалисте</value>
+  </data>
+  <data name="SecCertificates" xml:space="preserve">
+    <value>Сертификаты и дипломы</value>
+  </data>
+  <data name="SecLocation" xml:space="preserve">
+    <value>Место проведения занятий</value>
+  </data>
+  <data name="SecReviews" xml:space="preserve">
+    <value>Отзывы родителей</value>
+  </data>
+  <data name="ToFavorites" xml:space="preserve">
+    <value>В избранное</value>
+  </data>
+  <data name="ViewPDF" xml:space="preserve">
+    <value>Просмотреть PDF</value>
+  </data>
+  <data name="WriteReview" xml:space="preserve">
+    <value>Оставить отзыв</value>
+  </data>
+  <data name="YourExp" xml:space="preserve">
+    <value>Ваш опыт работы...</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Ваше имя</value>
+  </data>
+  <data name="YourRating" xml:space="preserve">
+    <value>Ваша оценка</value>
   </data>
 </root>

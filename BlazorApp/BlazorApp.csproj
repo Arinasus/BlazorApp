@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Resources\Components\Account\Pages\LoginWith2fa.en.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BlazorApp.Client\BlazorApp.Client.csproj" />
     <ProjectReference Include="..\BlazorApp.Shared\BlazorApp.Shared.csproj" />
     <PackageReference Include="Blazorized.HtmlTextEditor" Version="2.1.0" />
@@ -21,6 +25,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\Components\Account\Pages\LoginWith2fa.en.resx" />
   </ItemGroup>
 
 </Project>

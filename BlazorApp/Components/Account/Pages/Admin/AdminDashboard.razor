@@ -6,6 +6,7 @@
 @using BlazorApp.Shared.Interfaces
 @using Blazorized.HtmlTextEditor
 @using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Localization
 
 @attribute [Authorize(Roles = "Admin")]
 
@@ -13,22 +14,25 @@
 @inject IUserService UserService
 @inject IWebHostEnvironment WebHostEnvironment
 @inject IJSRuntime JS
+@inject IStringLocalizer<AdminDashboard> L
+
+<PageTitle>@L["PageTitle"]</PageTitle>
 
 <div class="container mt-4 pb-5">
     <div class="d-flex align-items-center mb-4">
-        <h2 class="fw-bold me-auto">Панель управления</h2>
-        <span class="badge bg-coral-light text-coral px-3 py-2 rounded-pill">Режим Администратора</span>
+        <h2 class="fw-bold me-auto">@L["DashboardTitle"]</h2>
+        <span class="badge bg-coral-light text-coral px-3 py-2 rounded-pill">@L["AdminModeBadge"]</span>
     </div>
 
     <ul class="nav nav-pills mb-4" id="adminTabs" role="tablist">
         <li class="nav-item">
             <button class="nav-link active rounded-pill me-2" data-bs-toggle="pill" data-bs-target="#content">
-                <i class="bi bi-file-earmark-text me-2"></i>Контент
+                <i class="bi bi-file-earmark-text me-2"></i>@L["TabContent"]
             </button>
         </li>
         <li class="nav-item">
             <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#users">
-                <i class="bi bi-people me-2"></i>Пользователи
+                <i class="bi bi-people me-2"></i>@L["TabUsers"]
             </button>
         </li>
     </ul>
@@ -37,23 +41,23 @@
         <div class="tab-pane fade show active" id="content">
             <div class="card border-0 shadow-sm rounded-4 mb-4">
                 <div class="card-body p-4">
-                    <h5 class="fw-bold mb-3">Добавить новую лекцию</h5>
+                    <h5 class="fw-bold mb-3">@L["AddLectureHeader"]</h5>
                     <EditForm Model="newLecture" OnValidSubmit="HandleAddLecture">
                         <DataAnnotationsValidator />
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Название лекции</label>
-                                <InputText @bind-Value="newLecture.Title" class="form-control rounded-3" />
+                                <label class="form-label">@L["LectureTitleLabel"]</label>
+                                <InputText @bind-Value="newLecture.Title" class="form-control rounded-3" placeholder=" " />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Целевой диагноз</label>
-                                <InputText @bind-Value="newLecture.TargetDiagnosis" class="form-control rounded-3" />
+                                <label class="form-label">@L["TargetDiagnosisLabel"]</label>
+                                <InputText @bind-Value="newLecture.TargetDiagnosis" class="form-control rounded-3" placeholder=" " />
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Обложка лекции</label>
+                            <label class="form-label">@L["LectureCoverLabel"]</label>
                             <InputFile OnChange="HandleFileSelected" class="form-control rounded-3" accept=".jpg,.png" />
                             @if (!string.IsNullOrEmpty(newLecture.ImagePath))
                             {
@@ -64,14 +68,14 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Краткое описание</label>
-                            <InputTextArea @bind-Value="newLecture.Description" class="form-control rounded-3" rows="2" />
+                            <label class="form-label">@L["ShortDescriptionLabel"]</label>
+                            <InputTextArea @bind-Value="newLecture.Description" class="form-control rounded-3" rows="2" placeholder=" " />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Полный текст лекции</label>
+                            <label class="form-label">@L["FullTextLabel"]</label>
                             <div class="editor-container rounded-3 border">
-                                <HtmlTextEditor @ref="@QuillHtml" Placeholder="Напишите подробности...">
+                                <HtmlTextEditor @ref="@QuillHtml" Placeholder="@L["EditorPlaceholder"]">
                                     <ToolbarContent>
                                         <select class="ql-header">
                                             <option selected=""></option>
@@ -88,11 +92,11 @@
                         </div>
 
                         <div class="mb-4">
-                            <label class="form-label">Ссылка на видео</label>
+                            <label class="form-label">@L["VideoUrlLabel"]</label>
                             <InputText @bind-Value="newLecture.VideoUrl" class="form-control rounded-3" placeholder="https://youtube.com/..." />
                         </div>
 
-                        <button type="submit" class="btn btn-coral px-4 rounded-pill">Опубликовать лекцию</button>
+                        <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">@L["BtnPublish"]</button>
                     </EditForm>
                 </div>
             </div>
@@ -105,10 +109,10 @@
                         <table class="table align-middle">
                             <thead>
                                 <tr>
-                                    <th>Пользователь</th>
-                                    <th>Роль</th>
-                                    <th>Статус</th>
-                                    <th class="text-end">Действия</th>
+                                    <th>@L["ThUser"]</th>
+                                    <th>@L["ThRole"]</th>
+                                    <th>@L["ThStatus"]</th>
+                                    <th class="text-end">@L["ThActions"]</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,27 +128,27 @@
                                             <td>
                                                 <select class="form-select form-select-sm rounded-3"
                                                         @onchange="(e) => ChangeRole(user, e.Value?.ToString() ?? user.Role)">
-                                                    <option value="User" selected="@(user.Role == "User")">Пользователь</option>
-                                                    <option value="Therapist" selected="@(user.Role == "Therapist")">Специалист</option>
-                                                    <option value="Admin" selected="@(user.Role == "Admin")">Админ</option>
+                                                    <option value="User" selected="@(user.Role == "User")">@L["RoleUser"]</option>
+                                                    <option value="Therapist" selected="@(user.Role == "Therapist")">@L["RoleTherapist"]</option>
+                                                    <option value="Admin" selected="@(user.Role == "Admin")">@L["RoleAdmin"]</option>
                                                 </select>
                                             </td>
                                             <td>
                                                 @if (user.IsBlocked)
                                                 {
-                                                    <span class="badge bg-danger-subtle text-danger rounded-pill">Заблокирован</span>
+                                                    <span class="badge bg-danger-subtle text-danger rounded-pill">@L["StatusBlocked"]</span>
                                                 }
                                                 else
                                                 {
-                                                    <span class="badge bg-success-subtle text-success rounded-pill">Активен</span>
+                                                    <span class="badge bg-success-subtle text-success rounded-pill">@L["StatusActive"]</span>
                                                 }
                                             </td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm @(user.IsBlocked ? "btn-outline-success" : "btn-outline-warning") border-0 me-2"
-                                                        @onclick="() => ToggleBlock(user)">
+                                                        @onclick="() => ToggleBlock(user)" title="@(user.IsBlocked ? L["TooltipUnlock"] : L["TooltipLock"])">
                                                     <i class="bi @(user.IsBlocked ? "bi-unlock" : "bi-lock")"></i>
                                                 </button>
-                                                <button class="btn btn-sm btn-outline-danger border-0" @onclick="() => DeleteUser(user)">
+                                                <button class="btn btn-sm btn-outline-danger border-0" @onclick="() => DeleteUser(user)" title="@L["TooltipDelete"]">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -227,7 +231,8 @@
 
     private async Task DeleteUser(UserDto user)
     {
-        bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Удалить пользователя {user.Email}?");
+        var confirmMessage = string.Format(L["DeleteConfirmationText"], user.Email);
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", confirmMessage);
         if (confirmed)
         {
             await UserService.DeleteUserAsync(user.Id);

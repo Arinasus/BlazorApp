@@ -36,14 +36,14 @@
                     <div class="input-group-append">
                         <span class="h-100 input-group-text text-success fw-bold" title="@L["ConfirmedTooltip"]">✓</span>
                     </div>
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">@L["CurrentEmailLabel"]</label>
                 </div>
             }
             else
             {
                 <div class="form-floating mb-3">
                     <input type="text" value="@email" class="form-control" placeholder="name@example.com" disabled />
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">@L["CurrentEmailLabel"]</label>
                     <button type="submit" class="btn btn-link p-0 mt-1 small" form="send-verification-form">@L["BtnSendVerification"]</button>
                 </div>
             }
@@ -121,8 +121,8 @@
 
     private sealed class InputModel
     {
-        [Required(ErrorMessage = "Поле Email обязательно для заполнения")]
-        [EmailAddress(ErrorMessage = "Некорректный формат Email")]
+        [Required(ErrorMessageResourceType = typeof(Email), ErrorMessageResourceName = "ErrEmailRequired")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Email), ErrorMessageResourceName = "ErrEmailInvalid")]
         public string? NewEmail { get; set; }
     }
 }

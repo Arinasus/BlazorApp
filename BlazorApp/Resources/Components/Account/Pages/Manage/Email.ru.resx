@@ -126,6 +126,15 @@
   <data name="ConfirmedTooltip" xml:space="preserve">
     <value>Email подтвержден</value>
   </data>
+  <data name="CurrentEmailLabel" xml:space="preserve">
+    <value>Текущий Email</value>
+  </data>
+  <data name="ErrEmailInvalid" xml:space="preserve">
+    <value>Некорректный формат Email</value>
+  </data>
+  <data name="ErrEmailRequired" xml:space="preserve">
+    <value>Поле Email обязательно для заполнения</value>
+  </data>
   <data name="Header" xml:space="preserve">
     <value>Настройки почты</value>
   </data>

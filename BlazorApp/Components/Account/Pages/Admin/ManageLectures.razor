@@ -8,53 +8,58 @@
 @using Microsoft.AspNetCore.Hosting
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
-
+@using Microsoft.Extensions.Localization
+@inject IJSRuntime JS
 @attribute [Authorize(Roles = "Admin, Therapist")]
 @inject ILectureService LectureService
 @inject IWebHostEnvironment WebHostEnvironment
 @inject AuthenticationStateProvider AuthStateProvider
 @inject UserManager<ApplicationUser> UserManager
+@inject IStringLocalizer<ManageLectures> L
+<PageTitle>@L["KnowledgeBaseTitle"]</PageTitle>
 
-<div class="container mt-4">
-    <h3>Управление базой знаний</h3>
+<div class="container mt-4 pb-5">
+    <h3 class="fw-bold mb-4">@L["KnowledgeBaseTitle"]</h3>
 
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header @(isEditing ? "bg-warning text-dark" : "bg-primary text-white")">
-            <h5 class="mb-0">@(isEditing ? "Редактировать лекцию" : "Добавить новую лекцию")</h5>
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-header border-0 p-4 rounded-top-4 @(isEditing ? "bg-warning-subtle text-warning-dark" : "bg-coral-light text-coral")">
+            <h5 class="mb-0 fw-bold">@(isEditing? L["EditLectureHeader"] : L["AddLectureHeader"])</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body p-4">
             <EditForm Model="currentLecture" OnValidSubmit="HandleSaveLecture">
                 <DataAnnotationsValidator />
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Название лекции:</label>
-                        <InputText @bind-Value="currentLecture.Title" class="form-control" />
+                        <label class="form-label">@L["LectureTitleLabel"]</label>
+                        <InputText @bind-Value="currentLecture.Title" class="form-control" placeholder=" " />
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Целевой диагноз:</label>
-                        <InputText @bind-Value="currentLecture.TargetDiagnosis" class="form-control" />
+                        <label class="form-label">@L["TargetDiagnosisLabel"]</label>
+                        <InputText @bind-Value="currentLecture.TargetDiagnosis" class="form-control" placeholder=" " />
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label>Обложка лекции (картинка):</label>
+                    <label class="form-label">@L["LectureCoverLabel"]</label>
                     <InputFile OnChange="HandleFileSelected" class="form-control" accept=".jpg,.png" />
                     @if (!string.IsNullOrEmpty(currentLecture.ImagePath))
                     {
-                        <img src="@currentLecture.ImagePath" class="mt-2" style="height:80px; border-radius:5px;" />
+                        <div class="mt-2 position-relative d-inline-block">
+                            <img src="@currentLecture.ImagePath" class="rounded-3 shadow-sm" style="height:80px; object-fit: cover;" />
+                        </div>
                     }
                 </div>
 
                 <div class="mb-3">
-                    <label>Краткое описание (для ленты):</label>
-                    <InputTextArea @bind-Value="currentLecture.Description" class="form-control" rows="2" />
+                    <label class="form-label">@L["ShortDescriptionLabel"]</label>
+                    <InputTextArea @bind-Value="currentLecture.Description" class="form-control" rows="2" placeholder=" " />
                 </div>
 
                 <div class="mb-3">
-                    <label>Полный текст лекции:</label>
-                    <div style="background-color: white; color: black;">
-                        <HtmlTextEditor @ref="@QuillHtml" Placeholder="Напишите здесь подробности...">
+                    <label class="form-label">@L["FullTextLabel"]</label>
+                    <div class="editor-container rounded-3 border bg-white">
+                        <HtmlTextEditor @ref="@QuillHtml" Placeholder="@L["EditorPlaceholder"]">
                             <ToolbarContent>
                                 <select class="ql-header">
                                     <option selected=""></option>
@@ -70,65 +75,71 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label>Ссылка на видео:</label>
-                    <InputText @bind-Value="currentLecture.VideoUrl" class="form-control" />
+                <div class="mb-4">
+                    <label class="form-label">@L["VideoUrlLabel"]</label>
+                    <InputText @bind-Value="currentLecture.VideoUrl" class="form-control" placeholder="https://youtube.com/..." />
                 </div>
 
                 <div class="d-flex gap-2">
                     @if (isEditing)
                     {
-                        <button type="submit" class="btn btn-warning">Сохранить изменения</button>
-                        <button type="button" class="btn btn-secondary" @onclick="CancelEditing">Отмена</button>
+                        <button type="submit" class="btn btn-warning px-4 rounded-pill">@L["BtnSaveChanges"]</button>
+                        <button type="button" class="btn btn-secondary px-4 rounded-pill" @onclick="CancelEditing">@L["BtnCancel"]</button>
                     }
                     else
                     {
-                        <button type="submit" class="btn btn-success">Опубликовать лекцию</button>
+                        <button type="submit" class="btn btn-primary px-4 rounded-pill">@L["BtnPublish"]</button>
                     }
                 </div>
             </EditForm>
         </div>
     </div>
 
-    <h4>Доступные вам лекции</h4>
-    <div class="table-responsive">
-        <table class="table table-hover mt-3">
-            <thead class="table-light">
-                <tr>
-                    <th>Название</th>
-                    <th>Диагноз</th>
-                    <th>Действия</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (displayedLectures != null)
-                {
-                    @foreach (var lecture in displayedLectures)
+    <h4 class="fw-bold mt-5 mb-3">@L["AvailableLecturesHeader"]</h4>
+    <div class="card border-0 shadow-sm rounded-4 p-3">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>@L["ThTitle"]</th>
+                        <th>@L["ThDiagnosis"]</th>
+                        <th class="text-end">@L["ThActions"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (displayedLectures != null)
+                    {
+                        @foreach (var lecture in displayedLectures)
+                        {
+                            <tr>
+                                <td class="fw-bold">@lecture.Title</td>
+                                <td>
+                                    <span class="badge bg-secondary text-white rounded-pill px-3 py-2">
+                                        @lecture.TargetDiagnosis
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="d-flex gap-2 justify-content-end">
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" @onclick="() => StartEdit(lecture)">
+                                            @L["BtnEdit"]
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger rounded-pill px-3" @onclick="() => DeleteLecture(lecture.Id, lecture.Title)">
+                                            @L["BtnDelete"]
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td>@lecture.Title</td>
-                            <td><span class="badge bg-secondary">@lecture.TargetDiagnosis</span></td>
-                            <td>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-sm btn-outline-primary" @onclick="() => StartEdit(lecture)">
-                                        Изменить
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger" @onclick="() => DeleteLecture(lecture.Id)">
-                                        Удалить
-                                    </button>
-                                </div>
-                            </td>
+                            <td colspan="3" class="text-center text-muted py-4">@L["LoadingLecturesText"]</td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="3" class="text-center text-muted">Загрузка лекций...</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -209,7 +220,6 @@
 
     private async Task StartEdit(Lecture lecture)
     {
-        // Делаем копию ссылки на лекцию для формы
         currentLecture = lecture;
         isEditing = true;
 
@@ -226,9 +236,14 @@
         await QuillHtml.LoadHtmlContent("");
     }
 
-    private async Task DeleteLecture(int id)
+    private async Task DeleteLecture(int id, string title)
     {
-        await LectureService.DeleteLectureAsync(id);
-        await LoadLectures();
+        var confirmText = string.Format(L["DeleteLectureConfirmText"], title);
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", confirmText);
+        if (confirmed)
+        {
+            await LectureService.DeleteLectureAsync(id);
+            await LoadLectures();
+        }
     }
 }
