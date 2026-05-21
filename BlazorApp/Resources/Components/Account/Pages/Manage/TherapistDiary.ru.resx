@@ -123,6 +123,9 @@
   <data name="BtnSave" xml:space="preserve">
     <value>Записать в дневник</value>
   </data>
+  <data name="BtnSendInvite" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
   <data name="Child" xml:space="preserve">
     <value>Ребенок</value>
   </data>
@@ -132,8 +135,17 @@
   <data name="ChildNamePlaceholder" xml:space="preserve">
     <value>Например, Миша, 6 лет</value>
   </data>
+  <data name="ConnectParentHint" xml:space="preserve">
+    <value>Введите email родителя, чтобы открыть доступ к дневнику</value>
+  </data>
+  <data name="ConnectParentTitle" xml:space="preserve">
+    <value>Подключить родителя</value>
+  </data>
   <data name="CurrentStudent" xml:space="preserve">
     <value>Текущий ученик</value>
+  </data>
+  <data name="DateSent" xml:space="preserve">
+    <value>Дата отправки</value>
   </data>
   <data name="DiaryTitle" xml:space="preserve">
     <value>Дневник занятий специалистов</value>
@@ -156,6 +168,9 @@
   <data name="HomeworkPlaceholder" xml:space="preserve">
     <value>Повторять комплекс упражнений перед зеркалом</value>
   </data>
+  <data name="InviteStatusTitle" xml:space="preserve">
+    <value>Статус приглашений</value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>Загрузка записей...</value>
   </data>
@@ -165,17 +180,32 @@
   <data name="NewRecord" xml:space="preserve">
     <value>Новая запись</value>
   </data>
+  <data name="NoInvites" xml:space="preserve">
+    <value>Нет приглашений</value>
+  </data>
   <data name="ParentLabel" xml:space="preserve">
     <value>Родитель</value>
+  </data>
+  <data name="ParentsSectionTitle" xml:space="preserve">
+    <value>Работа с родителями</value>
   </data>
   <data name="RequiredField" xml:space="preserve">
     <value>Поле обязательно для заполнения</value>
   </data>
-  <data name="SelectStudentLabel" xml:space="preserve">
+  <data name="SelectStudentHint" xml:space="preserve">
     <value>Выберите ребенка для ведения дневника и просмотра истории:</value>
   </data>
   <data name="SessionDate" xml:space="preserve">
     <value>Дата проведения</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="StatusAccepted" xml:space="preserve">
+    <value>Подтверждено</value>
+  </data>
+  <data name="StatusPending" xml:space="preserve">
+    <value>В ожидании</value>
   </data>
   <data name="Topic" xml:space="preserve">
     <value>Тема занятия</value>

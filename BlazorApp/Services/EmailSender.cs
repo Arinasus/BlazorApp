@@ -39,7 +39,6 @@ namespace BlazorApp.Services
                 }
                 catch (Exception ex)
                 {
-                    // Логируем ошибку, чтобы понять, если Google отклонит запрос
                     Console.WriteLine($"Ошибка отправки почты: {ex.Message}");
                     throw;
                 }
@@ -52,7 +51,7 @@ namespace BlazorApp.Services
 
             await SendEmailAsync(email, subject, message);
         }
-        // Этот метод Identity вызывает автоматически при входе пользователя, если включена 2FA!
+
         public Task SendTwoFactorCodeAsync(ApplicationUser user, string email, string twoFactorCode)
         {
             string subject = "Код подтверждения входа (2FA)";
@@ -60,7 +59,7 @@ namespace BlazorApp.Services
 
             return SendEmailAsync(email, subject, message);
         }
-        // Реализуем остальные методы интерфейса (можно оставить пустыми или добавить логику позже)
+
         public Task SendPasswordResetLinkAsync(ApplicationUser user, string email, string resetLink) =>
             SendEmailAsync(email, "Сброс пароля", $"Для сброса пароля перейдите по <a href='{resetLink}'>ссылке</a>.");
 

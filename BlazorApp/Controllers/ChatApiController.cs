@@ -29,7 +29,7 @@ namespace BlazorApp.Controllers
             {
                 SenderId = request.SenderId,
                 SenderName = request.SenderName,
-                ReceiverId = request.ReceiverId, // ID того, кому пишем (клиент или специалист)
+                ReceiverId = request.ReceiverId, 
                 MessageText = request.Text,
                 SentAt = DateTime.UtcNow
             };
@@ -39,7 +39,7 @@ namespace BlazorApp.Controllers
 
             return Ok();
         }
-        // Добавь этот метод внутрь класса ChatApiController
+
         [HttpGet("count")]
         public async Task<IActionResult> GetMessageCount([FromQuery] string user1, [FromQuery] string user2)
         {
@@ -48,7 +48,6 @@ namespace BlazorApp.Controllers
 
             using var db = await _dbFactory.CreateDbContextAsync();
 
-            // Считаем количество сообщений между двумя пользователями
             int count = await db.ChatMessages
                 .CountAsync(m => (m.SenderId == user1 && m.ReceiverId == user2)
                               || (m.SenderId == user2 && m.ReceiverId == user1));
@@ -61,7 +60,7 @@ namespace BlazorApp.Controllers
     {
         public string SenderId { get; set; } = "";
         public string SenderName { get; set; } = "";
-        public string ReceiverId { get; set; } = ""; // Новое обязательное поле
+        public string ReceiverId { get; set; } = ""; 
         public string Text { get; set; } = "";
     }
 }

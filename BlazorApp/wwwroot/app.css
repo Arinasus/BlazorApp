@@ -76,3 +76,36 @@
 .form-floating > .form-control:not(:placeholder-shown) ~ label {
     color: var(--brand-coral) !important;
 }
+.btn-outline-coral {
+    --bs-btn-color: #FF7F50;
+    --bs-btn-border-color: #FF7F50;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #FF7F50;
+    --bs-btn-hover-border-color: #FF7F50;
+    --bs-btn-focus-shadow-rgb: 255, 127, 80;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #FF7F50;
+    --bs-btn-active-border-color: #FF7F50;
+}
+
+body .navbar .nav-link:hover,
+body .navbar .nav-link:focus,
+body .navbar .dropdown-item:hover,
+body .navbar .dropdown-item:focus,
+body .navbar .dropdown-item.active {
+    background-color: rgba(255, 138, 91, 0.1) !important; 
+    color: #FF8A5B !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body .navbar .nav-link:active,
+body .navbar .dropdown-item:active {
+    background-color: rgba(255, 138, 91, 0.1) !important;
+}
+
+body .navbar a:focus,
+body .navbar button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

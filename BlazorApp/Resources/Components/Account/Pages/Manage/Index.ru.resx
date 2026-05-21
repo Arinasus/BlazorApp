@@ -147,6 +147,9 @@
   <data name="ErrRequiredUser" xml:space="preserve">
     <value>Пожалуйста, введите имя пользователя.</value>
   </data>
+  <data name="Header" xml:space="preserve">
+    <value>Профиль пользователя</value>
+  </data>
   <data name="MsgSuccess" xml:space="preserve">
     <value>Профиль успешно обновлен!</value>
   </data>
@@ -160,6 +163,9 @@
     <value>Сохранить</value>
   </data>
   <data name="Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="UserNameLabel" xml:space="preserve">
     <value>Имя пользователя</value>
   </data>
 </root>

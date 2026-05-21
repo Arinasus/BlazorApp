@@ -115,7 +115,8 @@
         try
         {
             await FavoriteService.ToggleFavoriteAsync(userId, lectureId: Id);
-            isFavorite = !isFavorite; 
+            isFavorite = !isFavorite;
+            StateHasChanged(); 
         }
         catch (Exception ex)
         {

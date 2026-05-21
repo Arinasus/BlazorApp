@@ -117,10 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChangeSettings" xml:space="preserve">
-    <value>Changing your account settings</value>
+  <data name="BtnAccept" xml:space="preserve">
+    <value>Accept</value>
   </data>
-  <data name="ManageAccount" xml:space="preserve">
-    <value>Account Management</value>
+  <data name="Homework" xml:space="preserve">
+    <value>Homework</value>
+  </data>
+  <data name="InvitationHint" xml:space="preserve">
+    <value>You have received an invitation from a specialist. Please select a child to link their diary to.</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="NewInvitationsTitle" xml:space="preserve">
+    <value>New invitations</value>
+  </data>
+  <data name="NoLogsYet" xml:space="preserve">
+    <value>There are no diary entries yet.</value>
+  </data>
+  <data name="ParentDiaryTitle" xml:space="preserve">
+    <value>Therapy diary</value>
+  </data>
+  <data name="SelectChild" xml:space="preserve">
+    <value>Choose a child</value>
+  </data>
+  <data name="Therapist" xml:space="preserve">
+    <value>Specialist</value>
+  </data>
+  <data name="Topic" xml:space="preserve">
+    <value>Lesson topic</value>
+  </data>
+  <data name="WorkDone" xml:space="preserve">
+    <value>Work done</value>
   </data>
 </root>

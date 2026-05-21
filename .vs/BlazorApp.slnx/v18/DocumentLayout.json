@@ -7,12 +7,20 @@
       "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\resources\\components\\layout\\navmenu.ru.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\resources\\components\\layout\\navmenu.ru.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\components\\layout\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\layout\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\resources\\components\\layout\\navmenu.en.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\resources\\components\\layout\\navmenu.en.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\components\\account\\pages\\login.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\pages\\login.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|d:\\diplom\\blazorapp\\blazorapp\\components\\account\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D120649D-2906-09DD-7896-0626A755FFF4}|BlazorApp\\BlazorApp.csproj|solutionrelative:blazorapp\\components\\account\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,30 +30,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.razor.css",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Login.razor.css",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Login.razor.css",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Login.razor.css",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Login.razor.css",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-21T15:17:44.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Login.razor",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Account\\Pages\\Login.razor",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Account\\Pages\\Login.razor",
+              "RelativeToolTip": "BlazorApp\\Components\\Account\\Pages\\Login.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-21T15:14:41.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "NavMenu.en.resx",
-              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Resources\\Components\\Layout\\NavMenu.en.resx",
-              "RelativeDocumentMoniker": "BlazorApp\\Resources\\Components\\Layout\\NavMenu.en.resx",
-              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Resources\\Components\\Layout\\NavMenu.en.resx",
-              "RelativeToolTip": "BlazorApp\\Resources\\Components\\Layout\\NavMenu.en.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2026-05-20T22:05:41.343Z",
+              "Title": "app.css",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "BlazorApp\\wwwroot\\app.css",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\wwwroot\\app.css",
+              "RelativeToolTip": "BlazorApp\\wwwroot\\app.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-21T15:07:08.068Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "NavMenu.ru.resx",
-              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Resources\\Components\\Layout\\NavMenu.ru.resx",
-              "RelativeDocumentMoniker": "BlazorApp\\Resources\\Components\\Layout\\NavMenu.ru.resx",
-              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Resources\\Components\\Layout\\NavMenu.ru.resx",
-              "RelativeToolTip": "BlazorApp\\Resources\\Components\\Layout\\NavMenu.ru.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2026-05-20T22:05:25.478Z",
+              "Title": "NavMenu.razor.css",
+              "DocumentMoniker": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor.css",
+              "RelativeDocumentMoniker": "BlazorApp\\Components\\Layout\\NavMenu.razor.css",
+              "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor.css",
+              "RelativeToolTip": "BlazorApp\\Components\\Layout\\NavMenu.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-21T15:03:42.112Z",
               "EditorCaption": ""
             },
             {
@@ -56,9 +92,9 @@
               "RelativeDocumentMoniker": "BlazorApp\\Components\\Layout\\NavMenu.razor",
               "ToolTip": "D:\\Diplom\\BlazorApp\\BlazorApp\\Components\\Layout\\NavMenu.razor",
               "RelativeToolTip": "BlazorApp\\Components\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAI8AAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-20T22:03:15.688Z",
+              "WhenOpened": "2026-05-21T15:03:22.862Z",
               "EditorCaption": ""
             }
           ]

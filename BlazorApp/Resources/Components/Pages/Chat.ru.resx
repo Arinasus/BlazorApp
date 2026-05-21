@@ -117,100 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnBookAppointment" xml:space="preserve">
-    <value>Make an appointment</value>
+  <data name="ChatWith" xml:space="preserve">
+    <value>Чат с</value>
   </data>
-  <data name="BtnSendMessage" xml:space="preserve">
-    <value>Написать сообщение</value>
+  <data name="EnterMessagePlaceholder" xml:space="preserve">
+    <value>Введите сообщение...</value>
   </data>
-  <data name="BtnSendReview" xml:space="preserve">
-    <value>Send feedback</value>
+  <data name="Interlocutor" xml:space="preserve">
+    <value>Собеседник</value>
   </data>
-  <data name="Hour" xml:space="preserve">
-    <value>hour</value>
+  <data name="NoMessagesYet" xml:space="preserve">
+    <value>Сообщений пока нет. Начните диалог первым!</value>
   </data>
-  <data name="BtnFavorited" xml:space="preserve">
-    <value>In favorites</value>
-  </data>
-  <data name="LabelAddress" xml:space="preserve">
-    <value>Office address</value>
-  </data>
-  <data name="LabelEducation" xml:space="preserve">
-    <value>Education</value>
-  </data>
-  <data name="LabelPrice" xml:space="preserve">
-    <value>Price</value>
-  </data>
-  <data name="NoReviewsYet" xml:space="preserve">
-    <value>There are no reviews yet. Be the first!</value>
-  </data>
-  <data name="PlaceholderReviewName" xml:space="preserve">
-    <value>your name</value>
-  </data>
-  <data name="PlaceholderReviewText" xml:space="preserve">
-    <value>Your experience working with a specialist...</value>
-  </data>
-  <data name="SecAbout" xml:space="preserve">
-    <value>About the specialist</value>
-  </data>
-  <data name="SecCertificates" xml:space="preserve">
-    <value>Certificates and diplomas</value>
-  </data>
-  <data name="SecLocation" xml:space="preserve">
-    <value>Class location</value>
-  </data>
-  <data name="SecReviews" xml:space="preserve">
-    <value>Reviews from parents</value>
-  </data>
-  <data name="ToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
-  </data>
-  <data name="ViewPDF" xml:space="preserve">
-    <value>View PDF</value>
-  </data>
-  <data name="WriteReview" xml:space="preserve">
-    <value>Leave feedback</value>
-  </data>
-  <data name="YourRating" xml:space="preserve">
-    <value>Your rating</value>
-  </data>
-  <data name="BtnFavorite" xml:space="preserve">
-    <value>BtnFavorite</value>
-  </data>
-  <data name="AboutTitle" xml:space="preserve">
-    <value>About specialist</value>
-  </data>
-  <data name="EducationLabel" xml:space="preserve">
-    <value>Education</value>
-  </data>
-  <data name="PriceLabel" xml:space="preserve">
-    <value>Price</value>
-  </data>
-  <data name="PerHour" xml:space="preserve">
-    <value>hour</value>
-  </data>
-  <data name="LocationTitle" xml:space="preserve">
-    <value>Class location</value>
-  </data>
-  <data name="AddressLabel" xml:space="preserve">
-    <value>Office address:</value>
-  </data>
-  <data name="CertificatesTitle" xml:space="preserve">
-    <value>Certificates and diplomas</value>
-  </data>
-  <data name="ReviewsTitle" xml:space="preserve">
-    <value>Reviews from parents</value>
-  </data>
-  <data name="LeaveReview" xml:space="preserve">
-    <value>Leave feedback</value>
-  </data>
-  <data name="YourName" xml:space="preserve">
-    <value>your name</value>
-  </data>
-  <data name="YourExp" xml:space="preserve">
-    <value>Your work experience...</value>
-  </data>
-  <data name="BtnSubmitReview" xml:space="preserve">
-    <value>Send feedback</value>
+  <data name="SendButton" xml:space="preserve">
+    <value>Отправить</value>
   </data>
 </root>

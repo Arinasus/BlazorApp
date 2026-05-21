@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChangeSettings" xml:space="preserve">
-    <value>Changing your account settings</value>
+  <data name="BtnBack" xml:space="preserve">
+    <value>Вернуться к списку</value>
   </data>
-  <data name="ManageAccount" xml:space="preserve">
-    <value>Account Management</value>
+  <data name="BtnFavorite" xml:space="preserve">
+    <value>В избранном</value>
+  </data>
+  <data name="BtnFavoriteActive" xml:space="preserve">
+    <value>В избранное</value>
+  </data>
+  <data name="CoverAlt" xml:space="preserve">
+    <value>Обложка лекции</value>
+  </data>
+  <data name="LectureNumber" xml:space="preserve">
+    <value>Лекция №</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="PortalMaterialHint" xml:space="preserve">
+    <value>Сохраните лекцию в избранное для быстрого доступа</value>
+  </data>
+  <data name="PortalMaterialTitle" xml:space="preserve">
+    <value>Материалы портала</value>
   </data>
 </root>

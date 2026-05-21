@@ -117,100 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnBookAppointment" xml:space="preserve">
-    <value>Записаться на прием</value>
+  <data name="ClickToChat" xml:space="preserve">
+    <value>Click to go to the conversation</value>
   </data>
-  <data name="BtnSendMessage" xml:space="preserve">
-    <value>Написать сообщение</value>
+  <data name="GoToSpecialistsToStart" xml:space="preserve">
+    <value>Go to the "Specialists" section to start your first conversation!</value>
   </data>
-  <data name="BtnSendReview" xml:space="preserve">
-    <value>Отправить отзыв</value>
+  <data name="LoadingChats" xml:space="preserve">
+    <value>Loading chat list...</value>
   </data>
-  <data name="Hour" xml:space="preserve">
-    <value>час</value>
+  <data name="NoActiveDialogues" xml:space="preserve">
+    <value>You don't have any active conversations yet.</value>
   </data>
-  <data name="BtnFavorited" xml:space="preserve">
-    <value>В избранном</value>
+  <data name="OpenChat" xml:space="preserve">
+    <value>Open chat</value>
   </data>
-  <data name="LabelAddress" xml:space="preserve">
-    <value>Адрес кабинета</value>
+  <data name="SpecialistLabel" xml:space="preserve">
+    <value>Specialist</value>
   </data>
-  <data name="LabelEducation" xml:space="preserve">
-    <value>Образование</value>
+  <data name="UserLabel" xml:space="preserve">
+    <value>User</value>
   </data>
-  <data name="LabelPrice" xml:space="preserve">
-    <value>Стоимость</value>
-  </data>
-  <data name="NoReviewsYet" xml:space="preserve">
-    <value>Отзывов пока нет. Будьте первым!</value>
-  </data>
-  <data name="PlaceholderReviewName" xml:space="preserve">
-    <value>Ваше имя</value>
-  </data>
-  <data name="PlaceholderReviewText" xml:space="preserve">
-    <value>Ваш опыт работы со специалистом...</value>
-  </data>
-  <data name="SecAbout" xml:space="preserve">
-    <value>О специалисте</value>
-  </data>
-  <data name="SecCertificates" xml:space="preserve">
-    <value>Сертификаты и дипломы</value>
-  </data>
-  <data name="SecLocation" xml:space="preserve">
-    <value>Место проведения занятий</value>
-  </data>
-  <data name="SecReviews" xml:space="preserve">
-    <value>Отзывы родителей</value>
-  </data>
-  <data name="ToFavorites" xml:space="preserve">
-    <value>В избранное</value>
-  </data>
-  <data name="ViewPDF" xml:space="preserve">
-    <value>Просмотреть PDF</value>
-  </data>
-  <data name="WriteReview" xml:space="preserve">
-    <value>Оставить отзыв</value>
-  </data>
-  <data name="YourRating" xml:space="preserve">
-    <value>Ваша оценка</value>
-  </data>
-  <data name="BtnFavorite" xml:space="preserve">
-    <value>В избранное</value>
-  </data>
-  <data name="AboutTitle" xml:space="preserve">
-    <value>О специалисте</value>
-  </data>
-  <data name="EducationLabel" xml:space="preserve">
-    <value>Образование</value>
-  </data>
-  <data name="PriceLabel" xml:space="preserve">
-    <value>Стоимость</value>
-  </data>
-  <data name="PerHour" xml:space="preserve">
-    <value>час</value>
-  </data>
-  <data name="LocationTitle" xml:space="preserve">
-    <value>Место проведения занятий</value>
-  </data>
-  <data name="AddressLabel" xml:space="preserve">
-    <value>Адрес кабинета:</value>
-  </data>
-  <data name="CertificatesTitle" xml:space="preserve">
-    <value>Сертификаты и дипломы</value>
-  </data>
-  <data name="ReviewsTitle" xml:space="preserve">
-    <value>Отзывы родителей</value>
-  </data>
-  <data name="LeaveReview" xml:space="preserve">
-    <value>Оставить отзыв</value>
-  </data>
-  <data name="YourName" xml:space="preserve">
-    <value>Ваше имя</value>
-  </data>
-  <data name="YourExp" xml:space="preserve">
-    <value>Ваш опыт работы...</value>
-  </data>
-  <data name="BtnSubmitReview" xml:space="preserve">
-    <value>Отправить отзыв</value>
+  <data name="YourDialoguesTitle" xml:space="preserve">
+    <value>Your dialogues</value>
   </data>
 </root>

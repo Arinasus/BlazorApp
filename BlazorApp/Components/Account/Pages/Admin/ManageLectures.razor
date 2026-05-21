@@ -144,7 +144,7 @@
 </div>
 
 @code {
-    private Lecture currentLecture = new();
+    private Lecture currentLecture = new() { ImagePath = "/images/default-lecture.png" };
     private List<Lecture>? displayedLectures;
     private HtmlTextEditor QuillHtml = default!;
 
@@ -220,7 +220,18 @@
 
     private async Task StartEdit(Lecture lecture)
     {
-        currentLecture = lecture;
+        currentLecture = new Lecture
+        {
+            Id = lecture.Id,
+            Title = lecture.Title,
+            TargetDiagnosis = lecture.TargetDiagnosis,
+            Description = lecture.Description,
+            Content = lecture.Content,
+            VideoUrl = lecture.VideoUrl,
+            ImagePath = lecture.ImagePath,
+            AuthorId = lecture.AuthorId
+        };
+
         isEditing = true;
 
         if (QuillHtml != null)
@@ -231,7 +242,10 @@
 
     private async Task CancelEditing()
     {
-        currentLecture = new();
+        currentLecture = new Lecture
+        {
+            ImagePath = "/images/default-lecture.png" 
+        };
         isEditing = false;
         await QuillHtml.LoadHtmlContent("");
     }

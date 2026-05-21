@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChangeSettings" xml:space="preserve">
-    <value>Changing your account settings</value>
+  <data name="ChatWith" xml:space="preserve">
+    <value>Chat with</value>
   </data>
-  <data name="ManageAccount" xml:space="preserve">
-    <value>Account Management</value>
+  <data name="EnterMessagePlaceholder" xml:space="preserve">
+    <value>Enter your message...</value>
+  </data>
+  <data name="Interlocutor" xml:space="preserve">
+    <value>Companion</value>
+  </data>
+  <data name="NoMessagesYet" xml:space="preserve">
+    <value>There are no messages yet. Be the first to start the conversation!</value>
+  </data>
+  <data name="SendButton" xml:space="preserve">
+    <value>Send</value>
   </data>
 </root>

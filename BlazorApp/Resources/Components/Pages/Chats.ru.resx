@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChangeSettings" xml:space="preserve">
-    <value>Changing your account settings</value>
+  <data name="ClickToChat" xml:space="preserve">
+    <value>Нажмите, чтобы перейти к переписке</value>
   </data>
-  <data name="ManageAccount" xml:space="preserve">
-    <value>Account Management</value>
+  <data name="GoToSpecialistsToStart" xml:space="preserve">
+    <value>Перейдите в раздел "Специалисты", чтобы начать свой первый диалог!</value>
+  </data>
+  <data name="LoadingChats" xml:space="preserve">
+    <value>Загрузка списка чатов...</value>
+  </data>
+  <data name="NoActiveDialogues" xml:space="preserve">
+    <value>У вас пока нет активных переписок</value>
+  </data>
+  <data name="OpenChat" xml:space="preserve">
+    <value>Открыть чат</value>
+  </data>
+  <data name="SpecialistLabel" xml:space="preserve">
+    <value>Специалист</value>
+  </data>
+  <data name="UserLabel" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="YourDialoguesTitle" xml:space="preserve">
+    <value>Ваши диалоги</value>
   </data>
 </root>

@@ -11,7 +11,7 @@
 
 @rendermode InteractiveServer
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top custom-nav">
     <div class="container-fluid px-4">
         <a class="navbar-brand d-flex align-items-center fw-bold" href="">
             <img src="/images/logo.png" alt="Лого" class="nav-logo-img me-2" style="height: 40px; width: auto;" />
@@ -41,34 +41,32 @@
                     <Authorized>
                         <li class="nav-item">
                             <NavLink class="nav-link" href="chats">
-                                <i class="bi bi-chat-left-text me-1"></i> Чаты
+                                <i class="bi bi-chat-left-text me-1"></i> @L["Chats"]
                             </NavLink>
                         </li>
                     </Authorized>
                 </AuthorizeView>
 
-                @* АДМИН-ЦЕНТР *@
                 <AuthorizeView Roles="Admin">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle manage-pill admin-pill d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-shield-lock me-2"></i> <span>Admin-центр</span>
+                            <i class="bi bi-shield-lock me-2"></i> <span>@L["AdminCenter"]</span>
                         </a>
                         <ul class="dropdown-menu border-0 shadow-sm">
-                            <li><NavLink class="dropdown-item" href="admin/dashboard">Панель управления</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="admin/applications">Заявки</NavLink></li>
+                            <li><NavLink class="dropdown-item" href="admin/dashboard">@L["Dashboard"]</NavLink></li>
+                            <li><NavLink class="dropdown-item" href="admin/applications">@L["Applications"]</NavLink></li>
                         </ul>
                     </li>
                 </AuthorizeView>
 
-                @* КНОПКИ ДЛЯ ЛОГОПЕДА (THERAPIST) *@
                 <AuthorizeView Roles="Therapist">
                     <li class="nav-item d-flex gap-2">
                         <NavLink class="nav-link manage-pill therapist-pill d-inline-flex align-items-center" href="admin/lectures">
-                            <i class="bi bi-journal-plus me-2"></i> <span>Добавить лекцию</span>
+                            <i class="bi bi-journal-plus me-2"></i> <span>@L["AddLecture"]</span>
                         </NavLink>
 
                         <NavLink class="nav-link manage-pill therapist-pill d-inline-flex align-items-center ms-2" href="Account/Manage/TherapistDiary">
-                            <i class="bi bi-journal-bookmark-fill me-2"></i> <span>Дневник занятий</span>
+                            <i class="bi bi-journal-bookmark-fill me-2"></i> <span>@L["Diary"]</span>
                         </NavLink>
                     </li>
                 </AuthorizeView>
@@ -83,7 +81,7 @@
                             <AuthorizeView Roles="Client" Context="parentContext">
                                 <NavLink class="nav-link favorite-link d-flex align-items-center justify-content-center position-relative"
                                          href="parent/diary"
-                                         title="Дневник ребенка">
+                                         title="@L["MyChildren"]">
                                     <i class="bi bi-person-heart"></i>
                                     @if (unreadInvitationsCount > 0)
                                     {
@@ -97,7 +95,7 @@
 
                             <NavLink class="nav-link favorite-link d-flex align-items-center justify-content-center"
                                      href="Account/Manage/Favorites"
-                                     title="Избранное">
+                                     title="@L["Favorites"]">
                                 <i class="bi bi-heart-fill"></i>
                             </NavLink>
 
@@ -106,23 +104,23 @@
                                     <i class="bi bi-person-circle me-2"></i> <span>@context.User.Identity?.Name</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
-                                    <li><NavLink class="dropdown-item" href="Account/Manage">Профиль</NavLink></li>
+                                    <li><NavLink class="dropdown-item" href="Account/Manage">@L["Profile"]</NavLink></li>
 
                                     <AuthorizeView Roles="Client" Context="parentMenuContext">
-                                        <li><NavLink class="dropdown-item" href="parent/diary">Дневник ребенка</NavLink></li>
+                                        <li><NavLink class="dropdown-item" href="parent/diary">@L["MyChildren"]</NavLink></li>
                                     </AuthorizeView>
 
                                     <AuthorizeView Roles="Therapist" Context="therapistMenuContext">
-                                        <li><NavLink class="dropdown-item" href="Account/Manage/TherapistDiary">Дневник занятий</NavLink></li>
+                                        <li><NavLink class="dropdown-item" href="Account/Manage/TherapistDiary">@L["Diary"]</NavLink></li>
                                     </AuthorizeView>
 
-                                    <li><NavLink class="dropdown-item" href="Account/Manage/Favorites">Избранное</NavLink></li>
+                                    <li><NavLink class="dropdown-item" href="Account/Manage/Favorites">@L["Favorites"]</NavLink></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form action="Account/Logout" method="post">
                                             <AntiforgeryToken />
                                             <input type="hidden" name="ReturnUrl" value="@currentUrl" />
-                                            <button type="submit" class="dropdown-item text-danger">Выйти</button>
+                                            <button type="submit" class="dropdown-item text-danger">@L["Logout"]</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -140,6 +138,34 @@
 </nav>
 
 <style>
+    .custom-nav .nav-link:hover,
+    .custom-nav .nav-link:focus,
+    .custom-nav .dropdown-toggle:hover,
+    .custom-nav .dropdown-item:hover,
+    .custom-nav .dropdown-item:focus {
+        background-color: var(--bg-hover) !important;
+        color: var(--primary-coral) !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .custom-nav .nav-link.active,
+    .custom-nav .nav-link.show,
+    .custom-nav .dropdown-toggle.show {
+        background-color: transparent !important;
+        color: var(--primary-coral) !important;
+    }
+
+    .custom-nav .dropdown-menu .dropdown-item:active {
+        background-color: var(--bg-hover) !important;
+        color: var(--primary-coral) !important;
+    }
+
+    .custom-nav .btn-login:hover {
+        background-color: var(--primary-coral) !important;
+        color: white !important;
+    }
+
     .animate-pulse {
         animation: pulse-ring 2s infinite;
     }
@@ -198,7 +224,6 @@
 
                 if (!string.IsNullOrEmpty(userEmail))
                 {
-                    // Делаем изолированный сверхбыстрый запрос напрямую через фабрику контекста
                     using var context = await DbFactory.CreateDbContextAsync();
 
                     unreadInvitationsCount = await context.DiaryInvitations

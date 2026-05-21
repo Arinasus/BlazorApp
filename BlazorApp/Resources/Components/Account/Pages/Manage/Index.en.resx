@@ -147,6 +147,9 @@
   <data name="ErrRequiredUser" xml:space="preserve">
     <value>Please enter your username.</value>
   </data>
+  <data name="Header" xml:space="preserve">
+    <value>User profile</value>
+  </data>
   <data name="MsgSuccess" xml:space="preserve">
     <value>Profile successfully updated!</value>
   </data>
@@ -160,6 +163,9 @@
     <value>Save</value>
   </data>
   <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UserNameLabel" xml:space="preserve">
     <value>Username</value>
   </data>
 </root>

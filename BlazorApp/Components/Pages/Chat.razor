@@ -3,16 +3,17 @@
 @using Microsoft.EntityFrameworkCore
 @using BlazorApp.Data
 @using BlazorApp.Shared.Models
-
+@using Microsoft.Extensions.Localization
 @inject IDbContextFactory<ApplicationDbContext> DbFactory
 @inject AuthenticationStateProvider AuthStateProvider
+@inject IStringLocalizer<Chat> L
 
-<h3>Чат: @opponentName</h3>
+<h3>@L["ChatWith"]: @opponentName</h3>
 
 <div class="chat-container border rounded p-3 bg-light" id="chatWindow" style="height: 400px; overflow-y: scroll;">
     @if (!messages.Any())
     {
-        <p class="text-muted" id="noMessages">Сообщений пока нет. Начните диалог первым!</p>
+        <p class="text-muted" id="noMessages">@L["NoMessagesYet"]</p>
     }
     else
     {
@@ -30,7 +31,7 @@
 </div>
 
 <div class="input-group mt-3">
-    <input type="text" id="msgInput" class="form-control" placeholder="Введите сообщение..." />
+    <input type="text" id="msgInput" class="form-control" placeholder="@L["EnterMessagePlaceholder"]" />
     <button type="button" class="btn btn-primary" id="btnSend"
             onclick="
             const input=document.getElementById('msgInput');
@@ -51,19 +52,16 @@
         input.value = '';
         window.location.reload();
         }
-        });
-        ">
-        Отправить
+        });">
+        @L["SendButton"]
     </button>
 </div>
 
-@* --- ВОТ СЮДА МЫ ДОБАВИЛИ СКРЫТЫЕ ПОЛЯ ДЛЯ НАДЕЖНОЙ ПЕРЕДАЧИ В JS --- *@
 <input type="hidden" id="currentUserIdField" value="@currentUserId" />
 <input type="hidden" id="currentUserNameField" value="@currentUserName" />
 <input type="hidden" id="receiverIdField" value="@ReceiverId" />
 <input type="hidden" id="localCountField" value="@messages.Count" />
 
-@* Обновленный скрипт автообновления *@
 <script>
     if (window.chatTimer) {
         clearInterval(window.chatTimer);
@@ -75,15 +73,12 @@
     window.chatTimer = setInterval(function () {
         const input = document.getElementById('msgInput');
 
-        // Если пользователь пишет — не мешаем, не обновляем страницу
         if (input && input.value.trim() !== '') { return; }
 
-        // Достаем ID динамически из HTML-полей
         const u1 = document.getElementById('currentUserIdField').value;
         const u2 = document.getElementById('receiverIdField').value;
         const localCount = parseInt(document.getElementById('localCountField').value) || 0;
 
-        // Если Blazor еще не успел отрендерить ID, пропускаем этот тик таймера
         if (!u1 || !u2 || u1 === "user-123") return;
 
         fetch(`/api/chat/count?user1=${u1}&user2=${u2}`)
@@ -92,7 +87,6 @@
                 return res.json();
             })
             .then(serverCount => {
-                // Если сообщений в БД стало больше — плавно перезагружаем чат
                 if (serverCount > localCount) {
                     clearInterval(window.chatTimer);
                     window.location.reload();
@@ -108,10 +102,12 @@
     private List<ChatMessage> messages = new();
     private string currentUserId = "";
     private string currentUserName = "";
-    private string opponentName = "Собеседник";
+    private string opponentName = ""; 
 
     protected override async Task OnInitializedAsync()
     {
+        opponentName = L["Interlocutor"];
+
         var authState = await AuthStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
@@ -125,14 +121,14 @@
 
         messages = await db.ChatMessages
             .Where(m => (m.SenderId == currentUserId && m.ReceiverId == ReceiverId)
-                     || (m.SenderId == ReceiverId && m.ReceiverId == currentUserId))
+                      || (m.SenderId == ReceiverId && m.ReceiverId == currentUserId))
             .OrderBy(m => m.SentAt)
             .ToListAsync();
 
         var opponent = await db.Users.FirstOrDefaultAsync(u => u.Id == ReceiverId);
         if (opponent != null)
         {
-            opponentName = opponent.UserName ?? "Собеседник";
+            opponentName = opponent.UserName ?? L["Interlocutor"];
         }
     }
 }

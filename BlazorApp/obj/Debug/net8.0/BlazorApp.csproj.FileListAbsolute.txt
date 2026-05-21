@@ -493,8 +493,6 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Ac
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ResetPasswordConfirmation.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Support.en.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Support.ru.resources
-D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistProfile.en.resources
-D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistProfile.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistsCatalog.en.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistsCatalog.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Shared.ManageLayout.en.resources
@@ -588,3 +586,15 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Ac
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Shared.ManageNavMenu.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Layout.NavMenu.en.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Layout.NavMenu.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistDetails.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistDetails.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Chat.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Chat.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Chats.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Pages.Chats.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.LectureDetails.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.LectureDetails.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Layout.MainLayout.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Layout.MainLayout.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Diary.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Diary.en.resources

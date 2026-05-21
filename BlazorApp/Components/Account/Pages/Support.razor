@@ -2,11 +2,13 @@
 @using BlazorApp.Shared.DTOs
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
-@inject IEmailSender<ApplicationUser> EmailSender
-@inject UserManager<ApplicationUser> UserManager
-@inject NavigationManager Navigation
+@using Microsoft.AspNetCore.Identity.UI.Services
 @using Microsoft.Extensions.Localization
+
+@inject IEmailSender EmailSender
+@inject NavigationManager Navigation
 @inject IStringLocalizer<Support> L
+@rendermode InteractiveServer
 
 <PageTitle>@L["PageTitle"]</PageTitle>
 
@@ -23,7 +25,7 @@
                         <i class="bi bi-check-circle-fill me-2"></i> @L["SuccessMessage"]
                     </div>
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-primary rounded-pill" @onclick='() => Navigation.NavigateTo("/")'>
+                        <button class="btn btn-outline-secondary btn-coral-outline rounded-pill" @onclick='() => Navigation.NavigateTo("/")'>
                             @L["BackHome"]
                         </button>
                     </div>
@@ -74,7 +76,19 @@
         </div>
     </div>
 </div>
-
+<style>
+    .btn-coral-outline {
+        --bs-btn-color: #FF7F50;
+        --bs-btn-border-color: #FF7F50;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #FF7F50;
+        --bs-btn-hover-border-color: #FF7F50;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #FF7F50;
+        --bs-btn-active-border-color: #FF7F50;
+        --bs-btn-focus-shadow-rgb: 255, 127, 80;
+    }
+</style>
 @code {
     private SupportRequestDto model = new();
     private bool isSent = false;
@@ -83,27 +97,23 @@
     private async Task HandleSubmit()
     {
         isProcessing = true;
-        var adminEmail = "allyut12zk@gmail.com"; 
 
-        string emailBody = $@"
-            <h3>Новое обращение в поддержку</h3>
-            <p><b>От:</b> {model.Name} ({model.Email})</p>
-            <p><b>Тема:</b> {model.Subject}</p>
-            <p><b>Сообщение:</b></p>
-            <p>{model.Message}</p>
-        ";
-        var dummyUser = new ApplicationUser { Email = adminEmail };
+        var supportEmail = "allyut12zk@gmail.com";
+
+        string emailBody = $"<h3>Новое обращение</h3><p>От: {model.Name}</p><p>Тема: {model.Subject}</p><p>Сообщение: {model.Message?.Replace("\n", "<br/>")}</p>";
 
         try
         {
-            await EmailSender.SendPasswordResetLinkAsync(dummyUser, adminEmail, emailBody); 
+            await EmailSender.SendEmailAsync(supportEmail, $"Заявка: {model.Subject}", emailBody);
             isSent = true;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка отправки: {ex.Message}");
+            Console.WriteLine($"Ошибка при отправке письма: {ex.Message}");
         }
-
-        isProcessing = false;
+        finally
+        {
+            isProcessing = false;
+        }
     }
 }

@@ -183,115 +183,33 @@ h1[b-7segiuw1hd] {
     align-items: center;
 }
 /* /Components/Account/Pages/Login.razor.rz.scp.css */
-.auth-page-wrapper[b-4h90kzw2gq] {
+.simple-auth-wrapper[b-4h90kzw2gq] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     background-color: #FFF7EF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 20px;
 }
 
-.container-fluid[b-4h90kzw2gq] {
-    max-width: 1100px;
+.auth-box[b-4h90kzw2gq] {
     background: white;
-    border-radius: 50px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(42, 46, 53, 0.05);
+    width: 100%;
+    
+    max-width: 600px;
+    padding: 40px 60px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-@media (min-width: 992px) {
-    .container-fluid[b-4h90kzw2gq] {
-        max-height: 85vh;
-    }
+.form-floating[b-4h90kzw2gq] {
+    margin-bottom: 1.5rem !important;
 }
 
-.auth-logo[b-4h90kzw2gq] {
-    height: 70px;
-    width: auto;
-    object-fit: contain;
-    transition: all 0.3s ease;
-}
-
-.logo-wrapper[b-4h90kzw2gq] {
-    text-align: center;
-    margin-bottom: 1rem !important;
-}
-
-@media (min-width: 992px) {
-    .auth-logo[b-4h90kzw2gq] {
-        height: 140px !important;
-        margin-bottom: 5px;
-    }
-
-    .auth-header[b-4h90kzw2gq] {
-        font-size: 2rem !important;
-        line-height: 1 !important;
-        white-space: nowrap;
-    }
-}
-
-.auth-header[b-4h90kzw2gq] {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    color: #FF8A5B !important;
-    text-align: center;
-    letter-spacing: -1px;
-}
-
-.auth-card p.text-muted[b-4h90kzw2gq] {
-    font-size: 0.95rem !important;
-    line-height: 1.3;
-    margin-bottom: 1.2rem !important;
-}
-
-.form-floating .form-control[b-4h90kzw2gq] {
-    background-color: #F9FBFF;
-    border: 2px solid transparent;
-    border-radius: 14px;
-    height: 3.5rem;
-    font-size: 0.95rem;
-}
-
-.form-floating mb-3[b-4h90kzw2gq] {
-    margin-bottom: 0.6rem !important;
-}
-
-.form-floating > label[b-4h90kzw2gq] {
-    padding: 0.8rem 0.75rem;
-    font-size: 0.9rem;
-}
-
-.forgot-link[b-4h90kzw2gq], .create-link[b-4h90kzw2gq], .form-check-label[b-4h90kzw2gq] {
-    font-size: 0.9rem !important;
-    font-weight: 500;
-}
-
-.btn-auth[b-4h90kzw2gq] {
-    background-color: #FF8A5B !important;
-    color: white !important;
-    border: none !important;
-    font-weight: 700;
-    font-size: 0.9rem !important;
-    padding: 0.8rem !important;
-    border-radius: 50px !important;
-}
-
-.promo-title[b-4h90kzw2gq] {
-    font-family: 'Underdog', cursive;
-    color: #2A2E35;
-    font-size: 2.2rem;
-    line-height: 1.2;
-}
-
-.promo-img[b-4h90kzw2gq] {
-    max-width: 50%;
-    height: auto;
-}
-
-.promo-sub[b-4h90kzw2gq] {
-    font-size: 0.95rem;
-    max-width: 80%;
+.form-control[b-4h90kzw2gq] {
+    padding: 1rem !important;
+    height: auto !important;
+    border-radius: 15px !important;
 }
 /* /Components/Account/Pages/Manage/Children.razor.rz.scp.css */
 /* Кастомная кнопка на базе твоего коралла */
@@ -714,7 +632,6 @@ main[b-qgsvw684bo] {
     --bg-hover: rgba(255, 138, 91, 0.1);
 }
 
-/* Стили навигационных ссылок */
 .nav-link.active:not(.manage-pill)[b-g8o6n169oq] {
     background-color: transparent !important;
     color: var(--text-dark) !important;
@@ -728,7 +645,6 @@ main[b-qgsvw684bo] {
     outline: none !important;
 }
 
-/* Выпадающие списки */
 .dropdown-item[b-g8o6n169oq] {
     transition: all 0.2s;
     color: var(--text-dark) !important;
@@ -743,7 +659,6 @@ main[b-qgsvw684bo] {
         outline: none !important;
     }
 
-/* Пилы (плашки) ролей */
 .admin-pill[b-g8o6n169oq] {
     background-color: transparent !important;
     color: var(--text-dark) !important;
@@ -770,7 +685,6 @@ main[b-qgsvw684bo] {
     box-shadow: none !important;
 }
 
-/* Брендинг и Логотип */
 .nav-logo-img[b-g8o6n169oq] {
     height: 40px !important;
 }
@@ -789,7 +703,6 @@ main[b-qgsvw684bo] {
         text-decoration: none;
     }
 
-/* Кнопки авторизации */
 .btn-login[b-g8o6n169oq] {
     color: var(--primary-coral) !important;
     border: 2px solid var(--primary-coral) !important;
@@ -802,9 +715,8 @@ main[b-qgsvw684bo] {
     border-radius: 50px;
 }
 
-/* Иконки Избранного и Дневника */
 .favorite-link[b-g8o6n169oq] {
-    color: var(--primary-coral) !important; /* Исправлено: привели к единой переменной */
+    color: var(--primary-coral) !important; 
     font-size: 1.25rem;
     padding: 8px;
     border-radius: 50%;
@@ -813,7 +725,7 @@ main[b-qgsvw684bo] {
 }
 
     .favorite-link:hover[b-g8o6n169oq] {
-        background-color: var(--bg-hover); /* Исправлено: привели к единой переменной */
+        background-color: var(--bg-hover); 
         transform: scale(1.1);
     }
 
@@ -821,7 +733,6 @@ main[b-qgsvw684bo] {
         background-color: rgba(255, 138, 91, 0.1);
     }
 
-/* Анимация пульсации для уведомлений (теперь в CSS работает идеально!) */
 .animate-pulse[b-g8o6n169oq] {
     animation: pulse-ring-b-g8o6n169oq 2s infinite;
 }
