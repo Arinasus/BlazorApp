@@ -47,17 +47,27 @@ namespace BlazorApp.Services
         {
             using var context = await _contextFactory.CreateDbContextAsync();
 
-            var activeChildIds = await context.DiaryInvitations
-                .Where(i => i.ParentId == parentId && i.Status == "Accepted" && i.TargetChildId.HasValue)
-                .Select(i => i.TargetChildId!.Value)
+            // 1. Уровень защиты: Специалист имеет право видеть логи, 
+            // только если родитель принял ПРИГЛАШЕНИЕ.
+            var hasActiveContract = await context.DiaryInvitations
+                .AnyAsync(i => i.ParentId == parentId && i.Status == "Accepted");
+
+            if (!hasActiveContract) return new List<TherapyDiaryLogDto>();
+
+            // 2. Уровень защиты: Видим логи только тех детей, 
+            // у которых родитель явно поставил переключатель IsDiaryVisible = true
+            var visibleChildIds = await context.Children
+                .Where(c => c.ParentId == parentId && c.IsDiaryVisible)
+                .Select(c => c.Id)
                 .ToListAsync();
 
             return await context.TherapyDiaryLogs
-                .Where(l => l.TargetChildId.HasValue && activeChildIds.Contains(l.TargetChildId.Value))
+                .Where(l => l.TargetChildId.HasValue && visibleChildIds.Contains(l.TargetChildId.Value))
                 .OrderByDescending(l => l.SessionDate)
                 .Select(log => new TherapyDiaryLogDto
                 {
                     Id = log.Id,
+                    TargetChildId = log.TargetChildId,
                     TherapistProfileId = log.TherapistProfileId,
                     ChildName = log.ChildName,
                     ParentId = log.ParentId,
@@ -77,8 +87,6 @@ namespace BlazorApp.Services
             var child = await context.Children.FindAsync(dto.TargetChildId);
             if (child == null) return false;
 
-            // Исправление: Если дата пришла из формы как Local или Unspecified, 
-            // мы принудительно говорим PostgreSQL, что это UTC, чтобы он не ругался
             var sessionDateUtc = dto.SessionDate.Kind == DateTimeKind.Utc
                 ? dto.SessionDate
                 : DateTime.SpecifyKind(dto.SessionDate, DateTimeKind.Utc);
@@ -89,12 +97,12 @@ namespace BlazorApp.Services
                 TargetChildId = dto.TargetChildId,
                 ChildName = child.Name,
                 ParentId = child.ParentId,
-                SessionDate = sessionDateUtc, // <-- Передаем исправленную дату
+                SessionDate = sessionDateUtc, 
                 Topic = dto.Topic,
                 WorkDone = dto.WorkDone,
                 Homework = dto.Homework,
                 Notes = dto.Notes,
-                CreatedAt = DateTime.UtcNow // Здесь у тебя уже было Utc, тут всё супер!
+                CreatedAt = DateTime.UtcNow 
             };
 
             await context.TherapyDiaryLogs.AddAsync(entity);
@@ -165,31 +173,32 @@ namespace BlazorApp.Services
         }
         public async Task<List<ChildConnectionDto>> GetConnectedChildrenForTherapistAsync(int therapistId)
         {
-            // 1. Создаем контекст через фабрику, как и в других твоих методах
             using var context = await _contextFactory.CreateDbContextAsync();
 
-            // 2. Делаем Join между принятыми инвайтами и таблицей детей, чтобы узнать имя ребенка
-            return await context.DiaryInvitations
-                .Where(i => i.TherapistProfileId == therapistId && i.Status == "Accepted" && i.TargetChildId.HasValue)
-                .Join(context.Children,
-                    invitation => invitation.TargetChildId,
-                    child => child.Id,
-                    (invitation, child) => new ChildConnectionDto
-                    {
-                        ChildId = child.Id,
-                        ChildName = child.Name,       
-                        ParentEmail = invitation.ParentEmail
-                    })
+            var connectedParentIds = await context.DiaryInvitations
+                .Where(i => i.TherapistProfileId == therapistId && i.Status == "Accepted")
+                .Select(i => i.ParentId!)
                 .Distinct()
+                .ToListAsync();
+
+            return await context.Children
+                .Where(c => connectedParentIds.Contains(c.ParentId) && c.IsDiaryVisible)
+                .Select(c => new ChildConnectionDto
+                {
+                    ChildId = c.Id,
+                    ChildName = c.Name,
+                    ParentEmail = context.Users
+                        .Where(u => u.Id == c.ParentId)
+                        .Select(u => u.Email)
+                        .FirstOrDefault() ?? "Client"
+                })
                 .ToListAsync();
         }
 
         public async Task<List<InvitationStatusDto>> GetInvitationsByTherapistAsync(int therapistId)
         {
-            // 1. Создаем контекст через фабрику
             using var context = await _contextFactory.CreateDbContextAsync();
 
-            // 2. Маппим данные из реальной таблицы DiaryInvitations
             return await context.DiaryInvitations
                 .Where(i => i.TherapistProfileId == therapistId)
                 .OrderByDescending(i => i.CreatedAt)

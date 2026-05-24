@@ -13,14 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-// 1. Обычный контекст для Identity (по умолчанию Scoped)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// 2. ИСПРАВЛЕННАЯ Фабрика контекстов (теперь тоже Scoped)
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString),
-    ServiceLifetime.Scoped); // <- Добавили этот параметр
+    ServiceLifetime.Scoped); 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options =>
@@ -48,7 +46,6 @@ builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
 
-// Локализация
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 var supportedCultures = new[] { "ru", "en" };
@@ -57,7 +54,6 @@ var localizationOptions = new RequestLocalizationOptions()
     .AddSupportedCultures(supportedCultures)
     .AddSupportedUICultures(supportedCultures);
 
-// Регистрация сервисов приложения
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
 builder.Services.AddScoped<IChildService, ChildrenService>();
@@ -65,7 +61,7 @@ builder.Services.AddScoped<ILectureService, LectureService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddControllers();
-// НОВОЕ: Регистрация твоего изолированного сервиса для Дневника
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IDiaryService, DiaryService>();
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
@@ -79,7 +75,6 @@ using (var scope = app.Services.CreateScope())
     await DbInitializer.SeedRolesAsync(services);
 }
 
-// Передаем настройки локализации в конвейер обработки запросов
 app.UseRequestLocalization(localizationOptions);
 
 if (app.Environment.IsDevelopment())

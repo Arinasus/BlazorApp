@@ -12,7 +12,7 @@ namespace BlazorApp.Shared.Models
     {
         [Key]
         public int Id {  get; set; }
-        [Required]
+
         public string ParentId { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Введите имя ребенка")]
@@ -26,5 +26,6 @@ namespace BlazorApp.Shared.Models
         public string? Notes { get; set; } 
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public bool IsDiaryVisible { get; set; } = false;
     }
 }

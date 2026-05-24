@@ -184,7 +184,7 @@
     <value>Заблокирован</value>
   </data>
   <data name="StatusActive" xml:space="preserve">
-    <value>StatusActive</value>
+    <value>Активен</value>
   </data>
   <data name="TooltipUnlock" xml:space="preserve">
     <value>Разблокировать</value>
@@ -196,6 +196,30 @@
     <value>Удалить</value>
   </data>
   <data name="DeleteConfirmationText" xml:space="preserve">
-    <value>Удалить пользователя {0}?</value>
+    <value>Удалить пользователя?</value>
+  </data>
+  <data name="DeleteConfirmationTitle" xml:space="preserve">
+    <value>Подтвердите удаление</value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="BtnDelete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="AddCategoryHeader" xml:space="preserve">
+    <value>Добавить новую категорию</value>
+  </data>
+  <data name="CategoryNamePlaceholder" xml:space="preserve">
+    <value>Введите название категории</value>
+  </data>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="TabCategories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="CategoryAlreadyExistsError" xml:space="preserve">
+    <value>Такая категория уже существует</value>
   </data>
 </root>

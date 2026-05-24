@@ -14,39 +14,64 @@
 
 <PageTitle>@L["PageTitle"]</PageTitle>
 
-<h1>@L["Header"]</h1>
-<hr />
-<StatusMessage Message="@message" />
+<div class="container-sm mt-5" style="max-width: 450px;">
+    <h2 class="text-center fw-bold mb-4">@L["Header"]</h2>
+    <StatusMessage Message="@message" />
 
-<p class="text-info"><strong>@L["DescriptionBold"]</strong> @L["DescriptionText"]</p>
+    <p class="text-muted text-center mb-4">
+        <strong>@L["DescriptionBold"]</strong> @L["DescriptionText"]
+    </p>
 
-<div class="row">
-    <div class="col-md-4">
-        <EditForm Model="Input" FormName="login-with-2fa" OnValidSubmit="OnValidSubmitAsync" method="post">
-            <input type="hidden" name="ReturnUrl" value="@ReturnUrl" />
-            <input type="hidden" name="RememberMe" value="@RememberMe" />
-            <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert" />
+    <EditForm Model="Input" FormName="login-with-2fa" OnValidSubmit="OnValidSubmitAsync" method="post">
+        <input type="hidden" name="ReturnUrl" value="@ReturnUrl" />
+        <input type="hidden" name="RememberMe" value="@RememberMe" />
+        <DataAnnotationsValidator />
 
-            <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.TwoFactorCode" class="form-control" autocomplete="off" />
-                <label for="two-factor-code" class="form-label">@L["CodeLabel"]</label>
-                <ValidationMessage For="() => Input.TwoFactorCode" class="text-danger" />
-            </div>
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="Input.TwoFactorCode" class="form-control rounded-pill" id="two-factor-code" placeholder="Код" />
+            <label for="two-factor-code">@L["CodeLabel"]</label>
+            <ValidationMessage For="() => Input.TwoFactorCode" class="text-danger" />
+        </div>
 
-            <div class="checkbox mb-3">
-                <label for="remember-machine" class="form-label">
-                    <InputCheckbox @bind-Value="Input.RememberMachine" />
-                    @L["RememberMachine"]
-                </label>
-            </div>
+        <div class="checkbox mb-4 ms-2">
+            <label class="form-check-label d-flex align-items-center">
+                <InputCheckbox @bind-Value="Input.RememberMachine" class="form-check-input me-2 custom-checkbox" />
+                @L["RememberMachine"]
+            </label>
+        </div>
 
-            <div>
-                <button type="submit" class="w-100 btn btn-lg btn-primary">@L["BtnLogin"]</button>
-            </div>
-        </EditForm>
-    </div>
+        <button type="submit" class="w-100 btn btn-lg btn-primary rounded-pill fw-bold">@L["BtnLogin"]</button>
+        <ValidationSummary class="text-danger mt-3" role="alert" />
+    </EditForm>
 </div>
+
+<style>
+    .form-control {
+        border: 1px solid #dddcdc !important;
+        padding-left: 1.5rem !important;
+    }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.25) !important;
+            border-color: #FF8A5B !important;
+        }
+
+    .btn-primary {
+        background-color: #FF8A5B !important;
+        border-color: #FF8A5B !important;
+    }
+
+    .custom-checkbox {
+        width: 1.25em;
+        height: 1.25em;
+        border: 2px solid #FF8A5B !important;
+    }
+
+        .custom-checkbox:checked {
+            background-color: #FF8A5B !important;
+            border-color: #FF8A5B !important;
+        }
+</style>
 
 @code {
     private string? message;
@@ -61,6 +86,8 @@
     [SupplyParameterFromQuery]
     private bool RememberMe { get; set; }
 
+    private static bool hasSentCode = false;
+
     protected override async Task OnInitializedAsync()
     {
         user = await SignInManager.GetTwoFactorAuthenticationUserAsync();
@@ -70,11 +97,14 @@
             RedirectManager.RedirectTo("Account/Login");
             return;
         }
-
+        if (!hasSentCode)
+        {
         var code = await UserManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
-        var email = await UserManager.GetEmailAsync(user);
+            var email = await UserManager.GetEmailAsync(user); 
+            await EmailSender.SendTwoFactorCodeAsync(user, email!, code);
+            hasSentCode = true;
+        }
 
-        await EmailSender.SendTwoFactorCodeAsync(user, email!, code);
     }
 
     private async Task OnValidSubmitAsync()
@@ -85,6 +115,7 @@
 
         if (result.Succeeded)
         {
+            hasSentCode = false;
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.IsLockedOut)

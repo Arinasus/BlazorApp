@@ -14,6 +14,7 @@ namespace BlazorApp.Data
         public DbSet<TherapyDiaryLog> TherapyDiaryLogs { get; set; }
         public DbSet<DiaryInvitation> DiaryInvitations { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -46,6 +47,11 @@ namespace BlazorApp.Data
                 .HasForeignKey(l => l.TherapistProfileId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<Lecture>()
+                .HasOne(l => l.Category)
+                .WithMany(c => c.Lectures)
+                .HasForeignKey(l => l.CategoryId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

@@ -6,29 +6,29 @@
 <PageTitle>@L["PageTitle"]</PageTitle>
 
 <StatusMessage />
-<h3 class="fw-bold mb-3">@L["Header"]</h3>
 
-<div class="row animate-fade">
-    <div class="col-md-6">
-        <p class="text-muted">@L["MainDescription"]</p>
-        <div class="alert alert-warning border-0 rounded-3 small mb-4 shadow-sm">
-            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-            <strong>@L["WarningText"]</strong>
-        </div>
+<h3 class="fw-bold mb-4">@L["Header"]</h3>
 
-        <div class="d-flex flex-column gap-3">
-            <form action="Account/Manage/DownloadPersonalData" method="post">
-                <AntiforgeryToken />
-                <button class="w-100 btn btn-outline-primary rounded-pill py-2 fw-bold" type="submit">
-                    <i class="bi bi-download me-2"></i>@L["BtnDownload"]
-                </button>
-            </form>
+<div class="animate-fade">
+    <p class="text-muted mb-4">@L["MainDescription"]</p>
 
-            <div>
-                <a href="Account/Manage/DeletePersonalData" class="w-100 btn btn-danger rounded-pill py-2 fw-bold shadow-sm">
-                    <i class="bi bi-trash me-2"></i>@L["BtnDelete"]
-                </a>
-            </div>
+    <div class="alert alert-warning border-0 rounded-3 small mb-4 shadow-sm" style="max-width: 800px;">
+        <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+        <strong>@L["WarningText"]</strong>
+    </div>
+
+    <div class="d-flex flex-column gap-3">
+        <form action="Account/Manage/DownloadPersonalData" method="post">
+            <AntiforgeryToken />
+            <button class="btn btn-primary rounded-pill px-4 py-2 fw-bold w-auto" type="submit">
+                <i class="bi bi-download me-2"></i>@L["BtnDownload"]
+            </button>
+        </form>
+
+        <div>
+            <a href="Account/Manage/DeletePersonalData" class="btn btn-danger rounded-pill px-4 py-2 fw-bold shadow-sm w-auto">
+                <i class="bi bi-trash me-2"></i>@L["BtnDelete"]
+            </a>
         </div>
     </div>
 </div>

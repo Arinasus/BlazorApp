@@ -16,7 +16,7 @@
 @inject IStringLocalizer<Diary> L
 @rendermode InteractiveServer
 
-<div class="container py-4 animate-fade">
+<div class="container py-4 animate-fade custom-theme">
     <h3 class="text-coral fw-bold mb-4"><i class="bi bi-person-heart me-2"></i>@L["ParentDiaryTitle"]</h3>
 
     @if (pendingInvitations != null && pendingInvitations.Any())
@@ -31,7 +31,7 @@
                         <strong>@L["Therapist"]:</strong> @inv.TherapistProfileId
                     </div>
                     <div class="d-flex gap-2 mt-2 mt-md-0">
-                        <select class="form-select form-select-sm" @bind="selectedChildId">
+                        <select class="form-select form-select-sm custom-select" @bind="selectedChildId">
                             <option value="0">-- @L["SelectChild"] --</option>
                             @foreach (var child in myChildren)
                             {
@@ -47,12 +47,27 @@
         </div>
     }
 
+    <div class="row mb-4 g-2">
+        <div class="col-md-4">
+            <select class="form-select custom-select" @bind="filterChildId" @bind:after="OnFilterChanged">
+                <option value="0">@L["AllChildren"]</option>
+                @foreach (var child in myChildren)
+                {
+                    <option value="@child.Id">@child.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <input type="date" class="form-control rounded-pill custom-select" @bind="filterDate" @bind:after="OnFilterChanged" />
+        </div>
+    </div>
+
     <div class="card border-0 shadow-sm rounded-4 p-4">
-        @if (diaryLogs == null)
+        @if (allLogs == null)
         {
             <p class="text-muted">@L["Loading"]</p>
         }
-        else if (!diaryLogs.Any())
+        else if (!allLogs.Any())
         {
             <div class="text-center py-5 text-muted">
                 <i class="bi bi-journal-x display-3"></i>
@@ -62,7 +77,7 @@
         else
         {
             <div class="timeline">
-                @foreach (var log in diaryLogs)
+                @foreach (var log in FilteredLogs)
                 {
                     <div class="p-3 mb-3 border-start border-3 border-success bg-light rounded-end shadow-sm">
                         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -86,9 +101,42 @@
         }
     </div>
 </div>
+<style>
+    .container {
+        font-size: 1.15rem !important;
+    }
 
+    .custom-select-coral {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        
+        border: 2px solid #FF8A5B !important; 
+        border-radius: 50px !important;       
+        padding: 10px 40px 10px 20px !important;
+        background-color: #ffffff !important;
+        
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23FF8A5B' d='M8 11l-4-4h8z'/%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 1rem center !important;
+        background-size: 16px 12px !important;
+    }
+
+    .custom-select-coral:focus {
+        outline: none !important;
+        box-shadow: 0 0 0 0.2rem rgba(255, 138, 91, 0.25) !important;
+    }
+
+        .custom-select:focus {
+            border-color: #FF8A5B !important;
+            box-shadow: 0 0 0 0.25rem rgba(255, 138, 91, 0.25) !important;
+            outline: none !important;
+        }
+</style>
 @code {
-    private List<TherapyDiaryLogDto> diaryLogs = new();
+    private List<TherapyDiaryLogDto> allLogs = new();
+    private int filterChildId = 0;
+    private DateTime? filterDate;
     private List<DiaryInvitation> pendingInvitations = new(); 
     private List<Child> myChildren = new();
     private int selectedChildId;
@@ -108,7 +156,7 @@
         {
             currentUserId = user.Id;
 
-            diaryLogs = await DiaryService.GetLogsForParentAsync(user.Id);
+            allLogs = await DiaryService.GetLogsForParentAsync(user.Id);
 
             if (!string.IsNullOrEmpty(user.Email))
             {
@@ -130,5 +178,13 @@
             selectedChildId = 0;
             await LoadPageData();
         }
+    }
+    private IEnumerable<TherapyDiaryLogDto> FilteredLogs => allLogs
+        .Where(l => filterChildId == 0 || l.TargetChildId == filterChildId)
+        .Where(l => filterDate == null || l.SessionDate.Date == filterDate.Value.Date)
+        .OrderByDescending(l => l.SessionDate);
+    private void OnFilterChanged()
+    {
+        StateHasChanged();
     }
 }

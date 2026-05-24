@@ -1,4 +1,5 @@
 wwwroot\app.css
+wwwroot\app.js
 wwwroot\bootstrap\bootstrap.min.css
 wwwroot\bootstrap\bootstrap.min.css.map
 wwwroot\favicon.png
@@ -17,5 +18,6 @@ wwwroot\uploads\avatars\f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экр
 wwwroot\uploads\c7336fb5-411b-44f6-b7a2-1c53d5128ea1.png
 wwwroot\uploads\certs\01b6e57c-467c-4ccf-984e-f1d7ec16329f_Снимок экрана 2026-05-04 212543.png
 wwwroot\uploads\certs\4d55f2b1-8090-4874-bef2-872c47567333_мальчик на мопеде.png
+wwwroot\uploads\d51331b9-dd6b-403a-b2c7-9879be7efb70.png
 wwwroot\uploads\default-lecture.png
 wwwroot\uploads\eab5e4c5-f4a6-4c61-9394-96989d109ee7.png

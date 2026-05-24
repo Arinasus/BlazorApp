@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BtnLogin" xml:space="preserve">
-    <value>Login</value>
+    <value>Войти</value>
   </data>
   <data name="CodeLabel" xml:space="preserve">
-    <value>Confirmation code from email</value>
+    <value>Код подтверждения из письма</value>
   </data>
   <data name="DescriptionBold" xml:space="preserve">
-    <value>Your account is protected.</value>
+    <value>Ваш аккаунт защищен.</value>
   </data>
   <data name="DescriptionText" xml:space="preserve">
-    <value>A one-time 6-digit confirmation code has already been sent to your email. Enter it below.</value>
+    <value>Одноразовый 6-значный код подтверждения уже отправлен на вашу почту. Введите его ниже.</value>
   </data>
   <data name="ErrInvalidCode" xml:space="preserve">
-    <value>Error: Invalid verification code.</value>
+    <value>Ошибка: Неверный код подтверждения.</value>
   </data>
   <data name="Header" xml:space="preserve">
-    <value>Two-step authentication</value>
+    <value>Двухэтапная аутентификация</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
-    <value>Two-step authentication</value>
+    <value>Двухэтапная аутентификация</value>
   </data>
   <data name="RememberMachine" xml:space="preserve">
-    <value>Remember this device</value>
+    <value>Запомнить это устройство</value>
   </data>
 </root>

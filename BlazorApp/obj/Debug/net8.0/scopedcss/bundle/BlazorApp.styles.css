@@ -50,6 +50,45 @@
     font-family: inherit;
     font-size: 1rem;
 }
+.container[b-r2v16sirkw] {
+    font-size: 1.1rem !important;
+}
+
+.card-body[b-r2v16sirkw] {
+    padding: 1.5rem !important;
+}
+
+.form-control[b-r2v16sirkw], .form-select[b-r2v16sirkw] {
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+}
+
+.bg-success-subtle[b-r2v16sirkw] {
+    background-color: #d1e7dd !important;
+    color: #0f5132 !important;
+    border: 1px solid #a3cfbb !important;
+    font-weight: 600 !important;
+    padding: 0.4rem 0.8rem !important;
+}
+
+.btn-sm[b-r2v16sirkw] {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.95rem !important;
+}
+
+.nav-link[b-r2v16sirkw] {
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+}
+
+.modal-backdrop[b-r2v16sirkw] {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+body[b-r2v16sirkw] {
+    overflow: auto !important;
+}
 /* /Components/Account/Pages/BecomeTherapist.razor.rz.scp.css */
 
 .form-control[b-uiyxwkjfie], .form-select[b-uiyxwkjfie] {
@@ -458,17 +497,11 @@ h1[b-7segiuw1hd] {
     gap: 15px;
     width: 100%;
 }
-
 .filter-input[b-owlbqyiwpr] {
-    flex: 3; /* Поле поиска шире */
-    min-width: 250px; /* Минимальная ширина, чтобы не сжималось слишком сильно */
-    padding: 12px 20px;
-    border: 2px solid #E9ECEF;
-    border-radius: 12px;
-    outline: none;
-    transition: all 0.2s ease;
+    /* Удаляем лишние padding, если они мешают */
+    padding: 0.6rem 1rem !important;
+    height: 45px !important; /* Устанавливаем высоту явно */
 }
-
 .filter-select[b-owlbqyiwpr] {
     flex: 1; /* Селект уже */
     min-width: 180px;
@@ -839,4 +872,20 @@ main[b-qgsvw684bo] {
     color: white !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 138, 91, 0.25);
+}
+.btn-outline-custom[b-7gt2111kuu] {
+    color: #4ECDC4 !important; 
+    border: 2px solid #4ECDC4 !important; 
+    background-color: transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+    .btn-outline-custom:hover[b-7gt2111kuu] {
+        background-color: #4ECDC4 !important; 
+        color: #ffffff !important; 
+    }
+
+.btn-lg[b-7gt2111kuu] {
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
 }

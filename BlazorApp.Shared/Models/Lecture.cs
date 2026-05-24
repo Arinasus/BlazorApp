@@ -16,5 +16,7 @@ namespace BlazorApp.Shared.Models
         public string? ImagePath { get; set; }
         public string VideoUrl { get; set; } = string.Empty;
         public string TargetDiagnosis { get; set; } = string.Empty;
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
     }
 }

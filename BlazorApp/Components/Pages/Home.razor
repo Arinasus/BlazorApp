@@ -18,7 +18,7 @@
                     <a href="Account/Register" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
                         @L["BtnStartFree"]
                     </a>
-                    <a href="lectures" class="btn btn-outline-secondary btn-lg px-5 py-3 rounded-pill">
+                    <a href="lectures" class="btn btn-outline-custom btn-lg px-5 py-3 rounded-pill fw-bold">
                         @L["BtnLearnMore"]
                     </a>
                 </div>
@@ -80,3 +80,21 @@
         </div>
     </div>
 </section>
+<style>
+    .btn-outline-custom {
+        color: #4ECDC4 !important;
+        border: 2px solid #4ECDC4 !important; 
+        background-color: transparent !important;
+        transition: all 0.3s ease !important;
+    }
+
+        .btn-outline-custom:hover {
+            background-color: #4ECDC4 !important; 
+            color: #ffffff !important; 
+        }
+
+    .btn-lg {
+        font-weight: 600 !important;
+        letter-spacing: 0.5px;
+    }
+</style>

@@ -11,17 +11,11 @@
     gap: 15px;
     width: 100%;
 }
-
 .filter-input {
-    flex: 3; /* Поле поиска шире */
-    min-width: 250px; /* Минимальная ширина, чтобы не сжималось слишком сильно */
-    padding: 12px 20px;
-    border: 2px solid #E9ECEF;
-    border-radius: 12px;
-    outline: none;
-    transition: all 0.2s ease;
+    /* Удаляем лишние padding, если они мешают */
+    padding: 0.6rem 1rem !important;
+    height: 45px !important; /* Устанавливаем высоту явно */
 }
-
 .filter-select {
     flex: 1; /* Селект уже */
     min-width: 180px;

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddCategoryHeader" xml:space="preserve">
+    <value>Добавить категорию</value>
+  </data>
   <data name="AddLectureHeader" xml:space="preserve">
     <value>Добавить новую лекцию</value>
   </data>
@@ -138,8 +141,20 @@
   <data name="BtnPublish" xml:space="preserve">
     <value>Опубликовать</value>
   </data>
+  <data name="BtnSave" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
   <data name="BtnSaveChanges" xml:space="preserve">
     <value>Сохранить изменения</value>
+  </data>
+  <data name="CategoryAlreadyExistsError" xml:space="preserve">
+    <value>Такая категория уже существует</value>
+  </data>
+  <data name="CategoryLabel" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="CategoryNamePlaceholder" xml:space="preserve">
+    <value>Введите название категории</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Панель управления</value>
@@ -167,6 +182,9 @@
   </data>
   <data name="LoadingLecturesText" xml:space="preserve">
     <value>Загрузка лекций...</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Выберите категорию</value>
   </data>
   <data name="ShortDescriptionLabel" xml:space="preserve">
     <value>Краткое описание (для ленты)</value>

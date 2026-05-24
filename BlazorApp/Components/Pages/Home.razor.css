@@ -87,3 +87,19 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 138, 91, 0.25);
 }
+.btn-outline-custom {
+    color: #4ECDC4 !important; 
+    border: 2px solid #4ECDC4 !important; 
+    background-color: transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+    .btn-outline-custom:hover {
+        background-color: #4ECDC4 !important; 
+        color: #ffffff !important; 
+    }
+
+.btn-lg {
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+}

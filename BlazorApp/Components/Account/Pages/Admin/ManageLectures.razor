@@ -15,6 +15,7 @@
 @inject IWebHostEnvironment WebHostEnvironment
 @inject AuthenticationStateProvider AuthStateProvider
 @inject UserManager<ApplicationUser> UserManager
+@inject ICategoryService CategoryService 
 @inject IStringLocalizer<ManageLectures> L
 <PageTitle>@L["KnowledgeBaseTitle"]</PageTitle>
 
@@ -32,13 +33,29 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label class="form-label">@L["LectureTitleLabel"]</label>
-                        <InputText @bind-Value="currentLecture.Title" class="form-control" placeholder=" " />
+                        <InputText @bind-Value="currentLecture.Title" class="form-control" />
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">@L["TargetDiagnosisLabel"]</label>
-                        <InputText @bind-Value="currentLecture.TargetDiagnosis" class="form-control" placeholder=" " />
+                        <label class="form-label">@L["ThDiagnosis"]</label>
+                        <InputText @bind-Value="currentLecture.TargetDiagnosis" class="form-control"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">@L["CategoryLabel"]</label>
+                        <div class="input-group">
+                            <InputSelect @bind-Value="currentLecture.CategoryId" class="form-select">
+                                <option value="">@L["SelectCategory"]</option>
+                                @foreach (var cat in allCategories)
+                                {
+                                    <option value="@cat.Id">@cat.Name</option>
+                                }
+                            </InputSelect>
+                            <button type="button" class="btn btn-outline-primary" @onclick='() => JS.InvokeVoidAsync("showCategoryModal")'>
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
 
                 <div class="mb-3">
                     <label class="form-label">@L["LectureCoverLabel"]</label>
@@ -114,17 +131,17 @@
                             <tr>
                                 <td class="fw-bold">@lecture.Title</td>
                                 <td>
-                                    <span class="badge bg-secondary text-white rounded-pill px-3 py-2">
+                                    <span class="badge bg-dark text-white rounded-pill px-3 py-2">
                                         @lecture.TargetDiagnosis
                                     </span>
                                 </td>
                                 <td class="text-end">
                                     <div class="d-flex gap-2 justify-content-end">
-                                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" @onclick="() => StartEdit(lecture)">
-                                            @L["BtnEdit"]
+                                        <button class="btn btn-sm btn-link text-decoration-none text-primary p-0" @onclick="() => StartEdit(lecture)">
+                                            <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-outline-danger rounded-pill px-3" @onclick="() => DeleteLecture(lecture.Id, lecture.Title)">
-                                            @L["BtnDelete"]
+                                        <button class="btn btn-sm btn-link text-decoration-none text-danger p-0" @onclick="() => DeleteLecture(lecture.Id, lecture.Title)">
+                                            <i class="bi bi-trash"></i>
                                         </button>
                                     </div>
                                 </td>
@@ -141,16 +158,67 @@
             </table>
         </div>
     </div>
+    <div class="modal" id="categoryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-body p-4 text-center">
+                    <h5>@L["AddCategoryHeader"]</h5>
+                    <input @bind="newCategoryName" class="form-control mt-3" placeholder="@L["CategoryNamePlaceholder"]" />
+
+                    @if (!string.IsNullOrEmpty(categoryErrorMessage))
+                    {
+                        <div class="text-danger mt-2 small">@categoryErrorMessage</div>
+                    }
+                </div>
+                <div class="modal-footer border-0 justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">@L["BtnCancel"]</button>
+                    <button type="button" class="btn btn-primary rounded-pill" @onclick="HandleAddCategoryFromModal">@L["BtnSave"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .btn-outline-primary {
+        color: #ff7f50;
+        border-color: #ff7f50;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #ff7f50;
+            border-color: #ff7f50;
+            color: white;
+        }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #ff7f50;
+        box-shadow: 0 0 0 0.25rem rgba(255, 127, 80, 0.25); 
+    }
+
+    .btn-link:hover {
+        opacity: 0.7;
+        transform: scale(1.05);
+        transition: all 0.2s;
+    }
+
+    .modal-backdrop {
+        display: none !important;
+        opacity: 0 !important;
+    }
+</style>
 
 @code {
     private Lecture currentLecture = new() { ImagePath = "/images/default-lecture.png" };
     private List<Lecture>? displayedLectures;
     private HtmlTextEditor QuillHtml = default!;
+    private List<Category> allCategories = new(); 
+    private string newCategoryName = "";
 
     private bool isEditing = false;
     private string currentUserId = string.Empty;
     private bool isAdmin = false;
+    private string? categoryErrorMessage;
 
     protected override async Task OnInitializedAsync()
     {
@@ -162,7 +230,7 @@
             currentUserId = user.Id;
             isAdmin = authState.User.IsInRole("Admin");
         }
-
+        allCategories = await CategoryService.GetAllCategoriesAsync(); 
         await LoadLectures();
     }
 
@@ -258,6 +326,26 @@
         {
             await LectureService.DeleteLectureAsync(id);
             await LoadLectures();
+        }
+    }
+    private async Task HandleAddCategoryFromModal()
+    {
+        categoryErrorMessage = null; 
+
+        if (!string.IsNullOrWhiteSpace(newCategoryName))
+        {
+            bool success = await CategoryService.AddCategoryAsync(new Category { Name = newCategoryName });
+
+            if (success)
+            {
+                await JS.InvokeVoidAsync("hideCategoryModal");
+                allCategories = await CategoryService.GetAllCategoriesAsync();
+                newCategoryName = "";
+            }
+            else
+            {
+                categoryErrorMessage = L["CategoryAlreadyExistsError"]; 
+            }
         }
     }
 }

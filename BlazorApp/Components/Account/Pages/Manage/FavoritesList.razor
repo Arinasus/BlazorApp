@@ -67,7 +67,7 @@
                 @foreach (var fav in favorites.Where(f => f.TherapistProfileId.HasValue))
                 {
                     <div class="col">
-                        <a href="therapist/@fav.TherapistProfileId" class="text-decoration-none">
+                        <a href="therapist/@fav.TherapistProfile?.UserId" class="text-decoration-none">
                             <div class="card border-0 shadow-sm rounded-4 p-3 favorite-card bg-white">
                                 <div class="d-flex align-items-center">
                                     <img src="@(string.IsNullOrEmpty(fav.TherapistProfile?.ImageUrl) ? "/images/default-avatar.png" : fav.TherapistProfile.ImageUrl)"

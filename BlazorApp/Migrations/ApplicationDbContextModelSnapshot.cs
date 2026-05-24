@@ -86,6 +86,26 @@ namespace BlazorApp.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("BlazorApp.Shared.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsSystem")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("BlazorApp.Shared.Models.ChatMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -134,6 +154,9 @@ namespace BlazorApp.Migrations
                     b.Property<string>("Diagnosis")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsDiaryVisible")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -223,6 +246,9 @@ namespace BlazorApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
@@ -247,6 +273,8 @@ namespace BlazorApp.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Lectures");
                 });
@@ -561,6 +589,16 @@ namespace BlazorApp.Migrations
                     b.Navigation("TherapistProfile");
                 });
 
+            modelBuilder.Entity("BlazorApp.Shared.Models.Lecture", b =>
+                {
+                    b.HasOne("BlazorApp.Shared.Models.Category", "Category")
+                        .WithMany("Lectures")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("BlazorApp.Shared.Models.TherapistProfile", b =>
                 {
                     b.HasOne("BlazorApp.Data.ApplicationUser", null)
@@ -639,6 +677,11 @@ namespace BlazorApp.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BlazorApp.Shared.Models.Category", b =>
+                {
+                    b.Navigation("Lectures");
                 });
 
             modelBuilder.Entity("BlazorApp.Shared.Models.TherapistProfile", b =>

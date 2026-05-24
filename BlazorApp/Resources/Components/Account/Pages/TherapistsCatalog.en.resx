@@ -141,6 +141,9 @@
   <data name="FormatAny" xml:space="preserve">
     <value>Any format</value>
   </data>
+  <data name="FormatHybrid" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
   <data name="FormatOffline" xml:space="preserve">
     <value>In person</value>
   </data>
@@ -175,7 +178,7 @@
     <value>hour</value>
   </data>
   <data name="PlaceholderReviewName" xml:space="preserve">
-    <value>your name</value>
+    <value>Your name</value>
   </data>
   <data name="PlaceholderReviewText" xml:space="preserve">
     <value>Your experience working with a specialist...</value>
@@ -214,7 +217,7 @@
     <value>Your work experience...</value>
   </data>
   <data name="YourName" xml:space="preserve">
-    <value>your name</value>
+    <value>Your name</value>
   </data>
   <data name="YourRating" xml:space="preserve">
     <value>Your rating</value>

@@ -141,6 +141,9 @@
   <data name="FormatAny" xml:space="preserve">
     <value>Любой формат</value>
   </data>
+  <data name="FormatHybrid" xml:space="preserve">
+    <value>Гибрид</value>
+  </data>
   <data name="FormatOffline" xml:space="preserve">
     <value>Очно</value>
   </data>

@@ -120,6 +120,9 @@
   <data name="AgeSuffix" xml:space="preserve">
     <value>лет</value>
   </data>
+  <data name="AllowTherapistAccess" xml:space="preserve">
+    <value>Открыть доступ специалисту</value>
+  </data>
   <data name="BtnAddChild" xml:space="preserve">
     <value>Добавить ребенка</value>
   </data>

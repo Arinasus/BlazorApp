@@ -1,4 +1,4 @@
-﻿@page "/Account/Manage/TherapistDiary"
+﻿@page "/therapist/diary/add"
 @using BlazorApp.Data
 @using BlazorApp.Shared.DTOs
 @using BlazorApp.Shared.Interfaces
@@ -15,7 +15,7 @@
 @inject IStringLocalizer<TherapistDiary> L
 @rendermode InteractiveServer
 
-<h3 class="text-coral fw-bold mb-4">
+<h3 class="text-coral fw-bold mt-5 mb-4">
     <i class="bi bi-journal-bookmark-fill me-2"></i>@L["DiaryTitle"]
 </h3>
 
@@ -23,8 +23,8 @@
     <div class="col-lg-4 mb-4">
         <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
             <h5 class="fw-bold text-dark mb-3"><i class="bi bi-person-lines-fill me-2 text-coral"></i>@L["CurrentStudent"]</h5>
-            <label class="form-label small text-muted">@L["SelectStudentHint"]</label>
-            <select class="form-select form-select-sm rounded-3 shadow-sm" @onchange="OnSelectedChildChanged">
+            <label class="form-label text-muted">@L["SelectStudentHint"]</label>
+            <select class="form-select rounded-3 shadow-sm" @onchange="OnSelectedChildChanged">
                 <option value="0">@L["AllStudents"]</option>
                 @foreach (var child in connectedChildren)
                 {
@@ -37,26 +37,25 @@
             <h5 class="fw-bold text-dark mb-3">@L["NewRecord"]</h5>
             <EditForm Model="newLog" OnValidSubmit="SaveLog">
                 <DataAnnotationsValidator />
-                <div class="mb-2">
-                    <label class="form-label small fw-bold">@L["ChildName"]</label>
-                    <InputText @bind-Value="newLog.ChildName" class="form-control form-control-sm" placeholder="@L["ChildNamePlaceholder"]" />
-                    <ValidationMessage For="() => newLog.ChildName" class="text-danger small" />
-                </div>
-                <div class="mb-2">
-                    <label class="form-label small fw-bold">@L["SessionDate"]</label>
-                    <InputDate @bind-Value="newLog.SessionDate" class="form-control form-control-sm" />
-                </div>
-                <div class="mb-2">
-                    <label class="form-label small fw-bold">@L["Topic"]</label>
-                    <InputText @bind-Value="newLog.Topic" class="form-control form-control-sm" placeholder="@L["TopicPlaceholder"]" />
-                </div>
-                <div class="mb-2">
-                    <label class="form-label small fw-bold">@L["WorkDone"]</label>
-                    <InputTextArea @bind-Value="newLog.WorkDone" class="form-control form-control-sm" rows="3" placeholder="@L["WorkDonePlaceholder"]" />
+                <div class="mb-3">
+                    <label class="form-label fw-bold small">@L["ChildName"]</label>
+                    <InputText @bind-Value="newLog.ChildName" class="form-control" placeholder="@L["ChildNamePlaceholder"]" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label small fw-bold">@L["Homework"]</label>
-                    <InputTextArea @bind-Value="newLog.Homework" class="form-control form-control-sm" rows="2" placeholder="@L["HomeworkPlaceholder"]" />
+                    <label class="form-label fw-bold small">@L["SessionDate"]</label>
+                    <InputDate @bind-Value="newLog.SessionDate" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold small">@L["Topic"]</label>
+                    <InputText @bind-Value="newLog.Topic" class="form-control" placeholder="@L["TopicPlaceholder"]" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold small">@L["WorkDone"]</label>
+                    <InputTextArea @bind-Value="newLog.WorkDone" class="form-control" rows="3" placeholder="@L["WorkDonePlaceholder"]" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold small">@L["Homework"]</label>
+                    <InputTextArea @bind-Value="newLog.Homework" class="form-control" rows="2" placeholder="@L["HomeworkPlaceholder"]" />
                 </div>
                 <button type="submit" class="btn btn-primary w-100 rounded-pill btn-details fw-bold py-2">@L["BtnSave"]</button>
             </EditForm>
@@ -64,47 +63,33 @@
     </div>
 
     <div class="col-lg-8 mb-4">
+        <h5 class="fw-bold text-dark mb-3">@L["HistoryTitle"]</h5>
         <div class="card border-0 shadow-sm rounded-4 p-4" style="min-height: 480px;">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h5 class="fw-bold text-dark mb-0">@L["HistoryTitle"]</h5>
-                @if (!string.IsNullOrEmpty(selectedChildName))
-                {
-                    <span class="badge bg-coral-light text-coral rounded-pill px-3 py-2 small">
-                        @L["Filter"]: <b>@selectedChildName</b>
-                    </span>
-                }
-            </div>
-
             @if (filteredLogs == null)
             {
                 <p class="text-muted">@L["Loading"]</p>
             }
             else if (!filteredLogs.Any())
             {
-                <div class="text-center py-5 text-muted">
-                    <i class="bi bi-folder-x display-4 text-secondary"></i>
-                    <p class="mt-2">@L["EmptyState"]</p>
-                </div>
+                <div class="text-center py-5 text-muted"><i class="bi bi-folder-x display-4"></i><p>@L["EmptyState"]</p></div>
             }
             else
             {
-                <div class="timeline" style="max-height: 600px; overflow-y: auto; padding-right: 5px;">
+                <div class="timeline" style="max-height: 600px; overflow-y: auto;">
                     @foreach (var log in filteredLogs)
                     {
-                        <div class="p-3 mb-3 border-start border-3 border-primary bg-white rounded-end shadow-sm animate-fade">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h6 class="fw-bold mb-0 text-dark">@L["Child"]: @log.ChildName</h6>
-                                <span class="badge bg-light text-secondary border rounded-pill small">
-                                    <i class="bi bi-calendar3 me-1"></i> @log.SessionDate.ToString("dd.MM.yyyy")
-                                </span>
+                        <div class="p-3 mb-3 border-start border-4 border-primary bg-white rounded-end shadow-sm">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="fw-bold text-dark mb-0">@log.ChildName</h6>
+                                <span class="badge bg-light text-secondary border rounded-pill">@log.SessionDate.ToString("dd.MM.yyyy")</span>
                             </div>
-                            <p class="mb-1 text-coral fw-semibold small">@L["TopicLabel"]: @log.Topic</p>
-                            <p class="mb-1 text-muted small"><strong>@L["WorkDoneLabel"]:</strong> @log.WorkDone</p>
+                            <p class="text-coral fw-bold mb-1">@L["TopicLabel"]: @log.Topic</p>
+                            <p class="text-muted mb-1">@log.WorkDone</p>
                             @if (!string.IsNullOrEmpty(log.Homework))
                             {
-                                <p class="mb-0 text-success small bg-light p-2 rounded mt-2">
+                                <div class="bg-light p-2 rounded text-success mt-2">
                                     <i class="bi bi-house-door-fill me-1"></i> <strong>@L["HomeworkLabel"]:</strong> @log.Homework
-                                </p>
+                                </div>
                             }
                         </div>
                     }
@@ -116,7 +101,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-5 bg-white">
             <h5 class="fw-bold text-dark mb-4">
                 <i class="bi bi-people-fill me-2 text-coral"></i>@L["ParentsSectionTitle"]
             </h5>
@@ -125,55 +110,49 @@
                     <h6 class="fw-bold text-secondary mb-2">@L["ConnectParentTitle"]</h6>
                     <p class="text-muted small">@L["ConnectParentHint"]</p>
                     <div class="d-flex gap-2 mt-3">
-                        <input type="email" class="form-control form-control-sm" placeholder="parent@example.com" @bind="inviteEmail" />
-                        <button class="btn btn-primary btn-sm rounded-pill px-4 btn-details fw-bold text-nowrap" @onclick="SendParentInvite">@L["BtnSendInvite"]</button>
+                        <input type="email" class="form-control" placeholder="parent@example.com" @bind="inviteEmail" />
+                        <button class="btn btn-primary rounded-pill px-4 btn-details fw-bold text-nowrap" @onclick="SendParentInvite">@L["BtnSendInvite"]</button>
                     </div>
                     @if (!string.IsNullOrEmpty(inviteMessage))
                     {
-                        <div class="alert alert-info py-2 px-3 small rounded-3 mt-3 mb-0 animate-fade">@inviteMessage</div>
+                        <div class="alert alert-info mt-3 p-2 small">@inviteMessage</div>
                     }
                 </div>
                 <div class="col-md-7">
                     <h6 class="fw-bold text-secondary mb-3">@L["InviteStatusTitle"]</h6>
-                    @if (myInvitations == null)
-                    {
-                        <p class="text-muted small">@L["Loading"]</p>
-                    }
-                    else if (!myInvitations.Any())
-                    {
-
-                        <p class="text-muted small text-center py-3">@L["NoInvites"]</p>
-                    }
-                    else
-                    {
-                        <div class="table-responsive" style="max-height: 180px; overflow-y: auto;">
-                            <table class="table table-sm table-hover align-middle small">
-                                <thead class="table-light sticky-top">
-                                    <tr><th>Email</th><th>@L["DateSent"]</th><th class="text-center">@L["Status"]</th></tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var invite in myInvitations)
-                                    {
-                                        <tr>
-                                            <td>@invite.ParentEmail</td>
-                                            <td>@invite.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
-                                            <td class="text-center">
-                                                <span class="badge @(invite.IsAccepted ? "bg-success-light text-success" : "bg-warning-light text-warning") rounded-pill px-2 py-1">
-                                                    @(invite.IsAccepted? L["StatusAccepted"] : L["StatusPending"])
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light"><tr><th>Email</th><th>@L["DateSent"]</th><th class="text-center">@L["Status"]</th></tr></thead>
+                            <tbody>
+                                @foreach (var invite in myInvitations)
+                                {
+                                    <tr>
+                                        <td>@invite.ParentEmail</td>
+                                        <td>@invite.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td class="text-center">
+                                            @if (invite.IsAccepted)
+                                            {
+                                                <span class="badge bg-success-custom rounded-pill">
+                                                    <i class="bi bi-check-circle-fill me-1"></i> @L["StatusAccepted"]
                                                 </span>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning-custom rounded-pill">
+                                                    <i class="bi bi-clock-fill me-1"></i> @L["StatusPending"]
+                                                </span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <style>
     .text-coral {
@@ -204,6 +183,21 @@
 
     .bg-warning-light {
         background-color: rgba(255, 193, 7, 0.15);
+    }
+
+    .bg-warning-custom {
+        background-color: #fff3cd !important; /* Мягкий желтый фон */
+        color: #856404 !important; /* Темно-желтый текст для контраста */
+        border: 1px solid #ffeeba !important; /* Легкая обводка */
+        font-weight: 600 !important; /* Делаем текст жирнее */
+        padding: 0.35rem 0.75rem !important;
+    }
+
+    .bg-success-custom {
+        background-color: #d4edda !important;
+        color: #155724 !important;
+        font-weight: 600 !important;
+        padding: 0.35rem 0.75rem !important;
     }
 </style>
 

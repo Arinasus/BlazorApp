@@ -479,8 +479,6 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Ac
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.Index.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.PersonalData.en.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.PersonalData.ru.resources
-D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.TherapistDiary.en.resources
-D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.TherapistDiary.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.TherapistSettings.en.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Manage.TherapistSettings.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Recommended.en.resources
@@ -598,3 +596,7 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.La
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Layout.MainLayout.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Diary.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.Diary.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistDiary.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistDiary.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ConfirmEmail.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ConfirmEmail.en.resources
