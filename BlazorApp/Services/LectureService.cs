@@ -14,7 +14,9 @@ namespace BlazorApp.Services
         }
 
         public async Task<List<Lecture>> GetAllLecturesAsync()
-            => await _context.Lectures.ToListAsync();
+            => await _context.Lectures
+                .Include(l => l.Category) 
+                .ToListAsync();
 
         public async Task<List<Lecture>> GetLecturesByDiagnosisAsync(string diagnosis)
             => await _context.Lectures
@@ -23,6 +25,7 @@ namespace BlazorApp.Services
 
         public async Task<List<Lecture>> GetLecturesByAuthorAsync(string authorId)
             => await _context.Lectures
+                .Include(l => l.Category)
                 .Where(l => l.AuthorId == authorId)
                 .ToListAsync();
 
@@ -42,7 +45,7 @@ namespace BlazorApp.Services
                 existing.Description = lecture.Description;
                 existing.Content = lecture.Content;
                 existing.VideoUrl = lecture.VideoUrl;
-
+                existing.CategoryId = lecture.CategoryId;
                 if (!string.IsNullOrEmpty(lecture.ImagePath))
                 {
                     existing.ImagePath = lecture.ImagePath;

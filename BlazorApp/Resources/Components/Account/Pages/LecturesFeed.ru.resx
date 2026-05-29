@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllCategories" xml:space="preserve">
+    <value>Все категории</value>
+  </data>
   <data name="BtnReadMore" xml:space="preserve">
     <value>Читать далее</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="Diagnosis" xml:space="preserve">
+    <value>Диагноз</value>
+  </data>
+  <data name="FilterDiagnosis" xml:space="preserve">
+    <value>Поиск по диагнозу</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Фильтры</value>
   </data>
   <data name="LibraryTitle" xml:space="preserve">
     <value>Библиотека знаний</value>
@@ -132,7 +147,13 @@
   <data name="PageTitle" xml:space="preserve">
     <value>Лента лекций</value>
   </data>
+  <data name="ResetFilters" xml:space="preserve">
+    <value>Сбросить фильтры</value>
+  </data>
   <data name="SearchPlaceholder" xml:space="preserve">
     <value>Поиск по теме...</value>
+  </data>
+  <data name="WithoutCategory" xml:space="preserve">
+    <value>Без категории</value>
   </data>
 </root>

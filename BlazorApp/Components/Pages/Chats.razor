@@ -89,15 +89,12 @@
             Id = u.Id,
             Name = u.UserName ?? L["UserLabel"]
         }).ToList();
-
-        if (!chatPartners.Any())
+        if (user.IsInRole("Admin"))
         {
-            var users = await db.Users.Where(u => u.Id != currentUserId).Take(10).ToListAsync();
-            chatPartners = users.Select(u => new UserDto
-            {
-                Id = u.Id,
-                Name = u.UserName ?? (user.IsInRole("Therapist") ? L["UserLabel"] : L["SpecialistLabel"])
-            }).ToList();
+            chatPartners = await db.Users
+                .Where(u => u.Id != currentUserId)
+                .Select(u => new UserDto { Id = u.Id, Name = u.UserName ?? "User" })
+                .ToListAsync();
         }
     }
 }

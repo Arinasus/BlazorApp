@@ -9,6 +9,7 @@
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp.Data
 @using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Components.Forms
 @inject IJSRuntime JS
 @attribute [Authorize(Roles = "Admin, Therapist")]
 @inject ILectureService LectureService
@@ -19,7 +20,21 @@
 @inject IStringLocalizer<ManageLectures> L
 <PageTitle>@L["KnowledgeBaseTitle"]</PageTitle>
 
-<div class="container mt-4 pb-5">
+<LectureEditor @ref="lectureForm" 
+               Lecture="currentLecture" 
+               Categories="allCategories" 
+               IsAdmin="isAdmin"
+               IsEditing="isEditing"
+               OnSave="HandleSaveLecture" 
+               OnCancel="CancelEditing"
+               OnFileSelected="HandleFileSelected" 
+               OnOpenCategoryModal="OpenCategoryModal" />
+<h4 class="fw-bold mt-5 mb-3">@L["AvailableLecturesHeader"]</h4>
+<LectureTable Lectures="displayedLectures"
+              OnEdit="StartEdit"
+              OnDelete="HandleDeleteRequest" 
+              />
+@* <div class="container mt-4 pb-5">
     <h3 class="fw-bold mb-4">@L["KnowledgeBaseTitle"]</h3>
 
     <div class="card border-0 shadow-sm rounded-4 mb-4">
@@ -157,7 +172,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> *@
     <div class="modal" id="categoryModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0 shadow">
@@ -177,7 +192,21 @@
             </div>
         </div>
     </div>
+<div class="modal" id="deleteConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <div class="modal-body p-4 text-center">
+                <h5>@L["DeleteConfirmationTitle"]</h5>
+                <p>@string.Format(L["DeleteLectureConfirmText"], lectureToDelete?.Title)</p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">@L["BtnCancel"]</button>
+                <button type="button" class="btn btn-danger rounded-pill" @onclick="ConfirmDelete">@L["BtnDelete"]</button>
+            </div>
+        </div>
+    </div>
 </div>
+@*</div>*@
 
 <style>
     .btn-outline-primary {
@@ -214,11 +243,13 @@
     private HtmlTextEditor QuillHtml = default!;
     private List<Category> allCategories = new(); 
     private string newCategoryName = "";
+    private Lecture? lectureToDelete;
 
     private bool isEditing = false;
     private string currentUserId = string.Empty;
     private bool isAdmin = false;
     private string? categoryErrorMessage;
+    private LectureEditor lectureForm = default!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -245,7 +276,22 @@
             displayedLectures = await LectureService.GetLecturesByAuthorAsync(currentUserId);
         }
     }
+    private void HandleDeleteRequest(Lecture lecture)
+    {
+        lectureToDelete = lecture;
+        JS.InvokeVoidAsync("eval", "new bootstrap.Modal(document.getElementById('deleteConfirmModal')).show()");
+    }
 
+    private async Task ConfirmDelete()
+    {
+        if (lectureToDelete != null)
+        {
+            await LectureService.DeleteLectureAsync(lectureToDelete.Id);
+            await JS.InvokeVoidAsync("eval", "bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal')).hide()");
+            lectureToDelete = null;
+            await LoadLectures(); 
+        }
+    }
     private async Task HandleFileSelected(InputFileChangeEventArgs e)
     {
         var file = e.File;
@@ -268,65 +314,63 @@
 
     private async Task HandleSaveLecture()
     {
-        currentLecture.Content = await QuillHtml.GetHtml();
+        currentLecture.Content = await lectureForm.GetHtmlContent();
 
-        if (isEditing)
-        {
-            await LectureService.UpdateLectureAsync(currentLecture);
-            isEditing = false;
-        }
-        else
+        if (!isEditing)
         {
             currentLecture.AuthorId = currentUserId;
-            await LectureService.AddLectureAsync(currentLecture);
         }
 
-        currentLecture = new();
-        await QuillHtml.LoadHtmlContent("");
+        if (isEditing)
+            await LectureService.UpdateLectureAsync(currentLecture);
+        else
+            await LectureService.AddLectureAsync(currentLecture);
+
+        currentLecture = new() { ImagePath = "/images/default-lecture.png" };
+        await lectureForm.SetHtmlContent("");
+        isEditing = false;
+
         await LoadLectures();
+        StateHasChanged(); 
     }
 
     private async Task StartEdit(Lecture lecture)
     {
         currentLecture = new Lecture
         {
+            
             Id = lecture.Id,
+
             Title = lecture.Title,
+
             TargetDiagnosis = lecture.TargetDiagnosis,
+
             Description = lecture.Description,
+
             Content = lecture.Content,
+
             VideoUrl = lecture.VideoUrl,
+
             ImagePath = lecture.ImagePath,
+
             AuthorId = lecture.AuthorId
         };
-
         isEditing = true;
+        StateHasChanged();
 
-        if (QuillHtml != null)
+        await Task.Delay(100);
+
+        if (lectureForm != null)
         {
-            await QuillHtml.LoadHtmlContent(currentLecture.Content ?? "");
+            await lectureForm.SetHtmlContent(currentLecture.Content ?? "");
         }
     }
 
     private async Task CancelEditing()
     {
-        currentLecture = new Lecture
-        {
-            ImagePath = "/images/default-lecture.png" 
-        };
+        currentLecture = new Lecture { ImagePath = "/images/default-lecture.png" };
         isEditing = false;
-        await QuillHtml.LoadHtmlContent("");
-    }
-
-    private async Task DeleteLecture(int id, string title)
-    {
-        var confirmText = string.Format(L["DeleteLectureConfirmText"], title);
-        bool confirmed = await JS.InvokeAsync<bool>("confirm", confirmText);
-        if (confirmed)
-        {
-            await LectureService.DeleteLectureAsync(id);
-            await LoadLectures();
-        }
+        await lectureForm.SetHtmlContent("");
     }
     private async Task HandleAddCategoryFromModal()
     {
@@ -348,4 +392,9 @@
             }
         }
     }
+    private async Task OpenCategoryModal()
+    {
+        await JS.InvokeVoidAsync("eval", "new bootstrap.Modal(document.getElementById('categoryModal')).show()");
+    }
+   
 }

@@ -12,83 +12,36 @@
 
 <PageTitle>@L["PageTitle"]</PageTitle>
 
-<div class="container py-4 animate-fade">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-bold text-dark m-0">@L["Header"]</h3>
-        <span class="badge bg-primary rounded-pill px-3 py-2">
-            @L["TotalPending"]: @(pendingProfiles?.Count ?? 0)
-        </span>
-    </div>
+<div class="container py-4">
+    <h3 class="fw-bold text-dark mb-4">@L["Header"]</h3>
 
-    @if (pendingProfiles == null)
+    @if (newProfiles == null && updatedProfiles == null)
     {
         <div class="text-center py-5">
             <div class="spinner-border text-primary" role="status"></div>
-            <p class="text-muted mt-2">@L["Loading"]</p>
         </div>
     }
-    else if (!pendingProfiles.Any())
+    else if (!newProfiles!.Any() && !updatedProfiles!.Any())
     {
         <div class="card border-0 shadow-sm rounded-4 p-5 text-center">
-            <i class="bi bi-check2-all text-success display-4 mb-3"></i>
             <h5 class="text-muted">@L["NoApplications"]</h5>
         </div>
     }
     else
     {
-        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="ps-4">@L["ColSpecialization"]</th>
-                            <th>@L["ColExperience"]</th>
-                            <th>@L["ColPrice"]</th>
-                            <th class="text-end pe-4">@L["ColActions"]</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var profile in pendingProfiles)
-                        {
-                            <tr>
-                                <td class="ps-4">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
-                                             class="rounded-circle border"
-                                             style="width: 40px; height: 40px; object-fit: cover;" alt="Avatar" />
-                                        <div>
-                                            <div class="fw-bold text-dark">@profile.LastName @profile.FirstName @profile.MiddleName</div>
-                                            <div class="text-muted small">@profile.Specialization @(string.IsNullOrEmpty(profile.City) ? "" : $"({profile.City})")</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="badge bg-light text-dark border px-2 py-1">
-                                        @profile.ExperienceYears @L["Years"]
-                                    </span>
-                                </td>
-                                <td class="fw-bold text-coral">@profile.PricePerHour BYN/@L["Hour"]</td>
-                                <td class="text-end pe-4">
-                                    <div class="d-inline-flex gap-2">
-                                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3"
-                                                @onclick="() => ShowDetails(profile)">
-                                            <i class="bi bi-eye me-1"></i> @L["BtnDetails"]
-                                        </button>
-                                        <button class="btn btn-sm btn-success rounded-pill px-3 shadow-sm"
-                                                @onclick="() => Approve(profile.Id)">
-                                            <i class="bi bi-check-lg me-1"></i> @L["BtnApprove"]
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        @if (newProfiles.Any())
+        {
+            <h5 class="mb-3 text-primary">@L["NewApplications"] (@newProfiles.Count)</h5>
+            @RenderTable(newProfiles)
+        }
+
+        @if (updatedProfiles.Any())
+        {
+            <h5 class="mt-5 mb-3 text-warning">@L["UpdatedProfiles"] (@updatedProfiles.Count)</h5>
+            @RenderTable(updatedProfiles)
+        }
     }
 </div>
-
 @if (selectedProfile != null)
 {
     <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5); overflow-y: auto;" role="dialog">
@@ -126,7 +79,23 @@
                                 @(string.IsNullOrEmpty(selectedProfile.FullBio) ? L["NoBioProvided"] : selectedProfile.FullBio)
                             </div>
                         </div>
-
+                        <div class="col-12 border-top pt-3">
+                            <h6 class="text-muted small text-uppercase fw-bold mb-3">@L["Verification"]</h6>
+                            <div class="d-flex gap-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" @bind="selectedProfile.IsPassportVerified" id="passCheck">
+                                    <label class="form-check-label" for="passCheck">@L["Passport"]</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" @bind="selectedProfile.IsEducationVerified" id="eduCheck">
+                                    <label class="form-check-label" for="eduCheck">@L["Education"]</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" @bind="selectedProfile.IsSelfEmployed" id="selfCheck">
+                                    <label class="form-check-label" for="selfCheck">@L["SelfEmployed"]</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-12 border-top pt-3">
                             <h6 class="text-muted small text-uppercase fw-bold mb-3">@L["SecDocuments"]</h6>
                             <div class="row g-3">
@@ -177,7 +146,7 @@
                 </div>
                 <div class="modal-footer border-0 bg-light py-3">
                     <button type="button" class="btn btn-outline-secondary rounded-pill px-4" @onclick="CloseDetails">@L["BtnClose"]</button>
-                    <button type="button" class="btn btn-success rounded-pill px-4 shadow-sm" @onclick="() => ApproveFromDetails(selectedProfile.Id)">
+                    <button type="button" class="btn btn-success rounded-pill px-4 shadow-sm" @onclick="ApproveFromDetails">
                         <i class="bi bi-check-lg me-1"></i> @L["BtnApprove"]
                     </button>
                 </div>
@@ -187,24 +156,67 @@
 }
 
 @code {
-    private List<TherapistProfile>? pendingProfiles;
+    private List<TherapistProfile>? newProfiles;
+    private List<TherapistProfile>? updatedProfiles;
     private TherapistProfile? selectedProfile;
 
-    protected override async Task OnInitializedAsync()
-    {
-        await LoadData();
-    }
+    protected override async Task OnInitializedAsync() => await LoadData();
 
     private async Task LoadData()
     {
-        pendingProfiles = await TherapistService.GetPendingApplicationsAsync();
+        var allPending = await TherapistService.GetPendingApplicationsAsync();
+        newProfiles = allPending.Where(p => !p.IsApproved).ToList();
+        updatedProfiles = allPending.Where(p => p.IsApproved && p.IsModerationRequired).ToList();
     }
+
+    private RenderFragment RenderTable(List<TherapistProfile> profiles) => @<div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th class="ps-4">@L["ColSpecialization"]</th>
+                    <th>@L["ColExperience"]</th>
+                    <th>@L["ColPrice"]</th>
+                    <th class="text-end pe-4">@L["ColActions"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var profile in profiles)
+                {
+                    <tr>
+                        <td class="ps-4">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="@(string.IsNullOrEmpty(profile.ImageUrl) ? "/img/default-avatar.png" : profile.ImageUrl)"
+                                     class="rounded-circle border" style="width: 40px; height: 40px; object-fit: cover;" />
+                                <div>
+                                    <div class="fw-bold">@profile.LastName @profile.FirstName</div>
+                                    <div class="text-muted small">@profile.Specialization</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>@profile.ExperienceYears @L["Years"]</td>
+                        <td class="fw-bold">@profile.PricePerHour BYN</td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-outline-secondary rounded-pill me-2" @onclick="() => selectedProfile = profile">
+                                <i class="bi bi-eye"></i> @L["BtnDetails"]
+                            </button>
+                            <button type="button" class="btn btn-success rounded-pill px-4 shadow-sm" @onclick="ApproveFromDetails">
+                                <i class="bi bi-check-lg me-1"></i> @L["BtnApprove"]
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>;
 
     private async Task Approve(int id)
     {
         await TherapistService.ApproveTherapistAsync(id);
         await LoadData();
     }
+
+    
+   
 
     private void ShowDetails(TherapistProfile profile)
     {
@@ -216,9 +228,23 @@
         selectedProfile = null;
     }
 
-    private async Task ApproveFromDetails(int id)
+    private async Task ApproveFromDetails()
     {
-        CloseDetails();
-        await Approve(id);
+        if (selectedProfile != null)
+        {
+            // 1. Сохраняем состояния переключателей в БД через сервис
+            await TherapistService.UpdateVerificationStatusAsync(
+                selectedProfile.Id,
+                selectedProfile.IsPassportVerified,
+                selectedProfile.IsEducationVerified,
+                selectedProfile.IsSelfEmployed
+            );
+        
+            // 2. Вызываем логику одобрения (которая вызывает LoadData)
+            await Approve(selectedProfile.Id);
+        
+            // 3. Закрываем окно
+            CloseDetails();
+        }
     }
 }

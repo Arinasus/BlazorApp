@@ -1,0 +1,56 @@
+﻿@using BlazorApp.Shared.Models
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<LectureTable> L
+
+<div class="card border-0 shadow-sm rounded-4 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>@L["ThTitle"]</th>
+                    <th>@L["ThDiagnosis"]</th>
+                    <th>@L["ThCategory"]</th>
+                    <th class="text-end">@L["ThActions"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Lectures != null)
+                {
+                    @foreach (var lecture in Lectures)
+                    {
+                        <tr>
+                            <td class="fw-bold">@lecture.Title</td>
+                            <td>
+                                <span class="badge rounded-pill px-3 py-1"
+                                      style="border: 1px solid #4ECDC4; color: #333; background-color: transparent;">
+                                    @lecture.TargetDiagnosis
+                                </span>
+                            </td>
+                            <td>
+                                <span class="fw-medium text-dark">@(lecture.Category?.Name ?? L["NoCategory"])</span>
+                            </td>
+                            <td class="text-end">
+                                <div class="d-flex gap-2 justify-content-end">
+                                    <button class="btn btn-sm btn-link text-primary p-0" @onclick="() => OnEdit.InvokeAsync(lecture)">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-link text-danger p-0" @onclick="() => OnDelete.InvokeAsync(lecture)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    
+    [Parameter] public List<Lecture>? Lectures { get; set; }
+    [Parameter] public EventCallback<Lecture> OnEdit { get; set; }
+    [Parameter] public EventCallback<Lecture> OnDelete { get; set; }
+
+}

@@ -1,0 +1,70 @@
+Date : 2026-05-26 22:51:20
+Directory : d:\Diplom\BlazorApp\BlazorApp.Client
+Total : 35 files,  -375 codes, 6 comments, -61 blanks, all -430 lines
+
+Languages
++---------------+------------+------------+------------+------------+------------+
+| language      | files      | code       | comment    | blank      | total      |
++---------------+------------+------------+------------+------------+------------+
+| ASP.NET Razor |          2 |         17 |          0 |          2 |         19 |
+| JSON          |          2 |         16 |          0 |          2 |         18 |
+| XML           |          4 |          9 |          0 |          2 |         11 |
+| C#            |         27 |       -417 |          6 |        -67 |       -478 |
++---------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                          | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                             |         35 |       -375 |          6 |        -61 |       -430 |
+| . (Files)                                                                     |          7 |         97 |          8 |         20 |        125 |
+| ..                                                                            |         26 |       -488 |         -2 |        -83 |       -573 |
+| ..\BlazorApp.Shared                                                           |         26 |       -488 |         -2 |        -83 |       -573 |
+| ..\BlazorApp.Shared (Files)                                                   |          2 |        -27 |          0 |         -4 |        -31 |
+| ..\BlazorApp.Shared\DTOs                                                      |          7 |       -131 |          0 |        -31 |       -162 |
+| ..\BlazorApp.Shared\Interfaces                                                |          8 |       -136 |          0 |        -17 |       -153 |
+| ..\BlazorApp.Shared\Models                                                    |          9 |       -194 |         -2 |        -31 |       -227 |
+| wwwroot                                                                       |          2 |         16 |          0 |          2 |         18 |
++-------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| filename                                                                      | language      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| d:\Diplom\BlazorApp\BlazorApp.Client\BlazorApp.Client.Metrics.xml             | XML           |         17 |          0 |          0 |         17 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\BlazorApp.Client.csproj                  | XML           |         19 |          0 |          6 |         25 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\PersistentAuthenticationStateProvider.cs | C#            |         27 |          8 |          7 |         42 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\Program.cs                               | C#            |          8 |          0 |          4 |         12 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\RedirectToLogin.razor                    | ASP.NET Razor |          7 |          0 |          2 |          9 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\UserInfo.cs                              | C#            |          9 |          0 |          1 |         10 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\_Imports.razor                           | ASP.NET Razor |         10 |          0 |          0 |         10 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\wwwroot\appsettings.Development.json     | JSON          |          8 |          0 |          1 |          9 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\wwwroot\appsettings.json                 | JSON          |          8 |          0 |          1 |          9 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\BlazorApp.Shared.Metrics.xml             | XML           |        -17 |          0 |          0 |        -17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\BlazorApp.Shared.csproj                  | XML           |        -10 |          0 |         -4 |        -14 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\ChildConnectionDto.cs               | C#            |        -14 |          0 |         -2 |        -16 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\InvitationStatusDto.cs              | C#            |        -14 |          0 |         -2 |        -16 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\RegisterTherapistDto.cs             | C#            |        -26 |          0 |         -9 |        -35 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\RegisterUserDto.cs                  | C#            |        -11 |          0 |         -2 |        -13 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\SupportRequestDto.cs                | C#            |        -22 |          0 |         -5 |        -27 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\TherapyDiaryLogDto.cs               | C#            |        -29 |          0 |         -9 |        -38 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\UserDto.cs                          | C#            |        -15 |          0 |         -2 |        -17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\ICategoryService.cs           | C#            |        -15 |          0 |         -2 |        -17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IChatService.cs               | C#            |        -14 |          0 |         -2 |        -16 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IChildService.cs              | C#            |        -16 |          0 |         -2 |        -18 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IDiaryService.cs              | C#            |        -22 |          0 |         -3 |        -25 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IFavoriteService.cs           | C#            |        -15 |          0 |         -2 |        -17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\ILectureService.cs            | C#            |        -18 |          0 |         -2 |        -20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\ITherapistService.cs          | C#            |        -20 |          0 |         -2 |        -22 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IUserService.cs               | C#            |        -16 |          0 |         -2 |        -18 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Category.cs                       | C#            |        -15 |          0 |         -3 |        -18 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\ChatMessage.cs                    | C#            |        -17 |          0 |         -3 |        -20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Child.cs                          | C#            |        -25 |          0 |         -7 |        -32 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\DiaryInvitation.cs                | C#            |        -18 |          0 |         -2 |        -20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Favorite.cs                       | C#            |        -17 |          0 |         -2 |        -19 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Lecture.cs                        | C#            |        -21 |          0 |         -2 |        -23 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\TherapistProfile.cs               | C#            |        -41 |         -2 |         -7 |        -50 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\TherapistReview.cs                | C#            |        -18 |          0 |         -2 |        -20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\TherapyDiaryLog.cs                | C#            |        -22 |          0 |         -3 |        -25 |
+| Total                                                                         |               |       -375 |          6 |        -61 |       -430 |
++-------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+

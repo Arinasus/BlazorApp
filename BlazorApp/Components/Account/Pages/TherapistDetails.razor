@@ -8,6 +8,7 @@
 @rendermode InteractiveServer
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<TherapistDetails> L
+@inject IWebHostEnvironment Environment
 
 <div class="profile-page">
     @if (profile == null)
@@ -33,7 +34,9 @@
                             </button>
                         </div>
 
-                        <h3 class="fw-bold text-dark mb-1">@profile.FirstName</h3>
+                        <h3 class="fw-bold text-dark mb-1">
+                            @profile.LastName @profile.FirstName @profile.MiddleName
+                        </h3>
                         <h5 class="text-muted mb-2">@profile.Specialization</h5>
                         <div class="rating-stars mb-3">
                             <span class="text-warning">★ @profile.AverageRating.ToString("F1")</span>
@@ -73,7 +76,77 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                        <h4 class="fw-bold mb-3 text-coral">@L["ContactInfoTitle"]</h4>
+                        <div class="row g-3">
+                            @if (!string.IsNullOrEmpty(profile.Phone))
+                            {
+                                <div class="col-md-6">
+                                    <label class="text-muted small d-block">@L["PhoneLabel"]</label>
+                                    <a href="tel:@profile.Phone" class="fw-bold text-dark text-decoration-none">
+                                        <i class="bi bi-telephone-fill me-1 text-coral"></i> @profile.Phone
+                                    </a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(profile.City))
+                            {
+                                <div class="col-md-6">
+                                    <label class="text-muted small d-block">@L["CityLabel"]</label>
+                                    <span class="fw-bold text-dark"><i class="bi bi-buildings-fill me-1 text-coral"></i> @profile.City</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            @if (profile.IsPassportVerified)
+                            {
+                                <span class="badge bg-success-subtle text-success"><i class="bi bi-check-circle"></i> @L["PassportVerified"]</span>
+                            }
+                            @if (profile.IsEducationVerified)
+                            {
+                                <span class="badge bg-info-subtle text-info"><i class="bi bi-patch-check"></i> @L["EducationVerified"]</span>
+                            }
+                            @if (profile.IsSelfEmployed)
+                            {
+                                <span class="badge bg-warning-subtle text-warning"><i class="bi bi-briefcase"></i> @L["SelfEmployed"]</span>
+                            }
+                        </div>
+    
+                        @if (!string.IsNullOrEmpty(profile.SpeechDisorders))
+                        {
+                            <h5 class="fw-bold mb-3">@L["DisordersTitle"]</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                @foreach (var tag in profile.SpeechDisorders.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                                {
+                                    <span class="badge border text-dark bg-light rounded-pill px-3">@tag</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                        <h4 class="fw-bold mb-3 text-coral">@L["ProfessionalDetails"]</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="text-muted small d-block">@L["WorkType"]</label>
+                                <span class="fw-bold text-dark">@profile.WorkType</span>
+                            </div>
+                            @if (profile.IsSelfEmployed)
+                            {
+                                <div class="col-md-6">
+                                    <label class="text-muted small d-block">@L["Status"]</label>
+                                    <span class="fw-bold text-success"><i class="bi bi-check-circle-fill"></i> @L["IsSelfEmployed"]</span>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(profile.SpecialNeeds))
+                            {
+                                <div class="col-12">
+                                    <label class="text-muted small d-block">@L["SpecialNeeds"]</label>
+                                    <span class="fw-bold">@profile.SpecialNeeds</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
                     @if (!string.IsNullOrEmpty(profile.Address))
                     {
                         <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
@@ -136,6 +209,36 @@
                                     <span class="ms-2 fw-bold text-coral">@newReviewRating / 5</span>
                                 </div>
                             </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="anonCheck" @bind="isAnonymous" />
+                                <label class="form-check-label" for="anonCheck">@L["PostAnonymously"]</label>
+                            </div>
+
+                            <label class="form-label fw-bold">@L["AttachFile"]</label>
+                            <div class="mb-3">
+                                <InputFile OnChange="HandleFileSelected" class="form-control" accept=".jpg,.jpeg,.png,.pdf" multiple />
+                            </div>
+
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                @for (int i = 0; i < selectedFiles.Count; i++)
+                                {
+                                    if (i < previewDataUrls.Count)
+                                    {
+                                        var index = i;
+                                        <div class="position-relative border rounded p-1" style="width: 80px; height: 80px;">
+                                            @if (previewDataUrls[index] == "pdf")
+                                            {
+                                                <div class="d-flex align-items-center justify-content-center h-100"><i class="bi bi-file-earmark-pdf fs-2 text-danger"></i></div>
+                                            }
+                                            else
+                                            {
+                                                <img src="@previewDataUrls[index]" class="img-fluid h-100" style="object-fit: cover;" />
+                                            }
+                                            <button type="button" class="btn btn-sm btn-danger rounded-circle position-absolute" style="top: -10px; right: -10px; padding: 0px 6px;" @onclick="() => RemoveFile(index)"><i class="bi bi-x"></i></button>
+                                        </div>
+                                    }
+                                }
+                            </div>
                             <input type="text" class="form-control mb-3" placeholder="@L["YourNamePlaceholder"]" @bind="newReviewName" />
                             <textarea class="form-control mb-3" rows="3" placeholder="@L["YourExperiencePlaceholder"]" @bind="newReviewText"></textarea>
                             <div class="text-end">
@@ -154,7 +257,7 @@
                                 {
                                     <div class="review-item border-bottom pb-3 mb-3">
                                         <div class="d-flex justify-content-between">
-                                            <span class="fw-bold">@r.AuthorName</span>
+                                            <span class="fw-bold">@(r.IsAnonymous ? L["Anonymous"] : r.AuthorName)</span>
                                             <div class="text-warning">
                                                 @for (int s = 1; s <= 5; s++)
                                                 {
@@ -164,6 +267,24 @@
                                         </div>
                                         <p class="text-muted small mb-1">@r.CreatedAt.ToShortDateString()</p>
                                         <p class="mb-0 italic">"@r.Content"</p>
+                                        @if (!string.IsNullOrEmpty(r.AttachmentUrl))
+                                        {
+                                            <div class="mt-2 d-flex gap-2">
+                                                @foreach (var path in r.AttachmentUrl.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                                                {
+                                                    <a href="@path" target="_blank">
+                                                        @if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                                                        {
+                                                            <span class="badge bg-light text-danger border"><i class="bi bi-file-earmark-pdf"></i> PDF</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="@path" class="img-thumbnail" style="max-width: 80px; height: 80px; object-fit: cover;" />
+                                                        }
+                                                    </a>
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 }
                             }
@@ -233,6 +354,12 @@
 
     private bool isFavorite;
     private string? currentUserId;
+    private bool isAnonymous = false; 
+    private List<IBrowserFile> selectedFiles = new();
+    private List<string> previewDataUrls = new();
+    private string? previewUrl;
+    private string? previewDataUrl;
+    private Guid inputFileId = Guid.NewGuid();
 
     protected override async Task OnInitializedAsync()
     {
@@ -272,33 +399,101 @@
             Console.WriteLine($"Ошибка при обновлении избранного: {ex.Message}");
         }
     }
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var files = e.GetMultipleFiles(5);
+        foreach (var file in files)
+        {
+            if (selectedFiles.Count >= 5) break;
+
+            // Читаем поток сразу, пока ссылка валидна
+            var path = await SaveAttachmentAsync(file);
+            if (!string.IsNullOrEmpty(path))
+            {
+                uploadedPathsTemp.Add(path); // Создайте этот список в @code
+                selectedFiles.Add(file);
+
+                if (file.ContentType.Contains("image"))
+                {
+                    var resizedFile = await file.RequestImageFileAsync("image/png", 200, 200);
+                    using var ms = new MemoryStream();
+                    await resizedFile.OpenReadStream(1024 * 1024).CopyToAsync(ms);
+                    var base64 = Convert.ToBase64String(ms.ToArray());
+                    previewDataUrls.Add($"data:image/png;base64,{base64}");
+                }
+                else
+                {
+                    previewDataUrls.Add("pdf");
+                }
+            }
+        }
+    }
+
+    private void RemoveFile(int index)
+    {
+        selectedFiles.RemoveAt(index);
+        previewDataUrls.RemoveAt(index);
+    }
+
+    private List<string> uploadedPathsTemp = new(); // Список путей, сформированный при выборе
 
     private async Task SubmitReview()
     {
-        if (string.IsNullOrWhiteSpace(newReviewText) || string.IsNullOrWhiteSpace(newReviewName) || profile == null)
-            return;
+        if (string.IsNullOrWhiteSpace(newReviewText) || profile == null) return;
 
         var review = new TherapistReview
         {
             TherapistProfileId = profile.Id,
-            AuthorName = newReviewName,
+            AuthorName = isAnonymous ? "Аноним" : newReviewName,
             Content = newReviewText,
             Rating = newReviewRating,
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            IsAnonymous = isAnonymous,
+            AttachmentUrl = string.Join(";", uploadedPathsTemp) 
         };
 
         var result = await TherapistService.AddReviewAsync(review);
+    
         if (result)
         {
-            reviews.Insert(0, review);
-            newReviewName = "";
+            // Очистка
+            uploadedPathsTemp.Clear();
+            selectedFiles.Clear();
+            previewDataUrls.Clear();
             newReviewText = "";
+            newReviewName = ""; 
             newReviewRating = 5;
+            isAnonymous = false;
+            reviews = await TherapistService.GetReviewsByTherapistIdAsync(profile.Id);
             StateHasChanged();
         }
     }
     private void NavigateToChat()
     {
         NavigationManager.NavigateTo($"/chat/{UserId}");
+    }
+
+    private async Task<string> SaveAttachmentAsync(IBrowserFile file)
+    {
+        try
+        {
+            var uploadsFolder = Path.Combine(Environment.WebRootPath, "uploads", "reviews");
+            if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+    
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
+    
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 5).CopyToAsync(fileStream);
+            }
+    
+            return $"/uploads/reviews/{fileName}";
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при сохранении файла: {ex.Message}");
+            return string.Empty;
+        }
     }
 }

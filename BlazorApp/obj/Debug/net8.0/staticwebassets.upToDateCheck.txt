@@ -1,5 +1,4 @@
 wwwroot\app.css
-wwwroot\app.js
 wwwroot\bootstrap\bootstrap.min.css
 wwwroot\bootstrap\bootstrap.min.css.map
 wwwroot\favicon.png
@@ -18,6 +17,64 @@ wwwroot\uploads\avatars\f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экр
 wwwroot\uploads\c7336fb5-411b-44f6-b7a2-1c53d5128ea1.png
 wwwroot\uploads\certs\01b6e57c-467c-4ccf-984e-f1d7ec16329f_Снимок экрана 2026-05-04 212543.png
 wwwroot\uploads\certs\4d55f2b1-8090-4874-bef2-872c47567333_мальчик на мопеде.png
-wwwroot\uploads\d51331b9-dd6b-403a-b2c7-9879be7efb70.png
 wwwroot\uploads\default-lecture.png
 wwwroot\uploads\eab5e4c5-f4a6-4c61-9394-96989d109ee7.png
+wwwroot\app.js
+wwwroot\uploads\d51331b9-dd6b-403a-b2c7-9879be7efb70.png
+wwwroot\uploads\f26fdeab-48c2-4d15-9f23-0d1172217b6a.png
+wwwroot\uploads\23f80c0e-c668-42d6-a605-ed6d0657a9ec.png
+wwwroot\uploads\b81e98ef-1ac2-49ee-8c9e-1c8a5ad6f289.png
+wwwroot\uploads\c5558599-3c36-4a08-bbd2-527ce963e85e.png
+wwwroot\uploads\66858a78-c23d-419d-a473-978c055d0566.png
+wwwroot\uploads\certs\7d2daa02-c346-4fad-a239-06c1c2294e3c_Снимок экрана 2025-11-11 192901.png
+wwwroot\uploads\certs\6bcc1967-8ba7-4118-b9d1-e202389e6849_Снимок экрана 2025-08-08 131040.png
+wwwroot\uploads\certs\1234dbc6-2065-4a5a-8647-30378344d8dd_Снимок экрана 2025-07-07 193211.png
+wwwroot\uploads\certs\addd5420-fc21-4112-879e-6a020ec6d88f_Снимок экрана 2024-07-31 182336.png
+wwwroot\uploads\certificates\9f24cfaf-4a72-4788-aad5-a823d1ef941a_f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экрана 2024-11-14 225331.png
+wwwroot\uploads\certificates\772e16f5-990e-42b6-b1e1-bd778cfa3ea0_d62751ea-6fd9-4479-b978-ebc724adfb3c_Specialist.png
+wwwroot\uploads\certificates\fcb1ee68-dca4-41cc-b434-c97622d9b24c_f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экрана 2024-11-14 225331.png
+wwwroot\uploads\certificates\3edb5010-2f09-46c1-9a69-601588119b4e_f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экрана 2024-11-14 225331.png
+wwwroot\uploads\certs\8dee4485-0adc-43a5-932f-3dc55556db64_f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экрана 2024-11-14 225331.png
+wwwroot\uploads\certs\edc2d78e-5b6f-4623-b284-b763175de186_f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экрана 2024-11-14 225331.png
+wwwroot\uploads\certs\068cc8c6-0fc3-42cc-bb1b-ef8ffc561437_f614a3c2-ca10-4151-8d85-96e8db7380eb_Снимок экрана 2024-11-14 225331.png
+wwwroot\uploads\certs\f51495dd-5500-4471-a65c-532bc2f808ca_diplom.jpg
+wwwroot\uploads\avatars\ce4f9ab8-337b-423b-bdf5-eabcda6a0d55_av.jpg
+wwwroot\uploads\certs\d74d4bae-250b-4fcb-b170-472b680e0cec_diplom2.png
+wwwroot\uploads\avatars\ef5f028e-380f-4b13-803b-fd360917d308_Снимок экрана 2026-05-25 021206.png
+wwwroot\uploads\certs\752327e7-4bef-4a09-a626-15a8d0f4d313_register-bg1.png
+wwwroot\uploads\avatars\731e1607-24be-4ee9-a874-db2fcaafa761_av.jpg
+wwwroot\uploads\certificates\d9b2ed58-e80b-405c-ab50-4e3effc08ec1_diplom.jpg
+wwwroot\uploads\certs\e91d60a7-7bc8-41bd-b379-3809937393c2_diplom2.png
+wwwroot\uploads\avatars\731a83d2-3a12-4d76-b533-9f2214ede396_av1.jpg
+wwwroot\uploads\certificates\9bd13136-b7ee-45d4-86ed-96742c0b0d76_diplom.jpg
+wwwroot\uploads\certificates\cee47e36-5ba2-45fc-bdb9-1df81d04e62f_diplom2.png
+wwwroot\uploads\avatars\4f6ac364-1db6-411e-8d8e-06727730c6b1_av2.jpg
+wwwroot\uploads\avatars\be88a39e-95b6-4e74-95a1-52bb3e2ca90d_av3.jpg
+wwwroot\uploads\reviews\f2959792-bcf0-45ab-a059-7ddca37f9288.png
+wwwroot\uploads\reviews\116b15fe-fa28-4689-9154-5136a06a9b4a_23f80c0e-c668-42d6-a605-ed6d0657a9ec.png
+wwwroot\uploads\reviews\6e6ce921-20dc-4bd1-9464-5b80edfd5423_f26fdeab-48c2-4d15-9f23-0d1172217b6a.png
+wwwroot\uploads\reviews\60c1b04e-195d-45ef-8087-481da50767ee.png
+wwwroot\uploads\reviews\232d39ae-1423-4453-a146-6b98f1153e87.png
+wwwroot\uploads\reviews\d410d004-001f-45dd-b520-16de69ff5958.png
+wwwroot\uploads\reviews\6fd71301-f6cc-4d0d-885e-819f707b4137.png
+wwwroot\uploads\reviews\df6a4b18-9cb7-4832-89ec-c2ec0e97847c.png
+wwwroot\uploads\reviews\18541a9c-3992-4be0-82b2-ea45e21b7ff7.png
+wwwroot\uploads\reviews\ac68f3a8-e1e8-4f33-a01a-ab88028732ae.png
+wwwroot\uploads\reviews\57a3107e-3975-40a6-b74e-d5101fe87ce5.png
+wwwroot\uploads\reviews\6094f4d7-ff6a-43d4-9f75-01afc1b27e1d.png
+wwwroot\uploads\reviews\e5a3db1b-5d40-4e5a-a2c7-7ffa43a2736b.png
+wwwroot\uploads\reviews\0fa32d3f-ef19-4d41-b4d2-855c85620993.png
+wwwroot\uploads\reviews\48cd4865-da0c-4cf0-b2e7-0bc8f9ff58f2.png
+wwwroot\uploads\reviews\9d3287d8-27ef-479b-b252-2fd7815bf657.png
+wwwroot\uploads\reviews\d1c037d2-8c21-4f7c-aedc-e9893b1ed16e.png
+wwwroot\uploads\reviews\776ab9c9-46ba-43e0-9d57-86caf37bc532.png
+wwwroot\uploads\reviews\79f2d4ee-c05f-4774-8bd7-7145b5bc14ec.png
+wwwroot\uploads\reviews\87714583-b24c-4e30-86ac-ea0a1665bb04.png
+wwwroot\uploads\reviews\a1f6a981-b738-4660-8762-20a5db606f52.png
+wwwroot\uploads\reviews\42989826-ee6c-4921-b1b2-acc89c73cb56.png
+wwwroot\uploads\reviews\db501e8e-f214-4e1b-9106-a52687b1f7c8.png
+wwwroot\uploads\reviews\35bceaa8-a2ff-43f2-ae08-f04382a8c87d.png
+wwwroot\uploads\reviews\a239bc53-5505-4133-8fd4-41a2018a8029.png
+wwwroot\uploads\reviews\bd154534-d9df-459a-a911-78250e613c4b.png
+wwwroot\uploads\reviews\f338204c-0083-4891-9a79-c37a7be604b2.png
+wwwroot\uploads\reviews\adbcacba-24c4-44d0-83c3-b77582275da9.png

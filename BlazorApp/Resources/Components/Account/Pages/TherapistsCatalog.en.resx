@@ -138,6 +138,15 @@
   <data name="EmptyStateText" xml:space="preserve">
     <value>No specialists were found matching your request.</value>
   </data>
+  <data name="ExperienceLabel" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
   <data name="FormatAny" xml:space="preserve">
     <value>Any format</value>
   </data>
@@ -171,6 +180,9 @@
   <data name="LocationTitle" xml:space="preserve">
     <value>Class location</value>
   </data>
+  <data name="MinExperience" xml:space="preserve">
+    <value>Minimum experience (years)</value>
+  </data>
   <data name="NoReviewsYet" xml:space="preserve">
     <value>There are no reviews yet. Be the first!</value>
   </data>
@@ -185,6 +197,9 @@
   </data>
   <data name="PriceLabel" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="ResetFilters" xml:space="preserve">
+    <value>Reset filters</value>
   </data>
   <data name="ReviewsTitle" xml:space="preserve">
     <value>Reviews from parents</value>
@@ -212,6 +227,18 @@
   </data>
   <data name="WriteReview" xml:space="preserve">
     <value>Leave feedback</value>
+  </data>
+  <data name="YearFew" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="YearMany" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="YearOne" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="YearsShort" xml:space="preserve">
+    <value>years</value>
   </data>
   <data name="YourExp" xml:space="preserve">
     <value>Your work experience...</value>

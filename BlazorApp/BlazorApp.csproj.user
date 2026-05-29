@@ -4,6 +4,11 @@
     <ActiveDebugProfile>https</ActiveDebugProfile>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Components\Account\Pages\Register.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Resources\Components\Account\Pages\LoginWith2fa.en.resx">
       <SubType>Designer</SubType>
     </None>

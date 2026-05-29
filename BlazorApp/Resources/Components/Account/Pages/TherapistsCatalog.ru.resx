@@ -138,6 +138,15 @@
   <data name="EmptyStateText" xml:space="preserve">
     <value>Специалисты по вашему запросу не найдены.</value>
   </data>
+  <data name="ExperienceLabel" xml:space="preserve">
+    <value>Стаж</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Фильтры</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
   <data name="FormatAny" xml:space="preserve">
     <value>Любой формат</value>
   </data>
@@ -171,6 +180,9 @@
   <data name="LocationTitle" xml:space="preserve">
     <value>Место проведения занятий</value>
   </data>
+  <data name="MinExperience" xml:space="preserve">
+    <value>Минимальный опыт (лет)</value>
+  </data>
   <data name="NoReviewsYet" xml:space="preserve">
     <value>Отзывов пока нет. Будьте первым!</value>
   </data>
@@ -185,6 +197,9 @@
   </data>
   <data name="PriceLabel" xml:space="preserve">
     <value>Стоимость</value>
+  </data>
+  <data name="ResetFilters" xml:space="preserve">
+    <value>Сбросить фильтры</value>
   </data>
   <data name="ReviewsTitle" xml:space="preserve">
     <value>Отзывы родителей</value>
@@ -212,6 +227,18 @@
   </data>
   <data name="WriteReview" xml:space="preserve">
     <value>Оставить отзыв</value>
+  </data>
+  <data name="YearFew" xml:space="preserve">
+    <value>года</value>
+  </data>
+  <data name="YearMany" xml:space="preserve">
+    <value>лет</value>
+  </data>
+  <data name="YearOne" xml:space="preserve">
+    <value>год</value>
+  </data>
+  <data name="YearsShort" xml:space="preserve">
+    <value>лет</value>
   </data>
   <data name="YourExp" xml:space="preserve">
     <value>Ваш опыт работы...</value>

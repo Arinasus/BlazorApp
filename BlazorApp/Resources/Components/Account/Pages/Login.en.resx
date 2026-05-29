@@ -123,6 +123,9 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Email (or login)</value>
   </data>
+  <data name="ErrInvalidLogin" xml:space="preserve">
+    <value>User not found or password is incorrect</value>
+  </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>

@@ -145,7 +145,7 @@
     <value>Experience (years)</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value>Price per hour</value>
+    <value>Lesson cost</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -191,5 +191,65 @@
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>Brief description</value>
+  </data>
+  <data name="CertificatesHint" xml:space="preserve">
+    <value>Upload your diplomas and training certificates (PDF or images)</value>
+  </data>
+  <data name="CertificatesPlaceholder" xml:space="preserve">
+    <value>No certificates uploaded</value>
+  </data>
+  <data name="CertificateUrls" xml:space="preserve">
+    <value>Certificates</value>
+  </data>
+  <data name="SavedSuccess" xml:space="preserve">
+    <value>Saved success</value>
+  </data>
+  <data name="UploadHint" xml:space="preserve">
+    <value>Add files</value>
+  </data>
+  <data name="CertsTitle" xml:space="preserve">
+    <value>Certificates</value>
+  </data>
+  <data name="UploadedFiles" xml:space="preserve">
+    <value>Uploaded files</value>
+  </data>
+  <data name="UploadCertificates" xml:space="preserve">
+    <value>Uploaded files</value>
+  </data>
+  <data name="SpecialNeedsPlaceholder" xml:space="preserve">
+    <value>For example: ASD; ADHD</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="IndividualAndGroup" xml:space="preserve">
+    <value>Individual and group</value>
+  </data>
+  <data name="IsSelfEmployed" xml:space="preserve">
+    <value>I am self-employed / an individual entrepreneur</value>
+  </data>
+  <data name="SpecialNeeds" xml:space="preserve">
+    <value>Special Needs</value>
+  </data>
+  <data name="SpecialNeedsPlaceholder1" xml:space="preserve">
+    <value>For example: ASD; ADHD</value>
+  </data>
+  <data name="SpeechDisordersPlaceholder" xml:space="preserve">
+    <value>For example: Dislalia; Dysarthria</value>
+  </data>
+  <data name="SpeechDisorders" xml:space="preserve">
+    <value>Speech disorders</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>Type of work</value>
+  </data>
+  <data name="ProfessionalDetails" xml:space="preserve">
+    <value>Professional Details</value>
+  </data>
+  <data name="SelfEmployed" xml:space="preserve">
+    <value>Self-employed</value>
   </data>
 </root>

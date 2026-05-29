@@ -1,0 +1,38 @@
+Date : 2026-05-26 22:51:20
+Directory : d:\Diplom\BlazorApp\BlazorApp.Client
+Total : 9 files,  113 codes, 8 comments, 22 blanks, all 143 lines
+
+Languages
++---------------+------------+------------+------------+------------+------------+
+| language      | files      | code       | comment    | blank      | total      |
++---------------+------------+------------+------------+------------+------------+
+| C#            |          3 |         44 |          8 |         12 |         64 |
+| XML           |          2 |         36 |          0 |          6 |         42 |
+| ASP.NET Razor |          2 |         17 |          0 |          2 |         19 |
+| JSON          |          2 |         16 |          0 |          2 |         18 |
++---------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                          | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                             |          9 |        113 |          8 |         22 |        143 |
+| . (Files)                                                                     |          7 |         97 |          8 |         20 |        125 |
+| wwwroot                                                                       |          2 |         16 |          0 |          2 |         18 |
++-------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| filename                                                                      | language      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| d:\Diplom\BlazorApp\BlazorApp.Client\BlazorApp.Client.Metrics.xml             | XML           |         17 |          0 |          0 |         17 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\BlazorApp.Client.csproj                  | XML           |         19 |          0 |          6 |         25 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\PersistentAuthenticationStateProvider.cs | C#            |         27 |          8 |          7 |         42 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\Program.cs                               | C#            |          8 |          0 |          4 |         12 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\RedirectToLogin.razor                    | ASP.NET Razor |          7 |          0 |          2 |          9 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\UserInfo.cs                              | C#            |          9 |          0 |          1 |         10 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\_Imports.razor                           | ASP.NET Razor |         10 |          0 |          0 |         10 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\wwwroot\appsettings.Development.json     | JSON          |          8 |          0 |          1 |          9 |
+| d:\Diplom\BlazorApp\BlazorApp.Client\wwwroot\appsettings.json                 | JSON          |          8 |          0 |          1 |          9 |
+| Total                                                                         |               |        113 |          8 |         22 |        143 |
++-------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+

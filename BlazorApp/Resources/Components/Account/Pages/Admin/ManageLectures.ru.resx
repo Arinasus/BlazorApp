@@ -159,6 +159,9 @@
   <data name="DashboardTitle" xml:space="preserve">
     <value>Панель управления</value>
   </data>
+  <data name="DeleteConfirmationTitle" xml:space="preserve">
+    <value>Подтвердите удаление</value>
+  </data>
   <data name="DeleteLectureConfirmText" xml:space="preserve">
     <value>Вы действительно хотите удалить лекцию "{0}"?</value>
   </data>

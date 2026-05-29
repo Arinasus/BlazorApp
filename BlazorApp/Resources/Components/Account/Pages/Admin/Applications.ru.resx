@@ -204,4 +204,28 @@
   <data name="SecDocuments" xml:space="preserve">
     <value>Документы и сертификаты</value>
   </data>
+  <data name="NewApplications" xml:space="preserve">
+    <value>Новые заявки</value>
+  </data>
+  <data name="UpdatedProfiles" xml:space="preserve">
+    <value>Профили, требующие обновления</value>
+  </data>
+  <data name="StatusNew" xml:space="preserve">
+    <value>Новый</value>
+  </data>
+  <data name="StatusUpdate" xml:space="preserve">
+    <value>Изменен</value>
+  </data>
+  <data name="Hybrid" xml:space="preserve">
+    <value>Гибрид</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="SelfEmployed" xml:space="preserve">
+    <value>Самозанятый</value>
+  </data>
+  <data name="Verification" xml:space="preserve">
+    <value>Верификация</value>
+  </data>
 </root>

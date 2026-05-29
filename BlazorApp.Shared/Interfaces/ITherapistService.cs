@@ -11,6 +11,7 @@ namespace BlazorApp.Shared.Interfaces
     {
         Task CreateApplicationAsync(TherapistProfile profile);
         Task ApproveTherapistAsync(int profileId);
+        Task UpdateVerificationStatusAsync(int profileId, bool isPassport, bool isEducation, bool isSelfEmployed);
         Task<List<TherapistProfile>> GetPendingApplicationsAsync();
         Task<TherapistProfile?> GetProfileByUserId(string userId);
         Task UpdateProfile(TherapistProfile profile);

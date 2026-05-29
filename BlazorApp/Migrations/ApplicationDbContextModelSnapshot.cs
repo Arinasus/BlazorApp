@@ -320,6 +320,18 @@ namespace BlazorApp.Migrations
                     b.Property<bool>("IsApproved")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsEducationVerified")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsModerationRequired")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsPassportVerified")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsSelfEmployed")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -337,7 +349,15 @@ namespace BlazorApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("SpecialNeeds")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Specialization")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("SpeechDisorders")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -346,6 +366,10 @@ namespace BlazorApp.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("WorkFormat")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("WorkType")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -365,6 +389,9 @@ namespace BlazorApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AttachmentUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("AuthorName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -375,6 +402,9 @@ namespace BlazorApp.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsAnonymous")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("Rating")
                         .HasColumnType("integer");

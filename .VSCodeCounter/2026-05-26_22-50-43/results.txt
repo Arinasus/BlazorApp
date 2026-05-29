@@ -1,0 +1,55 @@
+Date : 2026-05-26 22:50:43
+Directory : d:\Diplom\BlazorApp\BlazorApp.Shared
+Total : 26 files,  488 codes, 2 comments, 83 blanks, all 573 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |         24 |        461 |          2 |         79 |        542 |
+| XML      |          2 |         27 |          0 |          4 |         31 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                 | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                    |         26 |        488 |          2 |         83 |        573 |
+| . (Files)                                                            |          2 |         27 |          0 |          4 |         31 |
+| DTOs                                                                 |          7 |        131 |          0 |         31 |        162 |
+| Interfaces                                                           |          8 |        136 |          0 |         17 |        153 |
+| Models                                                               |          9 |        194 |          2 |         31 |        227 |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                             | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\Diplom\BlazorApp\BlazorApp.Shared\BlazorApp.Shared.Metrics.xml    | XML      |         17 |          0 |          0 |         17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\BlazorApp.Shared.csproj         | XML      |         10 |          0 |          4 |         14 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\ChildConnectionDto.cs      | C#       |         14 |          0 |          2 |         16 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\InvitationStatusDto.cs     | C#       |         14 |          0 |          2 |         16 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\RegisterTherapistDto.cs    | C#       |         26 |          0 |          9 |         35 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\RegisterUserDto.cs         | C#       |         11 |          0 |          2 |         13 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\SupportRequestDto.cs       | C#       |         22 |          0 |          5 |         27 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\TherapyDiaryLogDto.cs      | C#       |         29 |          0 |          9 |         38 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\DTOs\UserDto.cs                 | C#       |         15 |          0 |          2 |         17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\ICategoryService.cs  | C#       |         15 |          0 |          2 |         17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IChatService.cs      | C#       |         14 |          0 |          2 |         16 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IChildService.cs     | C#       |         16 |          0 |          2 |         18 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IDiaryService.cs     | C#       |         22 |          0 |          3 |         25 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IFavoriteService.cs  | C#       |         15 |          0 |          2 |         17 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\ILectureService.cs   | C#       |         18 |          0 |          2 |         20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\ITherapistService.cs | C#       |         20 |          0 |          2 |         22 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Interfaces\IUserService.cs      | C#       |         16 |          0 |          2 |         18 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Category.cs              | C#       |         15 |          0 |          3 |         18 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\ChatMessage.cs           | C#       |         17 |          0 |          3 |         20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Child.cs                 | C#       |         25 |          0 |          7 |         32 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\DiaryInvitation.cs       | C#       |         18 |          0 |          2 |         20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Favorite.cs              | C#       |         17 |          0 |          2 |         19 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\Lecture.cs               | C#       |         21 |          0 |          2 |         23 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\TherapistProfile.cs      | C#       |         41 |          2 |          7 |         50 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\TherapistReview.cs       | C#       |         18 |          0 |          2 |         20 |
+| d:\Diplom\BlazorApp\BlazorApp.Shared\Models\TherapyDiaryLog.cs       | C#       |         22 |          0 |          3 |         25 |
+| Total                                                                |          |        488 |          2 |         83 |        573 |
++----------------------------------------------------------------------+----------+------------+------------+------------+------------+

@@ -20,6 +20,7 @@ namespace BlazorApp.Shared.Models
         public decimal PricePerHour { get; set; }
        // Moderate Status
         public bool IsApproved { get; set; } = false;
+        public bool IsModerationRequired { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         
         
@@ -45,5 +46,12 @@ namespace BlazorApp.Shared.Models
         public string? Phone { get; set; }
         public string? City { get; set; }
         public string? Address { get; set; }
+        public bool IsSelfEmployed { get; set; }
+        public bool IsPassportVerified { get; set; }
+        public bool IsEducationVerified { get; set; }
+
+        public string SpeechDisorders { get; set; } = string.Empty; 
+        public string SpecialNeeds { get; set; } = string.Empty;
+        public string WorkType { get; set; } = "Индивидуальные";
     }
 }

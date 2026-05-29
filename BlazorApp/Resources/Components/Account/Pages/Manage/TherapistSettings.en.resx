@@ -189,4 +189,43 @@
   <data name="FormatOffline" xml:space="preserve">
     <value>offline</value>
   </data>
+  <data name="CertificateUrls" xml:space="preserve">
+    <value>Certificates</value>
+  </data>
+  <data name="CertificatesPlaceholder" xml:space="preserve">
+    <value>No certificates uploaded</value>
+  </data>
+  <data name="CertificatesHint" xml:space="preserve">
+    <value>Upload your diplomas and training certificates (PDF or images)</value>
+  </data>
+  <data name="UploadCertificates" xml:space="preserve">
+    <value>Upload Certificates</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>Type of work</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="IndividualAndGroup" xml:space="preserve">
+    <value>Individual and group</value>
+  </data>
+  <data name="SpeechDisordersPlaceholder" xml:space="preserve">
+    <value>For example: Dislalia; Dysarthria</value>
+  </data>
+  <data name="SpecialNeeds" xml:space="preserve">
+    <value>Special Needs</value>
+  </data>
+  <data name="SpecialNeedsPlaceholder" xml:space="preserve">
+    <value>For example: ASD; ADHD</value>
+  </data>
+  <data name="IsSelfEmployed" xml:space="preserve">
+    <value>I am self-employed / an individual entrepreneur</value>
+  </data>
+  <data name="SpeechDisorders" xml:space="preserve">
+    <value>Speech disorders</value>
+  </data>
 </root>

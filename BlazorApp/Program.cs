@@ -1,11 +1,12 @@
 using BlazorApp.Components;
 using BlazorApp.Components.Account;
+using BlazorApp.Components.Account.Pages;
 using BlazorApp.Data;
 using BlazorApp.Services;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using BlazorApp.Shared.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,7 +46,13 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
-
+builder.Services.AddControllersWithViews()
+    .AddDataAnnotationsLocalization(options =>
+    {
+        // Указываем, что все ошибки DataAnnotations нужно искать в файле Register.resx
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+            factory.Create(typeof(Register));
+    });
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 var supportedCultures = new[] { "ru", "en" };

@@ -124,7 +124,7 @@
     <value>Write a message</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>hour</value>
+    <value>lesson</value>
   </data>
   <data name="InFavorites" xml:space="preserve">
     <value>In favorites</value>
@@ -178,7 +178,7 @@
     <value>Price</value>
   </data>
   <data name="PerHour" xml:space="preserve">
-    <value>hour</value>
+    <value>lesson</value>
   </data>
   <data name="LocationTitle" xml:space="preserve">
     <value>Class location</value>
@@ -212,5 +212,41 @@
   </data>
   <data name="AddToFavorites" xml:space="preserve">
     <value>Add to favorite</value>
+  </data>
+  <data name="ContactInfoTitle" xml:space="preserve">
+    <value>Contact info</value>
+  </data>
+  <data name="PhoneLabel" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="CityLabel" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="PostAnonymously" xml:space="preserve">
+    <value>Publish anonymously</value>
+  </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
+  <data name="DisordersTitle" xml:space="preserve">
+    <value>I work with violations</value>
+  </data>
+  <data name="AttachFile" xml:space="preserve">
+    <value>Attach files</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ProfessionalDetails" xml:space="preserve">
+    <value>Professional Details</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>Type of work</value>
+  </data>
+  <data name="SelfEmployed" xml:space="preserve">
+    <value>Self-employed</value>
+  </data>
+  <data name="IsSelfEmployed" xml:space="preserve">
+    <value>I am self-employed / an individual entrepreneur</value>
   </data>
 </root>

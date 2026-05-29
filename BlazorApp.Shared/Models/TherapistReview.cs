@@ -15,5 +15,7 @@ namespace BlazorApp.Shared.Models
         public int Rating { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public TherapistProfile? TherapistProfile { get; set; }
+        public bool IsAnonymous { get; set; }
+        public string? AttachmentUrl { get; set; }
     }
 }

@@ -126,8 +126,23 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Repeat password</value>
   </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>A user with this email is already registered.</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
   <data name="Header" xml:space="preserve">
     <value>Create an account</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Incorrect email format.</value>
+  </data>
+  <data name="InvalidEmailFormat" xml:space="preserve">
+    <value>Неверный формат Email</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>The username must contain only letters and numbers.</value>
   </data>
   <data name="LoginLink" xml:space="preserve">
     <value>Login</value>
@@ -137,6 +152,21 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="PasswordMinLength" xml:space="preserve">
+    <value>The minimum password length is 6 characters.</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>The passwords do not match.</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>The password field is required.</value>
+  </data>
+  <data name="PasswordsMismatch" xml:space="preserve">
+    <value>The passwords don't match</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>Password is too short</value>
   </data>
   <data name="SubHeader" xml:space="preserve">
     <value>Welcome to our community!</value>

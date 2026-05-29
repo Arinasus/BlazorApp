@@ -1,0 +1,11 @@
+"filename", "language", "ASP.NET Razor", "C#", "XML", "JSON", "comment", "blank", "total"
+"d:\Diplom\BlazorApp\BlazorApp.Client\BlazorApp.Client.Metrics.xml", "XML", 0, 0, 17, 0, 0, 0, 17
+"d:\Diplom\BlazorApp\BlazorApp.Client\BlazorApp.Client.csproj", "XML", 0, 0, 19, 0, 0, 6, 25
+"d:\Diplom\BlazorApp\BlazorApp.Client\PersistentAuthenticationStateProvider.cs", "C#", 0, 27, 0, 0, 8, 7, 42
+"d:\Diplom\BlazorApp\BlazorApp.Client\Program.cs", "C#", 0, 8, 0, 0, 0, 4, 12
+"d:\Diplom\BlazorApp\BlazorApp.Client\RedirectToLogin.razor", "ASP.NET Razor", 7, 0, 0, 0, 0, 2, 9
+"d:\Diplom\BlazorApp\BlazorApp.Client\UserInfo.cs", "C#", 0, 9, 0, 0, 0, 1, 10
+"d:\Diplom\BlazorApp\BlazorApp.Client\_Imports.razor", "ASP.NET Razor", 10, 0, 0, 0, 0, 0, 10
+"d:\Diplom\BlazorApp\BlazorApp.Client\wwwroot\appsettings.Development.json", "JSON", 0, 0, 0, 8, 0, 1, 9
+"d:\Diplom\BlazorApp\BlazorApp.Client\wwwroot\appsettings.json", "JSON", 0, 0, 0, 8, 0, 1, 9
+"Total", "-", 17, 44, 36, 16, 8, 22, 143

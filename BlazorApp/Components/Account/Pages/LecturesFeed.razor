@@ -3,6 +3,7 @@
 @using BlazorApp.Shared.Interfaces
 @using Microsoft.Extensions.Localization
 @inject ILectureService LectureService
+@inject ICategoryService CategoryService
 @inject IStringLocalizer<LecturesFeed> L
 @rendermode InteractiveServer
 
@@ -11,53 +12,59 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3>@L["LibraryTitle"]</h3>
-        <div class="search-box">
-            <input type="text" @bind-value="searchText" @bind-value:event="oninput"
-                   class="form-control" placeholder="@L["SearchPlaceholder"]" />
-        </div>
+        <input type="text" @bind="searchText" @bind:event="oninput"
+               class="form-control w-25" placeholder="@L["SearchPlaceholder"]" />
     </div>
 
-    @if (allLectures == null)
-    {
-        <div class="text-center">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p>@L["Loading"]</p>
+    <button class="btn btn-link text-decoration-none mb-3" @onclick="ResetFilters">@L["ResetFilters"]</button>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-3 rounded-4">
+                <h5 class="fw-bold mb-3">@L["Filters"]</h5>
+                <label class="form-label text-muted small">@L["Category"]</label>
+                <select class="form-select rounded-pill mb-3" @bind="selectedCategoryId">
+                    <option value="">@L["AllCategories"]</option>
+                    @foreach (var cat in allCategories)
+                    {
+                        <option value="@cat.Id">@cat.Name</option>
+                    }
+                </select>
+                <label class="form-label text-muted small">@L["Diagnosis"]</label>
+                <input class="form-control rounded-pill" @bind="searchDiagnosis" @bind:event="oninput" placeholder="@L["FilterDiagnosis"]" />
+            </div>
         </div>
-    }
-    else if (!filteredLectures!.Any())
-    {
-        <div class="alert alert-light text-center shadow-sm">
-            <p>@L["NoResults"]</p>
-        </div>
-    }
-    else
-    {
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @foreach (var lecture in filteredLectures)
+
+        <div class="col-md-9">
+            @foreach (var group in GroupedLectures)
             {
-                <div class="col">
-                    <div class="card h-100 border-0 shadow-sm lecture-card">
-                        <div class="card-img-top-wrapper">
-                            <img src="@(string.IsNullOrEmpty(lecture.ImagePath) ? "/images/default-lecture.jpg" : lecture.ImagePath)"
-                                 class="card-img-top" alt="@lecture.Title">
+                <h4 class="fw-bold mt-4 mb-3">@group.Key</h4>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    @foreach (var lecture in group)
+                    {
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm lecture-card">
+                                <div class="card-img-top-wrapper">
+                                    <img src="@(string.IsNullOrEmpty(lecture.ImagePath) ? "/images/default-lecture.jpg" : lecture.ImagePath)"
+                                         class="card-img-top" alt="@lecture.Title">
+                                </div>
+                                <div class="card-body">
+                                    <span class="badge rounded-pill diagnosis-badge mb-2">@lecture.TargetDiagnosis</span>
+                                    <h5 class="card-title fw-bold">@lecture.Title</h5>
+                                    <p class="card-text text-muted small">
+                                        @(lecture.Description?.Length > 100 ? lecture.Description.Substring(0, 100) + "..." : lecture.Description)
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-white border-0 pb-3">
+                                    <a href="/lecture/@lecture.Id" class="btn btn-primary w-100 rounded-pill">@L["BtnReadMore"]</a>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="card-body">
-                            <span class="badge rounded-pill diagnosis-badge mb-2">@lecture.TargetDiagnosis</span>
-                            <h5 class="card-title fw-bold">@lecture.Title</h5>
-                            <p class="card-text text-muted small">
-                                @(lecture.Description?.Length > 100 ? lecture.Description.Substring(0, 100) + "..." : lecture.Description)
-                            </p>
-                        </div>
-
-                        <div class="card-footer bg-white border-0 pb-3">
-                            <a href="/lecture/@lecture.Id" class="btn btn-primary w-100 rounded-pill">@L["BtnReadMore"]</a>
-                        </div>
-                    </div>
+                    }
                 </div>
             }
         </div>
-    }
+    </div>
 </div>
 
 <style>
@@ -83,13 +90,13 @@
     }
 
     .diagnosis-badge {
-        background-color: transparent !important; 
-        color: #4ECDC4 !important; 
-        border: 2px solid #4ECDC4 !important; 
+        background-color: transparent !important;
+        color: #4ECDC4 !important;
+        border: 2px solid #4ECDC4 !important;
         padding: 0.4em 1em !important;
         font-size: 0.85rem !important;
         font-weight: 600 !important;
-        border-radius: 50rem !important; 
+        border-radius: 50rem !important;
         display: inline-block !important;
     }
 </style>
@@ -97,15 +104,38 @@
 @code {
     private List<Lecture>? allLectures;
     private string searchText = "";
+    private string searchDiagnosis = "";
+    private string? selectedCategoryId;
+    private List<Category> allCategories = new();
 
     protected override async Task OnInitializedAsync()
     {
         allLectures = await LectureService.GetAllLecturesAsync();
+        allCategories = await CategoryService.GetAllCategoriesAsync();
     }
 
-    private IEnumerable<Lecture>? filteredLectures =>
-        string.IsNullOrWhiteSpace(searchText)
-        ? allLectures
-        : allLectures?.Where(x => x.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase)
-                                 || x.TargetDiagnosis.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+    private IEnumerable<IGrouping<string, Lecture>> GroupedLectures =>
+        allLectures?.Where(l =>
+            (string.IsNullOrWhiteSpace(searchText) || l.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase)) &&
+            (string.IsNullOrWhiteSpace(searchDiagnosis) || l.TargetDiagnosis.Contains(searchDiagnosis, StringComparison.OrdinalIgnoreCase)) &&
+            (string.IsNullOrEmpty(selectedCategoryId) || l.CategoryId.ToString() == selectedCategoryId)
+        )
+
+        .GroupBy(l => GetCategoryName(l.CategoryId)) ?? Enumerable.Empty<IGrouping<string, Lecture>>();
+
+    private string GetCategoryName(int? categoryId)
+    {
+        var category = allCategories.FirstOrDefault(c => c.Id == categoryId);
+
+        return category != null
+            ? category.Name
+            : L["WithoutCategory"];
+    }
+
+    private void ResetFilters()
+    {
+        searchText = "";
+        searchDiagnosis = "";
+        selectedCategoryId = null;
+    }
 }

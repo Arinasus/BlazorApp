@@ -145,7 +145,7 @@
     <value>Стаж (лет)</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value>Стоимость часа</value>
+    <value>Стоимость занятия</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Город</value>
@@ -191,5 +191,65 @@
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>Краткое описание</value>
+  </data>
+  <data name="CertificatesHint" xml:space="preserve">
+    <value>Загрузите дипломы и сертификаты о повышении квалификации (PDF или изображения)</value>
+  </data>
+  <data name="CertificatesPlaceholder" xml:space="preserve">
+    <value>Сертификаты не загружены</value>
+  </data>
+  <data name="CertificateUrls" xml:space="preserve">
+    <value>Сертификаты</value>
+  </data>
+  <data name="SavedSuccess" xml:space="preserve">
+    <value>Успешно сохранено</value>
+  </data>
+  <data name="UploadHint" xml:space="preserve">
+    <value>Выберите файлы</value>
+  </data>
+  <data name="CertsTitle" xml:space="preserve">
+    <value>Сертификаты</value>
+  </data>
+  <data name="UploadedFiles" xml:space="preserve">
+    <value>Прикрепленные файлы</value>
+  </data>
+  <data name="UploadCertificates" xml:space="preserve">
+    <value>Прикрепленные файлы</value>
+  </data>
+  <data name="SpecialNeedsPlaceholder" xml:space="preserve">
+    <value>Например: РАС; СДВГ</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Групповые</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Индивидуальные</value>
+  </data>
+  <data name="IndividualAndGroup" xml:space="preserve">
+    <value>Индивидуальные и групповые</value>
+  </data>
+  <data name="IsSelfEmployed" xml:space="preserve">
+    <value>Я являюсь самозанятым / ИП</value>
+  </data>
+  <data name="SpecialNeeds" xml:space="preserve">
+    <value>Особые потребности</value>
+  </data>
+  <data name="SpecialNeedsPlaceholder1" xml:space="preserve">
+    <value>Например: РАС; СДВГ</value>
+  </data>
+  <data name="SpeechDisordersPlaceholder" xml:space="preserve">
+    <value>Например: Дислалия; Дизартрия</value>
+  </data>
+  <data name="SpeechDisorders" xml:space="preserve">
+    <value>Речевые нарушения</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>Тип работы</value>
+  </data>
+  <data name="ProfessionalDetails" xml:space="preserve">
+    <value>Профессиональные детали</value>
+  </data>
+  <data name="SelfEmployed" xml:space="preserve">
+    <value>Самозанятый</value>
   </data>
 </root>

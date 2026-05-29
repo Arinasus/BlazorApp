@@ -1,0 +1,144 @@
+"filename", "language", "C#", "PostCSS", "JSON", "ASP.NET Razor", "XML", "JavaScript", "comment", "blank", "total"
+"d:\Diplom\BlazorApp\BlazorApp\BlazorApp.Metrics.xml", "XML", 0, 0, 0, 0, 17, 0, 0, 0, 17
+"d:\Diplom\BlazorApp\BlazorApp\BlazorApp.csproj", "XML", 0, 0, 0, 0, 28, 0, 0, 7, 35
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\IdentityComponentsEndpointRouteBuilderExtensions.cs", "C#", 92, 0, 0, 0, 0, 0, 3, 19, 114
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\IdentityNoOpEmailSender.cs", "C#", 16, 0, 0, 0, 0, 0, 1, 5, 22
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\IdentityRedirectManager.cs", "C#", 46, 0, 0, 0, 0, 0, 3, 11, 60
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\IdentityUserAccessor.cs", "C#", 17, 0, 0, 0, 0, 0, 0, 4, 21
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\AccessDenied.razor", "ASP.NET Razor", 0, 0, 0, 23, 0, 0, 0, 4, 27
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Admin\AdminDashboard.razor", "ASP.NET Razor", 0, 0, 0, 330, 0, 0, 0, 46, 376
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Admin\AdminDashboard.razor.css", "PostCSS", 0, 73, 0, 0, 0, 0, 0, 17, 90
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Admin\Applications.razor", "ASP.NET Razor", 0, 0, 0, 206, 0, 0, 0, 18, 224
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Admin\ManageLectures.razor", "ASP.NET Razor", 0, 0, 0, 224, 0, 0, 140, 37, 401
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\BecomeTherapist.razor", "ASP.NET Razor", 0, 0, 0, 165, 0, 0, 0, 24, 189
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\BecomeTherapist.razor.css", "PostCSS", 0, 33, 0, 0, 0, 0, 0, 8, 41
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ConfirmEmail.razor", "ASP.NET Razor", 0, 0, 0, 40, 0, 0, 0, 10, 50
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ConfirmEmailChange.razor", "ASP.NET Razor", 0, 0, 0, 54, 0, 0, 0, 16, 70
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Diary.razor", "ASP.NET Razor", 0, 0, 0, 171, 0, 0, 0, 19, 190
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ExternalLogin.razor", "ASP.NET Razor", 0, 0, 0, 162, 0, 0, 0, 34, 196
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ForgotPassword.razor", "ASP.NET Razor", 0, 0, 0, 58, 0, 0, 0, 14, 72
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ForgotPasswordConfirmation.razor", "ASP.NET Razor", 0, 0, 0, 18, 0, 0, 0, 4, 22
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\InvalidPasswordReset.razor", "ASP.NET Razor", 0, 0, 0, 8, 0, 0, 0, 2, 10
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\InvalidUser.razor", "ASP.NET Razor", 0, 0, 0, 6, 0, 0, 0, 3, 9
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\LectureDetails.razor", "ASP.NET Razor", 0, 0, 0, 119, 0, 0, 0, 17, 136
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\LectureDetails.razor.css", "PostCSS", 0, 83, 0, 0, 0, 0, 0, 7, 90
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\LecturesFeed.razor", "ASP.NET Razor", 0, 0, 0, 124, 0, 0, 0, 17, 141
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Lockout.razor", "ASP.NET Razor", 0, 0, 0, 8, 0, 0, 0, 2, 10
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Login.razor", "ASP.NET Razor", 0, 0, 0, 143, 0, 0, 0, 27, 170
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Login.razor.css", "PostCSS", 0, 24, 0, 0, 0, 0, 0, 5, 29
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\LoginWith2fa.razor", "ASP.NET Razor", 0, 0, 0, 113, 0, 0, 0, 25, 138
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\LoginWithRecoveryCode.razor", "ASP.NET Razor", 0, 0, 0, 72, 0, 0, 0, 14, 86
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\ChangePassword.razor", "ASP.NET Razor", 0, 0, 0, 103, 0, 0, 0, 22, 125
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\Children.razor", "ASP.NET Razor", 0, 0, 0, 194, 0, 0, 0, 26, 220
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\Children.razor.css", "PostCSS", 0, 72, 0, 0, 0, 0, 5, 11, 88
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\DeletePersonalData.razor", "ASP.NET Razor", 0, 0, 0, 75, 0, 0, 0, 17, 92
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\Disable2fa.razor", "ASP.NET Razor", 0, 0, 0, 61, 0, 0, 0, 13, 74
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\Email.razor", "ASP.NET Razor", 0, 0, 0, 105, 0, 0, 0, 23, 128
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\EnableAuthenticator.razor", "ASP.NET Razor", 0, 0, 0, 102, 0, 0, 0, 22, 124
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\ExternalLogins.razor", "ASP.NET Razor", 0, 0, 0, 120, 0, 0, 0, 21, 141
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\FavoritesList.razor", "ASP.NET Razor", 0, 0, 0, 111, 0, 0, 0, 8, 119
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\FavoritesList.razor.css", "PostCSS", 0, 17, 0, 0, 0, 0, 2, 4, 23
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\GenerateRecoveryCodes.razor", "ASP.NET Razor", 0, 0, 0, 55, 0, 0, 0, 9, 64
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\Index.razor", "ASP.NET Razor", 0, 0, 0, 93, 0, 0, 0, 18, 111
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\PersonalData.razor", "ASP.NET Razor", 0, 0, 0, 35, 0, 0, 0, 9, 44
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\SetPassword.razor", "ASP.NET Razor", 0, 0, 0, 72, 0, 0, 0, 16, 88
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\TherapistSettings.razor", "ASP.NET Razor", 0, 0, 0, 248, 0, 0, 0, 43, 291
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\TwoFactorAuthentication.razor", "ASP.NET Razor", 0, 0, 0, 82, 0, 0, 0, 13, 95
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Manage\_Imports.razor", "ASP.NET Razor", 0, 0, 0, 2, 0, 0, 0, 1, 3
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Register.razor", "ASP.NET Razor", 0, 0, 0, 123, 0, 0, 0, 29, 152
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Register.razor.css", "PostCSS", 0, 53, 0, 0, 0, 0, 0, 10, 63
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\RegisterConfirmation.razor", "ASP.NET Razor", 0, 0, 0, 40, 0, 0, 0, 10, 50
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ResendEmailConfirmation.razor", "ASP.NET Razor", 0, 0, 0, 60, 0, 0, 0, 13, 73
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ResetPassword.razor", "ASP.NET Razor", 0, 0, 0, 86, 0, 0, 0, 24, 110
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\ResetPasswordConfirmation.razor", "ASP.NET Razor", 0, 0, 0, 18, 0, 0, 0, 4, 22
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\Support.razor", "ASP.NET Razor", 0, 0, 0, 106, 0, 0, 0, 13, 119
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\TherapistDetails.razor", "ASP.NET Razor", 0, 0, 0, 297, 0, 0, 0, 29, 326
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\TherapistDetails.razor.css", "PostCSS", 0, 49, 0, 0, 0, 0, 0, 8, 57
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\TherapistDiary.razor", "ASP.NET Razor", 0, 0, 0, 283, 0, 0, 0, 31, 314
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\TherapistsCatalog.razor", "ASP.NET Razor", 0, 0, 0, 205, 0, 0, 0, 28, 233
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\TherapistsCatalog.razor.css", "PostCSS", 0, 58, 0, 0, 0, 0, 0, 5, 63
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Pages\_Imports.razor", "ASP.NET Razor", 0, 0, 0, 2, 0, 0, 0, 1, 3
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\PersistingRevalidatingAuthenticationStateProvider.cs", "C#", 95, 0, 0, 0, 0, 0, 1, 16, 112
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Shared\AccountLayout.razor", "ASP.NET Razor", 0, 0, 0, 25, 0, 0, 0, 4, 29
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Shared\ExternalLoginPicker.razor", "ASP.NET Razor", 0, 0, 0, 38, 0, 0, 0, 6, 44
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Shared\ManageLayout.razor", "ASP.NET Razor", 0, 0, 0, 17, 0, 0, 0, 3, 20
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Shared\ManageNavMenu.razor", "ASP.NET Razor", 0, 0, 0, 74, 0, 0, 0, 9, 83
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Shared\ManageNavMenu.razor.css", "PostCSS", 0, 24, 0, 0, 0, 0, 4, 4, 32
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Shared\ShowRecoveryCodes.razor", "ASP.NET Razor", 0, 0, 0, 26, 0, 0, 0, 3, 29
+"d:\Diplom\BlazorApp\BlazorApp\Components\Account\Shared\StatusMessage.razor", "ASP.NET Razor", 0, 0, 0, 23, 0, 0, 0, 7, 30
+"d:\Diplom\BlazorApp\BlazorApp\Components\App.razor", "ASP.NET Razor", 0, 0, 0, 26, 0, 0, 0, 6, 32
+"d:\Diplom\BlazorApp\BlazorApp\Components\Layout\CultureSelector.razor", "ASP.NET Razor", 0, 0, 0, 41, 0, 0, 0, 5, 46
+"d:\Diplom\BlazorApp\BlazorApp\Components\Layout\MainLayout.razor", "ASP.NET Razor", 0, 0, 0, 27, 0, 0, 0, 3, 30
+"d:\Diplom\BlazorApp\BlazorApp\Components\Layout\MainLayout.razor.css", "PostCSS", 0, 81, 0, 0, 0, 0, 0, 16, 97
+"d:\Diplom\BlazorApp\BlazorApp\Components\Layout\NavMenu.razor", "ASP.NET Razor", 0, 0, 0, 222, 0, 0, 0, 33, 255
+"d:\Diplom\BlazorApp\BlazorApp\Components\Layout\NavMenu.razor.css", "PostCSS", 0, 102, 0, 0, 0, 0, 0, 23, 125
+"d:\Diplom\BlazorApp\BlazorApp\Components\LectureEditor.razor", "ASP.NET Razor", 0, 0, 0, 128, 0, 0, 0, 15, 143
+"d:\Diplom\BlazorApp\BlazorApp\Components\LectureTable.razor", "ASP.NET Razor", 0, 0, 0, 52, 0, 0, 0, 4, 56
+"d:\Diplom\BlazorApp\BlazorApp\Components\Pages\Chat.razor", "ASP.NET Razor", 0, 0, 0, 115, 0, 0, 0, 19, 134
+"d:\Diplom\BlazorApp\BlazorApp\Components\Pages\Chats.razor", "ASP.NET Razor", 0, 0, 0, 88, 0, 0, 0, 12, 100
+"d:\Diplom\BlazorApp\BlazorApp\Components\Pages\Error.razor", "ASP.NET Razor", 0, 0, 0, 29, 0, 0, 0, 8, 37
+"d:\Diplom\BlazorApp\BlazorApp\Components\Pages\Home.razor", "ASP.NET Razor", 0, 0, 0, 92, 0, 0, 0, 8, 100
+"d:\Diplom\BlazorApp\BlazorApp\Components\Pages\Home.razor.css", "PostCSS", 0, 88, 0, 0, 0, 0, 0, 17, 105
+"d:\Diplom\BlazorApp\BlazorApp\Components\Pages\Recommended.razor", "ASP.NET Razor", 0, 0, 0, 96, 0, 0, 4, 14, 114
+"d:\Diplom\BlazorApp\BlazorApp\Components\Routes.razor", "ASP.NET Razor", 0, 0, 0, 10, 0, 0, 0, 1, 11
+"d:\Diplom\BlazorApp\BlazorApp\Components\_Imports.razor", "ASP.NET Razor", 0, 0, 0, 13, 0, 0, 0, 0, 13
+"d:\Diplom\BlazorApp\BlazorApp\Controllers\ChatApiController.cs", "C#", 54, 0, 0, 0, 0, 0, 0, 13, 67
+"d:\Diplom\BlazorApp\BlazorApp\Controllers\CultureController.cs", "C#", 27, 0, 0, 0, 0, 0, 2, 4, 33
+"d:\Diplom\BlazorApp\BlazorApp\Data\ApplicationDbContext.cs", "C#", 50, 0, 0, 0, 0, 0, 0, 8, 58
+"d:\Diplom\BlazorApp\BlazorApp\Data\ApplicationUser.cs", "C#", 7, 0, 0, 0, 0, 0, 0, 3, 10
+"d:\Diplom\BlazorApp\BlazorApp\Data\DbInitializer.cs", "C#", 21, 0, 0, 0, 0, 0, 0, 2, 23
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260407182512_InitialCreate.Designer.cs", "C#", 238, 0, 0, 0, 0, 0, 2, 81, 321
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260407182512_InitialCreate.cs", "C#", 227, 0, 0, 0, 0, 0, 3, 26, 256
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260408173913_AddTherapistProfile.Designer.cs", "C#", 242, 0, 0, 0, 0, 0, 2, 83, 327
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260408173913_AddTherapistProfile.cs", "C#", 33, 0, 0, 0, 0, 0, 3, 6, 42
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260409104931_AddChild.Designer.cs", "C#", 266, 0, 0, 0, 0, 0, 2, 93, 361
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260409104931_AddChild.cs", "C#", 35, 0, 0, 0, 0, 0, 3, 4, 42
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260410202221_AddLecturesTable.Designer.cs", "C#", 287, 0, 0, 0, 0, 0, 2, 101, 390
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260410202221_AddLecturesTable.cs", "C#", 32, 0, 0, 0, 0, 0, 3, 4, 39
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260415113340_AddLectureContent.Designer.cs", "C#", 292, 0, 0, 0, 0, 0, 2, 103, 397
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260415113340_AddLectureContent.cs", "C#", 31, 0, 0, 0, 0, 0, 3, 6, 40
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260505153733_AddTherapistProfileFields.Designer.cs", "C#", 305, 0, 0, 0, 0, 0, 2, 108, 415
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260505153733_AddTherapistProfileFields.cs", "C#", 58, 0, 0, 0, 0, 0, 3, 12, 73
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511145406_AddAddressToTherapist.Designer.cs", "C#", 311, 0, 0, 0, 0, 0, 2, 111, 424
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511145406_AddAddressToTherapist.cs", "C#", 38, 0, 0, 0, 0, 0, 3, 8, 49
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511151907_AddCertificateToTherapist.Designer.cs", "C#", 313, 0, 0, 0, 0, 0, 2, 112, 427
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511151907_AddCertificateToTherapist.cs", "C#", 22, 0, 0, 0, 0, 0, 3, 4, 29
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511155206_AddTherapistReviews.Designer.cs", "C#", 334, 0, 0, 0, 0, 0, 2, 121, 457
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511155206_AddTherapistReviews.cs", "C#", 34, 0, 0, 0, 0, 0, 3, 4, 41
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511161455_AddReview.Designer.cs", "C#", 345, 0, 0, 0, 0, 0, 2, 123, 470
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260511161455_AddReview.cs", "C#", 40, 0, 0, 0, 0, 0, 3, 8, 51
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260512131239_AddFavorites.Designer.cs", "C#", 345, 0, 0, 0, 0, 0, 2, 123, 470
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260512131239_AddFavorites.cs", "C#", 14, 0, 0, 0, 0, 0, 3, 6, 23
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260512133226_AddDependencies.Designer.cs", "C#", 377, 0, 0, 0, 0, 0, 2, 137, 516
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260512133226_AddDependencies.cs", "C#", 51, 0, 0, 0, 0, 0, 3, 6, 60
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260513200758_AddNamesToTherapistProfile.Designer.cs", "C#", 385, 0, 0, 0, 0, 0, 2, 140, 527
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260513200758_AddNamesToTherapistProfile.cs", "C#", 40, 0, 0, 0, 0, 0, 3, 8, 51
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260520132247_AddDiaryAndChatFeatures.Designer.cs", "C#", 474, 0, 0, 0, 0, 0, 2, 175, 651
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260520132247_AddDiaryAndChatFeatures.cs", "C#", 86, 0, 0, 0, 0, 0, 3, 9, 98
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260520162038_AddAuthorToLecture.Designer.cs", "C#", 477, 0, 0, 0, 0, 0, 2, 176, 655
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260520162038_AddAuthorToLecture.cs", "C#", 23, 0, 0, 0, 0, 0, 3, 4, 30
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260522162200_AddVisibleToDiary.Designer.cs", "C#", 479, 0, 0, 0, 0, 0, 2, 177, 658
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260522162200_AddVisibleToDiary.cs", "C#", 23, 0, 0, 0, 0, 0, 3, 4, 30
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260522230025_AddCategoriesTable.Designer.cs", "C#", 508, 0, 0, 0, 0, 0, 2, 188, 698
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\20260522230025_AddCategoriesTable.cs", "C#", 55, 0, 0, 0, 0, 0, 3, 10, 68
+"d:\Diplom\BlazorApp\BlazorApp\Migrations\ApplicationDbContextModelSnapshot.cs", "C#", 506, 0, 0, 0, 0, 0, 1, 188, 695
+"d:\Diplom\BlazorApp\BlazorApp\Program.cs", "C#", 84, 0, 0, 0, 0, 0, 0, 20, 104
+"d:\Diplom\BlazorApp\BlazorApp\Properties\launchSettings.json", "JSON", 0, 0, 41, 0, 0, 0, 0, 1, 42
+"d:\Diplom\BlazorApp\BlazorApp\Properties\serviceDependencies.json", "JSON", 0, 0, 8, 0, 0, 0, 0, 0, 8
+"d:\Diplom\BlazorApp\BlazorApp\Properties\serviceDependencies.local.json", "JSON", 0, 0, 8, 0, 0, 0, 0, 0, 8
+"d:\Diplom\BlazorApp\BlazorApp\Services\AccountService.cs", "C#", 18, 0, 0, 0, 0, 0, 0, 2, 20
+"d:\Diplom\BlazorApp\BlazorApp\Services\CategoryService.cs", "C#", 33, 0, 0, 0, 0, 0, 0, 7, 40
+"d:\Diplom\BlazorApp\BlazorApp\Services\ChatInMemoryService.cs", "C#", 29, 0, 0, 0, 0, 0, 0, 7, 36
+"d:\Diplom\BlazorApp\BlazorApp\Services\ChildrenService.cs", "C#", 38, 0, 0, 0, 0, 0, 0, 5, 43
+"d:\Diplom\BlazorApp\BlazorApp\Services\DiaryService.cs", "C#", 176, 0, 0, 0, 0, 0, 4, 36, 216
+"d:\Diplom\BlazorApp\BlazorApp\Services\EmailSender.cs", "C#", 58, 0, 0, 0, 0, 0, 0, 14, 72
+"d:\Diplom\BlazorApp\BlazorApp\Services\FavoriteService.cs", "C#", 52, 0, 0, 0, 0, 0, 0, 7, 59
+"d:\Diplom\BlazorApp\BlazorApp\Services\LectureService.cs", "C#", 60, 0, 0, 0, 0, 0, 0, 9, 69
+"d:\Diplom\BlazorApp\BlazorApp\Services\TherapistService.cs", "C#", 126, 0, 0, 0, 0, 0, 9, 15, 150
+"d:\Diplom\BlazorApp\BlazorApp\Services\UserService.cs", "C#", 65, 0, 0, 0, 0, 0, 0, 12, 77
+"d:\Diplom\BlazorApp\BlazorApp\appsettings.Development.json", "JSON", 0, 0, 9, 0, 0, 0, 0, 0, 9
+"d:\Diplom\BlazorApp\BlazorApp\appsettings.json", "JSON", 0, 0, 20, 0, 0, 0, 0, 1, 21
+"d:\Diplom\BlazorApp\BlazorApp\wwwroot\app.css", "PostCSS", 0, 109, 0, 0, 0, 0, 0, 11, 120
+"d:\Diplom\BlazorApp\BlazorApp\wwwroot\app.js", "JavaScript", 0, 0, 0, 0, 0, 33, 0, 4, 37
+"d:\Diplom\BlazorApp\BlazorApp\wwwroot\bootstrap\bootstrap.min.css", "PostCSS", 0, 6, 0, 0, 0, 0, 1, 0, 7
+"Total", "-", 8490, 872, 86, 5864, 45, 33, 265, 3783, 19438

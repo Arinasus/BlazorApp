@@ -1,0 +1,143 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using BlazorApp.Shared.Models
+@using Blazorized.HtmlTextEditor
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<LectureEditor> L
+
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+    <div class="card-header border-0 p-4 rounded-top-4 @(IsEditing ? "bg-warning-subtle text-warning-dark" : "bg-coral-light text-coral")">
+        <h5 class="mb-0 fw-bold">@(IsEditing ? L["EditLectureHeader"] : L["AddLectureHeader"])</h5>
+    </div>
+    <div class="card-body p-4">
+        <EditForm Model="Lecture" OnValidSubmit="OnSave">
+            <DataAnnotationsValidator />
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">@L["LectureTitleLabel"]</label>
+                    <InputText @bind-Value="Lecture.Title" class="form-control" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">@L["ThDiagnosis"]</label>
+                    <InputText @bind-Value="Lecture.TargetDiagnosis" class="form-control" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">@L["CategoryLabel"]</label>
+                    <div class="input-group">
+                        <InputSelect @bind-Value="Lecture.CategoryId" class="form-select">
+                            <option value="">@L["SelectCategory"]</option>
+                            @foreach (var cat in Categories)
+                            {
+                                <option value="@cat.Id">@cat.Name</option>
+                            }
+                        </InputSelect>
+                        @if (!IsAdmin)
+                        {
+                            <button type="button" class="btn btn-outline-primary" @onclick="OnOpenCategoryModal">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@L["LectureCoverLabel"]</label>
+                <InputFile OnChange="HandleFileSelected" class="form-control" accept=".jpg,.png" />
+                @if (!string.IsNullOrEmpty(Lecture.ImagePath))
+                {
+                    <div class="mt-2 position-relative d-inline-block">
+                        <img src="@Lecture.ImagePath" class="rounded-3 shadow-sm" style="height:80px; object-fit: cover;" />
+                    </div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@L["ShortDescriptionLabel"]</label>
+                <InputTextArea @bind-Value="Lecture.Description" class="form-control" rows="2" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">@L["FullTextLabel"]</label>
+                <div class="editor-container rounded-3 border bg-white">
+                    <HtmlTextEditor @ref="@QuillHtml" Placeholder="@L["EditorPlaceholder"]">
+                        <ToolbarContent>
+                            <select class="ql-header">
+                                <option selected=""></option>
+                                <option value="1"></option>
+                                <option value="2"></option>
+                            </select>
+                            <span class="ql-formats">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                            </span>
+                        </ToolbarContent>
+                    </HtmlTextEditor>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">@L["VideoUrlLabel"]</label>
+                <InputText @bind-Value="Lecture.VideoUrl" class="form-control" placeholder="https://youtube.com/..." />
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary px-4 rounded-pill">
+                    @(IsEditing? L["BtnSaveChanges"] : L["BtnPublish"])
+                </button>
+                @if (IsEditing)
+                {
+                    <button type="button" class="btn btn-secondary px-4 rounded-pill" @onclick="OnCancel">@L["BtnCancel"]</button>
+                }
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Lecture Lecture { get; set; } = new();
+    [Parameter] public List<Category> Categories { get; set; } = new();
+    [Parameter] public bool IsAdmin { get; set; }
+    [Parameter] public bool IsEditing { get; set; }
+    [Parameter] public EventCallback OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    [Parameter] public EventCallback OnOpenCategoryModal { get; set; }
+    [Parameter] public EventCallback<InputFileChangeEventArgs> OnFileSelected { get; set; }
+    private HtmlTextEditor? QuillHtml = default!;
+    private bool isQuillReady = false;
+
+    public async Task<string> GetContent() => await QuillHtml.GetHtml();
+    
+    public async Task LoadContent(string content) => await QuillHtml.LoadHtmlContent(content);
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isQuillReady = true;
+            
+        }
+    }
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        await OnFileSelected.InvokeAsync(e);
+    }
+    public async Task<string> GetHtmlContent() =>
+        QuillHtml != null ? await QuillHtml.GetHtml() : string.Empty;
+    
+
+    public async Task SetHtmlContent(string content)
+    {
+        int attempts = 0;
+
+        while (!isQuillReady && attempts < 20)
+        {
+            await Task.Delay(200);
+            attempts++;
+        }
+
+        if (isQuillReady && QuillHtml != null)
+        {
+            await QuillHtml.LoadHtmlContent(content ?? "");
+        }
+    }
+}

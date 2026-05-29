@@ -600,3 +600,9 @@ D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Ac
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.TherapistDiary.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ConfirmEmail.ru.resources
 D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.Account.Pages.ConfirmEmail.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.LectureEditor.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.LectureEditor.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.LectureTable.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Components.LectureTable.ru.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Services.LocalizedIdentityErrorDescriber.en.resources
+D:\Diplom\BlazorApp\BlazorApp\obj\Debug\net8.0\BlazorApp.Resources.Services.LocalizedIdentityErrorDescriber.ru.resources

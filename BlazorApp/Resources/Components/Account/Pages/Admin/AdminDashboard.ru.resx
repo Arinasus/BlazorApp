@@ -222,4 +222,7 @@
   <data name="CategoryAlreadyExistsError" xml:space="preserve">
     <value>Такая категория уже существует</value>
   </data>
+  <data name="AvailableLecturesHeader" xml:space="preserve">
+    <value>Доступные вам лекции</value>
+  </data>
 </root>

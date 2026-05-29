@@ -124,7 +124,7 @@
     <value>Написать сообщение</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>час</value>
+    <value>занятие</value>
   </data>
   <data name="InFavorites" xml:space="preserve">
     <value>В избранном</value>
@@ -178,7 +178,7 @@
     <value>Стоимость</value>
   </data>
   <data name="PerHour" xml:space="preserve">
-    <value>час</value>
+    <value>занятие</value>
   </data>
   <data name="LocationTitle" xml:space="preserve">
     <value>Место проведения занятий</value>
@@ -212,5 +212,41 @@
   </data>
   <data name="AddToFavorites" xml:space="preserve">
     <value>В избранное</value>
+  </data>
+  <data name="ContactInfoTitle" xml:space="preserve">
+    <value>Контактная информация</value>
+  </data>
+  <data name="PhoneLabel" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="CityLabel" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="PostAnonymously" xml:space="preserve">
+    <value>Опубликовать анонимно</value>
+  </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Аноним</value>
+  </data>
+  <data name="DisordersTitle" xml:space="preserve">
+    <value>Работаю с нарушениями</value>
+  </data>
+  <data name="AttachFile" xml:space="preserve">
+    <value>Прикрепить файлы</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="ProfessionalDetails" xml:space="preserve">
+    <value>Профессиональные данные</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>Тип работы</value>
+  </data>
+  <data name="SelfEmployed" xml:space="preserve">
+    <value>Самозанятый</value>
+  </data>
+  <data name="IsSelfEmployed" xml:space="preserve">
+    <value>Я являюсь самозанятым / ИП</value>
   </data>
 </root>

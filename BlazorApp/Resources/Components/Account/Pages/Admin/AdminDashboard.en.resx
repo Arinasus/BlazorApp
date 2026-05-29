@@ -222,4 +222,7 @@
   <data name="CategoryAlreadyExistsError" xml:space="preserve">
     <value>This category already exists</value>
   </data>
+  <data name="AvailableLecturesHeader" xml:space="preserve">
+    <value>Lectures available to you</value>
+  </data>
 </root>

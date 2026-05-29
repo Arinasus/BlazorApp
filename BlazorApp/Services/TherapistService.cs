@@ -30,6 +30,7 @@ namespace BlazorApp.Services
             if (profile != null)
             {
                 profile.IsApproved = true;
+                profile.IsModerationRequired = false;
 
                 var user = await _userManager.FindByIdAsync(profile.UserId);
                 if (user != null)
@@ -42,8 +43,19 @@ namespace BlazorApp.Services
         public async Task<List<TherapistProfile>> GetPendingApplicationsAsync()
         {
             return await _context.TherapistProfiles
-                .Where(p => !p.IsApproved)
-                .ToListAsync();
+        .Where(p => !p.IsApproved || p.IsModerationRequired)
+        .ToListAsync();
+        }
+        public async Task UpdateVerificationStatusAsync(int profileId, bool isPassport, bool isEducation, bool isSelfEmployed)
+        {
+            var profile = await _context.TherapistProfiles.FindAsync(profileId);
+            if (profile != null)
+            {
+                profile.IsPassportVerified = isPassport;
+                profile.IsEducationVerified = isEducation;
+                profile.IsSelfEmployed = isSelfEmployed;
+                await _context.SaveChangesAsync();
+            }
         }
         public async Task<TherapistProfile?> GetProfileByUserId(string userId)
         {
@@ -53,34 +65,59 @@ namespace BlazorApp.Services
 
         public async Task UpdateProfile(TherapistProfile profile)
         {
+            if (profile == null || string.IsNullOrWhiteSpace(profile.UserId))
+                throw new ArgumentException("Invalid profile or UserId");
+
             var existing = await _context.TherapistProfiles
                 .FirstOrDefaultAsync(p => p.UserId == profile.UserId);
 
-            if (existing != null)
+            if (existing == null)
             {
-                // 1. Сохраняем текущий статус одобрения и дату из базы данных, чтобы они не потерялись
-                var currentApprovedStatus = existing.IsApproved;
-                var currentCreatedAt = existing.CreatedAt;
+                // Новый профиль
+                profile.IsApproved = false;
+                profile.CreatedAt = DateTime.UtcNow;
 
-                // 2. Копируем все новые значения из формы (ФИО, формат работы, телефон и т.д.)
-                _context.Entry(existing).CurrentValues.SetValues(profile);
-
-                // 3. Возвращаем оригинальный статус модерации и дату обратно объекту
-                existing.IsApproved = currentApprovedStatus;
-                existing.CreatedAt = currentCreatedAt;
+                _context.TherapistProfiles.Add(profile);
             }
             else
             {
-                // Если профиля вообще не было (первое создание через настройки),
-                // отправляем на модерацию и ставим текущую дату
-                profile.IsApproved = false;
-                profile.CreatedAt = DateTime.UtcNow;
-                _context.TherapistProfiles.Add(profile);
+                existing.FirstName = profile.FirstName;
+                existing.LastName = profile.LastName;
+                existing.MiddleName = profile.MiddleName;
+                existing.Specialization = profile.Specialization;
+                existing.ExperienceYears = profile.ExperienceYears;
+                existing.PricePerHour = profile.PricePerHour;
+                existing.WorkFormat = profile.WorkFormat;
+                existing.Phone = profile.Phone;
+                existing.City = profile.City;
+                existing.Address = profile.Address;
+                existing.Education = profile.Education;
+                existing.FullBio = profile.FullBio;
+                existing.ShortDescription = profile.ShortDescription;
+                existing.IsPassportVerified = profile.IsPassportVerified;
+                existing.IsEducationVerified = profile.IsEducationVerified;
+                existing.IsSelfEmployed = profile.IsSelfEmployed;
+                existing.SpeechDisorders = profile.SpeechDisorders;
+                existing.SpecialNeeds = profile.SpecialNeeds;
+                existing.WorkType = profile.WorkType;
+                existing.SpeechDisorders = profile.SpeechDisorders;
+                existing.SpecialNeeds = profile.SpecialNeeds;
+                existing.WorkType = profile.WorkType;
+                existing.IsSelfEmployed = profile.IsSelfEmployed;
+                existing.IsPassportVerified = profile.IsPassportVerified; 
+                existing.IsEducationVerified = profile.IsEducationVerified;
+                existing.IsModerationRequired = true;
+
+                if (!string.IsNullOrWhiteSpace(profile.ImageUrl))
+                    existing.ImageUrl = profile.ImageUrl;
+
+                if (!string.IsNullOrWhiteSpace(profile.CertificateUrls))
+                    existing.CertificateUrls = profile.CertificateUrls;
             }
 
-            var affectedRows = await _context.SaveChangesAsync();
-            Console.WriteLine($"DB UPDATE: Профиль обновлен. Изменено строк: {affectedRows}. Статус IsApproved: {existing?.IsApproved}");
+            await _context.SaveChangesAsync();
         }
+
         public async Task<List<TherapistProfile>> GetApprovedProfilesAsync()
         {
             return await _context.TherapistProfiles
@@ -98,6 +135,7 @@ namespace BlazorApp.Services
                     WorkFormat = p.WorkFormat ?? "Online",
                     ImageUrl = p.ImageUrl ?? "/img/default-avatar.png",
                     PricePerHour = p.PricePerHour,
+                    ExperienceYears = p.ExperienceYears,
                     Reviews = p.Reviews
                 })
                 .ToListAsync();

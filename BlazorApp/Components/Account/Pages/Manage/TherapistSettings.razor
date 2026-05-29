@@ -5,7 +5,7 @@
 @using BlazorApp.Data
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
-
+@rendermode InteractiveServer
 @attribute [Authorize(Roles = "Therapist")]
 
 @inject ITherapistService TherapistService
@@ -16,10 +16,10 @@
 
 <h3 class="text-coral fw-bold mb-4">@L["SettingsTitle"]</h3>
 
-<EditForm Model="profile" OnValidSubmit="HandleValidSubmit" class="row g-3" FormName="TherapistProfileForm">
+<EditForm Model="profile" OnValidSubmit="HandleSubmit" class="row g-3" FormName="TherapistProfileForm">
     <DataAnnotationsValidator />
     <ValidationSummary class="text-danger small" />
-
+    <InputText @bind-Value="profile.CertificateUrls" hidden />
     <InputNumber @bind-Value="profile.Id" hidden />
     <InputText @bind-Value="profile.UserId" hidden />
     <InputText @bind-Value="profile.ImageUrl" hidden />
@@ -92,12 +92,68 @@
             <InputText @bind-Value="profile.Address" class="form-control" placeholder="@L["AddressPlaceholder"]" />
         </div>
     }
+    <div class="col-md-12">
+        <label class="form-label fw-bold">@L["WorkType"]</label>
+        <InputSelect @bind-Value="profile.WorkType" class="form-select">
+            <option value="Индивидуальные">Индивидуальные</option>
+            <option value="Групповые">Групповые</option>
+            <option value="Индивидуальные и групповые">Индивидуальные и групповые</option>
+        </InputSelect>
+    </div>
 
+    <div class="col-md-12">
+        <label class="form-label fw-bold">@L["SpeechDisorders"]</label>
+        <InputText @bind-Value="profile.SpeechDisorders" class="form-control" placeholder="Например: Дислалия; Дизартрия" />
+    </div>
+
+    <div class="col-md-12">
+        <label class="form-label fw-bold">@L["SpecialNeeds"]</label>
+        <InputText @bind-Value="profile.SpecialNeeds" class="form-control" />
+    </div>
+
+    <div class="col-md-12">
+        <div class="d-flex gap-4">
+            <div class="form-check">
+                <InputCheckbox @bind-Value="profile.IsSelfEmployed" class="form-check-input" id="isSelfEmployed" />
+                <label class="form-check-label" for="isSelfEmployed">@L["IsSelfEmployed"]</label>
+            </div>
+        </div>
+    </div>
     <div class="col-md-12">
         <label class="form-label fw-bold">@L["Education"]</label>
         <InputTextArea @bind-Value="profile.Education" class="form-control" rows="2" />
     </div>
+    <div class="col-md-12">
+        <label class="form-label fw-bold">@L["UploadCertificates"]</label>
+        <InputFile OnChange="UploadCertificate" class="form-control" />
 
+        <div class="d-flex flex-wrap gap-3 mt-3">
+            @foreach (var url in certificateList)
+            {
+                <div class="position-relative" style="width: 100px; height: 100px;">
+                    <div class="border rounded shadow-sm overflow-hidden w-100 h-100">
+                        @if (url.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <div class="d-flex align-items-center justify-content-center h-100 bg-light">
+                                <i class="bi bi-file-earmark-pdf fs-2 text-danger"></i>
+                            </div>
+                        }
+                        else
+                        {
+                            <img src="@url" class="img-fluid w-100 h-100" style="object-fit: cover;" />
+                        }
+                    </div>
+
+                    <button type="button"
+                            class="btn btn-danger btn-sm rounded-circle position-absolute"
+                            @onclick="() => RemoveCertificate(url)"
+                            style="top: -10px; right: -10px; width: 25px; height: 25px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
     <div class="col-md-12">
         <label class="form-label fw-bold">@L["FullBio"]</label>
         <InputTextArea @bind-Value="profile.FullBio" class="form-control" rows="5" />
@@ -120,9 +176,8 @@
 </EditForm>
 
 @code {
-    [SupplyParameterFromForm]
     private TherapistProfile profile { get; set; } = new();
-
+    private List<string> certificateList = new();
     private bool showSuccessMessage = false;
 
     protected override async Task OnInitializedAsync()
@@ -132,51 +187,39 @@
 
         if (user != null)
         {
-            if (profile.Id == 0)
+            var existingProfile = await TherapistService.GetProfileByUserId(user.Id);
+            if (existingProfile != null)
             {
-                var existingProfile = await TherapistService.GetProfileByUserId(user.Id);
-                if (existingProfile != null)
+                profile = existingProfile;
+                if (!string.IsNullOrEmpty(profile.CertificateUrls))
                 {
-                    profile = existingProfile;
+                    certificateList = profile.CertificateUrls.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList();
                 }
-                else
-                {
-                    profile.UserId = user.Id;
-                    profile.WorkFormat = "Online";
-                }
+            }
+            else
+            {
+                profile.UserId = user.Id;
             }
         }
     }
 
-    private async Task HandleValidSubmit()
+    private async Task HandleSubmit(EditContext editContext)
     {
-        profile.City = string.IsNullOrWhiteSpace(profile.City) ? null : profile.City;
-        profile.Phone = string.IsNullOrWhiteSpace(profile.Phone) ? null : profile.Phone;
-
-        if (profile.WorkFormat == "Online")
+        bool isValid = editContext.Validate();
+        if (isValid)
         {
-            profile.Address = null;
+            await TherapistService.UpdateProfile(profile);
+            showSuccessMessage = true;
+            StateHasChanged();
+            await Task.Delay(2000);
+            showSuccessMessage = false;
         }
         else
         {
-            profile.Address = string.IsNullOrWhiteSpace(profile.Address) ? null : profile.Address;
+            Console.WriteLine("Форма не прошла валидацию");
         }
-
-        profile.ShortDescription ??= string.Empty;
-        profile.FullBio ??= string.Empty;
-        profile.Education ??= string.Empty;
-        profile.WorkFormat ??= "Online";
-        profile.Specialization ??= "Логопед";
-
-        await TherapistService.UpdateProfile(profile);
-
-        showSuccessMessage = true;
-        StateHasChanged();
-
-        await Task.Delay(3000);
-        showSuccessMessage = false;
-        StateHasChanged();
     }
+
 
     private async Task LoadFiles(InputFileChangeEventArgs e)
     {
@@ -213,5 +256,62 @@
             profile.Address = null;
         }
         StateHasChanged();
+    }
+    private async Task UploadCertificate(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file == null) return;
+
+        var fileName = $"{Guid.NewGuid()}_{file.Name}";
+        var uploadsPath = Path.Combine(Environment.WebRootPath, "uploads", "certificates");
+        if (!Directory.Exists(uploadsPath)) Directory.CreateDirectory(uploadsPath);
+
+        var fullPath = Path.Combine(uploadsPath, fileName);
+
+        using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 5);
+        using var fileStream = new FileStream(fullPath, FileMode.Create);
+        await stream.CopyToAsync(fileStream);
+
+        // Добавляем в список
+        certificateList.Add($"/uploads/certificates/{fileName}");
+
+        // Обновляем модель
+        profile.CertificateUrls = string.Join(";", certificateList);
+
+        // Сохраняем
+        await TherapistService.UpdateProfile(profile);
+
+        // ПЕРЕЧИТЫВАЕМ профиль из БД
+        var updated = await TherapistService.GetProfileByUserId(profile.UserId);
+        if (updated != null)
+        {
+            profile = updated;
+            certificateList = profile.CertificateUrls?.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList() ?? new();
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task RemoveCertificate(string url)
+    {
+        certificateList.Remove(url);
+        profile.CertificateUrls = string.Join(";", certificateList);
+
+        await TherapistService.UpdateProfile(profile);
+
+        var updated = await TherapistService.GetProfileByUserId(profile.UserId);
+        if (updated != null)
+        {
+            profile = updated;
+            certificateList = profile.CertificateUrls?.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList() ?? new();
+        }
+
+        StateHasChanged();
+    }
+
+
+    private void UpdateProfileUrls()
+    {
+        profile.CertificateUrls = string.Join(";", certificateList);
     }
 }
